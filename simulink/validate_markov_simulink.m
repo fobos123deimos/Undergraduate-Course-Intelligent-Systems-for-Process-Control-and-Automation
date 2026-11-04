@@ -26,7 +26,7 @@ for j=1:6
   assert(error_value<1e-10);
  end
  records{j}=struct('model',name,'samples',numel(trace.time),'max_reference_error',error_value,'passed',true);
- print(['-s' name],'-dpng','-r120',fullfile(output_dir,[name '.png']));
+ export_model_diagram(name,fullfile(output_dir,[name '.png']));
  clear cleanup;
 end
 report=struct('runtime','MATLAB with Simulink','models',{records},'native_checks',native,'generated_models',6,'passed',true);

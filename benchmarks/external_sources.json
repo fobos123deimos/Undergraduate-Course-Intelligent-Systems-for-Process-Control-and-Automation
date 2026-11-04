@@ -1,6 +1,14 @@
 {
   "retrieved_on": "2026-11-04",
   "sources": {
+    "alstom-gasifier": {
+      "url": "https://www.researchgate.net/profile/Roger-Dixon/publication/326066211_Gasifier_R2015_and_2017/data/5b3656daa6fdcc8506dcf6ee/Gasifier-R2015-and-2017.zip",
+      "filename": "Gasifier_R2015and2017.zip",
+      "sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "version": "Author R2015/R2017 challenge distribution, retrieved through normal browser download 2026-11-04",
+      "extract": true,
+      "note": "Windows mexw64 plant only; no C/Fortran source or Linux binary. Direct automated requests return403; use --local-file with the normally downloaded archive. Redistribution license not supplied."
+    },
     "te-original": {
       "url": "https://depts.washington.edu/control/LARRY/TE/tecode.zip",
       "filename": "tecode.zip",
@@ -15,7 +23,7 @@
       "sha256": "e43227aaded739cfeba1ec281c54ac8a549f60753e064305a669b906c4b16b0d",
       "version": "2015-01-23 revised C/Simulink distribution; 52 states",
       "extract": true,
-      "note": "Runtime MATLAB/Simulink compatibility unverified; redistribution license unspecified."
+      "note": "Compiled and executed in MATLAB R2025b/Simulink: mode1 nominal, IDV1 and IDV4; evidence results/te-native/validation.json. Redistribution license unspecified."
     },
     "column-a": {
       "url": "https://skoge.folk.ntnu.no/book/matlab_m/cola/colamod.m",

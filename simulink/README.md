@@ -66,6 +66,8 @@ report = validate_blending_simulink('simulink/generated/tank-check');
 
 MATLAB with Simulink is required for model building and execution. No Control System Toolbox is required for these diagrams. GNU Octave can execute the numerical Markov/HMM and plant functions, but it cannot run `.slx` diagrams.
 
+PNG export additionally requires a display. The Linux workflow starts an Xvfb virtual display before MATLAB, following the [official MATLAB Actions recipe](https://github.com/matlab-actions/.github#use-virtual-display-on-linux-runner). Model simulation alone can run without a display; Simulink printing cannot run in `-nodisplay` mode. The validation routine opens each model for export and closes it afterward.
+
 For public GitHub projects, the official [Setup MATLAB action](https://github.com/matlab-actions/setup-matlab#licensing) documents automatic product licensing when used with its companion run actions. The repository workflow requests MATLAB and Simulink and preserves the generated diagrams and validation report as artifacts. Runtime success must still be checked for the specific workflow run; availability of the action is not execution evidence.
 
 Interface references: [MATLAB S-functions](https://www.mathworks.com/help/simulink/sfg/writing-level-2-matlab-s-functions.html), [Discrete State-Space block](https://www.mathworks.com/help/simulink/slref/discretestatespace.html), [From Workspace block](https://www.mathworks.com/help/simulink/slref/fromworkspace.html) and [Transfer Fcn block](https://www.mathworks.com/help/simulink/slref/transferfcn.html).

@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-04",
+  "archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+  "author_record": "https://www.researchgate.net/publication/326066211_Gasifier_R2015_and_2017",
+  "version": "Gasifier_R2017",
+  "platform": "Windows x64 MATLAB/Simulink",
+  "native_execution_status": "pending_compatible_runtime",
+  "source_files": [
+    {
+      "relative_path": "Specification.pdf",
+      "sha256": "00ac1a66f260c306cb7707503211a49afe4c81b102b35e1dd2335d352e3593c9",
+      "bytes": 109219
+    },
+    {
+      "relative_path": "PI_closed_loop/cgasifier_cl.mdl",
+      "sha256": "b07f9d6d558b4f7cfd49b969624e21b60ea51c9d0fc218ff9afa225ccb6509bd",
+      "bytes": 137076
+    },
+    {
+      "relative_path": "PI_closed_loop/gasifier.mexw64",
+      "sha256": "ac59d9dfa8c338c4488ee1c725e601691c9fe14f5f30ae91172b82f6d7b2741a",
+      "bytes": 90112
+    },
+    {
+      "relative_path": "PI_closed_loop/clss0_x.mat",
+      "sha256": "b4f61d0a5a49c0e1195caefb42ad93e2c759f3ae4e3c2aca65e6afcb596aa587",
+      "bytes": 1871
+    },
+    {
+      "relative_path": "PI_closed_loop/clss50_x.mat",
+      "sha256": "9b2ffb07b8039c82833a51e6eef967700fe3f7bebe82feb9748f2d8bbce2a17e",
+      "bytes": 1873
+    },
+    {
+      "relative_path": "PI_closed_loop/clss100_x.mat",
+      "sha256": "0b65e6a03795df0102be21913787c37f2e616b5b84382aebce9174270c836972",
+      "bytes": 1872
+    }
+  ]
+}

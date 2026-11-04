@@ -30,7 +30,7 @@ for j=1:numel(paths)
   assert(all(isfinite(x(:)))&&norm(x(end,:)'-[.4;.5],Inf)<.03);
   records{j}=struct('model',name,'comparison','finite state and final tracking','final_tracking_error',norm(x(end,:)'-[.4;.5],Inf),'passed',true);
  end
- export_diagram(name,fullfile(output_dir,'general',[name '.png']));
+ export_model_diagram(name,fullfile(output_dir,'general',[name '.png']));
  clear cleanup;
 end
 paths=build_discrete_models(fullfile(output_dir,'discrete'),false);cases=paper_simulink_cases('discrete');discrete=cell(numel(paths),1);
@@ -45,7 +45,7 @@ for j=1:numel(paths)
  end
  difference=actual-expected;error_value=max(abs(difference(:)));assert(error_value<1e-11);
  discrete{j}=struct('model',name,'max_reference_error',error_value,'passed',true);
- export_diagram(name,fullfile(output_dir,'discrete',[name '.png']));clear cleanup;
+ export_model_diagram(name,fullfile(output_dir,'discrete',[name '.png']));clear cleanup;
 end
 markov=validate_markov_simulink(fullfile(output_dir,'markov'));
 intelligent=validate_intelligent_simulink(fullfile(output_dir,'intelligent'));
@@ -56,8 +56,4 @@ report=struct('runtime',version,'simulink',ver('simulink'),'generated_models',nu
 path=fullfile(output_dir,'validation.json');fid=fopen(path,'w');assert(fid>=0);cleanup=onCleanup(@()fclose(fid));
 fprintf(fid,'%s\n',jsonencode(report,'PrettyPrint',true));clear cleanup;
 fprintf('All %d generated Simulink models passed; evidence: %s\n',report.generated_models,path);
-end
-function export_diagram(name,path)
-% Export a viewable model image along with each generated model artifact.
-print(['-s' name],'-dpng','-r120',path);
 end

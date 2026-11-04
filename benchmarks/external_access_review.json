@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-04",
+  "throttle": {
+    "status": "measured_data_not_recovered",
+    "provider_url": "https://www.rst.e-technik.tu-dortmund.de/cms/de/Veranstaltungen/GMA-Fachausschuss/Benchmark/index.html",
+    "attempt_result": "Historical provider page inaccessible in web retrieval; direct HTTPS attempt failed SSL connection",
+    "author_reference": "https://www.ksp.kit.edu/books/1123/files/917e2990-49e8-4674-bb3e-7b40e418865d.pdf",
+    "next_requirement": "Original training and validation records with provenance and units; expected 10000 and 2500 samples at 0.01 s",
+    "substitute_data_used": false
+  },
+  "alstom_gasifier": {
+    "status": "retrieved_via_normal_browser_native_runtime_pending",
+    "provider_url": "https://www.researchgate.net/publication/326066211_Gasifier_R2015_and_2017",
+    "download_url": "https://www.researchgate.net/profile/Roger-Dixon/publication/326066211_Gasifier_R2015_and_2017/data/5b3656daa6fdcc8506dcf6ee/Gasifier-R2015-and-2017.zip",
+    "attempt_result": "Normal browser author download succeeded without bypass; direct ordinary HTTP GET still returned 403",
+    "expected_archive": "Gasifier_R2015and2017.zip",
+    "next_requirement": "Compatible Windows x64 MATLAB/Simulink and MSVCR100 runtime; run validate_alstom_reference with the obtained archive. No source or Linux binary is supplied.",
+    "substitute_model_used": false,
+    "archive_bytes": 452992,
+    "archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+    "source_manifest": "alstom_manifest.json",
+    "entrypoint": "validate_alstom_reference.m",
+    "prepared_cases": 11,
+    "executed_cases": 0,
+    "redistribution": "No explicit redistribution license supplied; archive and binary remain local and ignored",
+    "public_ci_blocker": "Direct download HTTP 403 and third-party archive not redistributed",
+    "source_inspection_evidence": "results/alstom-source-inspection.json",
+    "wrapper_syntax_check": "Octave 11.3 parsed both MATLAB functions successfully; this is not native Simulink execution"
+  },
+  "openfast": {
+    "status": "retrieved_and_executed",
+    "release": "v5.0.0",
+    "provider_url": "https://github.com/OpenFAST/openfast/releases/tag/v5.0.0",
+    "rtest_commit": "dd5feaaaa500ba7283140107806300d551cff0a7",
+    "case": "5MW_Land_DLL_WTurb",
+    "evidence": "results/openfast-validation.json",
+    "historical_scope": "Current version-pinned successor case, not exact 2014 FAST comparison"
+  },
+  "tennessee_eastman": {
+    "status": "official_revised_source_compiled_and_executed",
+    "provider_url": "https://depts.washington.edu/control/LARRY/TE/download.html",
+    "version": "2015 revised C/Simulink with 52 continuous states",
+    "entrypoint": "validate_te_reference.m",
+    "execution_evidence": "results/te-native/validation.json",
+    "native_runtime": "MATLAB R2025b Update 7 / Simulink",
+    "executed_cases": [
+      "mode1 nominal 0.2 h",
+      "mode1 IDV1 from t=0, 0.2 h",
+      "mode1 IDV4 from t=0, 0.2 h"
+    ],
+    "saved_rows_per_case": 21,
+    "ci_run": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41878490951",
+    "ci_job_id": 126744461704,
+    "ci_scope": "Native TE command passed and artifacts exported; overall historical job failed a separate wind-structure check"
+  },
+  "source_ambiguities": {
+    "pneumatic": "Canonical voltage-to-valve-flow closure, gas constant, kappa and gravity convention need original specification",
+    "hydrostatic": "Normalized angles, actuator gains, pressure/volume units and displacement in torque relation need primary-model reconciliation",
+    "hydrostatic_primary_reference": "https://www.sciencedirect.com/science/article/pii/S0378475400002342",
+    "canonical_parameter_changes_made_without_evidence": false
+  }
+}

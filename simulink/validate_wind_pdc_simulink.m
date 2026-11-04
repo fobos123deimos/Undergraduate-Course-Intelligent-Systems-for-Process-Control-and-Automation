@@ -13,7 +13,7 @@ scaled=bsxfun(@rdivide,difference,[1e6 .1]);command_error=max(abs(scaled(:)));
 assert(state_error<1e-8&&command_error<1e-9);
 rate=abs(diff(commands.signals.values));assert(all(all(rate<=[5e5 8*pi/180]*.02+1e-8)));
 assert(all(all(commands.signals.values>=[0 0]))&&all(all(commands.signals.values<=[6e6 30*pi/180])));
-print(['-s' name],'-dpng','-r120',fullfile(output_dir,[name '.png']));
+export_model_diagram(name,fullfile(output_dir,[name '.png']));
 report=struct('model',name,'state_max_error',state_error,'scaled_command_max_error',command_error,...
  'samples',numel(states.time),'generated_models',1,'map_variant','ROSCO 2022; new LQR/PDC design','passed',true);
 fprintf('Scheduled wind LQR/PDC diagram matched native state and actuator traces.\n');

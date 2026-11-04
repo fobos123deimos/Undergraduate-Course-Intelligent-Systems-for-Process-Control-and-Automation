@@ -33,7 +33,7 @@ assignin(ws,'xinit',[.5;0]);failed=false;
 try,sim(name);catch err,failed=contains(err.message,'min_volume')||contains(err.message,'Initial state');end
 assert(failed,'An invalid initial volume must be rejected.');
 report.invalid_initial_volume_rejected=failed;
-print(['-s' name],'-dpng','-r120',fullfile(output_dir,[name '.png']));
+export_model_diagram(name,fullfile(output_dir,[name '.png']));
 clear cleanup;
 
 name='bt_comparison_corrected';load_system(paths{2});
@@ -58,7 +58,7 @@ assert(report.linear_formula_max_error<2e-7);
 assert(xl(end,1)<.5&&xl(end,2)>2);
 report.local_approximation_max_error=max(abs(xn(:)-xl(:)));
 assert(report.local_approximation_max_error<1e-3);
-print(['-s' name],'-dpng','-r120',fullfile(output_dir,[name '.png']));
+export_model_diagram(name,fullfile(output_dir,[name '.png']));
 clear cleanup;
 report.passed=true;
 fprintf('Corrected Simulink startup, filling, linear/transfer and domain checks passed.\n');

@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-04",
+  "status": "passed",
+  "nominal": {
+    "model": "official revised 2015 Tennessee Eastman",
+    "continuous_states": 52,
+    "operating_mode": 1,
+    "disturbance_from_start": 0,
+    "seed": 17,
+    "measurement_noise": false,
+    "duration_h": 0.2,
+    "sample_count": 21,
+    "outputs": 41,
+    "manipulated_variables": 12,
+    "solver": "ode45",
+    "relative_tolerance": 1E-7,
+    "absolute_tolerance": 1E-9,
+    "max_step_h": 0.0005,
+    "source_c_sha256": "eff57b75700e7472005785150c21f82b0c3d178ebceebe37e532794f23785aba",
+    "source_header_sha256": "fa3782a07c11e5c149ad0f44ec332c45ed998edb7ef8241fade9b1d395577363",
+    "source_model_sha256": "555d4b468c56750b33b1aa13b8e3b00df88f10aae1d96979e0b8be0bcbec6999",
+    "all_outputs_finite": true,
+    "max_scaled_output_drift": 0.0014461777799866238,
+    "reactor_pressure_range_kPa": [
+      2798.9757990229973,
+      2800.2806162690772
+    ],
+    "reactor_temperature_range_C": [
+      122.89748636244498,
+      122.9016024346521
+    ],
+    "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+    "scope": "Short integration and disturbance test; not all six modes or full challenge performance"
+  },
+  "disturbance_cases": [
+    {
+      "model": "official revised 2015 Tennessee Eastman",
+      "continuous_states": 52,
+      "operating_mode": 1,
+      "disturbance_from_start": 1,
+      "seed": 17,
+      "measurement_noise": false,
+      "duration_h": 0.2,
+      "sample_count": 21,
+      "outputs": 41,
+      "manipulated_variables": 12,
+      "solver": "ode45",
+      "relative_tolerance": 1E-7,
+      "absolute_tolerance": 1E-9,
+      "max_step_h": 0.0005,
+      "source_c_sha256": "eff57b75700e7472005785150c21f82b0c3d178ebceebe37e532794f23785aba",
+      "source_header_sha256": "fa3782a07c11e5c149ad0f44ec332c45ed998edb7ef8241fade9b1d395577363",
+      "source_model_sha256": "555d4b468c56750b33b1aa13b8e3b00df88f10aae1d96979e0b8be0bcbec6999",
+      "all_outputs_finite": true,
+      "max_scaled_output_drift": 0.014258945609875248,
+      "reactor_pressure_range_kPa": [
+        2798.8803240959137,
+        2803.0791765845188
+      ],
+      "reactor_temperature_range_C": [
+        122.88833135611222,
+        122.89879643832488
+      ],
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "scope": "Short integration and disturbance test; not all six modes or full challenge performance",
+      "max_scaled_difference_from_nominal": 0.014305545095064248
+    },
+    {
+      "model": "official revised 2015 Tennessee Eastman",
+      "continuous_states": 52,
+      "operating_mode": 1,
+      "disturbance_from_start": 4,
+      "seed": 17,
+      "measurement_noise": false,
+      "duration_h": 0.2,
+      "sample_count": 21,
+      "outputs": 41,
+      "manipulated_variables": 12,
+      "solver": "ode45",
+      "relative_tolerance": 1E-7,
+      "absolute_tolerance": 1E-9,
+      "max_step_h": 0.0005,
+      "source_c_sha256": "eff57b75700e7472005785150c21f82b0c3d178ebceebe37e532794f23785aba",
+      "source_header_sha256": "fa3782a07c11e5c149ad0f44ec332c45ed998edb7ef8241fade9b1d395577363",
+      "source_model_sha256": "555d4b468c56750b33b1aa13b8e3b00df88f10aae1d96979e0b8be0bcbec6999",
+      "all_outputs_finite": true,
+      "max_scaled_output_drift": 0.017250050485786095,
+      "reactor_pressure_range_kPa": [
+        2796.7380489595057,
+        2799.9816296237527
+      ],
+      "reactor_temperature_range_C": [
+        122.89879643832488,
+        123.34786806595808
+      ],
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "scope": "Short integration and disturbance test; not all six modes or full challenge performance",
+      "max_scaled_difference_from_nominal": 0.017422959600414289
+    }
+  ],
+  "limitations": "Three short mode1 integration checks; no complete six-mode or long-horizon benchmark claim"
+}

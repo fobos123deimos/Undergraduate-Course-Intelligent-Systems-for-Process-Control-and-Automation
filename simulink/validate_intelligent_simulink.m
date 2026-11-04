@@ -18,7 +18,7 @@ for j=1:2
  input_error=max(abs(controller.signals.values(1:end-1,1)-inputs));
  assert(state_error<1e-10&&input_error<1e-10);
  records{j}=struct('model',name,'state_max_error',state_error,'input_max_error',input_error,'passed',true);
- print(['-s' name],'-dpng','-r120',fullfile(output_dir,[name '.png']));clear cleanup;
+ export_model_diagram(name,fullfile(output_dir,[name '.png']));clear cleanup;
 end
 report=struct('models',{records},'native_checks',native,'generated_models',2,'passed',true);
 fprintf('Fuzzy PID and neural RBF Simulink diagrams matched native labs.\n');
