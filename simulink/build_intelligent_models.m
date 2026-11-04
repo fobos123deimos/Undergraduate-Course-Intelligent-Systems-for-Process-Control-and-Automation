@@ -26,10 +26,10 @@ for j=1:2
    add_line(name,'Disturbance/1','PlantInput/2');add_line(name,'PlantInput/1','Plant/1');
   else
    add_block('simulink/User-Defined Functions/S-Function',[name '/Controller'],'FunctionName','neural_control_sfun','Parameters','model,dt','Position',[215 55 335 115]);
-   add_block('simulink/User-Defined Functions/S-Function',[name '/Plant'],'FunctionName','neural_teaching_plant_sfun','Parameters','dt','Position',[505 55 610 100]);
+   add_block('simulink/User-Defined Functions/S-Function',[name '/Plant'],'FunctionName','neural_teaching_plant_sfun','Parameters','dt','Position',[505 55 720 100]);
    add_line(name,'Controller/1','Plant/1');
   end
-  add_block('simulink/Sinks/To Workspace',[name '/Concentration'],'VariableName','concentration','SaveFormat','StructureWithTime','Position',[685 55 790 95]);
+  add_block('simulink/Sinks/To Workspace',[name '/Concentration'],'VariableName','concentration','SaveFormat','StructureWithTime','Position',[790 55 895 95]);
   add_block('simulink/Sinks/To Workspace',[name '/ControllerTrace'],'VariableName','controller_trace','SaveFormat','StructureWithTime','Position',[420 210 550 250]);
   add_line(name,'Reference/1','ReferenceMeasurement/1');add_line(name,'Plant/1','ReferenceMeasurement/2','autorouting','on');
   add_line(name,'ReferenceMeasurement/1','Controller/1');add_line(name,'Controller/1','ControllerTrace/1','autorouting','on');add_line(name,'Plant/1','Concentration/1');

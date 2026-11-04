@@ -29,10 +29,20 @@ report.filling_max_error=max(abs(x(:)-expected(:)));
 assert(report.filling_max_error<2e-7);
 
 % Physical-domain validation must fail instead of dividing by an empty volume.
-assignin(ws,'xinit',[.5;0]);failed=false;
-try,sim(name);catch err,failed=contains(err.message,'min_volume')||contains(err.message,'Initial state');end
-assert(failed,'An invalid initial volume must be rejected.');
+assignin(ws,'xinit',[.5;0]);failed=false;rejected=false;diagnostic='';
+try
+ sim(name);
+catch err
+ rejected=true;failed=volume_guard_exception(err);
+ diagnostic=getReport(err,'extended','hyperlinks','off');
+end
+assert(rejected,'An invalid initial volume must be rejected.');
+assert(failed,sprintf('Invalid volume raised an unexpected exception:\n%s',diagnostic));
 report.invalid_initial_volume_rejected=failed;
+report.invalid_initial_volume_diagnostic=diagnostic;
+fprintf('Invalid initial volume rejected by the physical-domain guard.\n%s\n',diagnostic);
+% Restore the saved startup settings before exporting the model view.
+assignin(ws,'xinit',[0;2]);assignin(ws,'physical_input',p.ubar);
 export_model_diagram(name,fullfile(output_dir,[name '.png']));
 clear cleanup;
 
@@ -62,4 +72,15 @@ export_model_diagram(name,fullfile(output_dir,[name '.png']));
 clear cleanup;
 report.passed=true;
 fprintf('Corrected Simulink startup, filling, linear/transfer and domain checks passed.\n');
+end
+
+function matches=volume_guard_exception(err)
+% Simulink wraps Level-2 S-function errors in MSLException causes. Check the
+% actual guard diagnostic recursively; an unrelated simulation error fails.
+matches=any(strcmp(err.identifier,{'bt_sfun:InitialState','bt_sfun:MinimumVolume'}))||...
+ contains(err.message,'Initial state must be [X;V]')||...
+ contains(err.message,'Volume reached min_volume');
+for j=1:numel(err.cause)
+ matches=matches||volume_guard_exception(err.cause{j});
+end
 end
