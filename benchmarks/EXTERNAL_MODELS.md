@@ -57,6 +57,8 @@ validate_te_reference('benchmarks/external/te-revised/temexd_mod', 'benchmarks/r
 
 The [native validation record](results/te-native/validation.json) and adjacent CSV files contain the executed results: 21 saved rows per case, 41 measured outputs and 12 inputs. Nominal maximum scaled drift was 0.001447 or less; both specified disturbances changed the output trajectory. MATLAB R2025b Update 7 compiled the official C source and passed all three integration checks. These results came from [CI run 41878490951](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41878490951); that run's separate wind-structure check failed and was repaired subsequently, so the TE evidence is the successful native command and exported results, not a claim that the whole run passed.
 
+The same three cases also passed in the fully successful [final workflow](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567), alongside the 25 course Simulink models. The preserved TE traces retain their original execution provenance.
+
 For a broader study, use the package's exact disturbance switches, add feed loss and valve sticking, and record shutdowns as failures rather than discarding them. Compare product rate/quality variability, input movement, transition time and constraint excursions. The review deliberately does not define one universal scalar score.
 
 ## ALSTOM Gasifier II (3.11)

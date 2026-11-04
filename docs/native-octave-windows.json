@@ -1,0 +1,107 @@
+{
+  "version": "11.3.0",
+  "platform": "x86_64-w64-mingw32",
+  "course_units_passed": 9,
+  "mimo_mpc_solver_failures": 0,
+  "siso_mpc_solver_failures": 0,
+  "neural": {
+    "mlp_one_step_rmse": 0.009827237955663206,
+    "mlp_free_run_rmse": 0.2432258864322258,
+    "mlp_ood_rmse": 0.19022316123841448,
+    "rbf_one_step_rmse": 0.004676062549447166,
+    "rbf_free_run_rmse": 0.11842563282201996,
+    "rbf_ood_rmse": 0.728802130640547
+  },
+  "paper_model_checks_passed": 10,
+  "online_hmm": {
+    "filter_max_error": 0,
+    "policy_names": [
+      "nominal_baseline",
+      "nominal_supervisor",
+      "mismatch_baseline",
+      "mismatch_supervisor"
+    ],
+    "policy_max_errors": [
+      4.440892098500626e-16,
+      7.771561172376096e-16,
+      4.440892098500626e-16,
+      4.996003610813204e-16
+    ],
+    "passed": true
+  },
+  "intelligent_adapters": {
+    "fuzzy_state_max_error": 0,
+    "fuzzy_input_max_error": 0,
+    "neural_state_max_error": 0,
+    "neural_input_max_error": 0,
+    "passed": true
+  },
+  "wind": {
+    "passed": true,
+    "operating_points": 3,
+    "speed_rmse": 0.0015698011282290767,
+    "speed_peak_error": 0.010398075433441845,
+    "local_poles": [
+      -0.3956126275492997,
+      -0.4073021788383284,
+      -0.3853246578269256
+    ],
+    "map_variant": "ROSCO 2022; new LQR/PDC study, not published gains"
+  },
+  "csv": {
+    "passed": true,
+    "aligned_rows": 3,
+    "malformed_fixtures_rejected": 13,
+    "source": "Temporary import-validation fixtures; not measured benchmark data"
+  },
+  "elapsed_seconds": 1321.519595861435,
+  "passed": true,
+  "date": "2026-11-04",
+  "source_snapshot_commit": "41725bf94acf59fa74f0113134252df661f97d92",
+  "source_scope": "MATLAB numerical functions; their bytes were unchanged during this run",
+  "runtime_distribution": "Official portable GNU Octave 11.3.0 for Windows x64",
+  "runtime_archive_sha256": "fd3cf0e885467a15211b8ceded42800432a5462481324d49a896ef257e05d1a0",
+  "runtime_source": "https://github.com/gnu-octave/octave/releases/tag/release-11-3-0",
+  "mpc_check_groups": 7,
+  "markov_check_groups": 7,
+  "physical_tank_check_groups": 7,
+  "simulink_executed": false,
+  "source_sha256": {
+    "matlab/blending_rhs.m": "b5b88d984568a6d2f63eb36e29d497e81420f6cd026f68f5d1e835b7ed0e0398",
+    "matlab/bt_equilibrium.m": "b7aed4bcb6f1dcd9c9bb7c7cee046deb04bde17523c770ab5082c6c20d39ba3a",
+    "matlab/bt_linearize.m": "229df157a07f2e570448e51ca9e72ddb551fe7f6a844c65ce0631721cd028fbe",
+    "matlab/bt_parameters.m": "5f726279f00ab7bc7838a645f47eb8c39ebfe4408f4e52904e03666e93b32e0c",
+    "matlab/bt_rhs.m": "308f7dfea0382ffa790e86a2fc0041dd5f60af571d6a4befeabb5349056ea19f",
+    "matlab/bt_simulate.m": "64259e11c1353fc19a1e6f81f47cb6b0d913b863bb1aa72a0ec6880c52ac132c",
+    "matlab/bt_validate.m": "8e1f08a408393cca963963d042c3adfa5140af41a09d3dd2ba335407a493b336",
+    "matlab/fuzzy_pid_step.m": "4742ccfd4cccdf54a4ffd41506907c9adaabecac7db8f116fe1f6036ae6b6385",
+    "matlab/hmm_filter_step.m": "42d39975864f2961d67e9d7771a539020b29629ab391af06e1779afd3ea4e7c8",
+    "matlab/hmm_pi_step.m": "147f5ab6a22184bac48a1eb504f49898ae4d73944bca17121ccbab56bdaacd7f",
+    "matlab/load_io_csv.m": "0cddb2b13b66098b155c9e8cb3301641f535aedc287a51d3a09c0e86469ba658",
+    "matlab/local_arx_fit.m": "caa7b174746b5a11b078b3b5e475c1aeb85a178251ec793b8efa072238ae3e5c",
+    "matlab/local_arx_predict.m": "938ccf0488c95822d327de8a0be50a8b44bbe7cde3851b5a62b1ffe4d46de42c",
+    "matlab/local_arx_weights.m": "fbb4a1e32185f8686407498eebf3529b6c5b9cba913a2ee1e92013593035fe65",
+    "matlab/markov_models.m": "9185e65d194aa52e5600032dbe81b5d4d203f869a43db47810133d7cd6eb4bb4",
+    "matlab/mpc_control.m": "4edb9f4b30edf74090a9f58ee1336bff0e09c36855d7553a9fad563393cb5ff8",
+    "matlab/neural_inverse_action.m": "743990b223bd197f652b632cc938805cf2ed37586703fd4fd20ebedf27fa2c5b",
+    "matlab/neural_predict.m": "4b6b9af9e951593d89d639496113ee56b077fae9eda576ca7f3c4ea766941da7",
+    "matlab/neural_rollout.m": "e95417df1289632049ffed8e3fbda14fc9c89c63b172fe19ef377c32cc533b43",
+    "matlab/paper_models.m": "bc2f5aaa0e05b72bef2c45f63f70ab515f2ee141cc52152b1bbde06b5a4e81de",
+    "matlab/run_blending_tank.m": "1aa856f10eaa3ebf9a4c51ff83346cd3e7f54c9d7079fd43ff6974fec34ac1a5",
+    "matlab/run_lesson.m": "85204242b2a3020c0951e6e26af7b43e9f8cdfa324191bef11ef1c9c81bf91f6",
+    "matlab/run_markov_lab.m": "db8b730d8096201857d651ef9877c645305315f6b1230a952c855fc807b93f28",
+    "matlab/run_wind_control.m": "b8dccda8b43595772195cf4827637d5cf94e6dc95f853864fb64514d5c43e87c",
+    "matlab/validate_all.m": "9f83388beaa61ee46ba7dd58eb1b330597e0852bc59abe5d54cbc28835efdf39",
+    "matlab/validate_blending_tank.m": "8b1c2fad4fea525b779fc8edc3bee4421291d92ee58a08fc998bdd5c10322443",
+    "matlab/validate_intelligent_adapters.m": "525c479ae989f6d8f871db1cdf51573ce6f65217ae12e54ef3635a66c65e7491",
+    "matlab/validate_io_csv.m": "a89c8d8558e661173751c7cdf7ce1ba5814100bd808e2535bf6f5f8d3ce1e339",
+    "matlab/validate_markov.m": "19fb252fa942d61eaf5ef822ed6eb416e481e92ddbb2fb122202e4829a9619a6",
+    "matlab/validate_mpc.m": "724642e015b84c21a335053adaf5f9721c721e658d05117fe07f4a142b958526",
+    "matlab/validate_online_hmm.m": "15214e5c407b627e9061255ee5935b6a8c6a93ea0bde3eceaec24453ac09476d",
+    "matlab/validate_paper.m": "1b6fb3116fc3d0adace35d9313b4f7da700878df82d5adcaedad905aebdbf6ba",
+    "matlab/validate_wind_control.m": "ab1d68cdb471e065501dd667cc655844debb8c230d292dd6cb24ec87487fa646",
+    "matlab/wind_control.m": "af6b2584f921207bef6ab78175705b89446ee741ea9f0695238c895a3df344ba"
+  },
+  "log_sha256": "d5f03fd3db06ecc5861b4d555ad308c5ead1278592e5a34482130a00c3327afb",
+  "log_file": "native-octave-windows.txt"
+}

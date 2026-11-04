@@ -2,6 +2,8 @@
 
 The builders create **25 models** from inspectable MATLAB source. They cover all ten implemented article equation cores, the physical tank, PI/MPC, fuzzy PID, neural RBF control, scheduled wind LQR/PDC, Markov occupancy, HMM diagnosis and four causal sensor-supervision experiments. Creating a diagram and executing it are separate operations; the [validation record](../docs/VALIDATION.md) identifies the source commit and runtime actually exercised.
 
+The [validated model gallery](models/README.md) contains the 25 executed SLX files, their PNG views and the native comparison report. [Run 41886384567](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567) passed all models in MATLAB R2025b Update 7.
+
 From the repository root in MATLAB with Simulink:
 
 ```matlab

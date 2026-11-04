@@ -17,10 +17,14 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 - [Course guide, prerequisites and complete syllabus mapping](course/README.md)
 - [Integrated problems and worked solutions](problem-sets/README.md)
 - [All article benchmarks: models, protocols and evidence boundaries](benchmarks/README.md)
-- [Corrected physical Blending Tank: independent equations, linearization and fresh Simulink generator](blending-tank/README.md)
+- [Corrected physical Blending Tank: independent equations, linearization and validated Simulink models](blending-tank/README.md)
 - [References and English/Portuguese video lessons](docs/REFERENCES.md)
 - [Execution evidence](docs/VALIDATION.md) and [limitations](docs/LIMITATIONS.md)
 - [Final syllabus, article and language coverage review](docs/COVERAGE_REVIEW.md)
+- [Wind LQR/PDC design, model variants and nonlinear validation](benchmarks/WIND_CONTROL.md)
+- [Official external simulators and source availability](benchmarks/EXTERNAL_MODELS.md)
+- [25 validated Simulink models and diagram gallery](simulink/models/README.md)
+- [Final technical assessment and scoring rubric: 8.5/10](docs/ASSESSMENT.md)
 
 ## Nine connected laboratories
 
@@ -58,7 +62,7 @@ run_lesson(4);
 validate_all;
 ```
 
-See the [MATLAB/Octave guide](matlab/README.md) for numerical differences and the [Simulink guide](simulink/README.md) for model generation and required products. A source generator does not by itself certify that a proprietary runtime was executed; consult the validation record.
+See the [MATLAB/Octave guide](matlab/README.md) for numerical differences and the [Simulink guide](simulink/README.md) for model generation and required products. The [validation record](docs/VALIDATION.md) identifies actual Python, Octave and native MATLAB/Simulink runs and their experiment boundaries.
 
 ## Article benchmark track
 
@@ -74,7 +78,7 @@ laboratories/           nine executable notebooks with results
 problem-sets/           integrated questions and worked reasoning
 python/intelligent_control/  inspectable methods, experiments and benchmarks
 matlab/                 MATLAB/Octave implementations
-simulink/               model-building scripts
+simulink/               builders, 25 validated SLX models and PNG views
 benchmarks/             paper inventory, protocols and external-source interfaces
 blending-tank/          corrected independent physical tank, notebook and evidence
 docs/                   references, scope and validation evidence

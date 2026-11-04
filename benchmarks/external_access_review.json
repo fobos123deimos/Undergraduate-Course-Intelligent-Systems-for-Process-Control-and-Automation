@@ -51,7 +51,9 @@
     "saved_rows_per_case": 21,
     "ci_run": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41878490951",
     "ci_job_id": 126744461704,
-    "ci_scope": "Native TE command passed and artifacts exported; overall historical job failed a separate wind-structure check"
+    "ci_scope": "Native TE command passed and artifacts exported; overall historical job failed a separate wind-structure check",
+    "latest_successful_full_workflow": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567",
+    "latest_successful_job_id": 126771864957
   },
   "source_ambiguities": {
     "pneumatic": "Canonical voltage-to-valve-flow closure, gas constant, kappa and gravity convention need original specification",

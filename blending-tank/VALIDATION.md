@@ -4,7 +4,7 @@ The physical tank implementation is checked against conservation laws, analytica
 
 ## Executed Python checks
 
-All **115 repository tests passed locally**, including **31 dedicated corrected-tank tests**. The corrected notebook executed all six code cells with a fresh Jupyter kernel and saved its outputs without error cells. The three study scenarios ran with the current source; their CSV traces, metrics and comparison figure are stored in [results](results/metrics.json). The comparison figure was visually inspected.
+All **131 repository tests passed locally**, including **31 dedicated corrected-tank tests**. The corrected notebook executed all six code cells with a fresh Jupyter kernel and saved its outputs without error cells. The three study scenarios ran with the current source; their CSV traces, metrics and comparison figure are stored in [results](results/metrics.json). The comparison figure was visually inspected.
 
 The constant-volume startup matched its analytical concentration to a maximum absolute difference of approximately `3.32e-14`; the filling case differed by approximately `2.90e-14`. Final solute-balance residual magnitudes were below `1.4e-12 kg`. These are floating-point consistency checks against the declared ideal equations, not measurement precision or physical validation.
 
@@ -12,13 +12,15 @@ The 10 kg/min inlet perturbation produced a maximum nonlinear-versus-linear conc
 
 ## Native runtime status
 
-The published [validation run 41866227718](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41866227718) passed on source commit `7fcb51d9904748f998b459593f1730946ee39d24`. Python reran all **115 tests**, the corrected physical-tank study and all **eleven notebooks** successfully. **GNU Octave 11.1.0** executed and passed the **seven independent corrected-tank check groups**, alongside the nine course laboratories, Markov/HMM checks and ten mathematical benchmark checks. No source correction was needed after this run. See the [machine-readable record](validation.json).
+The final [validation run 41886384567](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567) passed on source commit `831e66f9e56ef5fba7ea0bcfb98af376a0de054e`. Python reran all **131 tests** and **eleven notebooks**. GNU Octave and native MATLAB passed the seven physical-tank check groups. MATLAB R2025b with Simulink also executed the two physical-tank diagrams and passed startup, filling, perturbed nonlinear, state-space/transfer and zero-volume rejection checks. See the [machine-readable record](validation.json) and [generated model gallery](../simulink/models/README.md).
+
+Simulink's maximum startup error was approximately 9.99e-16; filling error was 6.75e-14; state-space/transfer disagreement was 8.44e-15. The nonlinear/local-linear difference was approximately 2.12e-5. These values describe numerical consistency under the declared assumptions.
 
 ## Scope
 
 Python and MATLAB/Octave implement the same equations, state/input order and explicitly stated parameters. Numerical checks compare them with analytical balances and independent Jacobian/transfer calculations. The nonlinear, linear and transfer-function models are separate representations of the declared physical model.
 
-MATLAB with Simulink is not available in the current local runtime. The fresh diagram builder and its simulation-comparison script can be inspected and run in that environment, but a generated or executed corrected `.slx` is not claimed here.
+The generated `.slx` files and PNG views are preserved from the successful native MATLAB/Simulink run. They require the complete repository and the MATLAB/Simulink source folders on the path. No measured-plant validation or compatibility with every MATLAB release is claimed.
 
 ## Reproduction
 

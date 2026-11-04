@@ -1,0 +1,25 @@
+Official portable GNU Octave 11.3.0, platform x86_64-w64-mingw32
+Unit 01: numerical assertions passed.
+Unit 02: numerical assertions passed.
+Unit 03: numerical assertions passed.
+Unit 04: numerical assertions passed.
+Unit 05: numerical assertions passed.
+Unit 06: numerical assertions passed.
+Unit 07: numerical assertions passed.
+Unit 08: numerical assertions passed.
+Unit 09: Markov/HMM laboratory assertions passed; filtered accuracy 0.875.
+Seven MPC constraint, independent-optimum and fallback check groups passed.
+Neural one-step, recursive and out-of-domain validation checks passed.
+Seven Markov/HMM mathematical checks passed.
+Corrected Blending Tank: Xeq=0.500000; G11 numerator=-5e-05; filling V(30)=3.500000 m^3.
+Seven corrected Blending Tank check groups passed.
+All nine laboratory units passed.
+Published-equation checks passed for ten mathematical benchmarks.
+Unit 09: Markov/HMM laboratory assertions passed; filtered accuracy 0.875.
+Streaming HMM filtering and four causal PI policies passed.
+Unit 05: numerical assertions passed.
+Unit 06: numerical assertions passed.
+Fuzzy PID and neural inverse-controller adapters matched native labs.
+Wind LQR/PDC equilibrium, scheduling, nonlinear limits and convergence checks passed.
+CSV ordering, timing, missing-data and 13 malformed-record checks passed.
+Complete native validation passed in 1321.520 seconds.
