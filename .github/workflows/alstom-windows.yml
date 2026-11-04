@@ -8,6 +8,7 @@ on:
       - 'benchmarks/prepare_alstom_ci.py'
       - 'benchmarks/run_alstom_reference.m'
       - 'benchmarks/validate_alstom_reference.m'
+      - 'benchmarks/alstom_log_matrix.m'
 permissions:
   contents: read
 concurrency:

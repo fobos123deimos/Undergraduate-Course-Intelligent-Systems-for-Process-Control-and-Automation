@@ -8,6 +8,10 @@ end
 if nargin<2,output_directory=fullfile(here,'results','alstom-native');end
 assert(ispc && strcmp(computer('arch'),'win64'),...
  'ALSTOM:Platform','The official package requires Windows x64 MATLAB/Simulink.');
+fixture=reshape(1:35,7,5);
+assert(isequal(alstom_log_matrix(fixture,7,5,'fixture'),fixture));
+assert(isequal(alstom_log_matrix(reshape(fixture',5,1,7),7,5,'fixture'),fixture));
+assert(isequal(alstom_log_matrix(reshape(fixture',1,5,7),7,5,'fixture'),fixture));
 assert(~isfolder(output_directory),'Choose a new result directory');
 mkdir(output_directory);cases=cell(1,11);index=0;comparisons=struct([]);
 for load_percent=[0 50 100]
