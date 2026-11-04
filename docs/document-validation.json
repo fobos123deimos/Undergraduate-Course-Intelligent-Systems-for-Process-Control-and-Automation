@@ -2,18 +2,18 @@
   "documents": [
     {
       "path": "course/notes.pdf",
-      "sha256": "80f11d92255fbf6db0f9873ad29bb0a95bdf422bafd567b8872b2f074297ecc8",
-      "bytes": 104704,
-      "pages": 17,
+      "sha256": "4641928bebacf45ae4a6677ec925e686aa8e618018c39caaef500b250b4d1342",
+      "bytes": 128567,
+      "pages": 21,
       "page_checks": [
         {
           "page": 1,
-          "characters": 2358,
+          "characters": 2354,
           "characters_outside_page": 0
         },
         {
           "page": 2,
-          "characters": 1388,
+          "characters": 2095,
           "characters_outside_page": 0
         },
         {
@@ -88,7 +88,27 @@
         },
         {
           "page": 17,
-          "characters": 1979,
+          "characters": 2840,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 18,
+          "characters": 3376,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 19,
+          "characters": 3610,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 20,
+          "characters": 1534,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 21,
+          "characters": 2574,
           "characters_outside_page": 0
         }
       ],
@@ -96,18 +116,18 @@
     },
     {
       "path": "problem-sets/exercises.pdf",
-      "sha256": "10ccfe1201ef2bb3e216603cc9f810725293c13c1f7fe905176a9add378c220e",
-      "bytes": 82492,
-      "pages": 11,
+      "sha256": "572e8cd6165ed5142603b95c9879c8e7094d2c993914ecb639648a5422424f25",
+      "bytes": 89996,
+      "pages": 13,
       "page_checks": [
         {
           "page": 1,
-          "characters": 2449,
+          "characters": 2446,
           "characters_outside_page": 0
         },
         {
           "page": 2,
-          "characters": 2104,
+          "characters": 2615,
           "characters_outside_page": 0
         },
         {
@@ -154,24 +174,34 @@
           "page": 11,
           "characters": 2307,
           "characters_outside_page": 0
+        },
+        {
+          "page": 12,
+          "characters": 2726,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 13,
+          "characters": 1099,
+          "characters_outside_page": 0
         }
       ],
       "layout_or_glyph_warnings": []
     },
     {
       "path": "problem-sets/solutions.pdf",
-      "sha256": "a72266007173fb3eeac2ac7e7a466bec07f7f3fb4723fb41c8a3b4331a5e078c",
-      "bytes": 114472,
-      "pages": 18,
+      "sha256": "2c092f1b1ee0b594a29935a84712d3a6e7044d64d8e68b2808d034283f3e03b3",
+      "bytes": 130733,
+      "pages": 21,
       "page_checks": [
         {
           "page": 1,
-          "characters": 2432,
+          "characters": 2429,
           "characters_outside_page": 0
         },
         {
           "page": 2,
-          "characters": 2116,
+          "characters": 2627,
           "characters_outside_page": 0
         },
         {
@@ -253,6 +283,21 @@
           "page": 18,
           "characters": 2805,
           "characters_outside_page": 0
+        },
+        {
+          "page": 19,
+          "characters": 3818,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 20,
+          "characters": 4248,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 21,
+          "characters": 2914,
+          "characters_outside_page": 0
         }
       ],
       "layout_or_glyph_warnings": []
@@ -260,21 +305,20 @@
   ],
   "visual_review": {
     "status": "passed",
-    "coverage": "All 46 pages inspected through rendered contact sheets; equation, diagram, disturbance-definition and bibliography pages inspected at larger scale.",
+    "reviewed_date": "2026-11-04",
+    "reviewed_pages": 55,
+    "required_scope": "All final page renders and focused equation/diagram pages inspected.",
     "focused_pages": {
-      "course/notes.pdf": [
-        3,
-        4,
-        11,
-        12,
-        17
-      ],
-      "problem-sets/solutions.pdf": [
-        10,
-        13
-      ]
+      "course/notes.pdf": [3, 7, 9, 12, 17, 18, 19, 20, 21],
+      "problem-sets/exercises.pdf": [12, 13],
+      "problem-sets/solutions.pdf": [19, 20, 21]
     },
-    "findings": "No clipping, overlaps, missing mathematical glyphs or unreadable labels observed after corrections. Unit boundaries intentionally start new pages."
+    "checks": [
+      "No clipped text, overlapping elements, missing glyphs or unreadable diagrams observed.",
+      "All five original TikZ diagrams and the new Markov/HMM mathematical notation inspected in larger renders.",
+      "Problem 09.5 is complete on exercise-book page 13; no short continuation tail remains.",
+      "Final logs contain no overfull/underfull-box or missing-character warnings."
+    ]
   },
   "render_output": "PNG page renders and contact sheets are kept outside the repository by default."
 }

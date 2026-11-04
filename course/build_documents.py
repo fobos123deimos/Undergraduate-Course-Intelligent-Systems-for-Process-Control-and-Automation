@@ -208,7 +208,10 @@ def main():
             ex_md += "## " + problem_heading + "\n\n" + question + "\n\n"
             sol_md += "## " + problem_heading + "\n\n" + answer + "\n\n"
             sub = r"\subsection{" + text_escape(problem_heading) + "}\n"
-            ex_tex += sub + latex(question) + "\n"
+            question_tex = sub + latex(question) + "\n"
+            if problem_number in unit.get("exercise_page_break_before", ()):
+                question_tex = r"\clearpage" + "\n" + question_tex
+            ex_tex += question_tex
             sol_tex += sub + r"\textbf{Problem.} " + latex(question) + "\n\n" + r"\textbf{Worked answer.} " + latex(answer) + "\n"
         write(PROBLEMS / slug / "exercises.md", ex_md)
         write(PROBLEMS / slug / "solutions.md", sol_md)

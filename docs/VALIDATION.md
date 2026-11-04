@@ -18,7 +18,7 @@ The sample identification run estimated a 9.82375 min time constant for a nomina
 
 ## Documents and diagrams
 
-The three LaTeX editions compiled with Tectonic 0.17.0: 17 pages of course notes, 11 pages of exercises and 18 pages of worked solutions. All 46 final pages were rendered and visually inspected, including full-size checks of diagrams, mathematical notation, accents and the bibliography. Final compilation logs contain no overfull/underfull-box or missing-glyph warnings. Four original TikZ diagrams accompany the course text. The [document record](document-validation.json) contains page counts and SHA-256 checksums.
+The three LaTeX editions compiled with Tectonic 0.17.0: 21 pages of course notes, 13 pages of exercises and 21 pages of worked solutions. All 55 final pages were rendered and visually inspected, including larger focused checks of diagrams, mathematical notation, accents, the bibliography and the complete Markov/HMM unit. Problem 09.5 begins on its own exercise-book page to keep its prompt together. Final compilation logs contain no overfull/underfull-box or missing-glyph warnings. Five original TikZ diagrams accompany the course text. The [document record](document-validation.json) contains page counts and SHA-256 checksums.
 
 Eleven additional original equipment schematics are supplied as SVG and PNG in the [benchmark gallery](../benchmarks/DIAGRAMS.md). They were visually inspected, including full-size checks of repaired labels.
 
@@ -41,6 +41,10 @@ validate_paper;
 The [validation workflow](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/workflows/validate.yml) runs Python and GNU Octave in separate jobs. Its status belongs to the particular commit shown by GitHub.
 
 ## Verified published execution
+
+The Markov extension passed [run 41860754694](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41860754694) on source commit `0418af4458abf7c264ea4f1cba320e4a940cf29c`. Python reran all **84 tests**, all **nine laboratory programs** and all **ten notebooks** successfully. GNU Octave 11.1.0 on Ubuntu 26.04.1 passed all **nine laboratory units**, the **seven Markov/HMM mathematical check groups**, and the existing ten mathematical benchmark checks. Its independently generated Markov test had filtered state accuracy 0.875; random streams differ between languages, while the small exact likelihood/posterior/Viterbi fixtures agree. No source corrections were required after this run.
+
+The following initial validation remains part of the history:
 
 [Run 41849137529](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41849137529) passed both jobs on source commit `c8a9a6fc6b4e4631152e5d00c8b781982ca97f8a`. Python reran all eight laboratory programs, all 41 tests and all nine notebooks successfully. GNU Octave 11.1.0 on Ubuntu 26.04 passed all eight curriculum units and the checks for ten mathematical benchmarks, including cross-language derivative fixtures, conservation/equilibrium checks, rotor-map evaluation and the PWA/TS held-out validation. No code corrections were needed after this run. The follow-up commit recording this evidence changes documentation only.
 
