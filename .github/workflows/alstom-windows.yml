@@ -38,6 +38,10 @@ jobs:
           ALSTOM_ARCHIVE_11: ${{ secrets.ALSTOM_ARCHIVE_11 }}
           ALSTOM_ARCHIVE_12: ${{ secrets.ALSTOM_ARCHIVE_12 }}
           ALSTOM_ARCHIVE_13: ${{ secrets.ALSTOM_ARCHIVE_13 }}
+          ALSTOM_ARCHIVE_14: ${{ secrets.ALSTOM_ARCHIVE_14 }}
+          ALSTOM_ARCHIVE_15: ${{ secrets.ALSTOM_ARCHIVE_15 }}
+          ALSTOM_ARCHIVE_16: ${{ secrets.ALSTOM_ARCHIVE_16 }}
+          ALSTOM_ARCHIVE_17: ${{ secrets.ALSTOM_ARCHIVE_17 }}
         run: python benchmarks/prepare_alstom_ci.py
       - name: Check legacy Microsoft runtime
         shell: pwsh

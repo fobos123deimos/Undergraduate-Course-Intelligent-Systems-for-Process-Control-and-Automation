@@ -17,7 +17,7 @@ spec.loader.exec_module(transport)
 def fixture_parts():
     payload = b'Synthetic transport fixture; not a plant model.'
     encoded = base64.b64encode(payload).decode('ascii')
-    parts = [encoded[i*len(encoded)//13:(i+1)*len(encoded)//13] for i in range(13)]
+    parts = [encoded[i*len(encoded)//17:(i+1)*len(encoded)//17] for i in range(17)]
     return payload, parts, hashlib.sha256(payload).hexdigest()
 
 
@@ -27,7 +27,7 @@ def test_private_transport_preserves_exact_bytes():
 
 
 def test_absent_inputs_allow_only_the_explicit_provider_path():
-    assert transport.decode_archive(['']*13, 'unused', 10) is None
+    assert transport.decode_archive(['']*17, 'unused', 10) is None
 
 
 def test_partial_private_inputs_are_not_silently_ignored():

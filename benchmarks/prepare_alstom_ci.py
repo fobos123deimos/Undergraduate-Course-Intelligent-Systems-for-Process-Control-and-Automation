@@ -1,7 +1,7 @@
 """Prepare the verified author package without publishing its contents.
 
-Default: ordinary download from the recorded provider. If all thirteen
-ALSTOM_ARCHIVE_01..13 private repository inputs are present, decode their
+Default: ordinary download from the recorded provider. If all seventeen
+ALSTOM_ARCHIVE_01..17 private repository inputs are present, decode their
 ordered base64 chunks instead. Never print those values or upload the archive.
 """
 from pathlib import Path
@@ -14,13 +14,13 @@ import tempfile
 from fetch_external import fetch
 
 HERE = Path(__file__).resolve().parent
-PART_COUNT = 13
+PART_COUNT = 17
 ARCHIVE_BYTES = 452992
 
 
 def decode_archive(parts, expected_sha256, expected_size):
     if len(parts) != PART_COUNT:
-        raise ValueError('Expected thirteen ordered private input slots')
+        raise ValueError('Expected seventeen ordered private input slots')
     if not any(parts):
         return None
     if not all(parts):
