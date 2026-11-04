@@ -1,0 +1,223 @@
+{
+  "generator": "pdoc",
+  "pdoc_version": "16.0.0",
+  "render_dependencies": {
+    "Jinja2": "3.1.6",
+    "MarkupSafe": "3.0.4",
+    "markdown2": "2.5.5",
+    "Pygments": "2.21.0"
+  },
+  "source_sha256_lf": {
+    "python/intelligent_control/__init__.py": "21a33a0ef23a58d3b5126c01fdebecfb9e680692829f0afb97c605c7246e9ab3",
+    "python/intelligent_control/benchmarks.py": "723abf65daa3c1c0d12bdce2338c3d9aa1ad8288e7c81e293429b5c2a21787fe",
+    "python/intelligent_control/experiments.py": "4ee1bb744e958526d4cb7c22e3539491909b717104d1f1ccdf07471029810f76",
+    "python/intelligent_control/hydrostatic_si.py": "c833459631caa9080a74a5c68dec68bfabe0936b9be2c503c57a1092182d9f5c",
+    "python/intelligent_control/markov.py": "9d01ab997db12a3f420d39985da238dcc1748565a1da8bd3d03927b2e4112ad8",
+    "python/intelligent_control/markov_lab.py": "fed6df93402868405b4d146ef0d409d5515e585553b10fe1e853c3c7216858ce",
+    "python/intelligent_control/methods.py": "a68e90afda0a278e24a1d166161fbd2497f7493b32801dbf7a6f86ce78ce3c28",
+    "python/intelligent_control/physical_blending.py": "96499d69171a6bb857f823f77bedf0157575a2c57e5dd67976b52972900200ef",
+    "python/intelligent_control/pneumatic_physical.py": "896f5b90d1776e5e7a1fe0bbc743379bb123c2a69a49acbd39d5fbf5fdb7ee34",
+    "python/intelligent_control/wind_control.py": "5f04c1bca69897e652e845a5554d54b84bfe749203a901cc444acd1e6bdc8564",
+    "docs/pdoc-template/custom.css": "61de1fc89d0d1d38be8a0dcf11b88e8da529859117dee293946cc906ea01bb90",
+    "docs/pdoc-template/module.html.jinja2": "b2eb2413b4393fe8806045d1901d1dd433beab237cc770d2fb91d993875189c3",
+    "tools/build_api_docs.py": "6167c7ac1437949095d42c01b56805cff2e8cee9241f527ed54781448b3eef84",
+    "requirements-docs.txt": "e1258a3d2b6020a71e43acd49976c1bd47ab1a1b8da5a360906afc8240ccd0c0"
+  },
+  "artifact_sha256": {
+    ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "index.html": "d90260708e0805eb8d5a8961a0ee8102294fd49940a1904c95827e28bf2db941",
+    "intelligent_control/benchmarks.html": "ee3a3ed1f7cd5299819f0ee511adf61f3c65991d4832b4b071e93505cdd5678b",
+    "intelligent_control/experiments.html": "49b34e60d68fe56a98e256aa3ca57f0bfb1774e5651640c297d4b489f4c80dc5",
+    "intelligent_control/hydrostatic_si.html": "1b9f1956e6fd9510111fa133fc2a0265dec63b619f5fc19e275029b813d34fd7",
+    "intelligent_control/markov.html": "6e1dcab5c13c56cf9542ca63f8c28779af02ca71e88ff680540c14d0d501841a",
+    "intelligent_control/markov_lab.html": "c44650a76400d9c27602e5f7c3c7dbf13593e097ff31a2d17b82da6d19c7b3ea",
+    "intelligent_control/methods.html": "1ddb010c3d1c043a3554bf908c54d12b2221b77d2e7857863f6f62b1130b3fc5",
+    "intelligent_control/physical_blending.html": "a811c11b3b220ed0671ddec7ad6414c6414b242c25426a073855ad9cbb04c0f2",
+    "intelligent_control/pneumatic_physical.html": "07008c11f28f28d43851c42dd9cfe81755efdfd6ac120567db53bef53a09fa40",
+    "intelligent_control/wind_control.html": "5ba4de0ac26ff193d205cd8d63f9bfd434fc95775ab8968bd03e7479c7121d5a",
+    "intelligent_control.html": "9cc69d34dc6541a9c049c86449495806a35530b52e0510192dde1be244d55399",
+    "search.js": "5606e24ead1f7c7af95195a104562206ff35d85dda985ae6402caf296c479a2e"
+  },
+  "coverage": {
+    "intelligent_control": {
+      "source": "python/intelligent_control/__init__.py",
+      "public_definitions": []
+    },
+    "intelligent_control.benchmarks": {
+      "source": "python/intelligent_control/benchmarks.py",
+      "public_definitions": [
+        "siso_step",
+        "mimo_step",
+        "artificial_data",
+        "PendulumParameters",
+        "pendulum_rhs",
+        "pneumatic_rhs",
+        "educational_valve_flows",
+        "hydrostatic_rhs",
+        "three_tank_rhs",
+        "bioreactor_rhs",
+        "bioreactor_sample",
+        "cstr_rhs",
+        "column_a_rhs",
+        "column_a_lv_rhs",
+        "wind_matrices",
+        "RotorMap",
+        "wind_rhs",
+        "rk4",
+        "load_io_csv",
+        "LocalARX",
+        "LocalARX.fit",
+        "LocalARX.predict",
+        "run_external"
+      ]
+    },
+    "intelligent_control.experiments": {
+      "source": "python/intelligent_control/experiments.py",
+      "public_definitions": [
+        "scenario",
+        "simulate",
+        "unit1",
+        "unit2",
+        "unit3",
+        "unit4",
+        "unit5",
+        "nonlinear_step",
+        "unit6",
+        "tuning_objective",
+        "unit7",
+        "unit8",
+        "unit9",
+        "save_result",
+        "run_unit"
+      ]
+    },
+    "intelligent_control.hydrostatic_si": {
+      "source": "python/intelligent_control/hydrostatic_si.py",
+      "public_definitions": [
+        "HydrostaticSIParameters",
+        "HydrostaticSIParameters.ratio",
+        "HydrostaticSIParameters.motor_inertia",
+        "HydrostaticSIParameters.motor_damping",
+        "table5_interpretation",
+        "hydrostatic_si_rhs",
+        "hydrostatic_power",
+        "run_hydrostatic_si",
+        "main"
+      ]
+    },
+    "intelligent_control.markov": {
+      "source": "python/intelligent_control/markov.py",
+      "public_definitions": [
+        "validate_transition",
+        "n_step_distribution",
+        "stationary_distribution",
+        "hitting_statistics",
+        "sample_markov",
+        "CategoricalHMM",
+        "CategoricalHMM.filter",
+        "CategoricalHMM.smooth",
+        "CategoricalHMM.viterbi",
+        "CategoricalHMM.sample",
+        "fit_supervised",
+        "baum_welch"
+      ]
+    },
+    "intelligent_control.markov_lab": {
+      "source": "python/intelligent_control/markov_lab.py",
+      "public_definitions": [
+        "symbols",
+        "theoretical_emission",
+        "calibrate",
+        "classification",
+        "alarm_metrics",
+        "simulate_sensor_control",
+        "run_markov_experiment",
+        "save_markov_result"
+      ]
+    },
+    "intelligent_control.methods": {
+      "source": "python/intelligent_control/methods.py",
+      "public_definitions": [
+        "Tank",
+        "Tank.tau",
+        "Tank.step",
+        "variable_tank_rhs",
+        "identification_metrics",
+        "control_metrics",
+        "PID",
+        "imc_pi",
+        "fit_arx",
+        "arx_rollout",
+        "LinearMPC",
+        "LinearMPC.predict",
+        "memberships",
+        "fuzzy_inference",
+        "FuzzyPI",
+        "FuzzyPID",
+        "diagnose",
+        "train_perceptron",
+        "MLP",
+        "MLP.fit",
+        "MLP.predict",
+        "RBF",
+        "RBF.fit",
+        "RBF.predict",
+        "fit_som",
+        "genetic_optimize"
+      ]
+    },
+    "intelligent_control.physical_blending": {
+      "source": "python/intelligent_control/physical_blending.py",
+      "public_definitions": [
+        "rhs",
+        "equilibrium",
+        "jacobians",
+        "linearize",
+        "affine_rhs",
+        "transfer_functions",
+        "constant_input_solution",
+        "simulate"
+      ]
+    },
+    "intelligent_control.pneumatic_physical": {
+      "source": "python/intelligent_control/pneumatic_physical.py",
+      "public_definitions": [
+        "Parameters",
+        "Parameters.R",
+        "Parameters.cv",
+        "Parameters.cp",
+        "Parameters.total_mass",
+        "Parameters.residual_volume",
+        "orifice_flow",
+        "observe",
+        "state_from_pressures",
+        "equilibrium",
+        "balances",
+        "rhs",
+        "simulate",
+        "identified_local_model"
+      ]
+    },
+    "intelligent_control.wind_control": {
+      "source": "python/intelligent_control/wind_control.py",
+      "public_definitions": [
+        "regulation_rhs",
+        "equilibrium",
+        "linearize",
+        "design",
+        "memberships",
+        "controller",
+        "simulate",
+        "default_map",
+        "variant_rhs"
+      ]
+    }
+  },
+  "validation": {
+    "html_pages": 11,
+    "modules": 10,
+    "public_definitions": 124,
+    "local_links_checked": 7437,
+    "status": "passed"
+  }
+}

@@ -62,6 +62,15 @@ def artificial_data(n=1000, kind="siso", signal="train", seed=2014):
 
 @dataclass(frozen=True)
 class PendulumParameters:
+    """Table 3 cart/pendulum parameters with explicit SI conventions.
+
+    ``m`` and ``M`` are pendulum and cart masses in kg; ``l`` is the
+    characteristic length in m used by the published equation, not an
+    independently inferred rod geometry. ``joint_friction`` multiplies angular
+    velocity in the joint torque (N m s), ``cart_coulomb`` is force in N,
+    ``g`` is acceleration in m/s² and ``force_limit`` is the actuator bound in N.
+    The field is evaluated by `pendulum_rhs`; rail impacts and stiction are absent.
+    """
     m: float = 0.356
     M: float = 4.8
     l: float = 0.56
@@ -272,7 +281,21 @@ def wind_matrices():
 
 
 class RotorMap:
-    """Bilinear interpolation of the ROSCO text format, rejecting extrapolation."""
+    """Bilinear interpolation of a ROSCO rotor table, rejecting extrapolation.
+
+    Parameters
+    ----------
+    path : path-like
+        ROSCO text table containing pitch in degrees, tip-speed ratios, and
+        power/thrust/torque coefficient matrices. The repository's later NREL
+        5 MW map is under ``benchmarks/data``; it is not the recovered 2014 map.
+
+    Notes
+    -----
+    Calling the instance with ``(tip_speed_ratio, pitch_radians)`` returns
+    ``(CT, CQ)``. Both coordinates must stay within the table. ``sha256`` records
+    the exact input bytes; ``cp``, ``ct`` and ``cq`` retain the coefficient grids.
+    """
     def __init__(self, path):
         lines=Path(path).read_text(encoding="utf-8").splitlines()
         numeric=[np.fromstring(line,sep=" ") for line in lines if line.strip() and not line.lstrip().startswith("#")]
@@ -374,6 +397,22 @@ class LocalARX:
         return w
 
     def fit(self,u,y):
+        """Fit partitions and ridge-regression coefficients on training data only.
+
+        Parameters
+        ----------
+        u, y : array-like
+            Aligned finite input/output records with at least
+            ``max(20, 5*rules)`` samples. Physical units are inherited from the
+            supplied data; canonical throttle conventions are percent and degrees.
+
+        Returns
+        -------
+        LocalARX
+            This fitted instance. Feature means/scales, centers and local
+            coefficients are retained. Underdetermined crisp regions use the
+            global ridge fit. Call this method only with the training experiment.
+        """
         u=np.asarray(u,dtype=float).reshape(-1); y=np.asarray(y,dtype=float).reshape(-1)
         if len(u)!=len(y) or len(y)<max(20,5*self.rules) or not np.isfinite(np.r_[u,y]).all():
             raise ValueError("aligned finite u/y records with >=5*rules samples required")
@@ -402,6 +441,24 @@ class LocalARX:
         return self
 
     def predict(self,u,y,recursive=False):
+        """Predict a separate record using measured or recursively predicted history.
+
+        Parameters
+        ----------
+        u, y : array-like
+            Aligned finite records of at least three samples. The first two
+            output samples seed the prediction and are copied unchanged.
+        recursive : bool
+            False uses measured output lags (one-step prediction). True uses
+            predicted outputs after the two seeds (free-run evaluation).
+
+        Returns
+        -------
+        numpy.ndarray
+            Prediction with the same length and output units as ``y``. Exclude
+            the first two seed samples from error scores. Partitions and
+            coefficients remain fixed; this method does not refit on test data.
+        """
         u=np.asarray(u,dtype=float).reshape(-1); y=np.asarray(y,dtype=float).reshape(-1)
         if len(u)!=len(y) or len(y)<3 or not np.isfinite(np.r_[u,y]).all():
             raise ValueError("u/y records must be finite, aligned and at least length 3")

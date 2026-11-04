@@ -1,4 +1,18 @@
-"""Nine reproducible laboratories using a shared, explicitly hypothetical tank."""
+"""Nine reproducible laboratories using an explicitly hypothetical tank.
+
+Use `run_unit` to select a laboratory and optionally save its results.
+Each ``unitN`` function returns a dictionary with a JSON-compatible
+``summary`` and named ``traces``; some units add numerical ``extra`` data.
+Trace dictionaries hold aligned ``t``, ``reference``, ``output`` and
+``control`` arrays. Unit 09 additionally returns diagnosis records.
+
+The shared scalar plant uses dimensionless concentration and minutes.
+The separate MIMO case in Unit 04 uses sample index rather than a physical
+time scale. All data are synthetic, and comparisons state their measurement
+and model-information assumptions. Importing this module runs no experiment.
+Only the save functions write files; their selected output names may be
+replaced when a destination already exists.
+"""
 from pathlib import Path
 import json
 import time
@@ -25,6 +39,14 @@ SLUGS = {1:'01-modeling-identification',2:'02-feedback-imc',3:'03-control-struct
 
 
 def scenario(dt=.2, duration=80.):
+    """Return the common reference and inlet-disturbance schedule.
+
+    ``dt`` and ``duration`` are in minutes and should define at least two
+    samples for `simulate`. The time vector starts at zero. The reference is
+    0.35 before 10 min, 0.65 until 55 min, then 0.45. The additive inlet
+    disturbance becomes 0.08 at 45 min. Return ``(t, reference, disturbance)``
+    as equal-length one-dimensional arrays.
+    """
     t=np.arange(0,duration+dt/2,dt)
     r=np.where(t<10,.35,np.where(t<55,.65,.45))
     d=np.where(t>=45,.08,0.)
@@ -33,6 +55,34 @@ def scenario(dt=.2, duration=80.):
 
 def simulate(controller, tank=None, dt=.2, duration=80., feedforward=False,
              seed=42, noise=0.):
+    """Run a stateful scalar controller on the shared tank scenario.
+
+    Parameters
+    ----------
+    controller : callable
+        Called as ``controller(reference, noisy_output, disturbance)``. With
+        feedforward enabled it must also accept the keyword ``offset``.
+    tank : Tank or None, optional
+        Exact sampled plant; ``None`` selects the 100 L, 10 L/min model.
+    dt, duration : float, optional
+        Sample period and requested duration in minutes. Configure a stateful
+        controller's own sample period consistently with ``dt``.
+    feedforward : bool, optional
+        Add ``offset=-disturbance`` before the controller's saturation logic.
+    seed : int, optional
+        Seed for independent Gaussian measurement-noise draws.
+    noise : float, optional
+        Measurement-noise scale in concentration units; zero gives no noise.
+
+    Returns
+    -------
+    dict
+        Arrays ``t``, ``reference``, ``disturbance``, ``output``, ``control``
+        and a ``metrics`` dictionary. Plant output starts at 0.35. Commands are
+        clipped to ``[0, 1]``; the last stored command repeats the previous
+        applied command and does not advance the plant. The supplied controller
+        is mutated, so construct a fresh instance for an independent run.
+    """
     tank=Tank() if tank is None else tank
     t,r,d=scenario(dt,duration);rng=np.random.default_rng(seed)
     y=np.empty(len(t));u=np.empty(len(t));y[0]=.35
@@ -48,6 +98,13 @@ def simulate(controller, tank=None, dt=.2, duration=80., feedforward=False,
 
 
 def unit1():
+    """Identify an affine ARX model and check an independent tank trajectory.
+
+    Training has 601 samples at 0.5 min and additive output noise. Evaluation
+    uses a new excitation, initial condition and trajectory without output
+    noise. Return analytical-response error, fitted parameters, separate
+    one-step/free-run metrics, a held-out trace and training arrays.
+    """
     tank=Tank();dt=.5;n=601;rng=np.random.default_rng(21)
     u=np.repeat(rng.uniform(.1,.9,61),10)[:n]
     y=np.empty(n);y[0]=.35
@@ -74,6 +131,12 @@ def unit1():
 
 
 def unit2():
+    """Compare three IMC-inspired PI choices and a filtered PID.
+
+    Return shared-scenario traces, tracking metrics and nominal continuous
+    closed-loop poles. Pole checks concern the unsaturated nominal linear
+    model; they do not prove global stability of the sampled bounded loops.
+    """
     traces={};summary={}
     for lam in (2.,5.,12.):
         kp,ki=imc_pi(1,10,lam=lam)
@@ -88,6 +151,14 @@ def unit2():
 
 
 def unit3():
+    """Compare feedforward, cascade and interacting two-output structures.
+
+    The feedforward pair shares an inlet-concentration disturbance. The
+    cascade pair shares a separate actuator-load disturbance and exposes its
+    additional inner-loop measurement. Two-output loops compare decentralized
+    and static-decoupled commands. Return grouped traces, RGA and per-case
+    metrics; unlike pairs are not one universal controller ranking.
+    """
     t,r,d=scenario();dt=t[1]-t[0];traces={};summary={}
     traces['feedback']=simulate(PID(2,.2))
     traces['measured feedforward']=simulate(PID(2,.2),feedforward=True)
@@ -126,6 +197,13 @@ def unit3():
 
 
 def unit4():
+    """Run constrained scalar and two-input full-state MPC examples.
+
+    Return scalar MPC/PI traces and a separate 80-step MIMO experiment, with
+    input-movement metrics, final states and explicit solve-failure counts.
+    The scalar predictor receives the inlet disturbance; full states are
+    available. MIMO trace time is sample index, not a specified duration.
+    """
     dt=.2;a=np.exp(-dt/10)
     mpc=LinearMPC([[a]],[[1-a]],horizon=20,control_horizon=5,move_weight=.05,max_move=.05)
     trace=simulate(mpc)
@@ -148,6 +226,12 @@ def unit4():
 
 
 def unit5():
+    """Compare PI, Mamdani/Sugeno fuzzy PI and scheduled fuzzy PID.
+
+    Return matched tank traces, control metrics, five priority-ordered expert
+    diagnoses and a sampled Mamdani rule surface. Thresholds and memberships
+    are teaching choices, not calibrated process-alarm settings.
+    """
     controllers={'PI':PID(2,.2),'Mamdani fuzzy PI':FuzzyPI(kind='mamdani'),
                  'Sugeno fuzzy PI':FuzzyPI(kind='sugeno'),'fuzzy gain PID':FuzzyPID(2,.2)}
     traces={name:simulate(controller) for name,controller in controllers.items()}
@@ -166,6 +250,15 @@ def nonlinear_step(y,u,dt=1.):
 
 
 def unit6():
+    """Train and evaluate neural models, then perform bounded model control.
+
+    Use 650 training transitions and 250 untouched transitions from the
+    declared synthetic nonlinear process. Return MLP/RBF one-step and recursive
+    metrics, MLP out-of-domain error, a neural model-based control trace,
+    perceptron accuracy, SOM summaries and MLP training-loss samples.
+    Hyperparameters are fixed before evaluation; low one-step error is not
+    treated as proof of free-run accuracy or safe extrapolation.
+    """
     rng=np.random.default_rng(42);x=rng.uniform(.05,.95,(900,2))
     target=nonlinear_step(x[:,0],x[:,1]);train=x[:650];yt=target[:650]
     validation=x[650:];yvalidation=target[650:]
@@ -202,12 +295,26 @@ def unit6():
 
 
 def tuning_objective(parameters,tau=10.):
+    """Return IAE plus 0.03 times total input variation for PI tuning.
+
+    ``parameters`` supplies proportional and integral gains to `PID`, while
+    ``tau`` is the positive tank residence time in minutes. The objective uses
+    the common 80 min scenario with 0.5 min sampling and a new controller.
+    It does not save files or assess a separate validation trajectory.
+    """
     trace=simulate(PID(*parameters,dt=.5),Tank(100,100/tau),dt=.5)
     m=trace['metrics']
     return m['iae']+.03*m['total_variation']
 
 
 def unit7():
+    """Compare binary/real genetic PI tuning and a small nested MPC search.
+
+    Return best parameters, fitness histories, counted evaluations and traces.
+    PI gains are also scored on a held-out 14 min residence-time plant. The
+    separate MIMO search tunes one move penalty with a deliberately small
+    budget; results do not establish convergence to a global optimum.
+    """
     bounds=[(.2,6.),(.01,.7)]
     results={encoding:genetic_optimize(tuning_objective,bounds,population=18,generations=16,
                   encoding=encoding,seed=42) for encoding in ('real','binary')}
@@ -231,6 +338,13 @@ def unit7():
 
 
 def unit8():
+    """Compare three policies under matched noise and residence-time changes.
+
+    Return PI, fuzzy PID and feedforward PI traces for residence times 7, 10
+    and 14 min. Every run uses the same noise seed and scenario. Feedforward
+    receives a disturbance measurement unavailable to the other policies;
+    these synthetic comparisons do not establish a universal ranking.
+    """
     traces={};rows=[]
     for tau in (7.,10.,14.):
         for name,factory in [('PI',lambda:PID(2,.2)),('fuzzy PID',lambda:FuzzyPID(2,.2)),
@@ -245,11 +359,37 @@ def unit8():
 
 
 def unit9():
+    """Run the separate Markov/HMM sensor-diagnosis and supervision lab.
+
+    Return the full result from `intelligent_control.markov_lab.run_markov_experiment`,
+    including calibration/test summaries, four causal control traces and
+    retrospective diagnosis arrays.
+    """
     from .markov_lab import run_markov_experiment
     return run_markov_experiment()
 
 
 def save_result(unit,result,outdir):
+    """Write laboratory metrics, trace CSVs and comparison figures.
+
+    Parameters
+    ----------
+    unit : int
+        Laboratory identifier from 1 through 9.
+    result : dict
+        Result produced by the matching laboratory or `run_unit`.
+    outdir : str or pathlib.Path
+        Output directory, created with parents when needed. Existing files
+        with the selected result names are replaced.
+
+    Returns
+    -------
+    pathlib.Path
+        Destination containing ``metrics.json``, per-trace CSV files, PNG/SVG
+        figures and optional extra arrays. Unit 09 delegates to
+        `intelligent_control.markov_lab.save_markov_result`. Plotting uses the
+        noninteractive Agg backend; returned metrics are not recomputed here.
+    """
     if unit==9:
         from .markov_lab import save_markov_result
         return save_markov_result(result,outdir)
@@ -300,6 +440,22 @@ def save_result(unit,result,outdir):
 
 
 def run_unit(unit,outdir=None):
+    """Execute one numbered laboratory and optionally save its outputs.
+
+    Parameters
+    ----------
+    unit : int
+        Laboratory identifier from 1 through 9; other values raise ValueError.
+    outdir : str or pathlib.Path or None, optional
+        If supplied, pass the result to `save_result` at this destination.
+
+    Returns
+    -------
+    dict
+        The laboratory result with ``elapsed_seconds`` added to its summary.
+        The timer measures the experiment, excluding result-file writing.
+        Elapsed time depends on the runtime and is not a method-quality score.
+    """
     if unit not in TITLES:raise ValueError(f'Unit must be one of {sorted(TITLES)}')
     start=time.perf_counter();result=globals()[f'unit{unit}']()
     result['summary']['elapsed_seconds']=time.perf_counter()-start

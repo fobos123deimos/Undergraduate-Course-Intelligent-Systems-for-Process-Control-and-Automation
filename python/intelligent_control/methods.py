@@ -1,6 +1,14 @@
-"""Small, inspectable algorithms; all examples use synthetic data.
+"""Inspectably small models, controllers and learning algorithms for the course.
 
-These are educational implementations, not certified process controllers.
+The common `Tank` uses litres, minutes and dimensionless concentration. Time
+constants, sample times and controller time units must remain consistent.
+Array-oriented identification functions use rows for samples and columns for
+features. `LinearMPC` predicts measured full states, with no output matrix or
+state estimator. Neural normalization and model fitting use training data only.
+
+Controllers are stateful: create a fresh instance for each independent run.
+These educational implementations use synthetic data and do not certify
+industrial stability, safety or generalization.
 """
 from dataclasses import dataclass
 import numpy as np
@@ -23,9 +31,28 @@ class Tank:
 
     @property
     def tau(self):
+        """Return the residence time ``volume / flow`` in minutes."""
         return self.volume / self.flow
 
     def step(self, c, u, dt, disturbance=0.0):
+        """Advance the exact constant-input concentration solution by one sample.
+
+        Parameters
+        ----------
+        c : float or ndarray
+            Current dimensionless concentration.
+        u : float or ndarray
+            Applied inlet concentration, held constant over the sample.
+        dt : float
+            Positive elapsed time in minutes.
+        disturbance : float or ndarray, optional
+            Additive inlet-concentration change, also held constant.
+
+        Returns
+        -------
+        float or ndarray
+            Concentration after ``dt``. Inputs are not clipped by this plant model.
+        """
         if dt <= 0:
             raise ValueError('dt must be positive')
         a = np.exp(-dt / self.tau)
@@ -41,6 +68,27 @@ def variable_tank_rhs(t, state, q1, q2, qout, c1, c2):
 
 
 def identification_metrics(y, yhat):
+    """Compare matching nonempty measured and predicted arrays.
+
+    Parameters
+    ----------
+    y, yhat : array_like
+        Reference and predicted values with identical shape and compatible units.
+
+    Returns
+    -------
+    dict
+        Maximum and mean absolute error, SSE, MSE, RMSE, variance accounted for
+        in percent, and coefficient of determination. All array elements are
+        aggregated together; multichannel results are not computed separately.
+        ``vaf_percent`` and ``r_squared`` are ``None`` for a constant reference.
+
+    Notes
+    -----
+    VAF removes the mean prediction error through its variance calculation;
+    R-squared retains bias through SSE. Neither metric alone establishes
+    independent validation or recursive predictive accuracy.
+    """
     y, yhat = np.asarray(y, float), np.asarray(yhat, float)
     if y.shape != yhat.shape or y.size == 0:
         raise ValueError('Nonempty matching arrays required')
@@ -56,6 +104,30 @@ def identification_metrics(y, yhat):
 
 
 def control_metrics(t, reference, output, control, lower=0., upper=1.):
+    """Summarize tracking, control effort and actuator excursions.
+
+    Parameters
+    ----------
+    t : array_like, shape (n,)
+        Sample times, in increasing order and in the chosen time unit.
+    reference, output, control : array_like, shape (n,)
+        Aligned scalar setpoint, plant output and applied-input traces.
+    lower, upper : float, optional
+        Actuator limits used to measure the largest violation.
+
+    Returns
+    -------
+    dict
+        Trapezoidal IAE, ISE, ITAE and integral of squared control; summed
+        absolute input movement; largest input-bound violation; and final
+        signed tracking error ``reference[-1] - output[-1]``.
+
+    Notes
+    -----
+    ITAE uses the supplied absolute time coordinate. It is not reset at each
+    setpoint change. The last stored control value contributes to trapezoidal
+    effort metrics, so callers should state their terminal-sample convention.
+    """
     t, r, y, u = map(lambda x: np.asarray(x, float), (t, reference, output, control))
     if not (t.shape == r.shape == y.shape == u.shape) or len(t) < 2:
         raise ValueError('Matching traces with at least two samples required')
@@ -70,7 +142,18 @@ def control_metrics(t, reference, output, control, lower=0., upper=1.):
 
 
 class PID:
-    """PI/PID with filtered derivative on measurement and conditional integration."""
+    """Stateful PI/PID with filtered derivative on measurement and anti-windup.
+
+    ``kp``, ``ki`` and ``kd`` are parallel-form gains. ``dt`` and derivative
+    filter time ``tf`` use the same time unit as the plant; the teaching tank
+    uses minutes. ``limits`` bounds the applied input and ``bias`` defines its
+    nominal value. Integral, derivative and previous-measurement state start at
+    zero, zero and unavailable, respectively.
+
+    Conditional integration holds the integrator when a proposed update would
+    drive the actuator farther into saturation. Call a new instance for each
+    independent experiment; no global nonlinear stability guarantee is implied.
+    """
     def __init__(self, kp, ki, kd=0., dt=.2, limits=(0., 1.), bias=.35, tf=.5):
         if dt <= 0 or tf <= 0 or limits[0] >= limits[1]:
             raise ValueError('Invalid sampling, derivative filter or limits')
@@ -79,6 +162,13 @@ class PID:
         self.integral, self.derivative, self.last_y = 0., 0., None
 
     def __call__(self, r, y, disturbance=0., *, offset=0.):
+        """Update the controller from a scalar reference and measurement.
+
+        ``offset`` adds feedforward before saturation and conditional integration.
+        The positional ``disturbance`` argument is accepted for the common
+        simulation interface but is not used by this controller. Return a bounded
+        scalar command and update the integral, derivative and measurement memory.
+        """
         error = r-y
         dy = 0. if self.last_y is None else (y-self.last_y)/self.dt
         self.derivative += self.dt/(self.tf+self.dt)*(dy-self.derivative)
@@ -116,6 +206,23 @@ def fit_arx(u, y):
 
 
 def arx_rollout(theta, u, y0):
+    """Recursively simulate an affine first-order ARX model.
+
+    Parameters
+    ----------
+    theta : array_like, shape (3,)
+        Coefficients ``[a, b, offset]`` returned by `fit_arx`.
+    u : array_like, shape (n,)
+        Nonempty input sequence; the final input is not used for a transition.
+    y0 : float
+        Initial measured output, supplied as the first predicted sample.
+
+    Returns
+    -------
+    ndarray, shape (n,)
+        Free-run predictions using previous predictions rather than future
+        measured outputs. The returned first value is the given initial seed.
+    """
     y = np.empty(len(u)); y[0] = y0
     for k in range(len(u)-1):
         y[k+1] = theta[0]*y[k]+theta[1]*u[k]+theta[2]
@@ -123,11 +230,23 @@ def arx_rollout(theta, u, y0):
 
 
 class LinearMPC:
-    """Constrained MIMO receding-horizon controller solved as a convex QP.
+    """Full-state linear MPC with input, input-move and optional state bounds.
 
-    SLSQP solves the quadratic objective with box, move and optional output
-    bounds. A failed solve holds the previous feasible actuator value; its
-    status is recorded and must be inspected by callers.
+    The prediction is ``x[k+1] = a @ x[k] + b @ (u[k] + disturbance)``. Matrix
+    ``a`` has shape ``(n, n)`` and ``b`` has shape ``(n, m)``. ``horizon`` and
+    ``control_horizon`` count samples; the last optimized input is held after
+    the control horizon. Scalar ``q`` weights squared state-tracking errors,
+    and ``move_weight`` weights squared successive input differences.
+
+    ``lower``, ``upper`` and ``max_move`` apply to every input component.
+    ``initial`` initializes each component of the previous feasible command.
+    Optional ``output_bounds=(lo, hi)`` constrains every predicted state because
+    the output is the full state; there is no separate output matrix.
+
+    SLSQP solves the convex quadratic problem. A failed or insufficiently
+    feasible solve holds the previous input and increments ``failures``;
+    ``calls`` counts all solves. This fallback does not guarantee future state
+    feasibility. No terminal stability condition or state estimator is added.
     """
     def __init__(self, a, b, horizon=12, control_horizon=4, q=1., move_weight=.1,
                  lower=0., upper=1., max_move=.08, initial=.35, output_bounds=None):
@@ -148,6 +267,23 @@ class LinearMPC:
         self.failures, self.calls = 0, 0
 
     def predict(self, z, x, disturbance):
+        """Predict full-state trajectories for a flattened candidate input plan.
+
+        Parameters
+        ----------
+        z : ndarray, shape (control_horizon * m,)
+            Absolute actuator values, arranged sample first and input second.
+        x : ndarray, shape (n,)
+            Current full state.
+        disturbance : float or array_like, shape (m,)
+            Constant additive input disturbance over the prediction horizon.
+
+        Returns
+        -------
+        ndarray, shape (horizon, n)
+            States from the next sample through the final prediction step. This
+            evaluation does not check constraints or change controller memory.
+        """
         moves = z.reshape(self.hc, self.m)
         ys = []
         for k in range(self.h):
@@ -156,6 +292,14 @@ class LinearMPC:
         return np.asarray(ys)
 
     def __call__(self, reference, state, disturbance=0.):
+        """Solve one receding-horizon problem and apply its first command.
+
+        ``reference`` is a constant full-state target over the horizon and
+        ``state`` is the current measured full state. ``disturbance`` is an
+        additive input-channel estimate. Return a float for one input or a copied
+        vector for multiple inputs; update ``previous``, ``calls`` and ``failures``
+        according to the solve outcome.
+        """
         x, ref = np.atleast_1d(state), np.atleast_1d(reference)
         def objective(z):
             yp = self.predict(z, x, disturbance)
@@ -214,6 +358,12 @@ class FuzzyPI:
     def __init__(self, dt=.2, kind='mamdani', initial=.35):
         self.dt, self.kind, self.u, self.old_error = dt, kind, initial, 0.
     def __call__(self,r,y,disturbance=0.):
+        """Update the bounded incremental controller from scalar tracking error.
+
+        The selected Mamdani or Sugeno surface uses the current error and its
+        sampled change. Return an inlet fraction in ``[0, 1]`` and update command
+        and error memory. ``disturbance`` is an unused interface argument.
+        """
         e = r-y
         f = fuzzy_inference(e/.25,(e-self.old_error)/(.1*self.dt),self.kind)
         self.u = float(np.clip(self.u+.18*self.dt*f,0,1))
@@ -224,6 +374,12 @@ class FuzzyPI:
 class FuzzyPID(PID):
     """Gain-scheduled PID; fuzzy surface changes gains, not the error sign."""
     def __call__(self,r,y,disturbance=0.):
+        """Schedule all three gains from error severity, then apply PID.
+
+        The inherited filtered-derivative and conditional-integration states are
+        updated by `PID`. Return its bounded command. Scheduling is a declared
+        teaching rule, not an identified plant-dependent gain law.
+        """
         severity = abs(fuzzy_inference((r-y)/.3,0,'sugeno'))
         self.kp, self.ki, self.kd = 1.4+1.2*severity, .14+.08*severity, .1*severity
         return super().__call__(r,y,disturbance)
@@ -243,6 +399,26 @@ def diagnose(y, u, reference, sensor_valid=True, residual=0.):
 
 
 def train_perceptron(x, labels, epochs=100, rate=.1):
+    """Train an affine binary classifier by sequential mistake updates.
+
+    Parameters
+    ----------
+    x : array_like, shape (n_samples, n_features)
+        Training feature rows, in the order visited during every epoch.
+    labels : array_like, shape (n_samples,)
+        Target labels encoded as ``-1`` or ``+1``.
+    epochs : int, optional
+        Maximum number of passes; stop early after a mistake-free pass.
+    rate : float, optional
+        Positive learning-rate coefficient.
+
+    Returns
+    -------
+    ndarray, shape (n_features + 1,)
+        Feature weights followed by the intercept. Classify an augmented row
+        as ``+1`` when its score is nonnegative and ``-1`` otherwise. Inputs
+        are not normalized internally; nonseparable data need not converge.
+    """
     x, labels = np.asarray(x), np.asarray(labels)
     xb = np.column_stack([x,np.ones(len(x))]); w = np.zeros(xb.shape[1])
     for _ in range(epochs):
@@ -260,6 +436,26 @@ class MLP:
     def __init__(self, hidden=12, seed=42):
         self.hidden, self.seed = hidden, seed
     def fit(self,x,y,epochs=1800,rate=.01):
+        """Fit a scalar regressor using training-only normalization and Adam.
+
+        Parameters
+        ----------
+        x : array_like, shape (n_samples, n_features)
+            Training inputs; column means and standard deviations are saved.
+        y : array_like, shape (n_samples,)
+            Scalar targets, normalized using their training statistics.
+        epochs : int, optional
+            Number of full-batch gradient updates.
+        rate : float, optional
+            Adam learning rate.
+
+        Returns
+        -------
+        MLP
+            This fitted instance. ``loss`` records normalized training MSE every
+            100 updates; no validation data or early stopping are used. Repeated
+            calls reinitialize parameters from the instance's seed.
+        """
         x,y=np.asarray(x,float),np.asarray(y,float).reshape(-1,1)
         self.xmean,self.xstd=x.mean(0),np.maximum(x.std(0),1e-8)
         self.ymean,self.ystd=y.mean(0),np.maximum(y.std(0),1e-8)
@@ -279,6 +475,12 @@ class MLP:
             if k%100==0:self.loss.append(float(np.mean(e*e)))
         return self
     def predict(self,x):
+        """Predict scalar outputs in the original target units.
+
+        Pass input rows of shape ``(n_samples, n_features)`` after calling `fit`.
+        The return is a flat vector of length ``n_samples``. Saved training
+        statistics are reused, without refitting on evaluation inputs.
+        """
         w,b,wo,bo=self.params
         return ((np.tanh((np.asarray(x)-self.xmean)/self.xstd@w+b)@wo+bo)*self.ystd+self.ymean).ravel()
 
@@ -286,6 +488,31 @@ class MLP:
 class RBF:
     """Gaussian features; centers chosen only from training inputs, ridge fit."""
     def fit(self,x,y,centers=20,seed=42,width=1.,ridge=1e-6):
+        """Fit an affine-plus-Gaussian regressor from training inputs only.
+
+        Parameters
+        ----------
+        x : array_like, shape (n_samples, n_features)
+            Training inputs, normalized using their saved column statistics.
+        y : array_like, shape (n_samples,) or (n_samples, n_outputs)
+            Targets in the units retained by predictions.
+        centers : int, optional
+            Maximum number of centers sampled without replacement from training
+            rows; at most ``n_samples`` centers are used.
+        seed : int, optional
+            Seed for center selection.
+        width : float, optional
+            Positive Gaussian width in normalized feature coordinates.
+        ridge : float, optional
+            Ridge penalty applied to all feature weights, including the intercept.
+
+        Returns
+        -------
+        RBF
+            This fitted instance. Features include an intercept, normalized linear
+            inputs and Gaussian radial responses. No evaluation samples select
+            centers, normalization or fitted weights.
+        """
         x=np.asarray(x,float);self.mean=x.mean(0);self.std=np.maximum(x.std(0),1e-8)
         z=(x-self.mean)/self.std
         rng=np.random.default_rng(seed)
@@ -297,6 +524,12 @@ class RBF:
         d=np.sum((z[:,None,:]-self.centers[None,:,:])**2,axis=2)
         return np.column_stack([np.ones(len(z)),z,np.exp(-d/(2*self.width**2))])
     def predict(self,x):
+        """Predict from input rows using the fitted training transformation.
+
+        Call `fit` first. A scalar target fit returns shape ``(n_samples,)``;
+        multiple target columns retain shape ``(n_samples, n_outputs)``. This
+        function neither clips predictions nor guarantees extrapolation accuracy.
+        """
         return self._features((np.asarray(x)-self.mean)/self.std)@self.weights
 
 

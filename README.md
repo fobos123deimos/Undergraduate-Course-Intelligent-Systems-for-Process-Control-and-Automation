@@ -14,6 +14,7 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 
 ## Start here
 
+- [Online Python API reference](https://fobos123deimos.github.io/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/) · [Versioned HTML](docs/api/index.html) · [Build/preview guide](docs/API_DOCUMENTATION.md)
 - [Course guide, prerequisites and complete syllabus mapping](course/README.md)
 - [Integrated problems and worked solutions](problem-sets/README.md)
 - [All article benchmarks: models, protocols and evidence boundaries](benchmarks/README.md)

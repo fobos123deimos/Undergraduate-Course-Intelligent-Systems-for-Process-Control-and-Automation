@@ -1,8 +1,22 @@
-"""Explicit SI pneumatic variant; not a recovered canonical valve calibration.
+"""Conservative six-state pneumatic cylinder with explicit valve assumptions.
 
-State: [position m, velocity m/s, chamber masses kg, chamber temperatures K].
-See benchmarks/PNEUMATIC_AUDIT.md for primary sources and added assumptions.
-The literal survey transcription remains in benchmarks.pneumatic_rhs.
+The state order is ``[position, velocity, mass I, mass II, temperature I,
+temperature II]`` in m, m/s, kg, kg, K and K. Position is positive upward,
+pressures are absolute Pa, voltage is in V and time is in seconds. Ideal-gas
+chamber storage, enthalpy transport, wall heat exchange, gravity and regularized
+friction enter the same balance. `orifice_flow` handles reversal and choking.
+
+Start with `Parameters`, construct a vertical `equilibrium`, then call
+`simulate` with a voltage function. `observe` converts mass/temperature states
+to chamber pressures and volumes; `balances` exposes the conservation terms
+used by `rhs`. `identified_local_model` separately returns three published
+local fits, with their gravity/Coulomb offsets removed.
+
+This is an SI teaching variant, not a recovered canonical valve calibration.
+The repository's ``benchmarks/PNEUMATIC_AUDIT.md`` identifies primary sources
+and added assumptions. Valve geometry/discharge, thermal data and friction
+closure remain uncalibrated. The literal survey transcription remains in
+`intelligent_control.benchmarks.pneumatic_rhs`.
 """
 from dataclasses import dataclass, asdict
 import numpy as np
@@ -11,6 +25,52 @@ from scipy.integrate import solve_ivp
 
 @dataclass(frozen=True)
 class Parameters:
+    """Immutable geometry, reservoir and closure coefficients in SI units.
+
+    Parameters
+    ----------
+    area : float
+        Effective piston area in m².
+    half_stroke : float
+        Maximum position magnitude in m; impacts are not modeled.
+    midpoint_volume : float
+        Volume of each chamber at zero position, in m³.
+    piston_mass, load_mass : float
+        Moving piston and attached payload masses in kg.
+    viscous, coulomb : float
+        Viscous friction in N s/m and Coulomb amplitude in N.
+    valve_gain : float
+        Static spool displacement gain in m/V.
+    voltage_limit : float
+        Symmetric actuator-voltage saturation magnitude in V.
+    supply_pressure, exhaust_pressure : float
+        Absolute reservoir pressures in Pa.
+    reservoir_temperature, wall_temperature : float
+        Reservoir and cylinder-wall temperatures in K.
+    universal_R, air_molar_mass : float
+        Molar gas constant in J/(mol K) and air molar mass in kg/mol;
+        `R` converts these to the mass-specific constant.
+    gamma : float
+        Heat-capacity ratio, greater than one.
+    gravity : float
+        Downward gravitational acceleration in m/s².
+    port_width : float
+        Slot width in m; opened area equals width times spool displacement.
+    discharge_coefficient : float
+        Orifice discharge factor in ``(0, 1]``.
+    bypass_area : float
+        Optional chamber-to-chamber bypass area in m².
+    friction_velocity : float
+        Positive velocity scale in m/s for the smooth Coulomb approximation.
+    wall_conductance : float
+        Heat conductance from the wall to each chamber in W/K.
+
+    Notes
+    -----
+    The closure defaults are declared study choices, not identified apparatus
+    data. Construction rejects invalid geometry, reservoir ordering and
+    specified coefficient ranges. Payload is constant during a trajectory.
+    """
     area: float = 2.8e-3
     half_stroke: float = .125
     midpoint_volume: float = 5e-4
@@ -53,15 +113,25 @@ class Parameters:
             raise ValueError('midpoint volume must leave positive end volumes')
 
     @property
-    def R(self): return self.universal_R/self.air_molar_mass
+    def R(self):
+        """Mass-specific ideal-gas constant in J/(kg K)."""
+        return self.universal_R/self.air_molar_mass
     @property
-    def cv(self): return self.R/(self.gamma-1)
+    def cv(self):
+        """Constant-volume specific heat capacity in J/(kg K)."""
+        return self.R/(self.gamma-1)
     @property
-    def cp(self): return self.gamma*self.cv
+    def cp(self):
+        """Constant-pressure specific heat capacity in J/(kg K)."""
+        return self.gamma*self.cv
     @property
-    def total_mass(self): return self.piston_mass+self.load_mass
+    def total_mass(self):
+        """Total moving mechanical mass in kg."""
+        return self.piston_mass+self.load_mass
     @property
-    def residual_volume(self): return self.midpoint_volume-self.area*self.half_stroke
+    def residual_volume(self):
+        """Minimum chamber volume at a stroke endpoint, in m³."""
+        return self.midpoint_volume-self.area*self.half_stroke
 
 
 def orifice_flow(p_a,p_b,t_a,t_b,area,p=Parameters()):
@@ -85,6 +155,28 @@ def orifice_flow(p_a,p_b,t_a,t_b,area,p=Parameters()):
 
 
 def observe(state,p=Parameters()):
+    """Validate a six-state vector and recover chamber pressures and volumes.
+
+    Parameters
+    ----------
+    state : array_like, shape (6,)
+        ``[x, velocity, mass I, mass II, temperature I, temperature II]``
+        in m, m/s, kg, kg, K and K. Masses and temperatures must be positive;
+        position must remain within the declared stroke.
+    p : Parameters, optional
+        Geometry and specific-air coefficients.
+
+    Returns
+    -------
+    pressures, volumes : numpy.ndarray, shape (2,)
+        Absolute chamber pressures in Pa and volumes in m³, ordered I then II.
+
+    Raises
+    ------
+    ValueError
+        If the state is nonreal, nonfinite, incorrectly sized or outside the
+        positive-mass/temperature or stroke domain.
+    """
     if not np.isrealobj(state):raise ValueError('state must be real')
     z=np.asarray(state,dtype=float)
     if z.shape!=(6,) or not np.all(np.isfinite(z)) or min(z[2:])<=0:
@@ -96,6 +188,24 @@ def observe(state,p=Parameters()):
 
 
 def state_from_pressures(position=0.,velocity=0.,pressures=(5e5,5e5),temperatures=(293.15,293.15),p=Parameters()):
+    """Construct a validated state by applying the ideal-gas law in each chamber.
+
+    Parameters
+    ----------
+    position, velocity : float, optional
+        Upward displacement in m and upward velocity in m/s.
+    pressures, temperatures : array_like, shape (2,), optional
+        Positive absolute pressures in Pa and temperatures in K, ordered I
+        then II. Equal pressures are not a vertical mechanical equilibrium.
+    p : Parameters, optional
+        Geometry and specific-air coefficients.
+
+    Returns
+    -------
+    numpy.ndarray, shape (6,)
+        Position, velocity, chamber masses and temperatures in the module's
+        state order. `observe` validates the resulting physical domain.
+    """
     if any(not np.isrealobj(value) for value in [position,velocity,pressures,temperatures]):
         raise ValueError('state inputs must be real')
     pressures=np.asarray(pressures,dtype=float);temperatures=np.asarray(temperatures,dtype=float)
@@ -123,6 +233,31 @@ def balances(state,voltage,p=Parameters(),external_force=0.):
 
     Positive x points upward. Positive external_force opposes that direction.
     Payload is constant within one simulation; mass attachment is not modeled.
+
+    Parameters
+    ----------
+    state : array_like, shape (6,)
+        Position, velocity, two masses and two temperatures, using SI units.
+    voltage : float
+        Valve command in V, clipped to the declared symmetric voltage limit.
+        Positive voltage opens supply-to-I and II-to-exhaust ports.
+    p : Parameters, optional
+        Declared physical and closure coefficients.
+    external_force : float, optional
+        Additional downward force in N.
+
+    Returns
+    -------
+    derivative : numpy.ndarray, shape (6,)
+        State derivative per second.
+    diagnostics : dict
+        Chamber ``pressures`` (Pa), ``volumes`` (m³), ``mass_rate`` (kg/s),
+        ``pressure_rate`` (Pa/s), and enthalpy/heat/internal-energy rates (W).
+        ``mass_flows`` (kg/s) use signed directions I-to-exhaust,
+        supply-to-I, supply-to-II, II-to-exhaust and I-to-II. Other fields
+        expose signed resisting ``friction`` (N), applied ``voltage`` (V),
+        ``spool_m`` and ``orifice_area_m2``. Flow enthalpy uses the actual
+        upstream temperature even when a named port reverses direction.
     """
     if not np.isrealobj([voltage,external_force]):raise ValueError('inputs must be real')
     if not np.all(np.isfinite([voltage,external_force])):raise ValueError('finite inputs required')
@@ -156,10 +291,48 @@ def balances(state,voltage,p=Parameters(),external_force=0.):
 
 
 def rhs(t,state,voltage,p=Parameters(),external_force=0.):
+    """Return the six-state derivative from `balances` for ODE integration.
+
+    ``t`` is accepted for solver compatibility but is unused. ``voltage`` is
+    the instantaneous scalar command in V, not a callable. State, parameter,
+    external-force and derivative conventions are those of `balances`.
+    """
     return balances(state,voltage,p,external_force)[0]
 
 
 def simulate(input_function,initial=None,p=Parameters(),duration=2.,samples=1001,rtol=1e-9,atol=1e-11):
+    """Integrate a voltage-driven cylinder using SciPy's DOP853 solver.
+
+    Parameters
+    ----------
+    input_function : callable
+        ``input_function(t)`` returns voltage in V for time in seconds.
+    initial : array_like, shape (6,), optional
+        Initial state in the module's order. If omitted, `equilibrium`
+        constructs the closed-valve vertical equilibrium for ``p``.
+    p : Parameters, optional
+        Fixed parameters, including payload and voltage saturation.
+    duration : float, optional
+        Positive simulation horizon in seconds.
+    samples : int, optional
+        At least two evenly spaced returned samples, including both endpoints.
+    rtol, atol : float, optional
+        Relative and absolute solver tolerances. Internal steps are capped
+        at 0.005 s independently of the output grid.
+
+    Returns
+    -------
+    time : numpy.ndarray, shape (samples,)
+        Sample times in seconds.
+    states : numpy.ndarray, shape (samples, 6)
+        Simulated positions, velocities, masses and temperatures.
+
+    Notes
+    -----
+    This convenience function applies zero additional external force. Use
+    `rhs` directly with a solver for other force inputs. Invalid physical
+    trial states raise an error; there is no impact or stiction event model.
+    """
     if duration<=0 or samples<2:raise ValueError('positive duration and at least two samples required')
     if initial is None:initial=equilibrium(p=p)
     observe(initial,p)

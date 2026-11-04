@@ -1,9 +1,23 @@
-"""Explicit SI interpretation of the hydrostatic model, separate from Eq. 35.
+"""Four-state hydrostatic transmission with explicit SI conventions.
 
-Source derivation and unresolved calibration: benchmarks/HYDROSTATIC_SOURCE_REVIEW.md.
-Commands are requested normalized angles, NOT calibrated valve voltages/currents.
-Constant efficiencies describe motoring; ``motoring_valid`` exposes back-driving,
-where this approximation is not a passive four-quadrant machine model.
+The state order is ``[pump angle, motor angle, differential pressure,
+motor speed]``. Angles are normalized displacements; pressure is in Pa, speed
+in rad/s and time in seconds. Inputs are two requested normalized angles,
+pump speed in rad/s and wheel-load torque in N m. There is no calibrated
+voltage/current-to-angle map.
+
+Start with `table5_interpretation`, choosing both unresolved source conventions,
+then evaluate `hydrostatic_si_rhs` or inspect the six-second demonstration in
+`run_hydrostatic_si`. `hydrostatic_power` supplies an independent storage and
+power accounting interface.
+
+This is a separate physical interpretation, not the literal Eq. 35 transcription
+in `intelligent_control.benchmarks`. The repository's
+``benchmarks/HYDROSTATIC_SOURCE_REVIEW.md`` documents the primary derivations
+and missing historical calibration. Constant efficiencies describe motoring;
+the ``motoring_valid`` result exposes back-driving, where this approximation
+is not a passive four-quadrant machine model. Relief valves, cavitation and
+actuator supply power are outside the model.
 """
 from __future__ import annotations
 
@@ -18,6 +32,35 @@ import numpy as np
 
 @dataclass(frozen=True)
 class HydrostaticSIParameters:
+    """Immutable coefficients for the declared hydraulic and mechanical model.
+
+    Parameters
+    ----------
+    pump_m3_per_rad, motor_m3_per_rad : float
+        Maximum pump and motor displacements in m³/rad. A swept volume per
+        revolution must be divided by ``2*pi`` before construction.
+    capacitance_m3_per_pa : float
+        Effective differential-pressure storage coefficient in m³/Pa.
+    leakage_m3_per_s_pa : float
+        Linear leakage coefficient in m³/(s Pa), nonnegative.
+    vehicle_inertia_kg_m2 : float
+        Vehicle-side equivalent inertia in kg m², referred to the motor
+        through the squared total transmission ratio by `motor_inertia`.
+    cardan_damping_nm_s : float
+        Cardan-side viscous damping in N m s/rad, nonnegative.
+    gear_ratio, axle_ratio : float
+        Signed nonzero transmission ratios; their product is `ratio`.
+    gearbox_efficiency, motor_efficiency : float
+        Constant efficiencies in ``(0, 1]`` for the motoring approximation.
+    pump_time_constant_s, motor_time_constant_s : float
+        Positive first-order normalized-angle response times in seconds.
+
+    Notes
+    -----
+    Construction validates finite real coefficients and their physical ranges.
+    It does not authenticate the interpretation of the historical Table 5.
+    Use `table5_interpretation` to record those choices explicitly.
+    """
     pump_m3_per_rad: float
     motor_m3_per_rad: float
     capacitance_m3_per_pa: float
@@ -54,14 +97,17 @@ class HydrostaticSIParameters:
 
     @property
     def ratio(self):
+        """Signed dimensionless motor-to-wheel angular-speed ratio."""
         return self.gear_ratio * self.axle_ratio
 
     @property
     def motor_inertia(self):
+        """Vehicle inertia referred to the motor shaft, in kg m²."""
         return self.vehicle_inertia_kg_m2 / self.ratio**2
 
     @property
     def motor_damping(self):
+        """Cardan viscous damping referred to the motor, in N m s/rad."""
         return self.cardan_damping_nm_s / self.gear_ratio**2
 
 
@@ -115,6 +161,32 @@ def hydrostatic_si_rhs(x, command, pump_speed, wheel_load, parameters):
     State: [normalized pump angle, normalized motor angle, delta-p Pa, omega rad/s].
     Positive wheel_load opposes positive wheel angular speed. No clipping hides
     invalid angles or commands. Supply bounded commands to preserve angle bounds.
+
+    Parameters
+    ----------
+    x : array_like, shape (4,)
+        Pump angle in ``[-1, 1]``, motor angle in ``[0, 1]``, differential
+        pressure in Pa and motor angular speed in rad/s. Pressure and speed
+        may be signed.
+    command : array_like, shape (2,)
+        Requested pump and motor normalized angles, with the same bounds.
+    pump_speed : float
+        Pump angular speed in rad/s.
+    wheel_load : float
+        Signed wheel-load torque in N m.
+    parameters : HydrostaticSIParameters
+        Explicit SI coefficient set.
+
+    Returns
+    -------
+    numpy.ndarray, shape (4,)
+        State derivative in the same order, per second.
+
+    Raises
+    ------
+    ValueError
+        If parameters have the wrong type, signals are nonfinite/nonreal,
+        dimensions disagree or normalized angles exceed their domain.
     """
     p = parameters
     if not isinstance(p, HydrostaticSIParameters):
@@ -142,6 +214,19 @@ def hydrostatic_power(x, command, pump_speed, wheel_load, parameters):
 
     Hydraulic and equivalent mechanical stored energy exclude actuator/control
     supplies. Pump input here is hydraulic-port power, not engine shaft power.
+
+    Parameters use exactly the conventions of `hydrostatic_si_rhs`.
+
+    Returns
+    -------
+    dict
+        ``stored_energy_j`` is hydraulic plus motor-referred mechanical
+        storage. The ``*_w`` fields report hydraulic input, motor hydraulic
+        power, wheel-load power, leakage/conversion/damping losses and storage
+        rate in watts. ``balance_residual_w`` is storage rate minus net input
+        power. ``motoring_valid`` is false when motor hydraulic power is
+        negative with a nonunit combined efficiency; the resulting negative
+        conversion loss must not be interpreted as dissipated heat.
     """
     p = parameters
     dx = hydrostatic_si_rhs(x, command, pump_speed, wheel_load, p)
@@ -168,7 +253,26 @@ def hydrostatic_power(x, command, pump_speed, wheel_load, parameters):
 
 
 def run_hydrostatic_si(*, dt=0.002):
-    """Six-second smooth command example; all signals are simulated, not measured."""
+    """Integrate the six-second smooth-command example with fixed-step RK4.
+
+    The explicit choices are displacement per revolution and effective
+    pressure capacitance. Pump speed is 180 rad/s, wheel load is 5000 N m,
+    and the initial state is an equilibrium. A smooth pump-angle excursion
+    acts between 1 and 5 seconds; the motor command remains 0.8.
+
+    Parameters
+    ----------
+    dt : float, optional
+        Integration step in seconds, in ``(0, 0.01]`` and dividing six seconds.
+
+    Returns
+    -------
+    dict
+        ``t`` contains N sample times, ``x`` has shape ``(N, 4)`` and
+        ``command`` has shape ``(N, 2)``. ``report`` records the chosen
+        conventions, parameters, power-balance checks, operating ranges and
+        limitations. All trajectories are simulated, not measured.
+    """
     dt = _scalar(dt, "dt")
     if dt <= 0 or dt > 0.01 or abs(6 / dt - round(6 / dt)) > 1e-8:
         raise ValueError("dt must be in (0,.01] and divide six seconds")
@@ -215,6 +319,13 @@ def run_hydrostatic_si(*, dt=0.002):
 
 
 def main():
+    """Run the command-line demonstration and write its CSV and JSON report.
+
+    ``--output-dir`` selects the destination, defaulting to
+    ``benchmarks/results/hydrostatic-si`` relative to the working directory.
+    Existing ``simulation.csv`` and ``python-summary.json`` files there are
+    overwritten. The report is also printed to standard output.
+    """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=Path("benchmarks/results/hydrostatic-si"))
     args = parser.parse_args()

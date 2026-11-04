@@ -1,8 +1,23 @@
-"""Operating-point LQR/PDC study for the documented later-map wind variant.
+"""Operating-point LQR and parallel distributed compensation for a wind turbine.
 
-Regulation state: tower, blade, shaft torsion, tower/blade velocities,
-rotor/generator speeds and pitch. Absolute common rotation is eliminated.
-This is a reproducible design exercise, not recovery of published gains.
+The eight regulation states are tower deflection (m), relative blade deflection
+(m), shaft torsion (rad), tower/blade velocities (m/s), rotor/generator speeds
+(rad/s) and pitch (rad). Generator quantities are referred to the low-speed
+side. Absolute common rotation is eliminated from the nine-state plant.
+Commands are generator torque (N m) and requested pitch (rad); wind is in m/s
+and time in seconds.
+
+Use `default_map` to load the bundled later ROSCO table, `design` to obtain
+local LQR laws and `simulate` to compare scheduled PDC with a fixed-gain
+baseline. `controller` applies explicit torque/pitch magnitude and slew
+limits. `variant_rhs` exposes a rigid-structure reduction and a separately
+declared second-order pitch actuator.
+
+The gains and experiments are a new reproducible design exercise, not recovery
+of the article's fitted controller or Table 12. Local Riccati and pole checks
+do not establish global nonlinear stability. The source, plant-map version,
+information assumptions and comparison protocol are documented in the
+repository's ``benchmarks/WIND_CONTROL.md``.
 """
 from pathlib import Path
 import numpy as np
@@ -20,6 +35,32 @@ RATE = np.array([5e5, np.deg2rad(8.)])
 
 
 def regulation_rhs(state, command, wind, aero):
+    """Evaluate the nonlinear plant after eliminating common shaft rotation.
+
+    Parameters
+    ----------
+    state : array_like, shape (8,)
+        Tower/blade deflections, shaft torsion, tower/blade velocities,
+        rotor/generator speeds and pitch in the module's SI conventions.
+    command : array_like, shape (2,)
+        Generator torque in N m and requested pitch in rad.
+    wind : float
+        Free-stream wind speed in m/s.
+    aero : callable
+        ``aero(tip_speed_ratio, pitch_radians)`` returns thrust and torque
+        coefficients ``(CT, CQ)``. `default_map` rejects extrapolation.
+
+    Returns
+    -------
+    numpy.ndarray, shape (8,)
+        State derivative per second, in the same state order.
+
+    Notes
+    -----
+    This function does not apply actuator limits; use `controller` when
+    simulating the bounded feedback experiment. The underlying plant rejects
+    nonpositive effective wind and out-of-domain aerodynamic lookup.
+    """
     x = np.asarray(state, dtype=float)
     u = np.asarray(command, dtype=float)
     if x.shape != (8,) or u.shape != (2,):
@@ -30,6 +71,33 @@ def regulation_rhs(state, command, wind, aero):
 
 
 def equilibrium(wind, aero, speed=1.2, torque=5e6/1.2):
+    """Solve a constant-wind equilibrium from torque and thrust balances.
+
+    Parameters
+    ----------
+    wind : float
+        Positive free-stream wind speed in m/s.
+    aero : callable
+        Aerodynamic coefficient interface described in `regulation_rhs`.
+    speed : float, optional
+        Positive rotor and low-speed-side generator angular speed in rad/s.
+    torque : float, optional
+        Positive generator torque in N m; default mechanical power is 5 MW.
+
+    Returns
+    -------
+    state : numpy.ndarray, shape (8,)
+        Absolute regulation coordinates, including nonzero deflections,
+        torsion and pitch. Tower and blade velocities are zero.
+    command : numpy.ndarray, shape (2,)
+        Equilibrium generator torque and requested pitch.
+
+    Notes
+    -----
+    Pitch is found on ``[0, 30 degrees]`` by a bracketed root solve. A missing
+    bracket or an aerodynamic lookup outside its table raises an error; no
+    extrapolated equilibrium is manufactured.
+    """
     if wind <= 0 or speed <= 0 or torque <= 0:
         raise ValueError('Positive wind, speed and torque required')
     factor = .5*1.225*np.pi*63**3*wind**2
@@ -43,6 +111,20 @@ def equilibrium(wind, aero, speed=1.2, torque=5e6/1.2):
 
 
 def linearize(state, command, wind, aero):
+    """Compute local state/input Jacobians with centered finite differences.
+
+    State, command, wind and aerodynamic-map conventions match
+    `regulation_rhs`. Perturbations are ``1e-5 * STATE_SCALE`` and
+    ``1e-5 * INPUT_SCALE``. Wind is held fixed; no wind-disturbance column
+    or affine offset is returned. `design` calls this at solved equilibria.
+
+    Returns
+    -------
+    a : numpy.ndarray, shape (8, 8)
+        State Jacobian in unscaled physical coordinates.
+    b : numpy.ndarray, shape (8, 2)
+        Command Jacobian in unscaled physical coordinates.
+    """
     a = np.empty((8, 8)); b = np.empty((8, 2))
     for j, scale in enumerate(STATE_SCALE):
         delta = np.eye(8)[j]*scale*1e-5
@@ -56,6 +138,37 @@ def linearize(state, command, wind, aero):
 
 
 def design(aero, winds=(12., 14., 16.)):
+    """Design and check one scaled continuous-time LQR law per operating wind.
+
+    Parameters
+    ----------
+    aero : callable
+        Aerodynamic coefficient map as in `regulation_rhs`.
+    winds : sequence of float, optional
+        Operating winds in m/s. Use a strictly increasing sequence with at
+        least two points when passing the result to `memberships`.
+
+    Returns
+    -------
+    list of dict
+        Each record contains ``wind``, equilibrium ``state`` and ``command``,
+        physical-coordinate ``a``/``b`` Jacobians, a ``(2, 8)`` feedback
+        ``gain``, ``care_residual`` (infinity norm in scaled coordinates)
+        and ``max_pole_real`` (1/s). The local law is
+        ``command - gain @ (state - equilibrium_state)``.
+
+    Raises
+    ------
+    RuntimeError
+        If a local closed-loop pole is not strictly stable or the scaled
+        Riccati residual exceeds ``1e-6``.
+
+    Notes
+    -----
+    Cost matrices ``Q`` and ``R`` apply in the declared normalized coordinates.
+    These checks concern the local linearizations, not a common Lyapunov
+    certificate for the interpolated nonlinear closed loop.
+    """
     points = []
     for wind in winds:
         x, u = equilibrium(wind, aero)
@@ -76,6 +189,27 @@ def design(aero, winds=(12., 14., 16.)):
 
 
 def memberships(wind, points):
+    """Return adjacent piecewise-linear scheduling weights without extrapolation.
+
+    Parameters
+    ----------
+    wind : float
+        Finite wind speed in m/s, inside the design interval.
+    points : sequence of dict
+        Records from `design`, with at least two strictly increasing
+        ``wind`` values.
+
+    Returns
+    -------
+    numpy.ndarray, shape (len(points),)
+        Nonnegative weights summing to one. At most two adjacent entries
+        are active; a grid point selects its own operating law.
+
+    Raises
+    ------
+    ValueError
+        If the wind or operating grid does not satisfy the stated domain.
+    """
     grid = np.array([p['wind'] for p in points])
     if len(grid) < 2 or np.any(np.diff(grid) <= 0) or not np.isfinite(wind):
         raise ValueError('An increasing operating grid and finite wind are required')
@@ -88,6 +222,38 @@ def memberships(wind, points):
 
 
 def controller(state, wind, points, previous, dt, scheduled=True):
+    """Evaluate state feedback and enforce command slew and magnitude limits.
+
+    Parameters
+    ----------
+    state : numpy.ndarray, shape (8,)
+        Measured full regulation state in the module's SI coordinates.
+    wind : float
+        Current measured wind in m/s, inside the design interval.
+    points : sequence of dict
+        Operating equilibria and local gains returned by `design`.
+    previous : numpy.ndarray, shape (2,)
+        Previously applied torque/pitch command. The intended control loop
+        starts from a feasible equilibrium command.
+    dt : float
+        Positive control sample interval in seconds.
+    scheduled : bool, optional
+        If true, blend the local affine feedback laws using `memberships`.
+        Otherwise use the middle operating point's fixed gain with the same
+        interpolated equilibrium feedforward.
+
+    Returns
+    -------
+    numpy.ndarray, shape (2,)
+        Applied generator torque (N m) and demanded pitch (rad), limited to
+        ``[0, 6e6]`` N m and ``[0, 30 degrees]``. Slew limits are
+        ``5e5`` N m/s and 8 degrees/s.
+
+    Notes
+    -----
+    The policy uses full-state and wind measurements and has no integral
+    speed-error state. Interpolation may leave a small steady-state offset.
+    """
     if dt <= 0:
         raise ValueError('Positive control sample time required')
     h = memberships(wind, points)
@@ -102,6 +268,37 @@ def controller(state, wind, points, previous, dt, scheduled=True):
 
 
 def simulate(aero, points=None, scheduled=True, duration=60., dt=.02):
+    """Run a held-command nonlinear wind-control experiment with fixed-step RK4.
+
+    Parameters
+    ----------
+    aero : callable
+        Aerodynamic coefficient map as in `regulation_rhs`.
+    points : sequence of dict, optional
+        Design records; omitted records are constructed by `design`.
+    scheduled : bool, optional
+        Select scheduled PDC or the matched fixed-middle-gain baseline.
+    duration : float, optional
+        Positive finite horizon in seconds, a whole number of sample periods.
+    dt : float, optional
+        Positive control and RK4 integration period in seconds.
+
+    Returns
+    -------
+    dict
+        ``time`` and ``wind`` are length-N arrays; ``state`` has shape
+        ``(N, 8)`` and ``command`` has shape ``(N, 2)``. The final command
+        repeats the last applied command. ``speed_rmse`` and
+        ``speed_peak_error`` are measured against 1.2 rad/s;
+        ``pitch_peak_deg`` reports the maximum actual pitch in degrees.
+
+    Notes
+    -----
+    The initial state is the 12 m/s equilibrium. Wind becomes 13 m/s at
+    20 s and 15 m/s at 40 s, exercising interior scheduling points. Inputs
+    and wind are held through each integration step. This is a deterministic
+    simulated experiment, not historical wind data or a robustness proof.
+    """
     if not np.isfinite(dt) or not np.isfinite(duration) or dt <= 0 or duration <= 0:
         raise ValueError('Positive finite duration and sample period required')
     points = design(aero) if points is None else points
@@ -129,6 +326,13 @@ def simulate(aero, points=None, scheduled=True, duration=60., dt=.02):
 
 
 def default_map():
+    """Load the bundled NREL 5 MW ROSCO table as a `RotorMap`.
+
+    The file is ``benchmarks/data/Cp_Ct_Cq.NREL5MW.txt`` relative to the
+    repository root. Keep that data file with the Python source when moving
+    the project. This later-map variant does not recover the exact table
+    behind the article's original controller comparison.
+    """
     return RotorMap(Path(__file__).resolve().parents[2]/'benchmarks/data/Cp_Ct_Cq.NREL5MW.txt')
 
 

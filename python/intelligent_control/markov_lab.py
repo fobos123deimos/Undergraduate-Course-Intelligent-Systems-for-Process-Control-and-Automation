@@ -1,7 +1,19 @@
-"""Synthetic sensor diagnosis: Markov chains, categorical HMMs and causal PI.
+"""Synthetic sensor diagnosis with Markov chains, categorical HMMs and PI.
 
-Hidden labels are used in calibration and retrospective scoring only. All
-settings are fixed before the independent test trajectory is generated.
+The three hidden modes are normal, drift and sensor fault, with fixed
+positive concentration biases. Residuals are discretized using `symbols`.
+Time is measured in minutes and the sample interval is `DT`.
+
+Hidden labels are available only to synthetic calibration and retrospective
+scoring. All settings are fixed before an independent test trajectory is
+generated. Only causal filtering enters compensated control; smoothing and
+Viterbi remain offline. The nominal predictor has a known initial state and
+past applied inputs, an explicit information advantage over ordinary PI.
+
+`run_markov_experiment` returns numerical records without writing files.
+`save_markov_result` exports inspectable results and figures. This laboratory
+is an enrichment beyond the supplied article models, not industrial fault
+reliability evidence.
 """
 from pathlib import Path
 import json
@@ -27,11 +39,50 @@ def symbols(residual):
 
 
 def theoretical_emission():
+    """Integrate the declared Gaussian residual law over the three symbols.
+
+    Return a ``(3, 3)`` emission matrix with sensor modes as rows and observed
+    symbols as columns. The means are `BIAS`, noise scale is `NOISE_STD` and
+    category boundaries are `CUTPOINTS`. These are known simulator parameters,
+    not estimates from measured data.
+    """
     cdf = ndtr((CUTPOINTS[None, :] - BIAS[:, None]) / NOISE_STD)
     return np.column_stack((cdf[:, 0], cdf[:, 1]-cdf[:, 0], 1-cdf[:, 1]))
 
 
 def calibrate(seed=17, trajectories=20, length=150):
+    """Fit a supervised HMM and sensor-bias means on separate records.
+
+    Parameters
+    ----------
+    seed : int, optional
+        Reproducible generator seed for calibration only.
+    trajectories : int, optional
+        Number of independent synthetic records.
+    length : int, optional
+        Number of observations in each record.
+
+    Returns
+    -------
+    model : CategoricalHMM
+        Estimated initial, transition and categorical emission probabilities,
+        using pseudocount one and respecting record boundaries.
+    bias : ndarray, shape (3,)
+        Mean continuous residual for each labeled calibration state.
+    observations : list of ndarray
+        Separate integer-symbol records, reused by the unsupervised example.
+
+    Raises
+    ------
+    ValueError
+        If a state is never observed and its bias cannot be estimated.
+
+    Notes
+    -----
+    No evaluation trajectory is consumed. State labels are known because this
+    is a synthetic calibration experiment; practical use needs an identified
+    calibration procedure rather than access to hidden test labels.
+    """
     rng = np.random.default_rng(seed)
     states, observations, residuals = [], [], []
     for _ in range(trajectories):
@@ -47,6 +98,13 @@ def calibrate(seed=17, trajectories=20, length=150):
 
 
 def classification(truth, predicted):
+    """Score three-class state predictions against retrospective labels.
+
+    ``truth`` and ``predicted`` are matching integer arrays with labels in
+    ``{0, 1, 2}``. Return accuracy and a 3 by 3 confusion matrix serialized as
+    lists, with true states on rows and predicted states on columns. This
+    helper does not relabel latent states or select a fit using test labels.
+    """
     confusion = np.zeros((3, 3), dtype=int)
     np.add.at(confusion, (truth, predicted), 1)
     return {'accuracy': float(np.mean(truth == predicted)),
@@ -54,6 +112,24 @@ def classification(truth, predicted):
 
 
 def alarm_metrics(truth, posterior, threshold=.7):
+    """Score a fixed posterior threshold for sensor-fault state two.
+
+    Parameters
+    ----------
+    truth : ndarray, shape (n,)
+        Retrospective integer state labels; state two is the fault condition.
+    posterior : ndarray, shape (n, 3)
+        Filtered or other explicitly identified posterior state probabilities.
+    threshold : float, optional
+        Alarm when the fault posterior is greater than or equal to this value.
+
+    Returns
+    -------
+    dict
+        Threshold, true/false positive and negative counts, precision, recall
+        and false-alarm rate. Any ratio with a zero denominator is ``None``.
+        This function scores a supplied threshold rather than tuning it.
+    """
     actual, alarm = truth == 2, posterior[:, 2] >= threshold
     tp, fp = int(np.sum(alarm & actual)), int(np.sum(alarm & ~actual))
     fn, tn = int(np.sum(~alarm & actual)), int(np.sum(~alarm & ~actual))
@@ -97,6 +173,20 @@ def simulate_sensor_control(model, calibrated_bias, states, noise, tau=10., comp
 
 
 def run_markov_experiment():
+    """Run the complete fixed-seed sensor-diagnosis teaching experiment.
+
+    Return ``summary``, ``traces`` and ``diagnosis`` dictionaries. Supervised
+    calibration uses twenty independent 150-sample records with seed 17;
+    the separate evaluation record has 600 samples with seed 2026. Metrics
+    compare instantaneous classification, causal filtering, offline smoothing
+    and Viterbi, followed by nominal/mismatched ordinary and compensated PI.
+
+    The Baum-Welch illustration starts from known simulator probabilities,
+    which is favorable initialization rather than blind identification.
+    Hidden evaluation labels neither tune hyperparameters nor relabel the
+    unsupervised fit. No files are written and no industrial safety or
+    population reliability estimate is claimed.
+    """
     model, calibrated_bias, training_obs = calibrate()
     rng = np.random.default_rng(2026)
     states = sample_markov(TRANSITION, PRIOR, 600, rng)
@@ -158,6 +248,24 @@ def run_markov_experiment():
 
 
 def save_markov_result(result, outdir):
+    """Export diagnosis/control records and their figures.
+
+    Parameters
+    ----------
+    result : dict
+        Completed result from `run_markov_experiment`.
+    outdir : str or pathlib.Path
+        Destination, created with parents when necessary. Matching output
+        filenames already present at this location are replaced.
+
+    Returns
+    -------
+    pathlib.Path
+        Directory containing ``metrics.json``, ``diagnosis.csv``, four control
+        CSVs, and PNG/SVG diagnosis and comparison figures. The diagnosis
+        export labels its retrospective truth/smoothing/Viterbi fields;
+        those fields are not additional controller inputs.
+    """
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
