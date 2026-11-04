@@ -1,7 +1,7 @@
 function paths = build_blending_tank(output_dir, overwrite)
 %BUILD_BLENDING_TANK Generate two fresh corrected physical-tank diagrams.
 %   paths = build_blending_tank() requires MATLAB with Simulink only.
-%   No Control System Toolbox and no files from the historical project are used.
+%   No Control System Toolbox is required.
 %   Existing files and loaded model names are refused unless overwrite=true
 %   is explicitly supplied; loaded models are always refused.
 %

@@ -1,7 +1,6 @@
 """Independent physical and mathematical checks of the corrected tank.
 
-These checks read no historical S-function or binary model. Conservation,
-closed-form responses, finite differences and resolvent identities provide
+Conservation, closed-form responses, finite differences and resolvent identities provide
 different oracles for the fresh implementation.
 """
 import numpy as np
@@ -49,7 +48,7 @@ def test_analytic_jacobians_match_independent_centered_differences():
     assert a[0, 1] != 0  # A12 only vanishes when the concentration derivative does.
 
 
-def test_equilibrium_matrix_and_input_order_are_physical_not_rounded_archive_values():
+def test_equilibrium_matrix_and_input_order_match_physical_parameters():
     model = linearize()
     np.testing.assert_allclose(model['A'], [[-.35, 0], [0, 0]], atol=1e-15)
     np.testing.assert_allclose(model['B'],

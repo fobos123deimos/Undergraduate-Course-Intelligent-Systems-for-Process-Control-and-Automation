@@ -22,7 +22,7 @@ The exercises use hypothetical values $V=100$ L, total flow $q=10$ L/min and nor
 
 $$\tau\dot c=u-c,\qquad \tau=V/q=10\ {\rm min}.$$
 
-These are new teaching parameters, not a transcription of the archived Blending Tank files. At a constant input, $c^*=u^*$. In deviation variables, $G(s)=1/(10s+1)$. At a one-minute sampling period with a zero-order-held input,
+These teaching parameters define the hypothetical process used in this unit. At a constant input, $c^*=u^*$. In deviation variables, $G(s)=1/(10s+1)$. At a one-minute sampling period with a zero-order-held input,
 
 $$c_{k+1}=ac_k+bu_k,\qquad a=e^{-0.1}=0.904837418,\quad b=1-a=0.095162582.$$
 

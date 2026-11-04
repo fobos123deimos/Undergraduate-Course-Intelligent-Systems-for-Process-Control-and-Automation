@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 folder = Path(__file__).resolve().parent
 environment = nb.read(ROOT/'laboratories/09-markov-hidden-state-diagnosis/notebook.ipynb', as_version=4).cells[2].source
 cells = [
-    nb.v4.new_markdown_cell('# Corrected physical Blending Tank\n\nA fresh conservation-law implementation. No archived code or saved model is loaded. State order: `[X,V]`; input order: `[w1,w2,x1,x2,wout]`. Time is in minutes, mass flows in kg/min, volume in m³, and fractions are dimensionless. Density 1000 kg/m³ is an explicit study assumption.\n\n[Derivation and usage](README.md) · [Validation evidence](VALIDATION.md)'),
+    nb.v4.new_markdown_cell('# Corrected physical Blending Tank\n\nA conservation-law implementation with explicitly declared parameters. State order: `[X,V]`; input order: `[w1,w2,x1,x2,wout]`. Time is in minutes, mass flows in kg/min, volume in m³, and fractions are dimensionless. Density 1000 kg/m³ is an explicit study assumption.\n\n[Derivation and usage](README.md) · [Validation evidence](VALIDATION.md)'),
     nb.v4.new_markdown_cell('## Prepare the environment\n\nIn Colab, the following cell downloads the public course repository and installs its declared numerical requirements. Locally it uses the existing checkout.'),
     nb.v4.new_code_cell(environment),
     nb.v4.new_markdown_cell('## 1. Establish a genuine equilibrium\n\nThe default inlets carry 500 and 200 kg/min, with solute fractions 0.4 and 0.75. Equilibrium requires outlet 700 kg/min and gives tank fraction 0.5. The chosen equilibrium volume is 2 m³. Inspect the analytical Jacobian and reduced transfer functions. They map deviations from these operating values.'),

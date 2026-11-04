@@ -1,6 +1,6 @@
 # Corrected physical Blending Tank
 
-This is a new, independent implementation of the physical problem studied in the owner's Blending Tank project. The archived `.m`, `.asv` and `.slx` files are preserved for historical inspection and are **never loaded, imported or executed by this version**. Equations, operating points and transfer functions are derived from conservation laws. The implementation is distinct from the normalized 100 L teaching tank used throughout the nine course units.
+This physical Blending Tank model derives its equations, operating points and transfer functions from conservation laws. The implementation uses explicit mass-flow units and variable volume, distinct from the normalized 100 L teaching tank used throughout the nine course units.
 
 ## Run the corrected version
 
@@ -30,7 +30,7 @@ paths = build_blending_tank();
 validate_blending_simulink;
 ```
 
-The generator builds a nonlinear physical model and a comparison of nonlinear, state-space and transfer-function branches. It refuses to overwrite existing files by default. No old `.slx` is used as a template. Simulink generation and execution require that runtime; see the validation record for the distinction between tested numerical functions and unexecuted Simulink sources.
+The generator builds a nonlinear physical model and a comparison of nonlinear, state-space and transfer-function branches. It refuses to overwrite existing files by default. Simulink generation and execution require that runtime; see the validation record for the distinction between tested numerical functions and unexecuted Simulink sources.
 
 ## State, inputs and units
 
@@ -43,7 +43,7 @@ The generator builds a nonlinear physical model and a comparison of nonlinear, s
 | `rho` | Constant liquid density | kg/m³ |
 | `t` | Time | min |
 
-Every corrected interface uses **state order `[X,V]`** and **input order `[w1,w2,x1,x2,wout]`**. A volumetric flow must first be converted with `w = rho*q`; it cannot be inserted as a mass flow. The explicit default density is **1000 kg/m³**, a study assumption rather than a parameter inferred from the historical rounded matrices.
+Every interface uses **state order `[X,V]`** and **input order `[w1,w2,x1,x2,wout]`**. A volumetric flow must first be converted with `w = rho*q`; it cannot be inserted as a mass flow. The explicit default density is **1000 kg/m³**, a declared study assumption.
 
 ## Conservation equations
 
@@ -83,14 +83,14 @@ $$G(s)=\begin{bmatrix}
 \frac{0.001}{s}&\frac{0.001}{s}&0&0&\frac{-0.001}{s}
 \end{bmatrix}.$$
 
-These are zero-initial-deviation transfer functions. The negative first concentration channel is required: increasing the more dilute inlet lowers the equilibrium concentration. Transfer coefficients are calculated from the corrected Jacobian rather than copied from saved blocks. Their magnitudes differ from the old rounded values because density is now explicitly fixed at 1000 kg/m³.
+These are zero-initial-deviation transfer functions. The negative first concentration channel is required: increasing the more dilute inlet lowers the equilibrium concentration. Transfer coefficients are calculated from the Jacobian using the declared density of 1000 kg/m³.
 
 Away from equilibrium, the general Jacobian includes `A(1,2) = -fX/V`. A local Taylor approximation must retain the constant offset `fbar`: `xdot ≈ fbar + A*(x-xbar) + B*(u-ubar)`. Such a frozen affine approximation is not a global linear model of an entire filling trajectory. The equilibrium constructor rejects unbalanced flows.
 
 ## Three checked scenarios
 
 1. **Balanced startup:** start at `[X,V]=[0,2]` with outlet 700 kg/min. Compare numerical integration with `X(t)=0.5*(1-exp(-0.35*t))`, `V(t)=2`.
-2. **Filling:** keep the original visible outlet value 650 kg/min, with the same initial state. Now `V(t)=2+0.05*t` and `X(t)=0.5*(1-(2/V(t))^14)`. This is a valid variable-volume case, not a constant-volume equilibrium.
+2. **Filling:** set the outlet to 650 kg/min, with the same initial state. Now `V(t)=2+0.05*t` and `X(t)=0.5*(1-(2/V(t))^14)`. This is a valid variable-volume case, not a constant-volume equilibrium.
 3. **Local flow perturbation:** start at equilibrium and increase `w1` by 10 kg/min at minute 5. Compare the nonlinear equations with the deviation model under the same physical inputs. The volume response agrees exactly; concentration agreement is local and its error is reported.
 
 ![Computed corrected tank study](results/comparison.png)

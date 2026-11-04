@@ -4,7 +4,7 @@
 
 This original English study collection follows the eight content areas of the supplied integrated syllabus and adds a ninth unit on Markov chains and hidden-state diagnosis. Unit 09 is an extension, not a model attributed to the benchmark article or an additional topic claimed for the official syllabus. The supplied syllabus itself is a non-official synthesis. Academic context: the discipline associated with Prof. Michela Mulas; no authorship, review or endorsement by the professor is implied.
 
-The worked tank is hypothetical: volume 100 L, flow 10 L/min, normalized high/low feed concentrations 1 and 0, and blend fraction between 0 and 1. It illustrates derivations separately from the preserved historical Blending Tank implementation and from the article's named benchmarks.
+The worked tank is hypothetical: volume 100 L, flow 10 L/min, normalized high/low feed concentrations 1 and 0, and blend fraction between 0 and 1. These explicit teaching parameters illustrate the derivations; the article's named benchmarks are studied separately.
 
 ## Learning sequence
 

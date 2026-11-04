@@ -1,6 +1,6 @@
 function checks = validate_blending_tank()
 %VALIDATE_BLENDING_TANK Independent balances, derivatives and exact solutions.
-% Requires base MATLAB or GNU Octave; no Control System Toolbox or legacy files.
+% Requires base MATLAB or GNU Octave; no Control System Toolbox is needed.
 p=bt_parameters();u=p.ubar;x=bt_equilibrium(u,2,p);
 assert(norm(x-[.5;2],Inf)<1e-14);
 assert(norm(bt_rhs(0,x,u,p),Inf)<1e-14);

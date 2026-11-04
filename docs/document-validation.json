@@ -2,8 +2,8 @@
   "documents": [
     {
       "path": "course/notes.pdf",
-      "sha256": "4641928bebacf45ae4a6677ec925e686aa8e618018c39caaef500b250b4d1342",
-      "bytes": 128567,
+      "sha256": "189d100a64b355ddd85e1950c1c813adc09f1dfb7b0e6cbb19b8214f8bcf93f7",
+      "bytes": 128540,
       "pages": 21,
       "page_checks": [
         {
@@ -18,7 +18,7 @@
         },
         {
           "page": 3,
-          "characters": 1986,
+          "characters": 1971,
           "characters_outside_page": 0
         },
         {
@@ -309,16 +309,42 @@
     "reviewed_pages": 55,
     "required_scope": "All final page renders and focused equation/diagram pages inspected.",
     "focused_pages": {
-      "course/notes.pdf": [3, 7, 9, 12, 17, 18, 19, 20, 21],
-      "problem-sets/exercises.pdf": [12, 13],
-      "problem-sets/solutions.pdf": [19, 20, 21]
+      "course/notes.pdf": [
+        3,
+        7,
+        9,
+        12,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "problem-sets/exercises.pdf": [
+        12,
+        13
+      ],
+      "problem-sets/solutions.pdf": [
+        19,
+        20,
+        21
+      ]
     },
     "checks": [
       "No clipped text, overlapping elements, missing glyphs or unreadable diagrams observed.",
       "All five original TikZ diagrams and the new Markov/HMM mathematical notation inspected in larger renders.",
       "Problem 09.5 is complete on exercise-book page 13; no short continuation tail remains.",
       "Final logs contain no overfull/underfull-box or missing-character warnings."
-    ]
+    ],
+    "latest_review": {
+      "path": "course/notes.pdf",
+      "pages_reviewed": 21,
+      "focused_pages": [
+        3
+      ],
+      "date": "2026-11-04",
+      "other_documents": "Unchanged PDF checksums retain their previous visual review."
+    }
   },
   "render_output": "PNG page renders and contact sheets are kept outside the repository by default."
 }

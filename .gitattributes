@@ -2,6 +2,4 @@
 *.png binary
 *.pdf binary
 *.slx binary
-*.original binary
-legacy/blending-tank/Blending_Tank-main/** -text
 benchmarks/data/** -text

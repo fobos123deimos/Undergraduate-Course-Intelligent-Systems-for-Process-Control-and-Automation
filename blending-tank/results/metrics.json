@@ -1,5 +1,5 @@
 {
-  "scope": "Fresh physical implementation based on conservation laws. No legacy source or saved model is executed.",
+  "scope": "Physical implementation based on conservation laws and explicitly declared parameters.",
   "units": {
     "time": "min",
     "volume": "m3",
@@ -19,7 +19,7 @@
     "wout"
   ],
   "density_kg_per_m3": 1000.0,
-  "density_provenance": "Explicit study assumption; not recovered from the old rounded matrices.",
+  "density_provenance": "Explicit study assumption.",
   "model": {
     "x_eq": [
       0.5,

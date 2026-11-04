@@ -18,7 +18,6 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 - [Integrated problems and worked solutions](problem-sets/README.md)
 - [All article benchmarks: models, protocols and evidence boundaries](benchmarks/README.md)
 - [Corrected physical Blending Tank: independent equations, linearization and fresh Simulink generator](blending-tank/README.md)
-- [Original Blending Tank archive and mathematical review](legacy/blending-tank/README.md)
 - [References and English/Portuguese video lessons](docs/REFERENCES.md)
 - [Execution evidence](docs/VALIDATION.md) and [limitations](docs/LIMITATIONS.md)
 
@@ -38,7 +37,7 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 
 ![Computed controller comparison](laboratories/05-expert-fuzzy-control/results/comparison.png)
 
-The common example uses a hypothetical 100 L mixture with 10 L/min total flow. Its 10 min residence time makes the roles of modeling, sampling, constraints and controller tuning visible. This parameter set is separate from the preserved historical Blending Tank files. Model equations, assumptions and controller information are stated before each comparison.
+The common example uses a hypothetical 100 L mixture with 10 L/min total flow. Its 10 min residence time makes the roles of modeling, sampling, constraints and controller tuning visible. Model equations, assumptions and controller information are stated before each comparison.
 
 ## Reproduce the work
 
@@ -77,7 +76,6 @@ matlab/                 MATLAB/Octave implementations
 simulink/               model-building scripts
 benchmarks/             paper inventory, protocols and external-source interfaces
 blending-tank/          corrected independent physical tank, notebook and evidence
-legacy/blending-tank/   preserved user code and review
 docs/                   references, scope and validation evidence
 tools/                  experiment, notebook and validation commands
 ```

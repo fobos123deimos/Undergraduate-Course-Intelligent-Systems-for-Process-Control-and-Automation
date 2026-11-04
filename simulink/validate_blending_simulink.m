@@ -1,7 +1,8 @@
 function report = validate_blending_simulink(output_dir)
 %VALIDATE_BLENDING_SIMULINK Execute fresh diagrams in MATLAB with Simulink.
 % This script is an execution recipe, not evidence that Simulink was run.
-% No historical files, base-workspace parameters or Control Toolbox are used.
+% All physical parameters are declared in each model workspace.
+% No Control System Toolbox is needed.
 % A new temporary folder is kept for inspection when output_dir is omitted.
 if nargin<1,output_dir=tempname;end
 base=fileparts(mfilename('fullpath'));addpath(base);addpath(fullfile(base,'..','matlab'));

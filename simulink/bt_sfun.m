@@ -3,7 +3,6 @@ function bt_sfun(block)
 % Dialog parameters: initial state [X;V], parameter struct from bt_parameters.
 % Input vector: [w1;w2;x1;x2;wout]. Outputs are the physical states [X;V].
 % Time is min, flows kg/min, density kg/m^3 and volume m^3.
-% The adapter has no dependency on any historical model or S-function.
 % Interface reference:
 % https://www.mathworks.com/help/simulink/sfg/writing-level-2-matlab-s-functions.html
 setup(block);

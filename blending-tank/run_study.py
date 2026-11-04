@@ -1,4 +1,4 @@
-"""Execute the independent corrected physical tank; no archived code is loaded."""
+"""Execute the physical tank study from its declared conservation equations."""
 from pathlib import Path
 import json
 import sys
@@ -72,11 +72,11 @@ def run_study(output_dir=None):
         'max_volume_linearization_error_m3': float(np.max(abs(nonlinear[:, 1]-linear[:, 1]))),
         'final_nonlinear_state': nonlinear[-1].tolist(), 'final_linear_state': linear[-1].tolist()}
     summary = {
-        'scope': 'Fresh physical implementation based on conservation laws. No legacy source or saved model is executed.',
+        'scope': 'Physical implementation based on conservation laws and explicitly declared parameters.',
         'units': {'time': 'min', 'volume': 'm3', 'mass_flow': 'kg/min', 'density': 'kg/m3', 'mass_fraction': 'dimensionless'},
         'state_order': ['X', 'V'], 'input_order': ['w1', 'w2', 'x1', 'x2', 'wout'],
         'density_kg_per_m3': DEFAULT_RHO,
-        'density_provenance': 'Explicit study assumption; not recovered from the old rounded matrices.',
+        'density_provenance': 'Explicit study assumption.',
         'model': json_ready(model), 'transfer_functions': json_ready(transfer_functions()),
         'scenarios': summaries,
         'limits': 'Ideal mixing and constant density. Equilibrium linear models are local and use deviations. The 650 kg/min outlet case fills the tank and has no constant-volume equilibrium. No vessel-capacity model or physical-plant validation is implied.'}

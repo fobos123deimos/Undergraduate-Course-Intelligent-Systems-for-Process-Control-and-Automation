@@ -1,6 +1,6 @@
 # Corrected tank validation
 
-The corrected implementation is independent of the archived project. The historical files are preserved and are not numerical dependencies. On 4 November 2026, all six archived members matched their original SHA-256 checksums byte for byte.
+The physical tank implementation is checked against conservation laws, analytical solutions and independently calculated linear models. The following record identifies the executed checks and their limits.
 
 ## Executed Python checks
 

@@ -1,6 +1,6 @@
 # MATLAB and GNU Octave laboratories
 
-The [corrected physical Blending Tank](../blending-tank/README.md) is available separately through `run_blending_tank(true)` and `validate_blending_tank`. Its new `bt_*` functions declare units, operating points, deviation models and transfer channels explicitly. `blending_rhs` is now a compatibility adapter to that implementation. No archived project file is executed. The physical tank validation also runs inside `validate_all`.
+The [physical Blending Tank](../blending-tank/README.md) is available separately through `run_blending_tank(true)` and `validate_blending_tank`. Its `bt_*` functions declare units, operating points, deviation models and transfer channels explicitly. `blending_rhs` adapts named parameter fields to the five-input interface. The physical tank validation also runs inside `validate_all`.
 
 The nine laboratories run without add-on toolboxes. The implementation includes its own box-constrained quadratic MPC solver, fuzzy inference, neural training, genetic search, Markov-chain analysis and categorical hidden Markov models. Run from the repository root:
 
@@ -25,7 +25,7 @@ For GNU Octave, use `octave --no-gui --quiet --eval "addpath('matlab'); validate
 | 08 | Common-scenario PI/feedforward/fuzzy/MPC comparison with IAE, ISE, input variation and a plant-mismatch experiment |
 | 09 | Markov regimes, stationary and finite-horizon probabilities, first hitting times, categorical HMM filtering/smoothing/Viterbi, separate calibration records, Baum-Welch estimation and sensor-bias supervision of PI |
 
-The shared teaching plant is `10 dc/dt = u + d - c`: a 100 L well-mixed vessel with 10 L/min flow, normalized feed composition, `0 <= u <= 1`, sampling interval 0.2 min and 80 min horizon. The initial concentration is 0.35. References are 0.35, 0.65 at 10 min and 0.45 at 55 min. A concentration disturbance of +0.08 begins at 45 min. These are illustrative parameters, separate from both the historical physical Blending Tank and the article's benchmarks. All inputs, outputs and training samples are simulated.
+The shared teaching plant is `10 dc/dt = u + d - c`: a 100 L well-mixed vessel with 10 L/min flow, normalized feed composition, `0 <= u <= 1`, sampling interval 0.2 min and 80 min horizon. The initial concentration is 0.35. References are 0.35, 0.65 at 10 min and 0.45 at 55 min. A concentration disturbance of +0.08 begins at 45 min. These are illustrative parameters, separate from the article's benchmarks. All inputs, outputs and training samples are simulated.
 
 The MPC uses full-state feedback, constant future reference/disturbance estimates and input box constraints. It does not claim terminal-set stability, state constraint satisfaction or robust feasibility. Each move is a projected-gradient solution with a numerical tolerance and iteration limit. The MIMO exercise uses a separate 2x2 discrete model; it is not a multivariable model of the one-state vessel. Unit 07 includes a small evolutionary search over the MIMO move weight, plus an explicitly separate deterministic sweep; neither establishes a global optimum.
 

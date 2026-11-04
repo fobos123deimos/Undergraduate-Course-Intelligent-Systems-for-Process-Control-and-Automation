@@ -1,13 +1,12 @@
 """Independent physical Blending Tank model with explicit units and offsets.
 
-No historical MATLAB or Simulink source is loaded or executed. States are
-``[X, V]``: solute mass fraction and liquid volume in m^3. Inputs are always
+States are ``[X, V]``: solute mass fraction and liquid volume in m^3. Inputs are always
 ``[w1, w2, x1, x2, wout]``: mass flows in kg/min and dimensionless feed
 fractions. Density is in kg/m^3; time is in minutes. Perfect mixing, constant
 density and no reaction are assumed. No vessel capacity is specified.
 
-The declared teaching density 1000 is a new explicit assumption, not a value
-recovered from old rounded matrices. Linear models use deviations about an
+The teaching density 1000 kg/m^3 is an explicit assumption.
+Linear models use deviations about an
 equilibrium; an affine Taylor model includes a nonzero reference derivative.
 """
 import numpy as np
