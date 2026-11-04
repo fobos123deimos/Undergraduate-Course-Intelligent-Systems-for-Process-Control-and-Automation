@@ -12,7 +12,7 @@ The 10 kg/min inlet perturbation produced a maximum nonlinear-versus-linear conc
 
 ## Native runtime status
 
-The new MATLAB/Octave validation contains seven independent check groups and is included in `validate_all`. Its published execution will be recorded after the validation workflow finishes. Local Python success is not presented as a native MATLAB/Octave execution.
+The published [validation run 41866227718](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41866227718) passed on source commit `7fcb51d9904748f998b459593f1730946ee39d24`. Python reran all **115 tests**, the corrected physical-tank study and all **eleven notebooks** successfully. **GNU Octave 11.1.0** executed and passed the **seven independent corrected-tank check groups**, alongside the nine course laboratories, Markov/HMM checks and ten mathematical benchmark checks. No source correction was needed after this run. See the [machine-readable record](validation.json).
 
 ## Scope
 

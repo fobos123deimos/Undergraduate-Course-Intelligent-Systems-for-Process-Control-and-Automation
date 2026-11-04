@@ -44,6 +44,8 @@ The [validation workflow](https://github.com/fobos123deimos/Undergraduate-Course
 
 ## Verified published execution
 
+The independent corrected physical tank passed [run 41866227718](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41866227718) on source commit `7fcb51d9904748f998b459593f1730946ee39d24`. Python reran all **115 tests**, nine course programs, the corrected-tank study and **eleven notebooks**. GNU Octave 11.1.0 on Ubuntu 26.04.1 passed the **seven corrected-tank check groups**, nine course units, seven Markov/HMM groups and ten mathematical benchmark checks. This validates the newly written numerical functions; the archived project and the new Simulink diagrams were not executed. No source correction was required after this run.
+
 The Markov extension passed [run 41860754694](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41860754694) on source commit `0418af4458abf7c264ea4f1cba320e4a940cf29c`. Python reran all **84 tests**, all **nine laboratory programs** and all **ten notebooks** successfully. GNU Octave 11.1.0 on Ubuntu 26.04.1 passed all **nine laboratory units**, the **seven Markov/HMM mathematical check groups**, and the existing ten mathematical benchmark checks. Its independently generated Markov test had filtered state accuracy 0.875; random streams differ between languages, while the small exact likelihood/posterior/Viterbi fixtures agree. No source corrections were required after this run.
 
 The following initial validation remains part of the history:

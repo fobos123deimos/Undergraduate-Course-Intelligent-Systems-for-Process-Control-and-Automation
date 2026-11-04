@@ -1,29 +1,39 @@
 {
   "date": "2026-11-04",
-  "source_commit": "0418af4458abf7c264ea4f1cba320e4a940cf29c",
-  "workflow_run_id": 41860754694,
-  "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41860754694",
+  "source_commit": "7fcb51d9904748f998b459593f1730946ee39d24",
+  "workflow_run_id": 41866227718,
+  "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41866227718",
   "python": {
-    "job_id": 126681559518,
+    "job_id": 126700992430,
     "conclusion": "success",
-    "tests_passed": 84,
+    "tests_passed": 115,
+    "corrected_tank_tests_passed": 31,
     "course_programs_executed": 9,
-    "notebooks_executed": 10
+    "corrected_tank_study_executed": true,
+    "notebooks_executed": 11
   },
   "octave": {
-    "job_id": 126681559855,
+    "job_id": 126700992179,
     "conclusion": "success",
     "version": "11.1.0",
     "runner": "Ubuntu 26.04.1",
     "course_units_passed": 9,
     "markov_mathematical_check_groups": 7,
+    "corrected_tank_mathematical_check_groups": 7,
     "mathematical_benchmarks_checked": 10
   },
   "matlab_executed": false,
   "simulink_executed": false,
-  "previous_validation": {
-    "source_commit": "c8a9a6fc6b4e4631152e5d00c8b781982ca97f8a",
-    "workflow_run_id": 41849137529,
-    "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41849137529"
-  }
+  "previous_validations": [
+    {
+      "source_commit": "0418af4458abf7c264ea4f1cba320e4a940cf29c",
+      "workflow_run_id": 41860754694,
+      "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41860754694"
+    },
+    {
+      "source_commit": "c8a9a6fc6b4e4631152e5d00c8b781982ca97f8a",
+      "workflow_run_id": 41849137529,
+      "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41849137529"
+    }
+  ]
 }
