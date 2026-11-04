@@ -6,7 +6,7 @@ Validation date: 4 November 2026. All course experiments use synthetic data.
 
 All nine Python laboratory programs executed locally. Their actual outputs are stored in the per-laboratory `results/metrics.json` and trace CSV files. The aggregate [execution record](execution.json) records numerical values and elapsed time from the final notebook executions. Runtime is environment-dependent and is not used to rank methods.
 
-The current Python suite passed **131 numerical tests**: 41 method/curriculum/benchmark checks, 43 Markov/HMM checks, 31 physical-tank checks, seven wind-control checks and nine external-source/parser/evidence checks. These include independent hidden-path enumeration, first-passage equations, long-sequence scaling, training boundaries, EM likelihood monotonicity, causal supervision, mass/solute conservation, analytical filling/draining trajectories, finite-difference Jacobians, transfer consistency, deviation coordinates, local Riccati/pole checks, wind interpolation and actuator limits. The nine course notebooks, benchmark notebook and physical-tank notebook executed with fresh Jupyter kernels, saved numerical outputs and no error cells. See the [notebook record](notebook-validation.json). Course comparison figures, sensor diagnosis, physical-tank results and the wind-control comparison were visually inspected.
+The current Python suite passed **175 numerical tests**: the previous 131 checks plus 23 pneumatic physical-model tests, eight hydrostatic SI tests, eight throttle pipeline tests and five ALSTOM transport tests. These include independent hidden-path enumeration, first-passage equations, long-sequence scaling, training boundaries, EM likelihood monotonicity, causal supervision, mass/solute conservation, analytical filling/draining trajectories, finite-difference Jacobians, transfer consistency, deviation coordinates, local Riccati/pole checks, wind interpolation and actuator limits. The nine course notebooks, benchmark notebook and physical-tank notebook executed with fresh Jupyter kernels, saved numerical outputs and no error cells. See the [notebook record](notebook-validation.json). Course comparison figures, sensor diagnosis, physical-tank results and the wind-control comparison were visually inspected.
 
 The [physical Blending Tank](../blending-tank/README.md) has explicit units, an equilibrium model and a separate filling case. Dedicated evidence and runtime limitations are in the [tank validation record](../blending-tank/VALIDATION.md).
 
@@ -20,19 +20,29 @@ The sample identification run estimated a 9.82375 min time constant for a nomina
 
 ## Verified published execution
 
-[Run 41886384567](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567) passed all three jobs on source commit `831e66f9e56ef5fba7ea0bcfb98af376a0de054e`:
+[Run 41896147563](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41896147563) passed all three jobs on source commit `d4957d467b55b066462a2dea1b13d59c530380de`:
 
 | Runtime | Executed evidence |
 |---|---|
-| Python 3.12 | 131 tests, nine course programs, physical-tank and wind studies, eleven notebooks |
-| GNU Octave 11.1.0 | All nine units, ten article kernels, MPC/neural/Markov/physical-tank checks, online adapters, wind and strict CSV import |
-| MATLAB R2025b Update 7 with Simulink | The numerical checks above, all **25 generated diagrams**, and three revised Tennessee Eastman cases |
+| Python 3.12 | 175 tests, nine course programs, physical-tank/wind/pneumatic studies and eleven notebooks |
+| GNU Octave 11.1.0 | Nine units, ten article kernels, MPC/neural/Markov/tank checks, online adapters, wind, strict CSV import, pneumatic/hydrostatic variants and full-size synthetic throttle pipeline |
+| MATLAB R2025b Update 7 with Simulink | The numerical checks above, **27 generated diagrams** and three revised Tennessee Eastman cases |
 
-The [25 SLX models and PNG views](../simulink/models/README.md) are preserved unchanged from the successful artifact, with [source and file hashes](../simulink/models/provenance.json). Every diagram view was visually inspected, and the model packages were checked for operational absolute paths and missing source dependencies. The complete repository is still required on the MATLAB path.
+The [gallery](../simulink/models/README.md) preserves the original 25 SLX/PNG pairs unchanged from [run 41886384567](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567), with their original [provenance](../simulink/models/provenance.json). The latest run repeated those checks; its [base-suite report](native-simulink-latest.json) is preserved separately. The two additional physical variants have [new source/artifact/file hashes](../simulink/models/physical-variants/provenance.json). All 27 diagram views were visually inspected across these two preserved artifact sets; no operational absolute paths were found. Keep the repository source folders on the MATLAB path.
 
-The [Simulink report](../simulink/models/validation.json) distinguishes nine continuous-plant ODE comparisons, three exact discrete recurrences, six Markov/HMM cases, two intelligent-control cases, wind PDC and two physical-tank diagrams. The general PI/MPC diagrams have finite-state and final-tracking checks. Largest scaled continuous-plant error was approximately 2.33e-8; Markov/HMM reference error was at most 1.12e-15; fuzzy/neural and wind trace differences were zero in this run. Physical startup/filling/linear comparisons were within 6.76e-14, while the nonlinear-versus-linear approximation differed by about 2.12e-5. The zero-volume test required the specific physical-domain rejection, including the nested Simulink diagnostic. These are numerical consistency results, not physical measurement accuracy.
+The base suite distinguishes nine continuous-plant ODE comparisons, three exact discrete recurrences, six Markov/HMM cases, two intelligent-control cases, wind PDC and two physical-tank diagrams. General PI/MPC diagrams have finite-state and final-tracking checks. The original preserved report records continuous-plant scaled error at most 2.33e-8, Markov/HMM error at most 1.12e-15, and physical startup/filling/linear error at most 6.76e-14. These are numerical consistency results, not measurement accuracy.
 
-The follow-up publication preserves the validated artifacts and updates documentation; it changes no numerical source. The [machine-readable CI record](ci-validation.json) identifies individual jobs and remaining external boundaries.
+The new [pneumatic Simulink report](../simulink/models/physical-variants/pneumatic/validation.json) covers payloads 3, 6 and 9 kg, with maximum scaled state error 6.39e-9 and pressure error 1.37e-8 against independent Python trajectories. The [hydrostatic report](../simulink/models/physical-variants/hydrostatic/validation.json) covers 601 samples over 6 s: scaled state error 2.15e-7, power-balance residual 1.05e-12 W, and motoring validity throughout. Literal article fixtures and separate physical interpretations remain distinct. Source audits and calibration limits are linked in the [coverage review](COVERAGE_REVIEW.md).
+
+The [native throttle report](../benchmarks/results/throttle-fixture-matlab.json) verifies the 10000/2500-row import, archive checks, train-only fitting and separate one-step/free-run evaluation on artificial records. Original measurements were not recovered.
+
+## Native ALSTOM execution
+
+[Windows run 41896750740](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41896750740) passed on source `cb19bdb5bf36df5007cd8b4c249863d8bd2380db` in MATLAB R2025b Update 7. Eleven actual author PI cases plus two nominal solver checks produced thirteen CSVs and 62186 rows. Independent Python recomputation passed all trace/metric checks. All seventeen temporary private inputs were deleted and absence verified individually. Source and cleanup evidence are in the [provenance record](../benchmarks/results/alstom-native/provenance.json).
+
+The [ALSTOM report](../benchmarks/ALSTOM_RESULTS.md) records negative performance results: all six pressure cases exceed the temperature tolerance, and the long demand ramp loses tracking. At 50% nominal load, temperature drift remains approximately -16.7123 K with strict, refined and author solver settings. The refined maximum difference is 1.145e-4 of the pressure-test tolerance scales. This sensitivity check covers only the nominal 50% case; it does not validate long-case convergence or reproduce historical controller rankings. Applied input limits pass within numerical tolerance, while command violations and output excursions remain reported.
+
+The benchmark notebook was re-executed locally after the evidence refresh, with no error cells; its [refresh record](benchmark-notebook-refresh.json) pins the saved notebook hash. The final evidence publication updates reports, source-access status and notebook outputs; the numerical implementation is pinned by the distinct successful runs above. The [machine-readable CI record](ci-validation.json) identifies individual jobs and remaining boundaries.
 
 ## Additional native Windows verification
 
@@ -65,9 +75,14 @@ validate_online_hmm;
 validate_intelligent_adapters;
 validate_wind_control;
 validate_io_csv;
+validate_pneumatic_physical;
+validate_hydrostatic_si;
+validate_throttle_reference;
 % MATLAB with Simulink:
 addpath('simulink');
 validate_simulink_suite('simulink/generated');
+validate_pneumatic_simulink('simulink/generated-pneumatic');
+validate_hydrostatic_simulink('simulink/generated-hydrostatic');
 ```
 
 The [validation workflow](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/workflows/validate.yml) runs Python, GNU Octave and native MATLAB/Simulink in separate jobs. Its status belongs to the particular commit shown by GitHub.
@@ -92,4 +107,4 @@ Native MATLAB/Simulink execution takes place on the identified CI runner; local 
 
 The official OpenFAST v5.0.0 NREL 5 MW case ran for 60 s with 9601 samples; all 41 signals were compared with the matching official baseline. The maximum normalized RMSE was approximately 0.00361, below the declared 0.01 threshold. Revised Tennessee Eastman ran three 0.2 h mode-1 cases: nominal, IDV1 and IDV4, with noise disabled. The [external-source guide](../benchmarks/EXTERNAL_MODELS.md) links their traces, source hashes and exact scope. These are simulated reference cases, not measured-plant validation or complete historical article reproduction.
 
-The ALSTOM archive was recovered and inspected, and eleven challenge cases are prepared. Its Windows-only MEX has not been executed. Original throttle measurements, canonical pneumatic closure and hydrostatic source reconciliation remain external requirements. Historical wind settings and full controller/observer experiments also remain outside the executed scope. See the [coverage review](COVERAGE_REVIEW.md) and [technical assessment](ASSESSMENT.md).
+The actual ALSTOM Windows MEX completed eleven cases and two solver checks, with the limitations recorded above. Original throttle measurements, pneumatic apparatus calibration and historical hydrostatic conventions remain external requirements. Historical ALSTOM reference reconciliation, wind settings and full controller/observer experiments also remain outside the executed scope. See the [coverage review](COVERAGE_REVIEW.md) and [technical assessment](ASSESSMENT.md).

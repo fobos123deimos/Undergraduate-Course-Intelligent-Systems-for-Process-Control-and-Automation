@@ -23,8 +23,8 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 - [Final syllabus, article and language coverage review](docs/COVERAGE_REVIEW.md)
 - [Wind LQR/PDC design, model variants and nonlinear validation](benchmarks/WIND_CONTROL.md)
 - [Official external simulators and source availability](benchmarks/EXTERNAL_MODELS.md)
-- [25 validated Simulink models and diagram gallery](simulink/models/README.md)
-- [Final technical assessment and scoring rubric: 8.5/10](docs/ASSESSMENT.md)
+- [27 validated Simulink models and diagram gallery](simulink/models/README.md)
+- [Final technical assessment and scoring rubric: 9.2/10](docs/ASSESSMENT.md)
 
 ## Nine connected laboratories
 
@@ -78,7 +78,7 @@ laboratories/           nine executable notebooks with results
 problem-sets/           integrated questions and worked reasoning
 python/intelligent_control/  inspectable methods, experiments and benchmarks
 matlab/                 MATLAB/Octave implementations
-simulink/               builders, 25 validated SLX models and PNG views
+simulink/               builders, 27 validated SLX models and PNG views
 benchmarks/             paper inventory, protocols and external-source interfaces
 blending-tank/          corrected independent physical tank, notebook and evidence
 docs/                   references, scope and validation evidence

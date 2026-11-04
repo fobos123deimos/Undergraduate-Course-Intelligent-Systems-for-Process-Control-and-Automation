@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-04",
+  "source_commit": "d4957d467b55b066462a2dea1b13d59c530380de",
+  "workflow_run_id": 41896147563,
+  "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41896147563",
+  "artifact_id": 13357510451,
+  "artifact_sha256": "3dc0dd29ad9ae5a1f353f8fe4a6cb608e00c676ebb861ac10eaeb8fd7ef6c174",
+  "runtime": "MATLAB R2025b Update 7 / Simulink",
+  "models": 2,
+  "files_preserved_unchanged": true,
+  "views_visually_reviewed": true,
+  "operational_absolute_paths_found": false,
+  "required_source_directories": [
+    "matlab",
+    "simulink"
+  ],
+  "scope": "Separate physical interpretations; no historical calibration claim",
+  "files": {
+    "hydrostatic/si_hydrostatic_si.png": "f00d45b9cca5c1c524e78ac74a60fb38e927ff02bc59ee4bf489a5503552a7ed",
+    "hydrostatic/si_hydrostatic_si.slx": "f937c38cfc3b5b382a9f11e314badeded48268ddcad8e4b8832d4a2a5ea0390a",
+    "hydrostatic/validation.json": "e7a470df846f847ca4fa08d0be9e7e71a9920ba088d47dc6b3e9f4e251ed82e2",
+    "pneumatic/si_pneumatic_physical.png": "f85de76f91e6ca208cd55e0598eef4dd005895cb8afc3d5e5a699cd062f02fed",
+    "pneumatic/si_pneumatic_physical.slx": "496ea8e1ad6ad3ceee5c031cf8be26be1cb26cb0e099d8355bc7f33c6a0f9c02",
+    "pneumatic/validation.json": "f9d728bfce4b27f6fd84af2fce2f75ed319b39beb3092286a4c789715e06da15"
+  }
+}

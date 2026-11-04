@@ -1,0 +1,15 @@
+{
+  "runtime": "25.2.0.3360999 (R2025b) Update 7",
+  "model": "si_hydrostatic_si",
+  "generated_models": 1,
+  "passed": true,
+  "state_scaled_error": 2.1515511311590673E-7,
+  "power_balance_residual_w": 1.0516032489249483E-12,
+  "all_motoring": true,
+  "samples": 601,
+  "displacement_basis": "per_revolution",
+  "capacitance_basis": "effective",
+  "input_contract": "requested_normalized_angles",
+  "command_interpolation": "piecewise linear samples every 0.002 seconds",
+  "canonical_2007_calibration_recovered": false
+}

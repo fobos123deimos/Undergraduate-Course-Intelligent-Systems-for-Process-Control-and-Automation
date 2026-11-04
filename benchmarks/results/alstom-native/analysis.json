@@ -1,0 +1,683 @@
+{
+  "status": "independent_csv_checks_passed",
+  "case_count": 11,
+  "csv_count": 13,
+  "total_samples": 62186,
+  "native_report_sha256": "3c52843a8a503f4df069446d052d50f91b06925f23a7bf524bd0f70a1dd16bb9",
+  "cases": [
+    {
+      "case": "load000-nominal",
+      "csv_sha256": "bf3d62eaa539494104e80b77296cfcab74c1042dcd94fbd760a93ac0e3eed458",
+      "samples": 1686,
+      "duration_s": 300.0,
+      "pressure_test": false,
+      "maximum_error_relative_to_pressure_limits": [
+        0.1750927357180044,
+        0.022107008628001495,
+        0.12662416249499656,
+        4.060308256229973
+      ],
+      "applied_limestone_ratio_error_kg_s": 9.992007221626409e-16,
+      "maximum_absolute_error": [
+        1750.927357180044,
+        11.053504314000747,
+        1266.2416249499656,
+        4.060308256229973
+      ],
+      "integrated_absolute_error": [
+        14820.790143291779,
+        2677.1618419658007,
+        46633.55463040661,
+        655.1440825058119
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load000-pressure_step",
+      "csv_sha256": "e76c3687aa6025a650f08ca6ac0d897f00610d5cea6a72f47d4b41c3cbcd539d",
+      "samples": 1481,
+      "duration_s": 300.0,
+      "pressure_test": true,
+      "maximum_error_relative_to_pressure_limits": [
+        0.6400401137780398,
+        0.022107008628001495,
+        0.6988837460280163,
+        6.666941258989937
+      ],
+      "applied_limestone_ratio_error_kg_s": 1.1102230246251565e-15,
+      "maximum_absolute_error": [
+        6400.401137780398,
+        11.053504314000747,
+        6988.837460280163,
+        6.666941258989937
+      ],
+      "integrated_absolute_error": [
+        62201.857081934984,
+        1178.506632109278,
+        113560.59605318877,
+        906.9651295777162
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load000-pressure_sine",
+      "csv_sha256": "f6008319aa48362f5ab7ac59fd2b4175b1a064ed36c32fb19067c3f2cee1ceae",
+      "samples": 3818,
+      "duration_s": 300.0,
+      "pressure_test": true,
+      "maximum_error_relative_to_pressure_limits": [
+        0.6885819326850585,
+        0.028865157182601252,
+        2.634848270818987,
+        5.720756312739923
+      ],
+      "applied_limestone_ratio_error_kg_s": 4.107825191113079e-15,
+      "maximum_absolute_error": [
+        6885.819326850586,
+        14.432578591300626,
+        26348.48270818987,
+        5.720756312739923
+      ],
+      "integrated_absolute_error": [
+        459257.37070689566,
+        1049.5157514997418,
+        3350264.1663880832,
+        822.7057788215952
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load050-nominal",
+      "csv_sha256": "83c195769d47d8dbb6bd57bb051ebf1f2034c003f2e94ec95d0da9746f8dddec",
+      "samples": 1334,
+      "duration_s": 300.0,
+      "pressure_test": false,
+      "maximum_error_relative_to_pressure_limits": [
+        0.31483856204003097,
+        0.016914495129600256,
+        0.324592323043989,
+        16.71232195492985
+      ],
+      "applied_limestone_ratio_error_kg_s": 1.1102230246251565e-15,
+      "maximum_absolute_error": [
+        3148.3856204003096,
+        8.457247564800127,
+        3245.92323043989,
+        16.71232195492985
+      ],
+      "integrated_absolute_error": [
+        27615.993573534408,
+        1519.2785013698926,
+        58888.641197974706,
+        2511.645403766937
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load050-pressure_step",
+      "csv_sha256": "574a36182ed51802e84dd396ccd953b36964158121d4aa4129b78150fb797472",
+      "samples": 1464,
+      "duration_s": 300.0,
+      "pressure_test": true,
+      "maximum_error_relative_to_pressure_limits": [
+        0.5797654370170087,
+        0.3735737863860013,
+        0.6465195196300046,
+        11.314512187219862
+      ],
+      "applied_limestone_ratio_error_kg_s": 1.1102230246251565e-15,
+      "maximum_absolute_error": [
+        5797.654370170087,
+        186.78689319300065,
+        6465.1951963000465,
+        11.314512187219862
+      ],
+      "integrated_absolute_error": [
+        65811.11204421106,
+        26015.53698348274,
+        92883.0750184145,
+        1735.1396088857798
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load050-pressure_sine",
+      "csv_sha256": "0dba6ca9f79709349963fcbeb94186eff24c3d066f8b7a57d971fcc583a53082",
+      "samples": 3442,
+      "duration_s": 300.0,
+      "pressure_test": true,
+      "maximum_error_relative_to_pressure_limits": [
+        0.7104691844030283,
+        0.02249846935519963,
+        1.7602800342179834,
+        17.35245263385991
+      ],
+      "applied_limestone_ratio_error_kg_s": 3.9968028886505635e-15,
+      "maximum_absolute_error": [
+        7104.691844030283,
+        11.249234677599816,
+        17602.800342179835,
+        17.35245263385991
+      ],
+      "integrated_absolute_error": [
+        886944.3831544692,
+        652.2328499742899,
+        2245479.5899046753,
+        2557.361314392798
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load100-nominal",
+      "csv_sha256": "bdce2e20e34fc24b13caffc8862e2d6d15ae2d9c2c9e849814a5e6a00af3350e",
+      "samples": 1297,
+      "duration_s": 300.0,
+      "pressure_test": false,
+      "maximum_error_relative_to_pressure_limits": [
+        0.355553103057947,
+        0.8343767446863786,
+        0.387297536533,
+        8.849646933190115
+      ],
+      "applied_limestone_ratio_error_kg_s": 9.992007221626409e-16,
+      "maximum_absolute_error": [
+        3555.53103057947,
+        417.18837234318926,
+        3872.9753653299995,
+        8.849646933190115
+      ],
+      "integrated_absolute_error": [
+        35299.922088984174,
+        59166.465275433795,
+        32396.018134584447,
+        1560.898735647932
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load100-pressure_step",
+      "csv_sha256": "8fd70c140c670526c24df2d28e844af5632e018472ae3c63660ac40f8ad7c390",
+      "samples": 1569,
+      "duration_s": 300.0,
+      "pressure_test": true,
+      "maximum_error_relative_to_pressure_limits": [
+        0.510306113936007,
+        1.2475152594541796,
+        0.5961275365259964,
+        2.509403703090129
+      ],
+      "applied_limestone_ratio_error_kg_s": 9.992007221626409e-16,
+      "maximum_absolute_error": [
+        5103.06113936007,
+        623.7576297270898,
+        5961.275365259964,
+        2.509403703090129
+      ],
+      "integrated_absolute_error": [
+        73943.97084625797,
+        88591.99710234934,
+        64383.700710881174,
+        467.10767359452996
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load100-pressure_sine",
+      "csv_sha256": "d6ece2c81b2c84c553a27fab23683872dac89fb532862ebfbe1a26a8ff320abb",
+      "samples": 2243,
+      "duration_s": 300.0,
+      "pressure_test": true,
+      "maximum_error_relative_to_pressure_limits": [
+        0.7439731433530338,
+        0.8408395205340202,
+        0.8075055121290032,
+        9.06124854296013
+      ],
+      "applied_limestone_ratio_error_kg_s": 9.992007221626409e-16,
+      "maximum_absolute_error": [
+        7439.731433530338,
+        420.41976026701013,
+        8075.055121290032,
+        9.06124854296013
+      ],
+      "integrated_absolute_error": [
+        967791.6654858864,
+        58871.85272881124,
+        1295528.8795551541,
+        1566.1374152548417
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load_ramp",
+      "csv_sha256": "8a3cbced459673712b460fbe0c30e2b581979445a5a6c477bb5272486459f8d8",
+      "samples": 20874,
+      "duration_s": 5000.0,
+      "pressure_test": false,
+      "maximum_error_relative_to_pressure_limits": [
+        153.59801901370798,
+        6.013342130695401,
+        13.603304685048991,
+        482.089386494893
+      ],
+      "applied_limestone_ratio_error_kg_s": 2.9976021664879227e-15,
+      "maximum_absolute_error": [
+        1535980.19013708,
+        3006.6710653477003,
+        136033.04685048992,
+        482.089386494893
+      ],
+      "integrated_absolute_error": [
+        1727294672.2995076,
+        6209698.124131243,
+        301683404.88044745,
+        1190255.7091859323
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        -0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        -0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "coal_quality",
+      "csv_sha256": "23daf1d6160f3b35532eaf64e70e6e5618fb5c1f8adca478ca65b98ce61754f4",
+      "samples": 20146,
+      "duration_s": 5000.0,
+      "pressure_test": false,
+      "maximum_error_relative_to_pressure_limits": [
+        0.355553103057947,
+        11.0486540780285,
+        0.387297536533,
+        7.676613517259966
+      ],
+      "applied_limestone_ratio_error_kg_s": 9.992007221626409e-16,
+      "maximum_absolute_error": [
+        3555.53103057947,
+        5524.32703901425,
+        3872.9753653299995,
+        7.676613517259966
+      ],
+      "integrated_absolute_error": [
+        42424.09376158458,
+        15986066.112260249,
+        50739.91275082513,
+        10807.019025938227
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load050-nominal-refined",
+      "csv_sha256": "55c9c2f3a24e2b98ab0e8fffc113c7e5994dbd7858584f5555281b5f923a6574",
+      "samples": 2627,
+      "duration_s": 300.0,
+      "pressure_test": false,
+      "maximum_error_relative_to_pressure_limits": [
+        0.31478938213204966,
+        0.016914507310801127,
+        0.32460606055299285,
+        16.712321163139904
+      ],
+      "applied_limestone_ratio_error_kg_s": 1.1102230246251565e-15,
+      "maximum_absolute_error": [
+        3147.8938213204965,
+        8.457253655400564,
+        3246.0606055299286,
+        16.712321163139904
+      ],
+      "integrated_absolute_error": [
+        27614.414203494092,
+        1519.2795692081625,
+        58887.22473480435,
+        2511.6451312827116
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    },
+    {
+      "case": "load050-nominal-author_default",
+      "csv_sha256": "6b3287859d402e6b6e95f654290897e89eec6861a5041c6b4de14c154a25cb27",
+      "samples": 205,
+      "duration_s": 300.0,
+      "pressure_test": false,
+      "maximum_error_relative_to_pressure_limits": [
+        0.3095420732870698,
+        0.016913391905400203,
+        0.32664151234698946,
+        16.712426739799866
+      ],
+      "applied_limestone_ratio_error_kg_s": 9.992007221626409e-16,
+      "maximum_absolute_error": [
+        3095.420732870698,
+        8.456695952700102,
+        3266.4151234698948,
+        16.712426739799866
+      ],
+      "integrated_absolute_error": [
+        28236.138569600625,
+        1519.3807022277306,
+        59019.565008585254,
+        2511.677032794554
+      ],
+      "maximum_input_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ],
+      "maximum_command_limit_violation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844e-08,
+        0.0,
+        1.6548074188715844e-08,
+        8.274037099909037e-08
+      ]
+    }
+  ],
+  "solver_sensitivity_count": 2,
+  "solver_sensitivity": [
+    {
+      "profile": "refined",
+      "maximum_scaled_difference": [
+        0.00011445357529446483,
+        3.605486563174054e-07,
+        4.328818821813911e-05,
+        2.3867084792073e-05
+      ],
+      "final_temperature_error_K": -16.712321163139904
+    },
+    {
+      "profile": "author_default",
+      "maximum_scaled_difference": [
+        0.013685892557445914,
+        4.305636430581217e-05,
+        0.009078887851838954,
+        0.004546611166688308
+      ],
+      "final_temperature_error_K": -16.712426739799866
+    }
+  ],
+  "scope": "Recomputed native PI metrics, channel identities, disturbance shapes and source-result integrity; no claim that all control constraints are satisfied."
+}

@@ -1,0 +1,1157 @@
+{
+  "date": "2026-11-04",
+  "status": "integration_and_input_checks_passed",
+  "case_count": 11,
+  "cases": [
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "nominal",
+      "initial_load_percent": 0,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 1686,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        1750.9273571725935,
+        11.053504314006204,
+        1266.2416249536909,
+        4.0603082562251984
+      ],
+      "integrated_absolute_error": [
+        14820.790143522785,
+        2677.1618419658857,
+        46633.554630432009,
+        655.14408250445672
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": false,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        0,
+        0,
+        3.0603082562251984
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 1.1102230246251565E-16,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "pressure_step",
+      "initial_load_percent": 0,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 1481,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        6400.4011377729475,
+        11.053504314006204,
+        6988.837460281793,
+        6.6669412589853891
+      ],
+      "integrated_absolute_error": [
+        62201.857082337177,
+        1178.5066321092606,
+        113560.59605306701,
+        906.96512957637287
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": true,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        0,
+        0,
+        5.6669412589853891
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 8.8817841970012523E-16,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "pressure_sine",
+      "initial_load_percent": 0,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 3818,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        6885.8193268449977,
+        14.432578591267884,
+        26348.482708187774,
+        5.7207563127403773
+      ],
+      "integrated_absolute_error": [
+        459257.3707071098,
+        1049.5157514996326,
+        3.3502641663881559E+6,
+        822.70577882021735
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": true,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        0,
+        16348.482708187774,
+        4.7207563127403773
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 3.6637359812630166E-15,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "nominal",
+      "initial_load_percent": 50,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 1334,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        3148.3856204049662,
+        8.4572475647855754,
+        3245.9232304394245,
+        16.712321954935305
+      ],
+      "integrated_absolute_error": [
+        27615.993572736996,
+        1519.2785013703835,
+        58888.641197438526,
+        2511.6454037677418
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": false,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        0,
+        0,
+        15.712321954935305
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 4.4408920985006262E-16,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "pressure_step",
+      "initial_load_percent": 50,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 1464,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        5797.6543701719493,
+        186.78689319300247,
+        6465.1951962918974,
+        11.314512187221681
+      ],
+      "integrated_absolute_error": [
+        65811.112043346278,
+        26015.536983482703,
+        92883.075017738185,
+        1735.1396088865927
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": true,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        0,
+        0,
+        10.314512187221681
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 4.4408920985006262E-16,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "pressure_sine",
+      "initial_load_percent": 50,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 3442,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        7104.691844032146,
+        11.249234677630739,
+        17602.800342186587,
+        17.352452633864004
+      ],
+      "integrated_absolute_error": [
+        886944.3831541799,
+        652.2328499743237,
+        2.2454795899049388E+6,
+        2557.3613143936082
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": true,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        0,
+        7602.8003421865869,
+        16.352452633864004
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 3.4416913763379853E-15,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "nominal",
+      "initial_load_percent": 100,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 1297,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        3555.5310305887833,
+        417.18837234318744,
+        3872.9753653348889,
+        8.8496469331892058
+      ],
+      "integrated_absolute_error": [
+        35299.922087758488,
+        59166.465275433708,
+        32396.01813450488,
+        1560.8987356485554
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": false,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        0,
+        0,
+        7.8496469331892058
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 2.2204460492503131E-16,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "pressure_step",
+      "initial_load_percent": 100,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 1569,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        5103.0611393665895,
+        623.757629727088,
+        5961.275365259964,
+        2.5094037030885374
+      ],
+      "integrated_absolute_error": [
+        73943.970847338584,
+        88591.997102349284,
+        64383.70071096241,
+        467.107673595212
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": true,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        123.75762972708799,
+        0,
+        1.5094037030885374
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 2.2204460492503131E-16,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "pressure_sine",
+      "initial_load_percent": 100,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 2243,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        7439.7314335284755,
+        420.41976026701195,
+        8075.0551212860737,
+        9.061248542958765
+      ],
+      "integrated_absolute_error": [
+        967791.66548595054,
+        58871.852728811391,
+        1.2955288795551646E+6,
+        1566.1374152555202
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": true,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        0,
+        0,
+        8.061248542958765
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 3.3306690738754696E-16,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "load_ramp",
+      "initial_load_percent": 50,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 5000,
+      "sample_count": 20874,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        1.5359801901370757E+6,
+        3006.6710653477003,
+        136033.04685048549,
+        482.08938649489551
+      ],
+      "integrated_absolute_error": [
+        1.7272946722994845E+9,
+        6.2096981241312884E+6,
+        3.0168340488044596E+8,
+        1.1902557091859428E+6
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": false,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        1.5259801901370757E+6,
+        2506.6710653477003,
+        126033.04685048549,
+        481.08938649489551
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 2.55351295663786E-15,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "coal_quality",
+      "initial_load_percent": 100,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 5000,
+      "sample_count": 20146,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "strict",
+      "relative_tolerance": 1E-6,
+      "absolute_tolerance": 1E-8,
+      "maximum_step_s": 0.25,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        3555.5310305887833,
+        5524.3270390142516,
+        3872.9753653348889,
+        7.6766135172640588
+      ],
+      "integrated_absolute_error": [
+        42424.093778359384,
+        1.5986066112260189E+7,
+        50739.912752308825,
+        10807.019025936175
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": false,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        5024.3270390142516,
+        0,
+        6.6766135172640588
+      ],
+      "coal_quality_final_percent": 8,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 2.2204460492503131E-16,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded"
+    }
+  ],
+  "pressure_comparisons": [
+    {
+      "case": "load000-pressure_step",
+      "maximum_scaled_output_change": 0.0067090858153047907
+    },
+    {
+      "case": "load000-pressure_sine",
+      "maximum_scaled_output_change": 0.022938703894285026
+    },
+    {
+      "case": "load050-pressure_step",
+      "maximum_scaled_output_change": 0.019111981827163935
+    },
+    {
+      "case": "load050-pressure_sine",
+      "maximum_scaled_output_change": 0.01119245564331087
+    },
+    {
+      "case": "load100-pressure_step",
+      "maximum_scaled_output_change": 0.020642589071535766
+    },
+    {
+      "case": "load100-pressure_sine",
+      "maximum_scaled_output_change": 0.003488991080092335
+    }
+  ],
+  "solver_sensitivity": [
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "nominal",
+      "initial_load_percent": 50,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 2627,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "refined",
+      "relative_tolerance": 1E-7,
+      "absolute_tolerance": 1E-9,
+      "maximum_step_s": 0.125,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        3147.8938213251531,
+        8.4572536554387625,
+        3246.0606055287644,
+        16.712321163138313
+      ],
+      "integrated_absolute_error": [
+        27614.414202680837,
+        1519.2795692082457,
+        58887.224734302356,
+        2511.6451312835379
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": false,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        0,
+        0,
+        15.712321163138313
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 1.1102230246251565E-15,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded",
+      "maximum_output_difference_scaled_to_pressure_limits": [
+        0.0001144535755738616,
+        3.6054867450729946E-7,
+        4.3288188241422175E-5,
+        2.3867088202678133E-5
+      ],
+      "final_temperature_error_K": -16.712321163138313
+    },
+    {
+      "model": "ALSTOM Gasifier II author R2017 package with supplied PI",
+      "scenario": "nominal",
+      "initial_load_percent": 50,
+      "plant_states": 25,
+      "controller_states": 3,
+      "duration_s": 300,
+      "sample_count": 205,
+      "source_archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
+      "solver": "ode23tb",
+      "solver_profile": "author_default",
+      "relative_tolerance": 0.001,
+      "absolute_tolerance": 1E-6,
+      "maximum_step_s": 2,
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "all_outputs_finite": true,
+      "specified_inputs_verified": true,
+      "output_order": [
+        "CV_J_kg",
+        "bed_mass_kg",
+        "pressure_Pa",
+        "temperature_K"
+      ],
+      "input_order": [
+        "char_kg_s",
+        "air_kg_s",
+        "coal_kg_s",
+        "steam_kg_s"
+      ],
+      "maximum_absolute_error": [
+        3095.4207328753546,
+        8.4566959526891878,
+        3266.4151234768797,
+        16.712426739802595
+      ],
+      "integrated_absolute_error": [
+        28236.138568826718,
+        1519.380702227008,
+        59019.5650081496,
+        2511.6770327954014
+      ],
+      "maximum_input_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_input_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "input_measurement_location": "Plant input after the official Actuator Constraints subsystem",
+      "maximum_command_limit_violation": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "maximum_command_rate_violation": [
+        1.6548074188715844E-8,
+        0,
+        1.6548074188715844E-8,
+        8.2740370999090374E-8
+      ],
+      "command_measurement_location": "Official ut signal before Actuator Constraints",
+      "output_limit_applicable": false,
+      "pressure_test_output_limits": [
+        10000,
+        500,
+        10000,
+        1
+      ],
+      "maximum_pressure_test_limit_violation": [
+        0,
+        0,
+        0,
+        15.712426739802595
+      ],
+      "coal_quality_final_percent": 0,
+      "commanded_limestone_to_coal_ratio_verified": true,
+      "maximum_applied_limestone_ratio_error_kg_s": 1.1102230246251565E-16,
+      "scope": "Integration/input checks and PI performance measurements; violations remain reported, not discarded",
+      "maximum_output_difference_scaled_to_pressure_limits": [
+        0.01368589255725965,
+        4.3056364243966527E-5,
+        0.009078887852048502,
+        0.0045466111632777029
+      ],
+      "final_temperature_error_K": -16.712426739802595
+    }
+  ],
+  "solver_refinement_check_passed": true,
+  "controller_performance_claim": "See measured violations in each case; passing integration is not satisfaction of all challenge constraints",
+  "uncovered_challenge_scope": "Other candidate controllers, full +/-18 percent coal-quality sweep, global stability assessment"
+}

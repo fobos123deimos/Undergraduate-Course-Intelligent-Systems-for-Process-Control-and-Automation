@@ -1,13 +1,13 @@
 {
   "date": "2026-11-04",
-  "source_commit": "831e66f9e56ef5fba7ea0bcfb98af376a0de054e",
-  "workflow_run_id": 41886384567,
-  "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567",
+  "source_commit": "d4957d467b55b066462a2dea1b13d59c530380de",
+  "workflow_run_id": 41896147563,
+  "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41896147563",
   "conclusion": "success",
   "python": {
-    "job_id": 126771865744,
+    "job_id": 126806070556,
     "conclusion": "success",
-    "tests_passed": 131,
+    "tests_passed": 175,
     "physical_tank_tests_passed": 31,
     "markov_tests_passed": 43,
     "wind_control_tests_passed": 7,
@@ -15,10 +15,15 @@
     "course_programs_executed": 9,
     "physical_tank_study_executed": true,
     "wind_control_study_executed": true,
-    "notebooks_executed": 11
+    "notebooks_executed": 11,
+    "pneumatic_physical_tests_passed": 23,
+    "hydrostatic_si_tests_passed": 8,
+    "throttle_pipeline_tests_passed": 8,
+    "alstom_transport_tests_passed": 5,
+    "pneumatic_study_executed": true
   },
   "octave": {
-    "job_id": 126771865670,
+    "job_id": 126806070457,
     "conclusion": "success",
     "version": "11.1.0",
     "runner": "Ubuntu 26.04.1",
@@ -31,10 +36,13 @@
     "streaming_hmm_and_four_policies_passed": true,
     "fuzzy_neural_adapter_checks_passed": true,
     "wind_lqr_pdc_checks_passed": true,
-    "strict_csv_import_checks_passed": true
+    "strict_csv_import_checks_passed": true,
+    "pneumatic_physical_checks_passed": true,
+    "hydrostatic_si_check_groups": 8,
+    "throttle_synthetic_workflow_passed": true
   },
   "matlab": {
-    "job_id": 126771864957,
+    "job_id": 126806069930,
     "conclusion": "success",
     "version": "25.2.0.3360999 (R2025b) Update 7",
     "runner": "Ubuntu 22.04",
@@ -47,31 +55,51 @@
     "streaming_hmm_and_four_policies_passed": true,
     "fuzzy_neural_adapter_checks_passed": true,
     "wind_lqr_pdc_checks_passed": true,
-    "strict_csv_import_checks_passed": true
+    "strict_csv_import_checks_passed": true,
+    "pneumatic_physical_checks_passed": true,
+    "hydrostatic_si_check_groups": 8,
+    "throttle_synthetic_workflow_passed": true
   },
   "matlab_executed": true,
   "simulink_executed": true,
   "simulink": {
-    "generated_and_validated_models": 25,
+    "generated_and_validated_models": 27,
     "markov_hmm_models": 6,
     "model_gallery": "../simulink/models/README.md",
-    "validation_record": "../simulink/models/validation.json",
-    "artifact_id": 13351362998,
-    "artifact_sha256": "ead412a9f714c8041fe2d96d09701ba84d3e15d17bb743ac8dc9c765260da40f",
-    "png_views_preserved": 25,
+    "validation_record": "native-simulink-latest.json",
+    "artifact_id": 13357510451,
+    "artifact_sha256": "3dc0dd29ad9ae5a1f353f8fe4a6cb608e00c676ebb861ac10eaeb8fd7ef6c174",
+    "png_views_preserved": 27,
     "portable_structure_audit_passed": true,
-    "views_visually_reviewed": true
+    "views_visually_reviewed": true,
+    "original_25_preserved_provenance": "../simulink/models/provenance.json",
+    "physical_variants_provenance": "../simulink/models/physical-variants/provenance.json",
+    "additional_validation_records": [
+      "../simulink/models/physical-variants/pneumatic/validation.json",
+      "../simulink/models/physical-variants/hydrostatic/validation.json"
+    ]
   },
   "external": {
     "tennessee_eastman_revised_cases_passed": 3,
     "tennessee_eastman_duration_h_each": 0.2,
     "openfast_separate_native_execution_record": "../benchmarks/results/openfast-validation.json",
-    "alstom_native_execution": false,
+    "alstom_native_execution": true,
     "alstom_source_inspection_passed": true,
-    "canonical_throttle_measurements_recovered": false
+    "canonical_throttle_measurements_recovered": false,
+    "alstom_workflow_run_id": 41896750740,
+    "alstom_source_commit": "cb19bdb5bf36df5007cd8b4c249863d8bd2380db",
+    "alstom_challenge_cases": 11,
+    "alstom_additional_solver_cases": 2,
+    "alstom_provenance": "../benchmarks/results/alstom-native/provenance.json",
+    "alstom_private_input_cleanup_verified": true
   },
   "additional_windows_octave_record": "native-octave-windows.json",
   "previous_validations": [
+    {
+      "source_commit": "831e66f9e56ef5fba7ea0bcfb98af376a0de054e",
+      "workflow_run_id": 41886384567,
+      "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567"
+    },
     {
       "source_commit": "4662549b215be92714a874ef3caed9992cce1063",
       "workflow_run_id": 41871009584,
@@ -92,5 +120,6 @@
       "workflow_run_id": 41849137529,
       "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41849137529"
     }
-  ]
+  ],
+  "benchmark_notebook_followup": "benchmark-notebook-refresh.json"
 }

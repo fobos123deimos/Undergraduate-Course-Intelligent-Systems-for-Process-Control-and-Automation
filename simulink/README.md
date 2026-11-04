@@ -1,19 +1,21 @@
 # Simulink models and numerical validation
 
-The builders create **25 models** from inspectable MATLAB source. They cover all ten implemented article equation cores, the physical tank, PI/MPC, fuzzy PID, neural RBF control, scheduled wind LQR/PDC, Markov occupancy, HMM diagnosis and four causal sensor-supervision experiments. Creating a diagram and executing it are separate operations; the [validation record](../docs/VALIDATION.md) identifies the source commit and runtime actually exercised.
+The builders create **27 models** from inspectable MATLAB source. They cover all ten implemented article equation cores, the physical tank, PI/MPC, fuzzy PID, neural RBF control, scheduled wind LQR/PDC, Markov occupancy, HMM diagnosis and four causal sensor-supervision experiments. Creating a diagram and executing it are separate operations; the [validation record](../docs/VALIDATION.md) identifies the source commit and runtime actually exercised.
 
-The [validated model gallery](models/README.md) contains the 25 executed SLX files, their PNG views and the native comparison report. [Run 41886384567](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567) passed all models in MATLAB R2025b Update 7.
+The [validated model gallery](models/README.md) contains the 27 executed SLX files, their PNG views and the native comparison report. [Run 41896147563](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41896147563) passed all models in MATLAB R2025b Update 7.
 
 From the repository root in MATLAB with Simulink:
 
 ```matlab
 addpath('matlab'); addpath('simulink');
-report = validate_simulink_suite('simulink/generated');
+report = validate_simulink_suite('simulink/generated'); % Original 25 diagrams
+validate_pneumatic_simulink('simulink/generated-pneumatic');
+validate_hydrostatic_simulink('simulink/generated-hydrostatic');
 ```
 
 The command builds, simulates and checks the models, then writes `simulink/generated/validation.json`. Each model is saved as `.slx` with a viewable PNG. Output folders must be new: existing files and loaded models are refused rather than silently replaced. Individual builders accept `overwrite=true` when replacement is intentional. Generated models require the MATLAB and Simulink adapter source folders on the MATLAB path.
 
-All sampled workspace signals use zero-order hold between data points and explicitly hold the final value after the record ends. This avoids an unsupported extrapolation setting when interpolation is disabled and defines the input at the final simulation sample.
+The original 25 models use zero-order hold for sampled workspace signals between data points and explicitly hold the final value after the record ends. This avoids an unsupported extrapolation setting when interpolation is disabled and defines the input at the final simulation sample.
 
 ## Model inventory
 
@@ -65,6 +67,14 @@ The [physical tank](../blending-tank/README.md) has state `[X,V]`, input `[w1,w2
 paths = build_blending_tank('simulink/generated/tank-only');
 report = validate_blending_simulink('simulink/generated/tank-check');
 ```
+
+## Separate physical variants
+
+`build_pneumatic_physical` adds a six-state chamber mass/energy model with reversible choked flow. Its native [three-payload validation](models/physical-variants/pneumatic/validation.json) compared states and pressures with independent Python trajectories; maximum scaled error was 1.37e-8.
+
+`build_hydrostatic_si` adds four states with explicit SI displacement/capacitance conventions. Its [601-sample validation](models/physical-variants/hydrostatic/validation.json) passed with scaled state error 2.15e-7 and power-balance residual 1.05e-12 W. This model uses piecewise-linear requested-angle samples every 0.002 s, as declared by its input contract.
+
+These additional diagrams preserve the original literal article fixtures. See the [pneumatic audit](../benchmarks/PNEUMATIC_AUDIT.md) and [hydrostatic source review](../benchmarks/HYDROSTATIC_SOURCE_REVIEW.md) for the external calibration requirements.
 
 ## Runtime requirements
 

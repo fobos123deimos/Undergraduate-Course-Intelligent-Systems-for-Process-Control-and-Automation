@@ -3,3 +3,8 @@
 *.pdf binary
 *.slx binary
 benchmarks/data/** -text
+# Preserve native evidence bytes so recorded checksums survive checkout.
+benchmarks/results/alstom-native/** -text whitespace=cr-at-eol
+benchmarks/results/throttle-fixture-matlab.json -text whitespace=cr-at-eol
+simulink/models/physical-variants/** -text whitespace=cr-at-eol
+docs/native-simulink-latest.json -text whitespace=cr-at-eol

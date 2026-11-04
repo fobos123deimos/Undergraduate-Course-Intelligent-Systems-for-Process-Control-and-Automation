@@ -2,6 +2,13 @@
 
 These **25 SLX models and 25 PNG views** were generated and executed in MATLAB R2025b Update 7 with Simulink. They are preserved unchanged from [successful run 41886384567](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567). The [validation report](validation.json) records numerical comparisons and the [provenance manifest](provenance.json) records source, artifact and file hashes.
 
+Two additional physical variants bring the gallery to **27 models**. They passed [run 41896147563](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41896147563), which also reran the original 25. Their [separate provenance](physical-variants/provenance.json) preserves the new artifact identity without rewriting the original gallery's source record.
+
+| Additional model | Open | Preview | Native checks |
+|---|---|---|---|
+| Conservative pneumatic mass/energy model | [SLX](physical-variants/pneumatic/si_pneumatic_physical.slx) | [PNG](physical-variants/pneumatic/si_pneumatic_physical.png) | [JSON](physical-variants/pneumatic/validation.json) |
+| Hydrostatic SI interpretation | [SLX](physical-variants/hydrostatic/si_hydrostatic_si.slx) | [PNG](physical-variants/hydrostatic/si_hydrostatic_si.png) | [JSON](physical-variants/hydrostatic/validation.json) |
+
 ## Open an existing model
 
 Keep the complete repository and run from its root in MATLAB with Simulink:

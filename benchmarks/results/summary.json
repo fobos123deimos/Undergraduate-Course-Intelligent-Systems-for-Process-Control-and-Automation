@@ -31,7 +31,8 @@
         -55046.5524
       ],
       "status": "balance/closure evaluation, not canonical valve simulation",
-      "closure": "linear flow; R=287.05 J/(kg K), kappa=1.4; no gravity term"
+      "closure": "linear flow; R=287.05 J/(kg K), kappa=1.4; no gravity term",
+      "separate_physical_variant": "PNEUMATIC_AUDIT.md; six-state mass/energy model, not executed by this summary command"
     },
     "hydrostatic": {
       "derivative_at_practice_point": [
@@ -40,7 +41,8 @@
         11.134941329856582,
         -0.09630240502941051
       ],
-      "status": "literal transcription only; unresolved published scale inconsistencies"
+      "status": "literal transcription only; primary-source clarification and separate SI variant documented",
+      "separate_si_variant": "HYDROSTATIC_SOURCE_REVIEW.md; explicit conventions, not executed by this summary command"
     },
     "three_tank": {
       "maximum_level_m": 0.3,
@@ -77,9 +79,9 @@
     },
     "column_a": {
       "states": 82,
-      "steady_state_max_derivative": 3.894662370385049e-13,
-      "steady_bottom_composition": 0.010000040399813408,
-      "steady_top_composition": 0.9899999596137808,
+      "steady_state_max_derivative": 3.863576125695545e-13,
+      "steady_bottom_composition": 0.010000040399827098,
+      "steady_top_composition": 0.989999959613791,
       "experiment": "1% feed step, D/B P level control gain 10/min, 2 min"
     },
     "wind_reduced": {
@@ -106,8 +108,11 @@
     "gasifier": {
       "evidence_path": "benchmarks/results/alstom-native/validation.json",
       "rerun_by_this_command": false,
-      "evidence_state": "missing",
-      "status": "preserved ALSTOM source inspection passed; native execution pending compatible Windows MATLAB/Simulink",
+      "evidence_state": "preserved_passed_record",
+      "evidence_sha256": "3c52843a8a503f4df069446d052d50f91b06925f23a7bf524bd0f70a1dd16bb9",
+      "evidence_date": "2026-11-04",
+      "evidence_record_status": "integration_and_input_checks_passed",
+      "status": "preserved native ALSTOM integration/input checks passed; inspect reported control violations; not rerun by this command",
       "source_inspection": {
         "evidence_path": "benchmarks/results/alstom-source-inspection.json",
         "rerun_by_this_command": false,
@@ -132,7 +137,8 @@
       "scope": "Three short mode1 integration checks; no complete six-mode or long-horizon benchmark claim"
     },
     "throttle": {
-      "status": "LocalARX implementation tested on a synthetic regression case; original measurements absent"
+      "status": "LocalARX and full-size import/evaluation workflow tested on labeled synthetic fixtures; original measurements absent",
+      "recovery_and_protocol": "THROTTLE_RECOVERY.md; exact original archive URL recovered"
     },
     "repositories": {
       "status": "dataset register and strict CSV importer supplied; see DATASETS.md"

@@ -40,6 +40,6 @@ addpath('matlab');
 [t,u,y] = load_io_csv('throttle_validation.csv', {'duty_percent'}, {'angle_deg'}, 0.01);
 ```
 
-Both importers reject malformed or nonfinite records instead of silently discarding samples. Their validation fixtures are labeled synthetic and are not substitutes for the unavailable measured throttle data.
+Both importers reject malformed or nonfinite records instead of silently discarding samples. Their validation fixtures are labeled synthetic and are not substitutes for the unavailable measured throttle data. The [throttle recovery and evaluation guide](THROTTLE_RECOVERY.md) adds a shared source-hash manifest, actual ZIP/member checks, exact 10000/2500-row sampling contracts and separate one-step/free-run scoring in Python and MATLAB/Octave. The original download address is recovered; the measurements are still missing.
 
 Record file SHA-256, original URL, dataset title, measured/synthetic status, units, sample period, row count, transformation history and split boundaries in a neighboring JSON manifest. Keep whole experiments apart when estimating generalization. A chronological split is preferable to random row splitting for a dependent time series; free-run testing must not read future output samples. NIST reference-parameter reproduction is a numerical-accuracy task and should be scored separately from held-out prediction.

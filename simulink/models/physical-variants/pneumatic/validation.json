@@ -1,0 +1,22 @@
+{
+  "runtime": "25.2.0.3360999 (R2025b) Update 7",
+  "model": "si_pneumatic_physical",
+  "payloads_kg": [
+    3,
+    6,
+    9
+  ],
+  "state_scaled_errors": [
+    5.7669543214918428E-10,
+    8.8030825888078352E-10,
+    6.3886399933229158E-9
+  ],
+  "pressure_scaled_errors": [
+    1.2706299053712023E-9,
+    1.9092991068545315E-9,
+    1.3712603572963012E-8
+  ],
+  "canonical_valve_calibration_recovered": false,
+  "generated_models": 1,
+  "passed": true
+}

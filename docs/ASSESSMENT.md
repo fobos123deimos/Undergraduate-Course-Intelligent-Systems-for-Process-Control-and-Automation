@@ -1,27 +1,29 @@
 # Final technical assessment
 
-Assessment date: 4 November 2026. **Score: 8.5 / 10.** This is an engineering assessment of a reproducible undergraduate study repository against the supplied syllabus, the reference repository's language stack and the article's benchmark inventory. It is not a grade issued by the course instructor or a certification of industrial controllers.
+Assessment date: 4 November 2026. **Score: 9.2 / 10.** This is an engineering assessment of a reproducible undergraduate study repository against the supplied syllabus, the reference repository's language stack and the article's benchmark inventory. It is not a grade issued by the course instructor or a certification of industrial controllers.
 
 | Criterion | Maximum | Awarded | Basis and deductions |
 |---|---:|---:|---|
-| Mathematical correctness and validation | 2.5 | 2.2 | Conservation, analytical solutions, Jacobians, exact HMM enumeration, constrained optimization and independent prediction checks; native runtime evidence. Published pneumatic/hydrostatic ambiguities and general nonlinear stability remain unresolved. |
-| Topic and model coverage | 2.0 | 1.8 | All eight syllabus areas, the Markov/HMM extension, ten equation cores, thirteen article sections and wind TS/PDC are mapped. Some full controller/observer protocols and historical configurations are still missing. |
-| Reproducibility | 2.0 | 1.4 | Executed notebooks, automated Python/Octave/MATLAB checks, Simulink builders, source hashes and versioned OpenFAST/TE results. Canonical throttle measurements are unavailable; ALSTOM requires a privately obtained Windows binary and compatible runtime. |
-| Teaching and documentation | 2.0 | 1.8 | Nine connected labs, 45 worked problems, rendered notes, figures, explicit assumptions and source-to-code mapping. Simulink covers selected computational tasks rather than every learning activity, and no finished presentation deck is included. |
-| Engineering and maintenance | 1.5 | 1.3 | Shared numerical functions, bounded controllers, explicit failure status, strict data imports, automated checks and provenance records. The dependency ranges and proprietary-platform combinations are not exhaustively tested. |
-| **Total** | **10.0** | **8.5** | |
+| Mathematical correctness and validation | 2.5 | 2.35 | Independent balances, analytical limits, Jacobians, HMM enumeration, optimization checks and native cross-language comparisons. Separate pneumatic/hydrostatic interpretations resolve dimensional issues; experimental calibration and general nonlinear stability remain unestablished. |
+| Topic and model coverage | 2.0 | 1.85 | All eight syllabus areas, Markov/HMM, ten equation cores, thirteen article sections, wind TS/PDC and eleven native ALSTOM cases. Complete historical controller/observer protocols remain open. |
+| Reproducibility | 2.0 | 1.75 | 175 Python tests, eleven notebooks, native Octave/MATLAB, 27 Simulink models, source hashes and preserved OpenFAST/TE/ALSTOM results. Original throttle records remain unavailable; ALSTOM reruns require the privately obtained Windows package. |
+| Teaching and documentation | 2.0 | 1.85 | Nine connected labs, 45 worked problems, rendered notes, figures, source audits and explicit negative results. Simulink covers selected computational tasks rather than every learning activity; no finished slide deck is included. |
+| Engineering and maintenance | 1.5 | 1.40 | Shared numerical functions, bounded controllers, strict imports, CI, preserved artifacts and verified cleanup of temporary private inputs. Dependency ranges and proprietary-platform combinations are not exhaustively tested. |
+| **Total** | **10.0** | **9.20** | |
 
-## What supports the score
+## What changed from 8.5
 
-The [coverage review](COVERAGE_REVIEW.md) maps each syllabus area and article model to inspectable code and states the precise scope. The [validation record](VALIDATION.md) separates numerical checks, actual runtime execution and physical measurements. Markov filtering enters control causally; smoothing and Viterbi remain retrospective. Training, calibration and evaluation records are separated. The corrected physical tank is checked against independent balances and linearizations.
+The [ALSTOM study](../benchmarks/ALSTOM_RESULTS.md) now executes the supplied 25-state plant and PI baseline in Windows MATLAB/Simulink: eleven challenge cases plus two solver-sensitivity runs. Independent CSV analysis verifies the exported metrics. The PI's performance violations remain visible; successful integration is not successful control. All seventeen temporary private inputs were removed and their absence verified.
 
-The [wind study](../benchmarks/WIND_CONTROL.md) adds executable local LQR/PDC control, interior scheduling points, actuator limits and model variants. The [external-source guide](../benchmarks/EXTERNAL_MODELS.md) records an executed modern OpenFAST reference case, three native revised Tennessee Eastman cases and the recovered ALSTOM package with prepared challenge experiments.
+The [pneumatic audit](../benchmarks/PNEUMATIC_AUDIT.md) resolves gravity offsets and supplies a separate conservative six-state model. The [hydrostatic review](../benchmarks/HYDROSTATIC_SOURCE_REVIEW.md) explains source units and motor torque, with explicit SI conventions. Both variants pass Python, MATLAB/Octave and actual Simulink comparisons. The [throttle recovery](../benchmarks/THROTTLE_RECOVERY.md) identifies the exact historical archive address and adds verified Python/MATLAB evaluation pipelines, although the measured records remain absent.
 
-## Remaining work with the largest impact
+The [coverage review](COVERAGE_REVIEW.md) and [validation record](VALIDATION.md) distinguish teaching coverage, numerical execution and historical reproduction. Markov filtering enters control causally; smoothing and Viterbi remain retrospective. Training, calibration and evaluation records remain separate.
 
-1. Recover the original throttle training and validation records, verify their provenance and reproduce the corresponding fitted-model scores.
-2. Execute the eleven prepared ALSTOM cases on compatible Windows MATLAB/Simulink and record the official PI baseline's constraint violations and trajectories.
-3. Reconcile pneumatic valve closure and hydrostatic units/gains with primary specifications before treating their simulations as canonical physical predictions.
-4. Recover historical wind/controller settings and complete the article's prescribed observer, transition, operating-mode and robustness comparisons. Current successor cases and short integration checks do not replace those experiments.
+## What prevents 10/10
 
-Some remaining work needs external data or platform access; other items are additional implementation and experimental work. More passing synthetic tests alone would not close those gaps. The repository is strong as a teaching and study collection, with a documented boundary around full historical benchmark reproduction.
+1. **External data:** obtain authentic throttle training/validation records and original fitted-model information. Synthetic pipeline checks cannot reproduce the article's measured-data score.
+2. **External calibration/source clarification:** obtain the pneumatic valve/thermal/friction data and hydrostatic historical displacement/capacitance conventions, electrical gains and complete 2007 source. The physically consistent variants are explicit reconstructions, not authenticated apparatus models.
+3. **ALSTOM interpretation and further experiments:** reconcile nominal temperature drift with historical reference trajectories or an authoritative reference environment. It persists across the tested solver settings. Refine the long ramp/coal cases separately, study candidate controllers and complete the coal-quality envelope. Private source access remains necessary for reruns.
+4. **Broader historical reproduction:** recover original wind/controller settings and complete prescribed observer, operating-mode, transition and robustness studies. Modern OpenFAST and short revised TE checks do not replace these experiments.
+
+The score measures the quality of this teaching and engineering collection. It does not claim that every published comparison has been reproduced or that simulated controllers are ready for industrial use.

@@ -1,31 +1,43 @@
 {
   "date": "2026-11-04",
   "throttle": {
-    "status": "measured_data_not_recovered",
+    "status": "exact_original_url_recovered_measurements_unavailable",
     "provider_url": "https://www.rst.e-technik.tu-dortmund.de/cms/de/Veranstaltungen/GMA-Fachausschuss/Benchmark/index.html",
-    "attempt_result": "Historical provider page inaccessible in web retrieval; direct HTTPS attempt failed SSL connection",
+    "attempt_result": "2015 and 2019 archived provider pages identify Throttle.zip; live HTTP redirects to HTML, checked archive indexes contain no ZIP capture, current university catalogs did not supply measurements",
     "author_reference": "https://www.ksp.kit.edu/books/1123/files/917e2990-49e8-4674-bb3e-7b40e418865d.pdf",
     "next_requirement": "Original training and validation records with provenance and units; expected 10000 and 2500 samples at 0.01 s",
-    "substitute_data_used": false
+    "substitute_data_used": false,
+    "original_archive_url": "http://www.rst.e-technik.tu-dortmund.de/cms/Medienpool/Downloads/Veranstaltungen/GMA-Fachausschuss/Benchmark/Throttle.zip",
+    "recovery_record": "throttle_recovery.json",
+    "evaluation_protocol": "THROTTLE_RECOVERY.md",
+    "python_and_octave_full_size_synthetic_workflow_passed": true,
+    "historical_score_reproduced": false,
+    "native_matlab_synthetic_workflow_passed": true
   },
   "alstom_gasifier": {
-    "status": "retrieved_via_normal_browser_native_runtime_pending",
+    "status": "native_windows_execution_and_independent_csv_checks_passed",
     "provider_url": "https://www.researchgate.net/publication/326066211_Gasifier_R2015_and_2017",
     "download_url": "https://www.researchgate.net/profile/Roger-Dixon/publication/326066211_Gasifier_R2015_and_2017/data/5b3656daa6fdcc8506dcf6ee/Gasifier-R2015-and-2017.zip",
     "attempt_result": "Normal browser author download succeeded without bypass; direct ordinary HTTP GET still returned 403",
     "expected_archive": "Gasifier_R2015and2017.zip",
-    "next_requirement": "Compatible Windows x64 MATLAB/Simulink and MSVCR100 runtime; run validate_alstom_reference with the obtained archive. No source or Linux binary is supplied.",
+    "next_requirement": "Historical reference trajectories/environment for nominal drift reconciliation, candidate-controller studies and full coal-quality envelope; original private Windows package remains required for reruns.",
     "substitute_model_used": false,
     "archive_bytes": 452992,
     "archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf",
     "source_manifest": "alstom_manifest.json",
     "entrypoint": "validate_alstom_reference.m",
     "prepared_cases": 11,
-    "executed_cases": 0,
+    "executed_cases": 11,
     "redistribution": "No explicit redistribution license supplied; archive and binary remain local and ignored",
-    "public_ci_blocker": "Direct download HTTP 403 and third-party archive not redistributed",
+    "public_ci_blocker": "Direct source download remains HTTP 403; temporary private inputs used for validation have been removed. No author package redistributed.",
     "source_inspection_evidence": "results/alstom-source-inspection.json",
-    "wrapper_syntax_check": "Octave 11.3 parsed both MATLAB functions successfully; this is not native Simulink execution"
+    "additional_solver_cases": 2,
+    "execution_evidence": "results/alstom-native/validation.json",
+    "independent_analysis": "results/alstom-native/analysis.json",
+    "provenance": "results/alstom-native/provenance.json",
+    "ci_run": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41896750740",
+    "temporary_private_inputs_removed": 17,
+    "temporary_private_input_absence_verified": true
   },
   "openfast": {
     "status": "retrieved_and_executed",
@@ -52,14 +64,14 @@
     "ci_run": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41878490951",
     "ci_job_id": 126744461704,
     "ci_scope": "Native TE command passed and artifacts exported; overall historical job failed a separate wind-structure check",
-    "latest_successful_full_workflow": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41886384567",
-    "latest_successful_job_id": 126771864957
+    "latest_successful_full_workflow": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41896147563",
+    "latest_successful_job_id": 126806069930
   },
   "source_ambiguities": {
-    "pneumatic": "Canonical voltage-to-valve-flow closure, gas constant, kappa and gravity convention need original specification",
-    "hydrostatic": "Normalized angles, actuator gains, pressure/volume units and displacement in torque relation need primary-model reconciliation",
+    "pneumatic": "Primary manuscript resolves gravity/Coulomb pressure offsets; specific gas constant follows molar-mass conversion. Actual valve, thermal and stiction calibration remains unavailable. Separate conservative six-state variant tested.",
+    "hydrostatic": "Primary 2006/2008/2011 sources explain bar/mm3 conversion and motor displacement in torque. Separate SI variant verified. Historical displacement/capacitance basis, electrical gains and exact 2007 full text remain unresolved.",
     "hydrostatic_primary_reference": "https://doi.org/10.1109/FUZZY.2007.4295677",
-    "hydrostatic_primary_citation": "[79] H. Schulte, Control-oriented modeling of hydrostatic transmissions using Takagi-Sugeno fuzzy systems, in: IEEE International Conference on Fuzzy Systems, FUZZ-IEEE \u201807, London, UK, 2007.",
+    "hydrostatic_primary_citation": "[79] H. Schulte, Control-oriented modeling of hydrostatic transmissions using Takagi-Sugeno fuzzy systems, in: IEEE International Conference on Fuzzy Systems, FUZZ-IEEE ‘07, London, UK, 2007.",
     "hydrostatic_primary_role": "Table 5 of the supplied review explicitly credits reference [79]. Its model and parameter definitions are the primary reconciliation target; bibliographic verification does not resolve the reported scaling ambiguities.",
     "hydrostatic_primary_metadata_verification": {
       "date": "2026-11-04",
@@ -70,10 +82,13 @@
       "author_catalog_url": "https://www.htw-berlin.de/forschung/online-forschungskatalog/publikationen/person/?eid=4367"
     },
     "hydrostatic_background_reference": {
-      "citation": "[48] A. Kugi, K. Schlacher, H. Aitzetm\u00fcller, G. Hirmann, Modeling and simulation of a hydrostatic transmission with variable-displacement pump, Math. Comput. Simul. 53 (2000) 409\u2013414.",
+      "citation": "[48] A. Kugi, K. Schlacher, H. Aitzetmüller, G. Hirmann, Modeling and simulation of a hydrostatic transmission with variable-displacement pump, Math. Comput. Simul. 53 (2000) 409–414.",
       "url": "https://www.sciencedirect.com/science/article/pii/S0378475400002342",
       "role": "Earlier hydrostatic-transmission background, not the reference credited for the review's Table 5 parameters"
     },
-    "canonical_parameter_changes_made_without_evidence": false
+    "canonical_parameter_changes_made_without_evidence": false,
+    "pneumatic_review": "PNEUMATIC_AUDIT.md",
+    "hydrostatic_review": "HYDROSTATIC_SOURCE_REVIEW.md",
+    "hydrostatic_open_primary_sources": "hydrostatic_sources.json"
   }
 }

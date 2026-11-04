@@ -82,7 +82,7 @@ The positive gravitational coefficient accelerates a positive angular perturbati
 
 **Task B.** Identify what prevents a complete voltage-to-position reproduction from the review alone.
 
-**Worked result.** The valve-voltage-to-orifice/mass-flow relation, choking law, discharge factors, bypass law and κ are not fully specified. The printed gas constant and vertical gravity treatment also require clarification. The balance core accepts mass flows as arguments rather than silently inventing them. The included linear valve and R=287.05,κ=1.4 choices are a named practice variant.
+**Worked result.** The valve-voltage-to-orifice/mass-flow calibration, discharge factors, bypass law and κ are not fully specified. The [primary-source audit](PNEUMATIC_AUDIT.md) resolves the molar/specific gas-constant distinction and the gravity offset removed during local identification. The balance core accepts mass flows as arguments. A separate six-state physical variant implements reversible choked flow, gravity and mass/energy balances with declared valve and thermal choices; it is not a recovered apparatus calibration.
 
 **Task C.** Design a controller comparison under payload change.
 
@@ -99,6 +99,8 @@ The positive gravitational coefficient accelerates a positive angular perturbati
 **Task B.** Audit the printed numerical parameterization before tuning.
 
 **Worked result.** At a constant normalized unit input, the first-order pump position approaches 241.67, contradicting the listed ±1 angle limit. Numerical factors also mix cm³, mm⁵/N and pressure units. These issues cannot be fixed by interpreting every number as SI. The literal `hydrostatic_rhs` is useful for tracing the review but is explicitly unvalidated for physical vehicle simulation.
+
+The [source review](HYDROSTATIC_SOURCE_REVIEW.md) now explains bar/mm³ conversion factors and the motor displacement in torque. The separate SI implementation requires explicit displacement/capacitance conventions and accepts requested normalized angles. Its energy balance, analytical limiting cases and cross-language trajectories are checked. The unresolved electrical gains and historical numeric conventions remain external requirements.
 
 **Task C.** Plan a defensible multivariable control study once the original scaling is resolved.
 
@@ -182,7 +184,7 @@ The positive gravitational coefficient accelerates a positive angular perturbati
 
 **Task C.** Define a fair control comparison.
 
-**Worked reasoning.** Reuse the package's PI baseline and exactly specified step/harmonic sink-pressure, coal-quality and load scenarios. Score each controlled variable against its own tolerance and record input slew/magnitude violations. The author archive download returned an access denial during this build; no gasifier trajectories or scores have been fabricated.
+**Worked reasoning.** Reuse the package's PI baseline and exactly specified step/harmonic sink-pressure, coal-quality and load scenarios. Score each controlled variable against its own tolerance and record input slew/magnitude violations. The [native ALSTOM study](ALSTOM_RESULTS.md) now records eleven cases and two additional nominal solver comparisons. All six pressure-disturbance cases exceed the temperature-error limit even though the applied input constraints hold within numerical tolerance. The nominal 50% temperature drift persists under the refined and author-default solver settings. Successful execution therefore establishes usable simulator evidence, not satisfactory PI control or complete historical benchmark reproduction. The separate long load-ramp and coal-quality results have not received this solver-refinement check.
 
 ## 12. Reduced and aeroelastic wind turbines (3.12)
 
@@ -220,4 +222,4 @@ A local LQR gain stabilizing each linearization does not by itself prove stabili
 
 **Task C.** Evaluate control and diagnosis without survivor bias.
 
-**Worked protocol.** Verify nominal operation, then apply the official disturbance cases and operating-mode changes. Include every run, especially shutdowns and input saturation, when comparing controllers. Report product variability, recovery time, feed-valve movement and operational constraint violations. For diagnosis include false-alarm/missed-detection rates and delay per fault. Source retrieval and a launcher are present; proprietary-runtime execution remains a separate validation step.
+**Worked protocol.** Verify nominal operation, then apply the official disturbance cases and operating-mode changes. Include every run, especially shutdowns and input saturation, when comparing controllers. Report product variability, recovery time, feed-valve movement and operational constraint violations. For diagnosis include false-alarm/missed-detection rates and delay per fault. The [revised simulator's native evidence](results/te-native/validation.json) covers nominal mode1, IDV1 and IDV4 for 0.2 h each; those checks do not establish the full operating-mode and fault-diagnosis comparison.

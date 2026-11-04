@@ -101,9 +101,11 @@ def main():
     pneu=b.pneumatic_rhs(0,[0,.01,5e5,5e5],b.educational_valve_flows(.1,5e5,5e5),gas_constant=287.05)
     entries['pneumatic']={'derivative_at_practice_point':pneu.tolist(),
         'status':'balance/closure evaluation, not canonical valve simulation',
-        'closure':'linear flow; R=287.05 J/(kg K), kappa=1.4; no gravity term'}
+        'closure':'linear flow; R=287.05 J/(kg K), kappa=1.4; no gravity term',
+        'separate_physical_variant':'PNEUMATIC_AUDIT.md; six-state mass/energy model, not executed by this summary command'}
     entries['hydrostatic']={'derivative_at_practice_point':b.hydrostatic_rhs(0,[.2,.5,2.,10.],[.001,.002],pump_speed=100).tolist(),
-        'status':'literal transcription only; unresolved published scale inconsistencies'}
+        'status':'literal transcription only; primary-source clarification and separate SI variant documented',
+        'separate_si_variant':'HYDROSTATIC_SOURCE_REVIEW.md; explicit conventions, not executed by this summary command'}
 
     tt,xt=integrate(lambda t,x:b.three_tank_rhs(t,x,[2e-5,1e-5]),[.3,.2,.25],40.)
     volume_error=.0154*(xt[-1].sum()-xt[0].sum())-40*3e-5
@@ -142,7 +144,8 @@ def main():
         'map_variant':'ROSCO table 2022-01-13, not identified as 2014 benchmark map',
         'final_rotor_speed_rad_s':float(xw[-1,6]),'duration_s':2.}
     entries.update(external_status())
-    entries['throttle']={'status':'LocalARX implementation tested on a synthetic regression case; original measurements absent'}
+    entries['throttle']={'status':'LocalARX and full-size import/evaluation workflow tested on labeled synthetic fixtures; original measurements absent',
+        'recovery_and_protocol':'THROTTLE_RECOVERY.md; exact original archive URL recovered'}
     entries['repositories']={'status':'dataset register and strict CSV importer supplied; see DATASETS.md'}
     result['implementation_sha256']=hashlib.sha256((ROOT/'python/intelligent_control/benchmarks.py').read_bytes()).hexdigest()
     (out/'summary.json').write_text(json.dumps(result,indent=2),encoding='utf-8')

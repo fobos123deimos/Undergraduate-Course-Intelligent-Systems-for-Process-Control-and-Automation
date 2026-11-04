@@ -1,0 +1,205 @@
+{
+  "runtime": "25.2.0.3360999 (R2025b) Update 7",
+  "simulink": {
+    "Name": "Simulink",
+    "Version": "25.2",
+    "Release": "(R2025b)",
+    "Date": "28-Jul-2025"
+  },
+  "generated_models": 25,
+  "general_models": [
+    {
+      "model": "si_blend_physical",
+      "comparison": "MATLAB ODE integration at logged times",
+      "scaled_max_error": 3.2828328944134455E-10,
+      "passed": true
+    },
+    {
+      "model": "si_paper_pendulum",
+      "comparison": "MATLAB ODE integration at logged times",
+      "scaled_max_error": 2.4681763924339073E-10,
+      "passed": true
+    },
+    {
+      "model": "si_paper_three_tank",
+      "comparison": "MATLAB ODE integration at logged times",
+      "scaled_max_error": 2.9322180516988539E-9,
+      "passed": true
+    },
+    {
+      "model": "si_paper_bioreactor",
+      "comparison": "MATLAB ODE integration at logged times",
+      "scaled_max_error": 1.4908741796659797E-8,
+      "passed": true
+    },
+    {
+      "model": "si_paper_cstr",
+      "comparison": "MATLAB ODE integration at logged times",
+      "scaled_max_error": 1.4248837589972839E-8,
+      "passed": true
+    },
+    {
+      "model": "si_paper_column_a",
+      "comparison": "MATLAB ODE integration at logged times",
+      "scaled_max_error": 4.20639877096729E-10,
+      "passed": true
+    },
+    {
+      "model": "si_paper_pneumatic",
+      "comparison": "MATLAB ODE integration at logged times",
+      "scaled_max_error": 2.1433885465105273E-9,
+      "passed": true
+    },
+    {
+      "model": "si_paper_hydrostatic",
+      "comparison": "MATLAB ODE integration at logged times",
+      "scaled_max_error": 1.495138873266243E-8,
+      "passed": true
+    },
+    {
+      "model": "si_paper_wind",
+      "comparison": "MATLAB ODE integration at logged times",
+      "scaled_max_error": 2.3281008272862526E-8,
+      "passed": true
+    },
+    {
+      "model": "si_tank_pi",
+      "comparison": "finite state and final tracking",
+      "final_tracking_error": 0.0036901800577416322,
+      "passed": true
+    },
+    {
+      "model": "si_mimo_mpc",
+      "comparison": "finite state and final tracking",
+      "final_tracking_error": 1.8067658480447335E-11,
+      "passed": true
+    }
+  ],
+  "discrete_models": [
+    {
+      "model": "si_paper_siso",
+      "max_reference_error": 0,
+      "passed": true
+    },
+    {
+      "model": "si_paper_mimo",
+      "max_reference_error": 0,
+      "passed": true
+    },
+    {
+      "model": "si_paper_bioreactor_sample",
+      "max_reference_error": 0,
+      "passed": true
+    }
+  ],
+  "markov": {
+    "runtime": "MATLAB with Simulink",
+    "models": [
+      {
+        "model": "si_markov_occupancy",
+        "samples": 101,
+        "max_reference_error": 1.1102230246251565E-15,
+        "passed": true
+      },
+      {
+        "model": "si_hmm_diagnosis",
+        "samples": 600,
+        "max_reference_error": 0,
+        "passed": true
+      },
+      {
+        "model": "si_hmm_nominal_baseline",
+        "samples": 600,
+        "max_reference_error": 5.5511151231257827E-16,
+        "passed": true
+      },
+      {
+        "model": "si_hmm_nominal_supervisor",
+        "samples": 600,
+        "max_reference_error": 4.4408920985006262E-16,
+        "passed": true
+      },
+      {
+        "model": "si_hmm_mismatch_baseline",
+        "samples": 600,
+        "max_reference_error": 4.4408920985006262E-16,
+        "passed": true
+      },
+      {
+        "model": "si_hmm_mismatch_supervisor",
+        "samples": 600,
+        "max_reference_error": 5.5511151231257827E-16,
+        "passed": true
+      }
+    ],
+    "native_checks": {
+      "filter_max_error": 0,
+      "policy_names": [
+        "nominal_baseline",
+        "nominal_supervisor",
+        "mismatch_baseline",
+        "mismatch_supervisor"
+      ],
+      "policy_max_errors": [
+        5.5511151231257827E-16,
+        4.4408920985006262E-16,
+        4.4408920985006262E-16,
+        5.5511151231257827E-16
+      ],
+      "passed": true
+    },
+    "generated_models": 6,
+    "passed": true
+  },
+  "intelligent": {
+    "models": [
+      {
+        "model": "si_fuzzy_pid_tank",
+        "state_max_error": 0,
+        "input_max_error": 0,
+        "passed": true
+      },
+      {
+        "model": "si_neural_rbf_tank",
+        "state_max_error": 0,
+        "input_max_error": 0,
+        "passed": true
+      }
+    ],
+    "native_checks": {
+      "fuzzy_state_max_error": 0,
+      "fuzzy_input_max_error": 0,
+      "neural_state_max_error": 0,
+      "neural_input_max_error": 0,
+      "passed": true
+    },
+    "generated_models": 2,
+    "passed": true
+  },
+  "wind_pdc": {
+    "model": "si_wind_pdc",
+    "state_max_error": 0,
+    "scaled_command_max_error": 0,
+    "samples": 3001,
+    "generated_models": 1,
+    "map_variant": "ROSCO 2022; new LQR/PDC design",
+    "passed": true
+  },
+  "physical_tank": {
+    "runtime": "MATLAB with Simulink",
+    "paths": [
+      "/home/runner/work/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/ci-artifacts/simulink/blending/bt_nonlinear_corrected.slx",
+      "/home/runner/work/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/ci-artifacts/simulink/blending/bt_comparison_corrected.slx"
+    ],
+    "startup_max_error": 9.9920072216264089E-16,
+    "filling_max_error": 6.7501559897209518E-14,
+    "invalid_initial_volume_rejected": true,
+    "invalid_initial_volume_diagnostic": "Error using validate_blending_simulink (line 34)\nError evaluating the initialization for MATLAB S-Function 'bt_sfun'. The\nfollowing is the MATLAB call stack (file names and line numbers) that produced\nthis error:\n ['/home/runner/work/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/simulink/bt_sfun.m']\n [42]\n ['/home/runner/work/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/simulink/bt_sfun.m']\n [30]\n ['/home/runner/work/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/simulink/bt_sfun.m']\n [8]\n ['/home/runner/work/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/simulink/validate_blending_simulink.m']\n [34]\n ['/home/runner/work/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/simulink/validate_simulink_suite.m']\n [53]\n ['/tmp/run_matlab_command-qYJpN8/command_a7532e9e_73d1_4f58_ab68_52b6342588a6.m']\n [1]\n\nError in validate_simulink_suite (line 53)\ntank=validate_blending_simulink(fullfile(output_dir,'blending'));\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nError in command_a7532e9e_73d1_4f58_ab68_52b6342588a6 (line 1)\ncd(getenv('MW_ORIG_WORKING_FOLDER')); addpath('/home/runner/work/_actions/matlab-actions/run-command/v3/dist/plugins'); addpath('matlab'); addpath('simulink'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_io_csv; validate_pneumatic_physical; validate_hydrostatic_si; validate_throttle_reference(fullfile(pwd,'ci-artifacts','throttle-native')); validate_simulink_suite(fullfile(pwd,'ci-artifacts','simulink')); validate_pneumatic_simulink(fullfile(pwd,'ci-artifacts','pneumatic')); validate_hydrostatic_simulink(fullfile(pwd,'ci-artifacts','hydrostatic'));\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nCaused by:\n    Error using validate_blending_simulink (line 34)\n    Initial state must be [X;V], with V above min_volume.\n    \n    Error in validate_simulink_suite (line 53)\n    tank=validate_blending_simulink(fullfile(output_dir,'blending'));\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    Error in command_a7532e9e_73d1_4f58_ab68_52b6342588a6 (line 1)\n    cd(getenv('MW_ORIG_WORKING_FOLDER')); addpath('/home/runner/work/_actions/matlab-actions/run-command/v3/dist/plugins'); addpath('matlab'); addpath('simulink'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_io_csv; validate_pneumatic_physical; validate_hydrostatic_si; validate_throttle_reference(fullfile(pwd,'ci-artifacts','throttle-native')); validate_simulink_suite(fullfile(pwd,'ci-artifacts','simulink')); validate_pneumatic_simulink(fullfile(pwd,'ci-artifacts','pneumatic')); validate_hydrostatic_simulink(fullfile(pwd,'ci-artifacts','hydrostatic'));\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "state_space_transfer_max_error": 8.43769498715119E-15,
+    "perturbed_nonlinear_max_error": 4.7961634663806763E-14,
+    "linear_formula_max_error": 9.3258734068513149E-15,
+    "local_approximation_max_error": 2.1198736522898276E-5,
+    "passed": true
+  },
+  "passed": true
+}

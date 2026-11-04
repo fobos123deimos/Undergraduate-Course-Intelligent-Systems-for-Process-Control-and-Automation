@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-04",
+  "notebook": "benchmarks/notebook.ipynb",
+  "sha256": "826b008dcdfc071e42c860725b2e0139b934ca904b18cbc5202a36cc925146e7",
+  "executed": true,
+  "error_cells": 0,
+  "scope": "Refresh saved external evidence and separate physical-variant documentation after native CI; no external simulator rerun",
+  "python": "3.12.14",
+  "line_endings": "LF normalized after execution"
+}
