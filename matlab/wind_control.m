@@ -64,7 +64,7 @@ end
 
 function points=design()
 grid=[12 14 16];Q=diag([1 1 .2 1 1 100 100 1]);R=diag([2 1]);
-points=struct([]);
+records=cell(1,3);
 for k=1:3
  p=equilibrium(grid(k));s=linearize(p.state,p.command,p.wind);
  S=diag(s.state_scale);U=diag(s.input_scale);A=S\s.A*S;B=S\s.B*U;
@@ -76,9 +76,10 @@ for k=1:3
  gain=U*(R\(B'*P))/S;
  poles=eig(s.A-s.B*gain);err=norm(residual,Inf);
  assert(min(eig(P))>-1e-7&&err<1e-5&&max(real(poles))<0);
- p.gain=gain;p.A=s.A;p.B=s.B;p.care_residual=err;p.max_pole_real=max(real(poles));
- points(k)=p;
+ records{k}=struct('wind',p.wind,'state',p.state,'command',p.command,...
+  'gain',gain,'A',s.A,'B',s.B,'care_residual',err,'max_pole_real',max(real(poles)));
 end
+points=[records{:}];
 end
 
 function h=weights(v,points)

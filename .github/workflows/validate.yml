@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y octave
-      - run: octave --no-gui --quiet --eval "addpath('matlab'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control;"
+      - run: octave --no-gui --quiet --eval "addpath('matlab'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_io_csv;"
   matlab-simulink:
     runs-on: ubuntu-22.04
     timeout-minutes: 60
@@ -36,7 +36,7 @@ jobs:
           products: Simulink
       - uses: matlab-actions/run-command@v3
         with:
-          command: addpath('matlab'); addpath('simulink'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_simulink_suite(fullfile(pwd,'ci-artifacts','simulink'));
+          command: addpath('matlab'); addpath('simulink'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_io_csv; validate_simulink_suite(fullfile(pwd,'ci-artifacts','simulink'));
       - name: Fetch official revised Tennessee Eastman
         if: always()
         run: python benchmarks/fetch_external.py --source te-revised
