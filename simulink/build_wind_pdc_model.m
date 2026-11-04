@@ -16,7 +16,7 @@ try
  ws=get_param(name,'ModelWorkspace');assignin(ws,'points',points);assignin(ws,'dt',dt);
  assignin(ws,'initial_state',initial.state);assignin(ws,'initial_command',initial.command);
  assignin(ws,'wind_data',[reference.time reference.wind]);
- add_block('simulink/Sources/From Workspace',[name '/Wind'],'VariableName','wind_data','Interpolate','off','SampleTime','dt','Position',[30 20 105 55]);
+ add_block('simulink/Sources/From Workspace',[name '/Wind'],'VariableName','wind_data','Interpolate','off','OutputAfterFinalValue','Holding final value','SampleTime','dt','Position',[30 20 105 55]);
  add_block('simulink/Signal Routing/Mux',[name '/StateWind'],'Inputs','2','Position',[160 90 165 190]);
  add_block('simulink/User-Defined Functions/S-Function',[name '/ScheduledLQR_PDC'],'FunctionName','wind_pdc_sfun',...
   'Parameters','points,initial_command,dt','Position',[225 105 365 165]);

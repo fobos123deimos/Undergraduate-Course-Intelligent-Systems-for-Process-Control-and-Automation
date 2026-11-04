@@ -16,7 +16,7 @@ python -m pytest tests/test_benchmarks.py -q
 python benchmarks/fetch_external.py --list
 ```
 
-The first command produces deterministic short simulations, balance checks and a provenance report in `benchmarks/results/`. It does not manufacture throttle measurements or scores for an unavailable gasifier, FAST or Tennessee Eastman simulator. The [notebook](notebook.ipynb) explains the same calculations. [Case studies and worked questions](CASE_STUDIES.md) cover model selection, identification and control for every section.
+The first command produces deterministic short simulations, balance checks and a provenance report in `benchmarks/results/`. Its external-model entries separately inspect preserved OpenFAST, Tennessee Eastman and ALSTOM evidence, with file paths and hashes; **this command does not rerun those external simulators**. OpenFAST and three native TE cases have executed successfully. The ALSTOM archive and initial conditions have been verified, while its native Windows MATLAB/Simulink execution remains pending. Original throttle measurements are still absent. The [notebook](notebook.ipynb) explains the same calculations. [Case studies and worked questions](CASE_STUDIES.md) cover model selection, identification and control for every section.
 
 ## Coverage and exact scope
 
@@ -34,11 +34,11 @@ The first command produces deterministic short simulations, balance checks and a
 | 3.9, Eqs. 39–46 | Klatt–Engell CSTR | `cstr_rhs`, `CSTR_SP1`, `CSTR_SP2` | Celsius convention and MJ→kJ conversion made explicit; full-state simulations do not solve the original observer task |
 | 3.10, Eqs. 47–54 | 4×4 distillation Column A, 82 states | `column_a_rhs` | All stages, feed, condenser and reboiler implemented; NTNU precision for nominal reflux/boilup |
 | 3.10 | 2×2 Column A with LV structure | `column_a_lv_rhs` | D/B level loops added with stated P gain; other named configurations are design extensions |
-| 3.11 | ALSTOM nonlinear gasifier II and PI baseline | External simulator protocol | Four independent manipulated flows, constraints and official challenge cases must come from author's package |
+| 3.11 | ALSTOM nonlinear gasifier II and PI baseline | [Native 11-case runner](validate_alstom_reference.m); [source inspection](results/alstom-source-inspection.json) | Author archive recovered and checked; native execution needs compatible Windows MATLAB/Simulink and the supplied MEX; no trajectory or performance score claimed |
 | 3.12, Eqs. 55–58 | Control-oriented wind turbine | `wind_rhs`, `wind_matrices`, `RotorMap` | Full 9-state reduced model; bundled 2022 ROSCO map is a documented later-map variant |
-| 3.12 | High-order FAST/NREL 5 MW turbine | `run_external`; [external guide](EXTERNAL_MODELS.md) | Requires simulator, turbine files, controller, inflow and case versions; no full aeroelastic results claimed |
-| 3.13 | Tennessee Eastman original and revised simulator | Verified source download; `run_external` | Official original 50-state and revised 52-state versions kept distinct; no simplified replacement |
-| 4.2 | Wind TS/PDC controller example | [Worked architecture exercise](CASE_STUDIES.md#12-reduced-and-aeroelastic-wind-turbines-312) | Local LQR/scheduling architecture discussed; gains, memberships and full closed-loop results not reproduced |
+| 3.12 | High-order FAST/NREL 5 MW turbine | [Pinned OpenFAST runner](run_openfast_reference.py); [external guide](EXTERNAL_MODELS.md) | Official v5.0.0 60-second turbulent case executed and compared with its release baseline; successor configuration, not the 2014 experiment |
+| 3.13 | Tennessee Eastman original and revised simulator | [Native runner](validate_te_reference.m); [executed evidence](results/te-native/validation.json) | Revised 52-state C source compiled in R2025b; mode1 nominal, IDV1 and IDV4 passed at 0.2 h each; other modes/full protocols remain open; original 50-state version kept distinct |
+| 4.2 | Wind TS/PDC controller example | [Executable LQR/PDC study](WIND_CONTROL.md) in Python, MATLAB/Octave and Simulink | New scaled local LQR gains, interpolated nonlinear runs, constraints and two explicit plant variants; original Table 12 gains/results not claimed |
 
 All Python functions live in [benchmarks.py](../python/intelligent_control/benchmarks.py). Model equations are evaluated without clipping states to hide integration failure. Physical domain checks stop inappropriate experiments. Integrator and step size must suit the process; the stiff CSTR/column and discontinuous-friction systems need convergence checks.
 

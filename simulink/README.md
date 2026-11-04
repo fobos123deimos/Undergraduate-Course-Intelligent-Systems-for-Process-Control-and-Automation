@@ -11,6 +11,8 @@ report = validate_simulink_suite('simulink/generated');
 
 The command builds, simulates and checks the models, then writes `simulink/generated/validation.json`. Each model is saved as `.slx` with a viewable PNG. Output folders must be new: existing files and loaded models are refused rather than silently replaced. Individual builders accept `overwrite=true` when replacement is intentional. Generated models require the MATLAB and Simulink adapter source folders on the MATLAB path.
 
+All sampled workspace signals use zero-order hold between data points and explicitly hold the final value after the record ends. This avoids an unsupported extrapolation setting when interpolation is disabled and defines the input at the final simulation sample.
+
 ## Model inventory
 
 | Builder | Models | Evidence collected by the suite |

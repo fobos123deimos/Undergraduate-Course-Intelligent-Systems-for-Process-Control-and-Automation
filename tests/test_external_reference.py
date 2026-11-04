@@ -15,6 +15,9 @@ SPEC.loader.exec_module(reference)
 FETCH_SPEC = importlib.util.spec_from_file_location('external_fetch', Path(__file__).resolve().parents[1] / 'benchmarks/fetch_external.py')
 fetcher = importlib.util.module_from_spec(FETCH_SPEC)
 FETCH_SPEC.loader.exec_module(fetcher)
+SUMMARY_SPEC = importlib.util.spec_from_file_location('benchmark_summary', Path(__file__).resolve().parents[1] / 'benchmarks/run_benchmarks.py')
+summary = importlib.util.module_from_spec(SUMMARY_SPEC)
+SUMMARY_SPEC.loader.exec_module(summary)
 
 
 def binary_fixture(path, values):
@@ -105,3 +108,30 @@ def test_local_archive_refuses_paths_outside_destination(tmp_path, monkeypatch, 
     with pytest.raises(ValueError, match='escapes destination'):
         fetcher.fetch('case', path)
     assert not (tmp_path / 'escaped.mdl').exists()
+
+
+def test_external_summary_does_not_promote_missing_or_failed_evidence(tmp_path, monkeypatch):
+    monkeypatch.setattr(summary, 'ROOT', tmp_path)
+    entries = summary.external_status()
+    for entry in entries.values():
+        assert entry['evidence_state'] == 'missing'
+        assert entry['rerun_by_this_command'] is False
+    path = tmp_path / 'benchmarks/results/openfast-validation.json'
+    path.parent.mkdir(parents=True)
+    path.write_text('{"status":"failed"}')
+    entries = summary.external_status()
+    assert entries['wind_fast']['evidence_state'] == 'incomplete_or_not_passed'
+    assert 'no complete passed' in entries['wind_fast']['status']
+    path.write_text('{"status":"passed"}')
+    assert summary.external_status()['wind_fast']['evidence_state'] in {'invalid', 'incomplete_or_not_passed'}
+
+
+def test_external_summary_links_preserved_results_without_claiming_a_rerun():
+    entries = summary.external_status()
+    for key in ('wind_fast', 'tennessee_eastman'):
+        entry = entries[key]
+        assert entry['evidence_state'] == 'preserved_passed_record'
+        assert entry['rerun_by_this_command'] is False
+        assert entry['evidence_sha256'] == hashlib.sha256((summary.ROOT / entry['evidence_path']).read_bytes()).hexdigest()
+    assert entries['gasifier']['rerun_by_this_command'] is False
+    assert entries['gasifier']['source_inspection']['evidence_state'] == 'preserved_passed_record'

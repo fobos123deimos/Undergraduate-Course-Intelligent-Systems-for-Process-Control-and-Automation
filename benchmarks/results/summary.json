@@ -2,6 +2,7 @@
   "seed": 2014,
   "data_type": "synthetic unless explicitly sourced",
   "solver": "Radau rtol=1e-8 atol=1e-10; Euler 0.01 for sampled bioreactor",
+  "external_execution_policy": "External entries reference preserved evidence; this command does not rerun OpenFAST, ALSTOM or Tennessee Eastman.",
   "experiments": {
     "artificial_siso": {
       "equation": 30,
@@ -89,13 +90,46 @@
       "duration_s": 2.0
     },
     "wind_fast": {
-      "status": "external runtime required; no score claimed"
+      "evidence_path": "benchmarks/results/openfast-validation.json",
+      "rerun_by_this_command": false,
+      "evidence_state": "preserved_passed_record",
+      "evidence_sha256": "8b7bdcf8930c3c6a41acb4c178f34f680f67bc77a0b9edd408eed7bd3169952c",
+      "evidence_date": "2026-11-04",
+      "evidence_record_status": "passed",
+      "status": "preserved OpenFAST execution and baseline comparison passed; not rerun by this command",
+      "release": "v5.0.0",
+      "case": "5MW_Land_DLL_WTurb",
+      "sample_count": 9601,
+      "duration_s": 60.0,
+      "scope": "Official 60-second NREL 5 MW onshore turbulent-wind case; OpenFAST successor, not 2014 table reproduction."
     },
     "gasifier": {
-      "status": "author archive required; no score claimed"
+      "evidence_path": "benchmarks/results/alstom-native/validation.json",
+      "rerun_by_this_command": false,
+      "evidence_state": "missing",
+      "status": "preserved ALSTOM source inspection passed; native execution pending compatible Windows MATLAB/Simulink",
+      "source_inspection": {
+        "evidence_path": "benchmarks/results/alstom-source-inspection.json",
+        "rerun_by_this_command": false,
+        "evidence_state": "preserved_passed_record",
+        "evidence_sha256": "e25ace28657aa75bbc50aad324c1b2de56473b18a867dadfad01125bca061659",
+        "evidence_date": "2026-11-04",
+        "evidence_record_status": "source_inspection_passed"
+      },
+      "archive_sha256": "dc84303d39c851350fdf5e62f6ac9aadaab804840519031245eeef23e4575cdf"
     },
     "tennessee_eastman": {
-      "status": "official archives retrieved and hash-pinned; runtime unverified"
+      "evidence_path": "benchmarks/results/te-native/validation.json",
+      "rerun_by_this_command": false,
+      "evidence_state": "preserved_passed_record",
+      "evidence_sha256": "e9b72411e51548cff4554a81087ff322f34f6aa1d951d576b951ba6e1bb9f609",
+      "evidence_date": "2026-11-04",
+      "evidence_record_status": "passed",
+      "status": "preserved official revised TE nominal, IDV1 and IDV4 executions passed; not rerun by this command",
+      "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+      "case_count": 3,
+      "duration_h_per_case": 0.2,
+      "scope": "Three short mode1 integration checks; no complete six-mode or long-horizon benchmark claim"
     },
     "throttle": {
       "status": "LocalARX implementation tested on a synthetic regression case; original measurements absent"

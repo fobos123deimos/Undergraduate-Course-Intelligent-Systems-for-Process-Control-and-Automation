@@ -77,10 +77,10 @@ Work with the original nonlinear open-loop model and its PI baseline. The five m
 
 - Three 300 s nominal runs at 0%, 50% and 100% load.
 - Six canonical 300 s sink-pressure cases: a -0.2 bar step at 30 s or a 0.2 bar, 0.04 Hz sine, at each load.
-- The supplied 50% to 100% load ramp over 100â€“700 s, followed until 5000 s as in `rampplot.m`.
-- A +8% coal-quality ramp over 10â€“20 s at 100% load, followed until 5000 s. This is one documented challenging case, not the complete Â±18% envelope.
+- The supplied 50% to 100% load ramp over 100–700 s, followed until 5000 s as in `rampplot.m`.
+- A +8% coal-quality ramp over 10–20 s at 100% load, followed until 5000 s. This is one documented challenging case, not the complete ±18% envelope.
 
-The wrapper uses ode23tb with relative/absolute tolerances 1e-6/1e-8 and maximum step 0.25 s; the supplied plant, PI gains and load interpolation remain unchanged. It checks finite aligned traces, full duration and the actual logged disturbance/load shapes. It exports CV/bed mass/pressure/temperature and char/air/coal/steam flows, with maximum errors, integrated absolute errors, magnitude and rate violations. Pressure-test output tolerances are [10000 J/kg, 500 kg, 10000 Pa, 1 K]; input upper bounds are [3.5, 20, 10, 6] kg/s and slew bounds [0.2, 1, 0.2, 1] kg/sÂ². Violations are reported rather than erased or treated as successful control: the author's specification explicitly describes limitations of the supplied PI under coal-quality changes.
+The wrapper uses ode23tb with relative/absolute tolerances 1e-6/1e-8 and maximum step 0.25 s; the supplied plant, PI gains and load interpolation remain unchanged. It checks finite aligned traces, full duration and the actual logged disturbance/load shapes. It exports CV/bed mass/pressure/temperature and char/air/coal/steam flows, with maximum errors, integrated absolute errors, magnitude and rate violations. Pressure-test output tolerances are [10000 J/kg, 500 kg, 10000 Pa, 1 K]; input upper bounds are [3.5, 20, 10, 6] kg/s and slew bounds [0.2, 1, 0.2, 1] kg/s². Violations are reported rather than erased or treated as successful control: the author's specification explicitly describes limitations of the supplied PI under coal-quality changes.
 
 ```matlab
 addpath('benchmarks');
@@ -100,10 +100,10 @@ from intelligent_control.benchmarks import run_external
 run_external(['openfast', 'case.fst'], 'my_new_case', 'case.out', metadata)
 ```
 
-For partial load report tracking of the optimal rotor-speed/energy target. For full load report rotor-speed disturbance error, pitch peak and energy, and rotor/generator constraints. Structural comparison needs tower/blade/shaft loads, extreme values and damage-equivalent loads from a specified rainflow convention, Sâ€“N slope and duration. The reduced model's deflections are not certified fatigue life. The included ROSCO performance map makes the reduced model executable, but does not identify the exact map or turbulent realization behind Tables 11â€“12 of the paper.
+For partial load report tracking of the optimal rotor-speed/energy target. For full load report rotor-speed disturbance error, pitch peak and energy, and rotor/generator constraints. Structural comparison needs tower/blade/shaft loads, extreme values and damage-equivalent loads from a specified rainflow convention, S–N slope and duration. The reduced model's deflections are not certified fatigue life. The included ROSCO performance map makes the reduced model executable, but does not identify the exact map or turbulent realization behind Tables 11–12 of the paper.
 
 ## Throttle (3.4)
 
 The original GMA/TU Dortmund source cited in the review is `http://www.rst.e-technik.tu-dortmund.de/cms/de/Veranstaltungen/GMA-Fachausschuss/Benchmark/index.html`. The original measured files were not recovered in this build. The paper specifies 0.01 s sampling, 10000 training samples from a multisine experiment, and 2500 validation samples from quasi-amplitude-modulated pseudorandom excitation. Preserve duty cycle in percent and output angle in degrees.
 
-`LocalARX` implements the eight-local-model structure discussed in section 4.1: each local predictor uses `[y(k-1),y(k-2),u(k-1),1]`; partitions use `[y(k-1)-y(k-2),u(k-1)]`. Its crisp nearest-centroid and soft inverse-distance partitions are explicit teaching alternatives, not the paper's recovered fitted PWA polyhedra or TS coefficients. Fit on measured training data only; test one-step and recursive modes separately. Do not cite the paper's 1.03Â°/1.06Â° test RMSE as a result of this code.
+`LocalARX` implements the eight-local-model structure discussed in section 4.1: each local predictor uses `[y(k-1),y(k-2),u(k-1),1]`; partitions use `[y(k-1)-y(k-2),u(k-1)]`. Its crisp nearest-centroid and soft inverse-distance partitions are explicit teaching alternatives, not the paper's recovered fitted PWA polyhedra or TS coefficients. Fit on measured training data only; test one-step and recursive modes separately. Do not cite the paper's 1.03°/1.06° test RMSE as a result of this code.

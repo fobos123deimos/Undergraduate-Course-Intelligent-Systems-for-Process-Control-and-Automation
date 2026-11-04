@@ -56,7 +56,22 @@
   "source_ambiguities": {
     "pneumatic": "Canonical voltage-to-valve-flow closure, gas constant, kappa and gravity convention need original specification",
     "hydrostatic": "Normalized angles, actuator gains, pressure/volume units and displacement in torque relation need primary-model reconciliation",
-    "hydrostatic_primary_reference": "https://www.sciencedirect.com/science/article/pii/S0378475400002342",
+    "hydrostatic_primary_reference": "https://doi.org/10.1109/FUZZY.2007.4295677",
+    "hydrostatic_primary_citation": "[79] H. Schulte, Control-oriented modeling of hydrostatic transmissions using Takagi-Sugeno fuzzy systems, in: IEEE International Conference on Fuzzy Systems, FUZZ-IEEE \u201807, London, UK, 2007.",
+    "hydrostatic_primary_role": "Table 5 of the supplied review explicitly credits reference [79]. Its model and parameter definitions are the primary reconciliation target; bibliographic verification does not resolve the reported scaling ambiguities.",
+    "hydrostatic_primary_metadata_verification": {
+      "date": "2026-11-04",
+      "registry_url": "https://api.crossref.org/works/10.1109/FUZZY.2007.4295677",
+      "confirmed": "IEEE-deposited metadata matches Horst Schulte, the paper title, the 2007 conference and DOI",
+      "publisher_url": "https://ieeexplore.ieee.org/document/4295677",
+      "publisher_access_result": "Page requested JavaScript verification; primary full text not retrieved in this check",
+      "author_catalog_url": "https://www.htw-berlin.de/forschung/online-forschungskatalog/publikationen/person/?eid=4367"
+    },
+    "hydrostatic_background_reference": {
+      "citation": "[48] A. Kugi, K. Schlacher, H. Aitzetm\u00fcller, G. Hirmann, Modeling and simulation of a hydrostatic transmission with variable-displacement pump, Math. Comput. Simul. 53 (2000) 409\u2013414.",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0378475400002342",
+      "role": "Earlier hydrostatic-transmission background, not the reference credited for the review's Table 5 parameters"
+    },
     "canonical_parameter_changes_made_without_evidence": false
   }
 }

@@ -27,26 +27,26 @@ for k=1:size(specs,1)
 end
 name='si_tank_pi';paths{end-1}=prepare(name,output_dir,overwrite);new_system(name);
 try
- add_block('simulink/Sources/Step',[name '/Reference'],'Time','10','Before','.35','After','.65','Position',[25 70 55 100]);
- add_block('simulink/Sources/Step',[name '/FinalReferenceChange'],'Time','55','Before','0','After','-.2','Position',[25 10 55 40]);
- add_block('simulink/Math Operations/Sum',[name '/ReferenceSum'],'Inputs','++','Position',[65 65 85 95]);
- add_block('simulink/Math Operations/Sum',[name '/Error'],'Inputs','+-','Position',[90 70 110 100]);
- add_block('simulink/Math Operations/Gain',[name '/Kp'],'Gain','2','Position',[155 35 200 65]);
- add_block('simulink/Math Operations/Gain',[name '/Ki'],'Gain','.2','Position',[155 115 200 145]);
- add_block('simulink/Continuous/Integrator',[name '/Integral'],'InitialCondition','.35','Position',[240 115 270 145]);
- add_block('simulink/Math Operations/Sum',[name '/PI'],'Inputs','++','Position',[310 70 330 100]);
- add_block('simulink/Discontinuities/Saturation',[name '/Actuator'],'UpperLimit','1','LowerLimit','0','Position',[370 70 420 100]);
- add_block('simulink/Continuous/State-Space',[name '/Tank'],'A','-.1','B','.1','C','1','D','0','X0','.35','Position',[465 70 540 100]);
- add_block('simulink/Sources/Step',[name '/InletDisturbance'],'Time','45','Before','0','After','.08','Position',[370 5 420 35]);
- add_block('simulink/Math Operations/Sum',[name '/Feed'],'Inputs','++','Position',[435 70 455 100]);
- add_block('simulink/Sinks/To Workspace',[name '/Output'],'VariableName','concentration','SaveFormat','StructureWithTime','Position',[595 65 690 105]);
+ add_block('simulink/Sources/Step',[name '/Reference'],'Time','10','Before','.35','After','.65','Position',[40 180 90 220]);
+ add_block('simulink/Sources/Step',[name '/FinalReferenceChange'],'Time','55','Before','0','After','-.2','Position',[40 50 90 90]);
+ add_block('simulink/Math Operations/Sum',[name '/ReferenceSum'],'Inputs','++','Position',[210 160 240 200]);
+ add_block('simulink/Math Operations/Sum',[name '/Error'],'Inputs','+-','Position',[350 160 380 200]);
+ add_block('simulink/Math Operations/Gain',[name '/Kp'],'Gain','2','Position',[480 75 530 115]);
+ add_block('simulink/Math Operations/Gain',[name '/Ki'],'Gain','.2','Position',[480 280 530 320]);
+ add_block('simulink/Continuous/Integrator',[name '/Integral'],'InitialCondition','.35','Position',[790 280 825 320]);
+ add_block('simulink/Math Operations/Sum',[name '/PI'],'Inputs','++','Position',[930 160 960 200]);
+ add_block('simulink/Discontinuities/Saturation',[name '/Actuator'],'UpperLimit','1','LowerLimit','0','Position',[1060 160 1120 200]);
+ add_block('simulink/Continuous/State-Space',[name '/Tank'],'A','-.1','B','.1','C','1','D','0','X0','.35','Position',[1410 160 1530 200]);
+ add_block('simulink/Sources/Step',[name '/InletDisturbance'],'Time','45','Before','0','After','.08','Position',[1100 30 1160 70]);
+ add_block('simulink/Math Operations/Sum',[name '/Feed'],'Inputs','++','Position',[1260 160 1290 200]);
+ add_block('simulink/Sinks/To Workspace',[name '/Output'],'VariableName','concentration','SaveFormat','StructureWithTime','Position',[1640 155 1770 205]);
  add_line(name,'Reference/1','ReferenceSum/1');add_line(name,'FinalReferenceChange/1','ReferenceSum/2');add_line(name,'ReferenceSum/1','Error/1');add_line(name,'Error/1','Kp/1');add_line(name,'Error/1','Ki/1');
  add_line(name,'Ki/1','Integral/1');add_line(name,'Integral/1','PI/2');add_line(name,'Kp/1','PI/1');
  add_line(name,'PI/1','Actuator/1');add_line(name,'Actuator/1','Feed/1');add_line(name,'InletDisturbance/1','Feed/2');add_line(name,'Feed/1','Tank/1');add_line(name,'Tank/1','Output/1');add_line(name,'Tank/1','Error/2','autorouting','on');
  % Back-calculation anti-windup: I_dot = Ki*e + .6*(u_sat-u_raw).
- add_block('simulink/Math Operations/Sum',[name '/SatDifference'],'Inputs','+-','Position',[375 185 395 215]);
- add_block('simulink/Math Operations/Gain',[name '/BackCalculation'],'Gain','.6','Position',[290 185 340 215]);
- add_block('simulink/Math Operations/Sum',[name '/IntegralRate'],'Inputs','++','Position',[215 115 235 145]);
+ add_block('simulink/Math Operations/Sum',[name '/SatDifference'],'Inputs','+-','Position',[1075 440 1105 480]);
+ add_block('simulink/Math Operations/Gain',[name '/BackCalculation'],'Gain','.6','Orientation','left','Position',[825 440 885 480]);
+ add_block('simulink/Math Operations/Sum',[name '/IntegralRate'],'Inputs','++','Position',[640 280 670 320]);
  delete_line(name,'Ki/1','Integral/1');add_line(name,'Ki/1','IntegralRate/1');add_line(name,'IntegralRate/1','Integral/1');
  add_line(name,'Actuator/1','SatDifference/1','autorouting','on');add_line(name,'PI/1','SatDifference/2','autorouting','on');
  add_line(name,'SatDifference/1','BackCalculation/1','autorouting','on');add_line(name,'BackCalculation/1','IntegralRate/2','autorouting','on');
@@ -55,13 +55,13 @@ try
 catch err,close_system(name,0);rethrow(err);end
 name='si_mimo_mpc';paths{end}=prepare(name,output_dir,overwrite);new_system(name);
 try
- add_block('simulink/Sources/Constant',[name '/Reference'],'Value','[.4;.5]','Position',[30 130 95 160]);
- add_block('simulink/Signal Routing/Mux',[name '/MeasurementsReference'],'Inputs','2','Position',[150 65 155 155]);
- add_block('simulink/User-Defined Functions/S-Function',[name '/MPC'],'FunctionName','mpc_sfun','Position',[210 80 295 120]);
- add_block('simulink/Discrete/Discrete State-Space',[name '/Plant'],'A','diag([.96 .94])','B','[.04 .012;.01 .05]','C','eye(2)','D','zeros(2)','SampleTime','.2','Position',[355 80 455 120]);
- add_block('simulink/Sinks/To Workspace',[name '/States'],'VariableName','mimo_states','SaveFormat','StructureWithTime','Position',[520 80 615 120]);
- add_line(name,'Reference/1','MeasurementsReference/2');add_line(name,'MeasurementsReference/1','MPC/1');
- add_line(name,'MPC/1','Plant/1');add_line(name,'Plant/1','States/1');add_line(name,'Plant/1','MeasurementsReference/1','autorouting','on');
+ add_block('simulink/Sources/Constant',[name '/Reference'],'Value','[.4;.5]','Position',[40 210 130 250]);
+ add_block('simulink/Signal Routing/Mux',[name '/StateReference'],'Inputs','2','Position',[230 80 235 240]);
+ add_block('simulink/User-Defined Functions/S-Function',[name '/MPC'],'FunctionName','mpc_sfun','Position',[360 110 490 170]);
+ add_block('simulink/Discrete/Discrete State-Space',[name '/Plant'],'A','diag([.96 .94])','B','[.04 .012;.01 .05]','C','eye(2)','D','zeros(2)','SampleTime','.2','Position',[650 110 800 170]);
+ add_block('simulink/Sinks/To Workspace',[name '/States'],'VariableName','mimo_states','SaveFormat','StructureWithTime','Position',[960 110 1090 170]);
+ add_line(name,'Reference/1','StateReference/2');add_line(name,'StateReference/1','MPC/1');
+ add_line(name,'MPC/1','Plant/1');add_line(name,'Plant/1','States/1');add_line(name,'Plant/1','StateReference/1','autorouting','on');
  set_param(name,'StopTime','20','Solver','FixedStepDiscrete','FixedStep','.2','ReturnWorkspaceOutputs','on');
  save_system(name,paths{end});close_system(name,0);
 catch err,close_system(name,0);rethrow(err);end

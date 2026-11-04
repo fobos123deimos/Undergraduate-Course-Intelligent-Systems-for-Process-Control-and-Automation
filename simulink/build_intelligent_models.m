@@ -14,7 +14,7 @@ for j=1:2
  try
   ws=get_param(name,'ModelWorkspace');assignin(ws,'dt',.2);assignin(ws,'p',struct('dt',.2,'filter_time',.5));
   assignin(ws,'model',neural.neural_models.rbf);assignin(ws,'reference_data',[neural.t neural.reference]);
-  add_block('simulink/Sources/From Workspace',[name '/Reference'],'VariableName','reference_data','Interpolate','off','SampleTime','dt','Position',[25 40 105 75]);
+  add_block('simulink/Sources/From Workspace',[name '/Reference'],'VariableName','reference_data','Interpolate','off','OutputAfterFinalValue','Holding final value','SampleTime','dt','Position',[25 40 105 75]);
   add_block('simulink/Signal Routing/Mux',[name '/ReferenceMeasurement'],'Inputs','2','Position',[155 40 160 140]);
   if j==1
    add_block('simulink/User-Defined Functions/S-Function',[name '/Controller'],'FunctionName','fuzzy_pid_sfun','Parameters','p','Position',[215 55 335 115]);

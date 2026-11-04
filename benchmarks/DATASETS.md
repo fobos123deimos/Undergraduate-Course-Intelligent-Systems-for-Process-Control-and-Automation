@@ -14,7 +14,7 @@ The paper's section 3.2 catalogs data repositories, rather than supplying one dy
 | DELVE | Regression comparison protocols | https://www.cs.toronto.edu/~delve/ | Original training/test protocol and preprocessing |
 | WEKA | Regression test collections | https://www.cs.waikato.ac.nz/ml/weka/ | ARFF schema, target field and original source |
 
-These entry points identify the original providers; availability of every historical endpoint is not asserted. Only the Column A, ROSCO and Tennessee Eastman source pages were individually retrieved in the present build.
+These entry points identify the original providers; availability of every historical endpoint is not asserted. Source retrieval and execution of specific plant simulators are documented separately in the [external-source guide](EXTERNAL_MODELS.md) and [access record](external_access_review.json). The original measured throttle records remain unavailable. The repository does not imply that every dataset in these historical collections was downloaded or analyzed.
 
 ## DaISy systems listed in the review
 
@@ -32,5 +32,14 @@ Keep downloaded records under an ignored local data directory and retain their l
 from intelligent_control.benchmarks import load_io_csv
 t, u, y = load_io_csv('throttle_validation.csv', ['duty_percent'], ['angle_deg'], 0.01)
 ```
+
+The same named-channel interface is available in MATLAB/Octave:
+
+```matlab
+addpath('matlab');
+[t,u,y] = load_io_csv('throttle_validation.csv', {'duty_percent'}, {'angle_deg'}, 0.01);
+```
+
+Both importers reject malformed or nonfinite records instead of silently discarding samples. Their validation fixtures are labeled synthetic and are not substitutes for the unavailable measured throttle data.
 
 Record file SHA-256, original URL, dataset title, measured/synthetic status, units, sample period, row count, transformation history and split boundaries in a neighboring JSON manifest. Keep whole experiments apart when estimating generalization. A chronological split is preferable to random row splitting for a dependent time series; free-run testing must not read future output samples. NIST reference-parameter reproduction is a numerical-accuracy task and should be scored separately from held-out prediction.

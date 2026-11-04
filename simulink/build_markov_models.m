@@ -61,7 +61,7 @@ if bdIsLoaded(name),error('Close model %s before building.',name);end
 if exist(path,'file')&&~overwrite,error('Existing model preserved: %s',path);end
 end
 function source(name,block,variable,position)
-add_block('simulink/Sources/From Workspace',[name '/' block],'VariableName',variable,'Interpolate','off','SampleTime','p.dt','Position',position);
+add_block('simulink/Sources/From Workspace',[name '/' block],'VariableName',variable,'Interpolate','off','OutputAfterFinalValue','Holding final value','SampleTime','p.dt','Position',position);
 end
 function sink(name,block,variable,position)
 add_block('simulink/Sinks/To Workspace',[name '/' block],'VariableName',variable,'SaveFormat','StructureWithTime','Position',position);

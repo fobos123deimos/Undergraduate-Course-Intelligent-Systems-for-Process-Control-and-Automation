@@ -13,7 +13,7 @@ for j=1:size(cases,1)
  try
   ws=get_param(name,'ModelWorkspace');assignin(ws,'initial',cases{j,3});assignin(ws,'inputs',cases{j,4});
   assignin(ws,'dt',cases{j,5});assignin(ws,'ninputs',size(cases{j,4},2)-1);
-  add_block('simulink/Sources/From Workspace',[name '/Excitation'],'VariableName','inputs','Interpolate','off','SampleTime','dt','Position',[30 70 120 110]);
+  add_block('simulink/Sources/From Workspace',[name '/Excitation'],'VariableName','inputs','Interpolate','off','OutputAfterFinalValue','Holding final value','SampleTime','dt','Position',[30 70 120 110]);
   add_block('simulink/User-Defined Functions/S-Function',[name '/Recurrence'],'FunctionName','paper_discrete_sfun',...
    'Parameters',['''' cases{j,2} ''',initial,dt,ninputs'],'Position',[185 60 350 120]);
   add_block('simulink/Sinks/To Workspace',[name '/State'],'VariableName','state_history','SaveFormat','StructureWithTime','Position',[420 70 530 110]);

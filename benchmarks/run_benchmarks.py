@@ -21,11 +21,66 @@ def integrate(rhs,x0,end,points=201):
     return solution.t,solution.y.T
 
 
+def preserved_evidence(relative_path, accepted_status, check):
+    """Inspect a saved external result; never launch an external simulator."""
+    path=ROOT/relative_path
+    record={'evidence_path':relative_path,'rerun_by_this_command':False,
+            'evidence_state':'missing'}
+    if not path.is_file():return record,None
+    payload=path.read_bytes();record['evidence_sha256']=hashlib.sha256(payload).hexdigest()
+    try:
+        data=json.loads(payload)
+        if not isinstance(data,dict) or data.get('status')!=accepted_status or not check(data):
+            record['evidence_state']='incomplete_or_not_passed'
+            return record,None
+    except (ValueError,KeyError,TypeError,AttributeError):
+        record['evidence_state']='invalid'
+        return record,None
+    record.update(evidence_state='preserved_passed_record',evidence_date=data.get('date'),
+                  evidence_record_status=data['status'])
+    return record,data
+
+
+def external_status():
+    """Report preserved evidence separately from the experiments run by main."""
+    fast,data=preserved_evidence('benchmarks/results/openfast-validation.json','passed',
+        lambda d:all(k in d for k in ('release','case','duration_s','interpretation')) and
+        d['all_outputs_finite'] is True and d['sample_count']>0 and
+        d['official_reference_comparison']['status']=='passed' and
+        d['official_reference_comparison']['channels_compared']>0)
+    fast['status']='preserved OpenFAST execution and baseline comparison passed; not rerun by this command' if data else 'no complete passed OpenFAST execution record available; not run by this command'
+    if data:
+        fast.update(release=data['release'],case=data['case'],sample_count=data['sample_count'],
+                    duration_s=data['duration_s'],scope=data['interpretation'])
+    te,data=preserved_evidence('benchmarks/results/te-native/validation.json','passed',
+        lambda d:'limitations' in d and all(k in d['nominal'] for k in ('matlab_version','duration_h')) and
+        d['nominal']['all_outputs_finite'] is True and d['nominal']['sample_count']>0 and
+        sorted(c['disturbance_from_start'] for c in d['disturbance_cases'])==[1,4] and
+        all(c['all_outputs_finite'] is True and c['sample_count']>0 for c in d['disturbance_cases']))
+    te['status']='preserved official revised TE nominal, IDV1 and IDV4 executions passed; not rerun by this command' if data else 'no complete passed native TE execution record available; not run by this command'
+    if data:
+        te.update(matlab_version=data['nominal']['matlab_version'],case_count=3,
+                  duration_h_per_case=data['nominal']['duration_h'],scope=data['limitations'])
+    gasifier,data=preserved_evidence('benchmarks/results/alstom-native/validation.json',
+        'integration_and_input_checks_passed',lambda d:d['case_count']==11 and len(d['cases'])==11 and
+        all(c['all_outputs_finite'] is True and c['specified_inputs_verified'] is True for c in d['cases']))
+    gasifier['status']='preserved native ALSTOM integration/input checks passed; inspect reported control violations; not rerun by this command' if data else 'no complete native ALSTOM execution record; compatible Windows MATLAB/Simulink required'
+    source,source_data=preserved_evidence('benchmarks/results/alstom-source-inspection.json',
+        'source_inspection_passed',lambda d:'archive_sha256' in d and len(d['verified_source_files'])==6 and
+        len(d['initial_conditions'])==3 and all(c['finite_initial_conditions'] is True for c in d['initial_conditions']))
+    gasifier['source_inspection']=source
+    if source_data and data is None:
+        gasifier['status']='preserved ALSTOM source inspection passed; native execution pending compatible Windows MATLAB/Simulink'
+    if source_data:gasifier['archive_sha256']=source_data['archive_sha256']
+    return {'wind_fast':fast,'gasifier':gasifier,'tennessee_eastman':te}
+
+
 def main():
     out=ROOT/'benchmarks/results'; out.mkdir(exist_ok=True)
     os.environ.setdefault('MPLCONFIGDIR',str(out/'.mplconfig'))
     result={'seed':2014,'data_type':'synthetic unless explicitly sourced',
             'solver':'Radau rtol=1e-8 atol=1e-10; Euler 0.01 for sampled bioreactor',
+            'external_execution_policy':'External entries reference preserved evidence; this command does not rerun OpenFAST, ALSTOM or Tennessee Eastman.',
             'experiments':{}}
     entries=result['experiments']
     for kind in ['siso','mimo']:
@@ -86,9 +141,7 @@ def main():
     entries['wind_reduced']={'states':9,'rotor_map_sha256':aero.sha256,
         'map_variant':'ROSCO table 2022-01-13, not identified as 2014 benchmark map',
         'final_rotor_speed_rad_s':float(xw[-1,6]),'duration_s':2.}
-    entries['wind_fast']={'status':'external runtime required; no score claimed'}
-    entries['gasifier']={'status':'author archive required; no score claimed'}
-    entries['tennessee_eastman']={'status':'official archives retrieved and hash-pinned; runtime unverified'}
+    entries.update(external_status())
     entries['throttle']={'status':'LocalARX implementation tested on a synthetic regression case; original measurements absent'}
     entries['repositories']={'status':'dataset register and strict CSV importer supplied; see DATASETS.md'}
     result['implementation_sha256']=hashlib.sha256((ROOT/'python/intelligent_control/benchmarks.py').read_bytes()).hexdigest()
