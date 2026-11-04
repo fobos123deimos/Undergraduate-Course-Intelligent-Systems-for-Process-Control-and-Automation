@@ -30,6 +30,12 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+      - name: Enable virtual display for Simulink diagram exports
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+          Xvfb :99 -screen 0 1920x1080x24 > /tmp/course-xvfb.log 2>&1 &
+          echo "DISPLAY=:99" >> "$GITHUB_ENV"
       - uses: matlab-actions/setup-matlab@v3
         with:
           release: R2025b
