@@ -1,0 +1,29 @@
+{
+  "retrieved_on": "2026-11-04",
+  "sources": {
+    "te-original": {
+      "url": "https://depts.washington.edu/control/LARRY/TE/tecode.zip",
+      "filename": "tecode.zip",
+      "sha256": "2536e8a80e326c6a15ac2f636b1e2c48e1791e1b21dddc644f0725e87a8db724",
+      "version": "Original Fortran distribution; 50 states",
+      "extract": false,
+      "note": "Legacy compression requires a compatible external extractor; redistribution license unspecified."
+    },
+    "te-revised": {
+      "url": "https://depts.washington.edu/control/LARRY/TE/temexd_mod.zip",
+      "filename": "temexd_mod.zip",
+      "sha256": "e43227aaded739cfeba1ec281c54ac8a549f60753e064305a669b906c4b16b0d",
+      "version": "2015-01-23 revised C/Simulink distribution; 52 states",
+      "extract": true,
+      "note": "Runtime MATLAB/Simulink compatibility unverified; redistribution license unspecified."
+    },
+    "column-a": {
+      "url": "https://skoge.folk.ntnu.no/book/matlab_m/cola/colamod.m",
+      "filename": "colamod.m",
+      "sha256": "07199a00b5bdc1f04ea85baef179236c284a0eb128b4a9d97bf8a4085d93525c",
+      "version": "NTNU source retrieved 2026-11-04",
+      "extract": false,
+      "note": "Reference equations inspected; redistribution license unspecified."
+    }
+  }
+}

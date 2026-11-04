@@ -1,0 +1,108 @@
+{
+  "seed": 2014,
+  "data_type": "synthetic unless explicitly sourced",
+  "solver": "Radau rtol=1e-8 atol=1e-10; Euler 0.01 for sampled bioreactor",
+  "experiments": {
+    "artificial_siso": {
+      "equation": 30,
+      "train_samples": 1000,
+      "validation_samples": 250,
+      "maximum_output_magnitude": 4.009174500180549,
+      "note": "short demonstration; paper training length is 100000"
+    },
+    "artificial_mimo": {
+      "equation": 31,
+      "train_samples": 1000,
+      "validation_samples": 250,
+      "maximum_output_magnitude": 2.647771374595451,
+      "note": "short demonstration; paper training length is 100000"
+    },
+    "pendulum": {
+      "theta_initial_rad": 0.03,
+      "theta_final_rad": 0.053996222121553646,
+      "note": "open-loop local instability demonstration; Coulomb friction removed explicitly"
+    },
+    "pneumatic": {
+      "derivative_at_practice_point": [
+        0.01,
+        -3.788135593220339,
+        55046.5524,
+        -55046.5524
+      ],
+      "status": "balance/closure evaluation, not canonical valve simulation",
+      "closure": "linear flow; R=287.05 J/(kg K), kappa=1.4; no gravity term"
+    },
+    "hydrostatic": {
+      "derivative_at_practice_point": [
+        0.3205384615384614,
+        0.3029999999999997,
+        11.134941329856582,
+        -0.09630240502941051
+      ],
+      "status": "literal transcription only; unresolved published scale inconsistencies"
+    },
+    "three_tank": {
+      "maximum_level_m": 0.3,
+      "volume_balance_residual_m3": 4.336808689942018e-19,
+      "note": "all nominal drains closed; total volume increases"
+    },
+    "bioreactor": {
+      "sample_period": 0.5,
+      "euler_substep": 0.01,
+      "substeps_per_hold": 50,
+      "computed_equilibrium_at_u_0_769": [
+        0.08729754781771586,
+        0.9235897740828826
+      ],
+      "reported_biomass_substrate_residual": 0.29603260211501226
+    },
+    "cstr": {
+      "time_unit": "hours",
+      "temperature_unit": "degrees C",
+      "input2_unit": "MJ/h",
+      "rounded_sp1_derivative": [
+        0.8278317003732809,
+        -0.29381470046791947,
+        -0.08796146255613735,
+        0.2536000000002332
+      ],
+      "final_state": [
+        3517.5700705332447,
+        739.9747472166956,
+        86.99966068485189,
+        79.80253387828088
+      ],
+      "note": "nominal SP1 hold; not observer-based transition benchmark"
+    },
+    "column_a": {
+      "states": 82,
+      "steady_state_max_derivative": 3.894662370385049e-13,
+      "steady_bottom_composition": 0.010000040399813408,
+      "steady_top_composition": 0.9899999596137808,
+      "experiment": "1% feed step, D/B P level control gain 10/min, 2 min"
+    },
+    "wind_reduced": {
+      "states": 9,
+      "rotor_map_sha256": "a8d9c2d88bd1d9073287256b042d7752d2202a01e611c08e283b9109504caf5b",
+      "map_variant": "ROSCO table 2022-01-13, not identified as 2014 benchmark map",
+      "final_rotor_speed_rad_s": 1.1607440000879174,
+      "duration_s": 2.0
+    },
+    "wind_fast": {
+      "status": "external runtime required; no score claimed"
+    },
+    "gasifier": {
+      "status": "author archive required; no score claimed"
+    },
+    "tennessee_eastman": {
+      "status": "official archives retrieved and hash-pinned; runtime unverified"
+    },
+    "throttle": {
+      "status": "LocalARX implementation tested on a synthetic regression case; original measurements absent"
+    },
+    "repositories": {
+      "status": "dataset register and strict CSV importer supplied; see DATASETS.md"
+    }
+  },
+  "implementation_sha256": "9fec8fb9c65ea488b0b26282b6a5d6727739491225f16cc7d46272a6f2309cbb"
+}

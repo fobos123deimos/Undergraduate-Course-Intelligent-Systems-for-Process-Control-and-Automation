@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="504pt" viewBox="0 0 864 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>05-pneumatic</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>05-pneumatic</dc:title>
+    <dc:date>2026-11-04T11:16:41.511022</dc:date>
+    <dc:description>Original conceptual scientific equipment diagram</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 864 504 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 237.744 300.168 
+L 549.576 300.168 
+L 549.576 197.928 
+L 237.744 197.928 
+z
+" clip-path="url(#pb3fdfb0ecb)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 388.548 300.168 
+L 406.44 300.168 
+L 406.44 197.928 
+L 388.548 197.928 
+z
+" clip-path="url(#pb3fdfb0ecb)" style="fill: #596b7b; stroke: #16324f; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 626.256 288.4104 
+L 695.268 288.4104 
+Q 701.4024 288.4104 701.4024 282.276 
+L 701.4024 218.376 
+Q 701.4024 212.2416 695.268 212.2416 
+L 626.256 212.2416 
+Q 620.1216 212.2416 620.1216 218.376 
+L 620.1216 282.276 
+Q 620.1216 288.4104 626.256 288.4104 
+z
+" clip-path="url(#pb3fdfb0ecb)" style="fill: #ffffff; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 345.096 413.6544 
+L 488.232 413.6544 
+Q 494.3664 413.6544 494.3664 407.52 
+L 494.3664 361.512 
+Q 494.3664 355.3776 488.232 355.3776 
+L 345.096 355.3776 
+Q 338.9616 355.3776 338.9616 361.512 
+L 338.9616 407.52 
+Q 338.9616 413.6544 345.096 413.6544 
+z
+" clip-path="url(#pb3fdfb0ecb)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 406.44 249.048 
+L 621.144 249.048 
+" clip-path="url(#pb3fdfb0ecb)" style="fill: none; stroke: #16324f; stroke-width: 7; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(647.566297 246.582348)">Load</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(642.588797 259.785355)">3–9 kg</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(280.750672 227.412777)">Chamber I</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(291.718016 240.614926)">pI (Pa)</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(445.268172 227.412777)">Chamber II</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(456.235516 240.614926)">pII (Pa)</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="311.868" y="277.465422" transform="rotate(-0 311.868 277.465422)">V₀ + Aₖx</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="472.896" y="277.465422" transform="rotate(-0 472.896 277.465422)">V₀ − Aₖx</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="416.664" y="387.633656" transform="rotate(-0 416.664 387.633656)">Four-way valve</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 363.894082 355.265681 
+Q 324.646033 328.282648 287.240598 302.566411 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 290.485263 308.43771 
+L 287.240598 302.566411 
+L 293.884436 303.493458 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 469.050456 354.85211 
+Q 490.789046 328.282722 511.111674 303.443955 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 504.990375 306.187985 
+L 511.111674 303.443955 
+L 509.634119 309.987412 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 183.509343 384.516 
+Q 260.746261 384.516 335.747112 384.516 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 329.747112 381.516 
+L 335.747112 384.516 
+L 329.747112 387.516 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="260.748" y="366.925422" transform="rotate(-0 260.748 366.925422)">pₛ = 9 × 10⁵ Pa</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 495.344073 384.516 
+Q 577.691139 384.516 657.802136 384.516 
+" style="fill: none; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 651.802136 381.516 
+L 657.802136 384.516 
+L 651.802136 387.516 
+z
+" style="fill: #596b7b; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #596b7b" x="577.692" y="366.925422" transform="rotate(-0 577.692 366.925422)">pₑ = 1 × 10⁵ Pa</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="416.664" y="441.049852" transform="rotate(-0 416.664 441.049852)">uᵥ ∈ [−10,10] V</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 398.218179 162.144 
+Q 442.223807 162.144 483.993366 162.144 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 477.993366 159.144 
+L 483.993366 162.144 
+L 477.993366 165.144 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="442.224" y="144.577914" transform="rotate(-0 442.224 144.577914)">x (m), |x| ≤ 0.125</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="401.328" y="121.549422" transform="rotate(-0 401.328 121.549422)">Aₖ = 2.8 × 10⁻³ m² • V₀ = 5 × 10⁻⁴ m³</text>
+   </g>
+  </g>
+  <g id="text_12">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #16324f" x="47.52" y="41.156719" transform="rotate(-0 47.52 41.156719)">Servo-pneumatic actuator</text>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="57.96" transform="rotate(-0 47.52 57.96)">Section 3.5 • chamber balances and an externally specified valve-flow closure</text>
+  </g>
+  <g id="text_14">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="486.36" transform="rotate(-0 47.52 486.36)">Conceptual equipment schematic • topology and model variables, not a detailed P&amp;ID</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pb3fdfb0ecb">
+   <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
+  </clipPath>
+ </defs>
+</svg>

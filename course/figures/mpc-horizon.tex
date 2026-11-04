@@ -1,0 +1,15 @@
+\begin{center}
+\begin{tikzpicture}[x=0.75cm,y=0.6cm]
+\draw[flow] (0,0)--(12,0) node[right] {sample};
+\draw[flow] (0,0)--(0,4.5) node[above] {output};
+\draw[ink,thick] (0.2,0.8)--(1,1.2)--(2,1.1)--(3,1.8)--(4,2);
+\draw[ink,dashed,thick] (4,2)--(5,2.5)--(6,3)--(7,3.3)--(8,3.5)--(9,3.6)--(10,3.7);
+\draw[ink,densely dotted] (4,0)--(4,4);
+\draw[ink,dotted] (0,3.8)--(11,3.8) node[right] {target};
+\node at (2,-0.5) {measurements};
+\node at (4,-0.5) {$k$};
+\node at (8,-0.5) {predictions};
+\draw[<->,ink] (4,4.3)--node[above] {prediction horizon}(10,4.3);
+\end{tikzpicture}
+\end{center}
+\noindent\textit{The future curve is a model prediction, not an observed trajectory. Only the first planned input is applied before the next measurement.}

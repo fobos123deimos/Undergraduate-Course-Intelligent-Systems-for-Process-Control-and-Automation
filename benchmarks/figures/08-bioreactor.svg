@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="504pt" viewBox="0 0 864 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>08-bioreactor</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>08-bioreactor</dc:title>
+    <dc:date>2026-11-04T11:16:43.192034</dc:date>
+    <dc:description>Original conceptual scientific equipment diagram</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 864 504 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 346.374 360.234 
+L 522.738 360.234 
+L 522.738 229.00896 
+L 346.374 229.00896 
+z
+" clip-path="url(#p7b9ea109a4)" style="fill: #d9edf6"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 408.996 150.3864 
+L 460.116 150.3864 
+Q 466.2504 150.3864 466.2504 144.252 
+L 466.2504 128.916 
+Q 466.2504 122.7816 460.116 122.7816 
+L 408.996 122.7816 
+Q 402.8616 122.7816 402.8616 128.916 
+L 402.8616 144.252 
+Q 402.8616 150.3864 408.996 150.3864 
+z
+" clip-path="url(#p7b9ea109a4)" style="fill: #ffffff; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 345.096 177.48 
+L 345.096 361.512 
+L 524.016 361.512 
+L 524.016 177.48 
+" clip-path="url(#p7b9ea109a4)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 346.6296 229.00896 
+L 522.4824 229.00896 
+" clip-path="url(#p7b9ea109a4)" style="fill: none; stroke: #6ba8c4; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 434.556 149.364 
+L 434.556 284.832 
+" clip-path="url(#p7b9ea109a4)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 403.884 284.832 
+L 465.228 284.832 
+" clip-path="url(#p7b9ea109a4)" style="fill: none; stroke: #16324f; stroke-width: 4; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 152.840775 223.488 
+Q 247.969503 223.488 340.862163 223.488 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 334.862163 220.488 
+L 340.862163 223.488 
+L 334.862163 226.488 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="247.968" y="205.897852" transform="rotate(-0 247.968 205.897852)">Feed flow u</text>
+   </g>
+   <g id="patch_5">
+    <path d="M 526.017165 323.172 
+Q 613.476393 323.172 698.699553 323.172 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 692.699553 320.172 
+L 698.699553 323.172 
+L 692.699553 326.172 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="613.476" y="305.581852" transform="rotate(-0 613.476 305.581852)">Equal outflow u</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="434.556" y="138.922242" transform="rotate(-0 434.556 138.922242)">Mixing</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(399.112875 319.088016)">C₁: biomass</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(391.283812 333.491297)">C₂: conversion</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(379.446937 400.917984)">Γ = 0.4 • β = 0.02</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(394.140375 415.320328)">0 ≤ C₁,C₂ ≤ 1</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="453.829852" transform="rotate(-0 432 453.829852)">Control hold: 0.5 time units = 50 Euler substeps of 0.01</text>
+   </g>
+  </g>
+  <g id="text_7">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #16324f" x="47.52" y="41.156719" transform="rotate(-0 47.52 41.156719)">Continuously operated bioreactor</text>
+  </g>
+  <g id="text_8">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="57.96" transform="rotate(-0 47.52 57.96)">Section 3.8 • dimensionless biomass and substrate-conversion states</text>
+  </g>
+  <g id="text_9">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="486.36" transform="rotate(-0 47.52 486.36)">Conceptual equipment schematic • topology and model variables, not a detailed P&amp;ID</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p7b9ea109a4">
+   <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
+  </clipPath>
+ </defs>
+</svg>

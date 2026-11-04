@@ -1,0 +1,22 @@
+name: Validate course
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python tools/run_course.py --all
+      - run: python tools/validate.py --notebooks
+  octave:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y octave
+      - run: octave --no-gui --quiet --eval "addpath('matlab'); validate_all; validate_paper;"

@@ -1,0 +1,21 @@
+# Assumptions and limitations
+
+## Course experiments
+
+The common mixture is perfectly mixed, isothermal, constant-volume and single-phase. Its input changes immediately unless an actuator is explicitly added. Density, transport delay, nonlinear valve characteristics and sensor lag are not silently assumed to have been modeled. Course parameters are hypothetical and differ from the archived Blending Tank model.
+
+PI/IMC pole calculations concern the stated continuous nominal model. Saturation, sampling, gain scheduling and neural model errors need separate analysis. Passing simulations does not establish global stability, safety or robustness on an industrial plant.
+
+Identification uses independent training and evaluation trajectories. The ARX fit has noisy output regressors and therefore may be biased. MLP and RBF normalization is fit on training data only. One-step error, recursive free-run error and out-of-domain error are different questions. The neural controller is bounded model-based action selection, not a certified adaptive controller.
+
+The MPC examples use a measured full state, a deterministic model and explicit input/move constraints; one MIMO example also constrains predicted states. They do not include state estimation, robust invariant sets or a terminal stability proof. The current control code records solver failures and holds the previous feasible actuator command; this does not guarantee future output feasibility.
+
+Expert rules are illustrative thresholds. Fuzzy memberships, rule surfaces, learning hyperparameters and GA budgets are declared experimental choices. A single seeded search does not demonstrate optimizer superiority. The small nested GA/MPC example demonstrates the workflow and reports evaluations, not convergence to a global optimum.
+
+The capstone uses matched uncertainty cases and a common sensor-noise seed. Feedforward has a disturbance measurement unavailable to the other controllers. Aggregate metrics include multiple setpoint segments; ITAE is measured from the beginning of the whole experiment. No universal ranking is implied.
+
+## Article models and software environments
+
+Read the [benchmark inventory](../benchmarks/README.md) before interpreting a result as reproduction of a published benchmark. Missing measured data, unprovided valve laws, rotor maps, implementation variants and inaccessible plant distributions are material scientific limitations. A closure supplied for teaching is labeled separately from the paper equations.
+
+MATLAB, GNU Octave, Simulink and Python are different execution environments. Shared model equations do not imply bitwise numerical agreement. The [validation record](VALIDATION.md) states which environments were actually exercised.

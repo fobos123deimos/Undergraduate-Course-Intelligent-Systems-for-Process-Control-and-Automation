@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="504pt" viewBox="0 0 864 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>09-cstr</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>09-cstr</dc:title>
+    <dc:date>2026-11-04T11:16:43.648763</dc:date>
+    <dc:description>Original conceptual scientific equipment diagram</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 864 504 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 329.76 376.848 
+L 534.24 376.848 
+L 534.24 172.368 
+L 329.76 172.368 
+z
+" clip-path="url(#p373dcc6178)" style="fill: #f0e7f7; stroke: #8055ad; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 351.486 360.234 
+L 512.514 360.234 
+L 512.514 221.9544 
+L 351.486 221.9544 
+z
+" clip-path="url(#p373dcc6178)" style="fill: #d9edf6"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 350.208 182.592 
+L 350.208 361.512 
+L 513.792 361.512 
+L 513.792 182.592 
+" clip-path="url(#p373dcc6178)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 351.7416 221.9544 
+L 512.2584 221.9544 
+" clip-path="url(#p373dcc6178)" style="fill: none; stroke: #6ba8c4; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(394.382812 236.27502)">A → B → C</text>
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(402.887109 254.277949)">2 A → D</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(385.324687 301.196484)">cA, cB (mol/m³)</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(414.556875 315.598828)">T (°C)</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(572.58 217.188777)">Jacket</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(572.58 230.390926)">Tc (°C)</text>
+   </g>
+   <g id="patch_4">
+    <path d="M 137.501304 215.82 
+Q 241.577782 215.82 343.418192 215.82 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 337.418192 212.82 
+L 343.418192 215.82 
+L 337.418192 218.82 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="241.578" y="198.229852" transform="rotate(-0 241.578 198.229852)">q, cin, Tin</text>
+   </g>
+   <g id="patch_5">
+    <path d="M 518.350062 338.508 
+Q 607.086089 338.508 693.586048 338.508 
+" style="fill: none; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 687.586048 335.508 
+L 693.586048 338.508 
+L 687.586048 341.508 
+z
+" style="fill: #596b7b; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #596b7b" x="607.086" y="323.473852" transform="rotate(-0 607.086 323.473852)">Product stream</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 536.126111 372.388885 
+Q 600.693388 394.739096 663.147613 416.357866 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 658.459028 411.560244 
+L 663.147613 416.357866 
+L 656.496364 417.230161 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="616.032" y="392.485852" transform="rotate(-0 616.032 392.485852)">Cooling u₂</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #00866b" transform="translate(199.664812 280.747547)">u₁ = q / VR</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #00866b" transform="translate(206.897625 295.150828)">5–35 h⁻¹</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="433.122047" transform="rotate(-0 432 433.122047)">−8.5 ≤ u₂ ≤ 0 MJ/h • temperatures use Celsius in the kinetic model</text>
+   </g>
+  </g>
+  <g id="text_9">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #16324f" x="47.52" y="41.156719" transform="rotate(-0 47.52 41.156719)">Jacketed chemical reactor</text>
+  </g>
+  <g id="text_10">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="57.96" transform="rotate(-0 47.52 57.96)">Section 3.9 • Klatt–Engell reaction network and two manipulated inputs</text>
+  </g>
+  <g id="text_11">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="486.36" transform="rotate(-0 47.52 486.36)">Conceptual equipment schematic • topology and model variables, not a detailed P&amp;ID</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p373dcc6178">
+   <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
+  </clipPath>
+ </defs>
+</svg>

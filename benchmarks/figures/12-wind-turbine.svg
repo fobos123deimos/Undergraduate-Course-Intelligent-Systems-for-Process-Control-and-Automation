@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="504pt" viewBox="0 0 864 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>12-wind-turbine</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>12-wind-turbine</dc:title>
+    <dc:date>2026-11-04T11:16:45.465129</dc:date>
+    <dc:description>Original conceptual scientific equipment diagram</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 864 504 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 373.212 214.2864 
+L 455.004 214.2864 
+Q 461.1384 214.2864 461.1384 208.152 
+L 461.1384 185.148 
+Q 461.1384 179.0136 455.004 179.0136 
+L 373.212 179.0136 
+Q 367.0776 179.0136 367.0776 185.148 
+L 367.0776 208.152 
+Q 367.0776 214.2864 373.212 214.2864 
+z
+" clip-path="url(#p3e5a9a5d4c)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 365.544 206.6184 
+C 367.848721 206.6184 370.059357 205.702725 371.689041 204.073041 
+C 373.318725 202.443357 374.2344 200.232721 374.2344 197.928 
+C 374.2344 195.623279 373.318725 193.412643 371.689041 191.782959 
+C 370.059357 190.153275 367.848721 189.2376 365.544 189.2376 
+C 363.239279 189.2376 361.028643 190.153275 359.398959 191.782959 
+C 357.769275 193.412643 356.8536 195.623279 356.8536 197.928 
+C 356.8536 200.232721 357.769275 202.443357 359.398959 204.073041 
+C 361.028643 205.702725 363.239279 206.6184 365.544 206.6184 
+z
+" clip-path="url(#p3e5a9a5d4c)" style="fill: #16324f"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 544.464 244.9584 
+L 697.824 244.9584 
+Q 703.9584 244.9584 703.9584 238.824 
+L 703.9584 192.816 
+Q 703.9584 186.6816 697.824 186.6816 
+L 544.464 186.6816 
+Q 538.3296 186.6816 538.3296 192.816 
+L 538.3296 238.824 
+Q 538.3296 244.9584 544.464 244.9584 
+z
+" clip-path="url(#p3e5a9a5d4c)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 544.464 398.3184 
+L 697.824 398.3184 
+Q 703.9584 398.3184 703.9584 392.184 
+L 703.9584 346.176 
+Q 703.9584 340.0416 697.824 340.0416 
+L 544.464 340.0416 
+Q 538.3296 340.0416 538.3296 346.176 
+L 538.3296 392.184 
+Q 538.3296 398.3184 544.464 398.3184 
+z
+" clip-path="url(#p3e5a9a5d4c)" style="fill: #ffffff; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 365.544 422.856 
+L 383.436 213.264 
+L 403.884 213.264 
+L 421.776 422.856 
+L 365.544 422.856 
+" clip-path="url(#p3e5a9a5d4c)" style="fill: none; stroke: #16324f; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 365.544 197.928 
+L 365.544 111.024 
+" clip-path="url(#p3e5a9a5d4c)" style="fill: none; stroke: #8055ad; stroke-width: 5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 365.544 197.928 
+L 290.282928 241.38 
+" clip-path="url(#p3e5a9a5d4c)" style="fill: none; stroke: #8055ad; stroke-width: 5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 365.544 197.928 
+L 440.805072 241.38 
+" clip-path="url(#p3e5a9a5d4c)" style="fill: none; stroke: #8055ad; stroke-width: 5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 314.424 425.412 
+L 462.672 425.412 
+" clip-path="url(#p3e5a9a5d4c)" style="fill: none; stroke: #16324f; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="414.108" y="199.248047" transform="rotate(-0 414.108 199.248047)">Nacelle</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 137.504931 177.48 
+Q 191.736945 177.48 243.73289 177.48 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 237.73289 174.48 
+L 243.73289 177.48 
+L 237.73289 180.48 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="191.736" y="159.889852" transform="rotate(-0 191.736 159.889852)">Wind v (m/s)</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 137.504931 218.376 
+Q 191.736945 218.376 243.73289 218.376 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 237.73289 215.376 
+L 243.73289 218.376 
+L 237.73289 221.376 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 137.504931 259.272 
+Q 191.736945 259.272 243.73289 259.272 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 237.73289 256.272 
+L 243.73289 259.272 
+L 237.73289 262.272 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 367.542435 346.176 
+Q 403.882692 346.176 437.986882 346.176 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 431.986882 343.176 
+L 437.986882 346.176 
+L 431.986882 349.176 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="403.884" y="328.585422" transform="rotate(-0 403.884 328.585422)">yT (m)</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="283.752" y="126.661852" transform="rotate(-0 283.752 126.661852)">Blade-tip yB (m)</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(591.182437 211.689141)">Drivetrain</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(579.760875 226.186172)">θr, θg, ωr, ωg</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 462.064981 198.368093 
+Q 499.734384 206.874087 535.222634 214.887562 
+" style="fill: none; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 530.03077 210.639674 
+L 535.222634 214.887562 
+L 528.709205 216.49232 
+z
+" style="fill: #596b7b; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #596b7b" x="499.734" y="189.283422" transform="rotate(-0 499.734 189.283422)">Tr</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 704.939115 215.82 
+Q 718.274416 215.82 729.373649 215.82 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 723.373649 212.82 
+L 729.373649 215.82 
+L 723.373649 218.82 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="621.144" y="280.021422" transform="rotate(-0 621.144 280.021422)">Generator torque Tg (N m)</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(582.817594 365.401973)">Pitch actuator</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(568.949 378.67373)">βdot = (βd − β) / τ</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="621.144" y="433.416227" transform="rotate(-0 621.144 433.416227)">β, βd in rad • τ = 0.1 s</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="461.238047" transform="rotate(-0 432 461.238047)">Reduced model: 9 states • CT/CQ maps supply aerodynamic forces and torque</text>
+   </g>
+  </g>
+  <g id="text_11">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #16324f" x="47.52" y="41.156719" transform="rotate(-0 47.52 41.156719)">Wind turbine: reduced structural model</text>
+  </g>
+  <g id="text_12">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="57.96" transform="rotate(-0 47.52 57.96)">Section 3.12 • tower, blade, drivetrain and pitch dynamics</text>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="486.36" transform="rotate(-0 47.52 486.36)">Conceptual equipment schematic • topology and model variables, not a detailed P&amp;ID</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p3e5a9a5d4c">
+   <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="504pt" viewBox="0 0 864 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>06-hydrostatic</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>06-hydrostatic</dc:title>
+    <dc:date>2026-11-04T11:16:42.064489</dc:date>
+    <dc:description>Original conceptual scientific equipment diagram</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 864 504 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 278.64 323.172 
+C 290.163605 323.172 301.216785 318.593623 309.365204 310.445204 
+C 317.513623 302.296785 322.092 291.243605 322.092 279.72 
+C 322.092 268.196395 317.513623 257.143215 309.365204 248.994796 
+C 301.216785 240.846377 290.163605 236.268 278.64 236.268 
+C 267.116395 236.268 256.063215 240.846377 247.914796 248.994796 
+C 239.766377 257.143215 235.188 268.196395 235.188 279.72 
+C 235.188 291.243605 239.766377 302.296785 247.914796 310.445204 
+C 256.063215 318.593623 267.116395 323.172 278.64 323.172 
+z
+" clip-path="url(#p4162481478)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 559.8 323.172 
+C 571.323605 323.172 582.376785 318.593623 590.525204 310.445204 
+C 598.673623 302.296785 603.252 291.243605 603.252 279.72 
+C 603.252 268.196395 598.673623 257.143215 590.525204 248.994796 
+C 582.376785 240.846377 571.323605 236.268 559.8 236.268 
+C 548.276395 236.268 537.223215 240.846377 529.074796 248.994796 
+C 520.926377 257.143215 516.348 268.196395 516.348 279.72 
+C 516.348 291.243605 520.926377 302.296785 529.074796 310.445204 
+C 537.223215 318.593623 548.276395 323.172 559.8 323.172 
+z
+" clip-path="url(#p4162481478)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 278.64 236.268 
+L 278.64 185.148 
+L 559.8 185.148 
+L 559.8 236.268 
+" clip-path="url(#p4162481478)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 559.8 323.172 
+L 559.8 374.292 
+L 278.64 374.292 
+L 278.64 323.172 
+" clip-path="url(#p4162481478)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="278.64" y="282.577422" transform="rotate(-0 278.64 282.577422)">Pump</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="559.8" y="282.577422" transform="rotate(-0 559.8 282.577422)">Motor</text>
+   </g>
+   <g id="patch_4">
+    <path d="M 362.432775 185.148 
+Q 408.996286 185.148 453.323729 185.148 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 447.323729 182.148 
+L 453.323729 185.148 
+L 447.323729 188.148 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 455.559225 374.292 
+Q 408.995714 374.292 364.668271 374.292 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 370.668271 377.292 
+L 364.668271 374.292 
+L 370.668271 371.292 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="416.664" y="162.445422" transform="rotate(-0 416.664 162.445422)">pA</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="416.664" y="405.265422" transform="rotate(-0 416.664 405.265422)">pB</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="416.664" y="274.909422" transform="rotate(-0 416.664 274.909422)">Δp = pA − pB</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 147.729165 279.72 
+Q 190.45903 279.72 230.952827 279.72 
+" style="fill: none; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 224.952827 276.72 
+L 230.952827 279.72 
+L 224.952827 282.72 
+z
+" style="fill: #596b7b; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #596b7b" x="190.458" y="259.573422" transform="rotate(-0 190.458 259.573422)">ωP</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 605.251995 279.72 
+Q 654.373207 279.72 701.258351 279.72 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 695.258351 276.72 
+L 701.258351 279.72 
+L 695.258351 282.72 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="654.372" y="259.573422" transform="rotate(-0 654.372 259.573422)">ωM , TLw</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 192.740288 138.311375 
+Q 223.686214 191.538369 253.508247 242.832265 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 253.086046 236.137361 
+L 253.508247 242.832265 
+L 247.899003 239.153084 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="205.794" y="194.395422" transform="rotate(-0 205.794 194.395422)">uP</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 655.783697 138.224168 
+Q 618.588682 191.537022 582.673105 243.016017 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 588.566575 239.8118 
+L 582.673105 243.016017 
+L 583.645813 236.37871 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="636.48" y="194.395422" transform="rotate(-0 636.48 194.395422)">uM</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(263.050781 445.01268)">States: pump angle, motor angle, pressure difference, motor speed</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(225.799219 457.015414)">Published angle gains and unit scalings require reconciliation before SI simulation.</text>
+   </g>
+  </g>
+  <g id="text_11">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #16324f" x="47.52" y="41.156719" transform="rotate(-0 47.52 41.156719)">Hydrostatic transmission</text>
+  </g>
+  <g id="text_12">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="57.96" transform="rotate(-0 47.52 57.96)">Section 3.6 • hydraulic coupling with pump and motor displacement control</text>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="486.36" transform="rotate(-0 47.52 486.36)">Conceptual equipment schematic • topology and model variables, not a detailed P&amp;ID</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p4162481478">
+   <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
+  </clipPath>
+ </defs>
+</svg>

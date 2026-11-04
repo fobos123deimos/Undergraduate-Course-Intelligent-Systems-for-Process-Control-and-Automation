@@ -1,0 +1,13 @@
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+*.pyc
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+.venv/
+build/
+external-data/
+simulink/generated/

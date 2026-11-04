@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="504pt" viewBox="0 0 864 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>10-column-a</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>10-column-a</dc:title>
+    <dc:date>2026-11-04T11:16:44.158794</dc:date>
+    <dc:description>Original conceptual scientific equipment diagram</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 864 504 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 360.432 392.184 
+L 483.12 392.184 
+L 483.12 162.144 
+L 360.432 162.144 
+z
+" clip-path="url(#p2191e23cf5)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 549.576 170.8344 
+L 641.592 170.8344 
+Q 647.7264 170.8344 647.7264 164.7 
+L 647.7264 134.028 
+Q 647.7264 127.8936 641.592 127.8936 
+L 549.576 127.8936 
+Q 543.4416 127.8936 543.4416 134.028 
+L 543.4416 164.7 
+Q 543.4416 170.8344 549.576 170.8344 
+z
+" clip-path="url(#p2191e23cf5)" style="fill: #ffffff; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 549.576 431.5464 
+L 641.592 431.5464 
+Q 647.7264 431.5464 647.7264 425.412 
+L 647.7264 394.74 
+Q 647.7264 388.6056 641.592 388.6056 
+L 549.576 388.6056 
+Q 543.4416 388.6056 543.4416 394.74 
+L 543.4416 425.412 
+Q 543.4416 431.5464 549.576 431.5464 
+z
+" clip-path="url(#p2191e23cf5)" style="fill: #ffffff; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 362.988 361.512 
+L 480.564 361.512 
+" clip-path="url(#p2191e23cf5)" style="fill: none; stroke: #16324f; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 362.988 327.7728 
+L 480.564 327.7728 
+" clip-path="url(#p2191e23cf5)" style="fill: none; stroke: #16324f; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 362.988 294.0336 
+L 480.564 294.0336 
+" clip-path="url(#p2191e23cf5)" style="fill: none; stroke: #16324f; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 362.988 260.2944 
+L 480.564 260.2944 
+" clip-path="url(#p2191e23cf5)" style="fill: none; stroke: #16324f; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 362.988 226.5552 
+L 480.564 226.5552 
+" clip-path="url(#p2191e23cf5)" style="fill: none; stroke: #16324f; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 362.988 192.816 
+L 480.564 192.816 
+" clip-path="url(#p2191e23cf5)" style="fill: none; stroke: #16324f; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_7">
+    <path d="M 432 162.144 
+L 432 118.692 
+L 595.584 118.692 
+L 595.584 128.916 
+" clip-path="url(#p2191e23cf5)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_8">
+    <path d="M 544.464 149.364 
+L 516.348 149.364 
+L 516.348 190.26 
+" clip-path="url(#p2191e23cf5)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_9">
+    <path d="M 421.776 392.184 
+L 421.776 440.748 
+L 595.584 440.748 
+L 595.584 430.524 
+" clip-path="url(#p2191e23cf5)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_10">
+    <path d="M 544.464 410.076 
+L 516.348 410.076 
+L 516.348 364.068 
+" clip-path="url(#p2191e23cf5)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <g id="patch_5">
+     <path d="M 400.809437 289.21 
+L 442.742562 289.21 
+L 442.742562 270.23 
+L 400.809437 270.23 
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="421.776" y="283.096953" transform="rotate(-0 421.776 283.096953)">xᵢ , Mᵢ</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 147.729711 279.72 
+Q 253.079594 279.72 356.19341 279.72 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 350.19341 276.72 
+L 356.19341 279.72 
+L 350.19341 282.72 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="253.08" y="262.129422" transform="rotate(-0 253.08 262.129422)">F, zF, qF → stage 21</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="595.584" y="152.221852" transform="rotate(-0 595.584 152.221852)">Condenser</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 648.702435 149.364 
+Q 685.042692 149.364 719.146882 149.364 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 713.146882 146.364 
+L 719.146882 149.364 
+L 713.146882 152.364 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="685.044" y="134.329422" transform="rotate(-0 685.044 134.329422)">D</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 514.348317 190.26 
+Q 499.734822 190.26 487.357394 190.26 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 493.357394 193.26 
+L 487.357394 190.26 
+L 493.357394 187.26 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="517.626" y="177.781422" transform="rotate(-0 517.626 177.781422)">L</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="595.584" y="412.933852" transform="rotate(-0 595.584 412.933852)">Reboiler</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 514.348317 364.068 
+Q 499.734822 364.068 487.357394 364.068 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 493.357394 367.068 
+L 487.357394 364.068 
+L 493.357394 361.068 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="517.626" y="351.589422" transform="rotate(-0 517.626 351.589422)">V</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 648.702435 410.076 
+Q 685.042692 410.076 719.146882 410.076 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 713.146882 407.076 
+L 719.146882 410.076 
+L 713.146882 413.076 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="685.044" y="395.041422" transform="rotate(-0 685.044 395.041422)">B</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(199.490219 363.946844)">x: mole fraction</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(221.074281 377.149852)">M: kmol</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(198.176234 390.352859)">Flows: kmol/min</text>
+   </g>
+  </g>
+  <g id="text_10">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #16324f" x="47.52" y="41.156719" transform="rotate(-0 47.52 41.156719)">Binary distillation Column A</text>
+  </g>
+  <g id="text_11">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="57.96" transform="rotate(-0 47.52 57.96)">Section 3.10 • 41 stages and 82 states; only representative trays are drawn</text>
+  </g>
+  <g id="text_12">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="486.36" transform="rotate(-0 47.52 486.36)">Conceptual equipment schematic • topology and model variables, not a detailed P&amp;ID</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p2191e23cf5">
+   <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
+  </clipPath>
+ </defs>
+</svg>

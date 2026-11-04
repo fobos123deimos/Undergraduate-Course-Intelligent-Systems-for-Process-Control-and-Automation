@@ -1,0 +1,56 @@
+[
+  {
+    "path": "laboratories/01-modeling-identification/notebook.ipynb",
+    "code_cells": 3,
+    "executed": true,
+    "errors": 0
+  },
+  {
+    "path": "laboratories/02-feedback-imc/notebook.ipynb",
+    "code_cells": 3,
+    "executed": true,
+    "errors": 0
+  },
+  {
+    "path": "laboratories/03-control-structures/notebook.ipynb",
+    "code_cells": 3,
+    "executed": true,
+    "errors": 0
+  },
+  {
+    "path": "laboratories/04-model-predictive-control/notebook.ipynb",
+    "code_cells": 3,
+    "executed": true,
+    "errors": 0
+  },
+  {
+    "path": "laboratories/05-expert-fuzzy-control/notebook.ipynb",
+    "code_cells": 3,
+    "executed": true,
+    "errors": 0
+  },
+  {
+    "path": "laboratories/06-neural-identification-control/notebook.ipynb",
+    "code_cells": 3,
+    "executed": true,
+    "errors": 0
+  },
+  {
+    "path": "laboratories/07-evolutionary-tuning/notebook.ipynb",
+    "code_cells": 3,
+    "executed": true,
+    "errors": 0
+  },
+  {
+    "path": "laboratories/08-integrated-validation/notebook.ipynb",
+    "code_cells": 3,
+    "executed": true,
+    "errors": 0
+  },
+  {
+    "path": "benchmarks/notebook.ipynb",
+    "code_cells": 7,
+    "executed": true,
+    "errors": 0
+  }
+]

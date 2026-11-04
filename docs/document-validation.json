@@ -1,0 +1,280 @@
+{
+  "documents": [
+    {
+      "path": "course/notes.pdf",
+      "sha256": "80f11d92255fbf6db0f9873ad29bb0a95bdf422bafd567b8872b2f074297ecc8",
+      "bytes": 104704,
+      "pages": 17,
+      "page_checks": [
+        {
+          "page": 1,
+          "characters": 2358,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 2,
+          "characters": 1388,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 3,
+          "characters": 1986,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 4,
+          "characters": 2310,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 5,
+          "characters": 2421,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 6,
+          "characters": 459,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 7,
+          "characters": 2367,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 8,
+          "characters": 586,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 9,
+          "characters": 2191,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 10,
+          "characters": 799,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 11,
+          "characters": 2861,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 12,
+          "characters": 2712,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 13,
+          "characters": 674,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 14,
+          "characters": 2964,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 15,
+          "characters": 3266,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 16,
+          "characters": 325,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 17,
+          "characters": 1979,
+          "characters_outside_page": 0
+        }
+      ],
+      "layout_or_glyph_warnings": []
+    },
+    {
+      "path": "problem-sets/exercises.pdf",
+      "sha256": "10ccfe1201ef2bb3e216603cc9f810725293c13c1f7fe905176a9add378c220e",
+      "bytes": 82492,
+      "pages": 11,
+      "page_checks": [
+        {
+          "page": 1,
+          "characters": 2449,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 2,
+          "characters": 2104,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 3,
+          "characters": 2458,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 4,
+          "characters": 461,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 5,
+          "characters": 2057,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 6,
+          "characters": 2369,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 7,
+          "characters": 1943,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 8,
+          "characters": 2214,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 9,
+          "characters": 2106,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 10,
+          "characters": 2131,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 11,
+          "characters": 2307,
+          "characters_outside_page": 0
+        }
+      ],
+      "layout_or_glyph_warnings": []
+    },
+    {
+      "path": "problem-sets/solutions.pdf",
+      "sha256": "a72266007173fb3eeac2ac7e7a466bec07f7f3fb4723fb41c8a3b4331a5e078c",
+      "bytes": 114472,
+      "pages": 18,
+      "page_checks": [
+        {
+          "page": 1,
+          "characters": 2432,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 2,
+          "characters": 2116,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 3,
+          "characters": 3611,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 4,
+          "characters": 2355,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 5,
+          "characters": 3444,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 6,
+          "characters": 1952,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 7,
+          "characters": 3293,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 8,
+          "characters": 1895,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 9,
+          "characters": 3264,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 10,
+          "characters": 1836,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 11,
+          "characters": 3677,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 12,
+          "characters": 2076,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 13,
+          "characters": 3458,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 14,
+          "characters": 1652,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 15,
+          "characters": 3587,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 16,
+          "characters": 1775,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 17,
+          "characters": 3779,
+          "characters_outside_page": 0
+        },
+        {
+          "page": 18,
+          "characters": 2805,
+          "characters_outside_page": 0
+        }
+      ],
+      "layout_or_glyph_warnings": []
+    }
+  ],
+  "visual_review": {
+    "status": "passed",
+    "coverage": "All 46 pages inspected through rendered contact sheets; equation, diagram, disturbance-definition and bibliography pages inspected at larger scale.",
+    "focused_pages": {
+      "course/notes.pdf": [
+        3,
+        4,
+        11,
+        12,
+        17
+      ],
+      "problem-sets/solutions.pdf": [
+        10,
+        13
+      ]
+    },
+    "findings": "No clipping, overlaps, missing mathematical glyphs or unreadable labels observed after corrections. Unit boundaries intentionally start new pages."
+  },
+  "render_output": "PNG page renders and contact sheets are kept outside the repository by default."
+}

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="504pt" viewBox="0 0 864 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>13-tennessee-eastman</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>13-tennessee-eastman</dc:title>
+    <dc:date>2026-11-04T11:16:46.069491</dc:date>
+    <dc:description>Original conceptual scientific equipment diagram</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 864 504 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 186.624 250.0704 
+L 283.752 250.0704 
+Q 289.8864 250.0704 289.8864 243.936 
+L 289.8864 187.704 
+Q 289.8864 181.5696 283.752 181.5696 
+L 186.624 181.5696 
+Q 180.4896 181.5696 180.4896 187.704 
+L 180.4896 243.936 
+Q 180.4896 250.0704 186.624 250.0704 
+z
+" clip-path="url(#p1b91882748)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 380.88 250.0704 
+L 478.008 250.0704 
+Q 484.1424 250.0704 484.1424 243.936 
+L 484.1424 187.704 
+Q 484.1424 181.5696 478.008 181.5696 
+L 380.88 181.5696 
+Q 374.7456 181.5696 374.7456 187.704 
+L 374.7456 243.936 
+Q 374.7456 250.0704 380.88 250.0704 
+z
+" clip-path="url(#p1b91882748)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 575.136 250.0704 
+L 672.264 250.0704 
+Q 678.3984 250.0704 678.3984 243.936 
+L 678.3984 187.704 
+Q 678.3984 181.5696 672.264 181.5696 
+L 575.136 181.5696 
+Q 569.0016 181.5696 569.0016 187.704 
+L 569.0016 243.936 
+Q 569.0016 250.0704 575.136 250.0704 
+z
+" clip-path="url(#p1b91882748)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 575.136 393.2064 
+L 672.264 393.2064 
+Q 678.3984 393.2064 678.3984 387.072 
+L 678.3984 330.84 
+Q 678.3984 324.7056 672.264 324.7056 
+L 575.136 324.7056 
+Q 569.0016 324.7056 569.0016 330.84 
+L 569.0016 387.072 
+Q 569.0016 393.2064 575.136 393.2064 
+z
+" clip-path="url(#p1b91882748)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 380.88 393.2064 
+L 478.008 393.2064 
+Q 484.1424 393.2064 484.1424 387.072 
+L 484.1424 330.84 
+Q 484.1424 324.7056 478.008 324.7056 
+L 380.88 324.7056 
+Q 374.7456 324.7056 374.7456 330.84 
+L 374.7456 387.072 
+Q 374.7456 393.2064 380.88 393.2064 
+z
+" clip-path="url(#p1b91882748)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 570.024 231.156 
+L 524.016 231.156 
+L 524.016 358.956 
+" clip-path="url(#p1b91882748)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 375.768 358.956 
+L 235.188 358.956 
+L 235.188 249.048 
+" clip-path="url(#p1b91882748)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="235.188" y="218.937187" transform="rotate(-0 235.188 218.937187)">Reactor</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="429.444" y="218.937656" transform="rotate(-0 429.444 218.937656)">Condenser</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="623.7" y="218.937187" transform="rotate(-0 623.7 218.937187)">Separator</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="623.7" y="362.073656" transform="rotate(-0 623.7 362.073656)">Stripper</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(408.269 355.212777)">Recycle</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(397.324859 368.414926)">compressor</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 290.866335 215.82 
+Q 332.31834 215.82 371.534276 215.82 
+" style="fill: none; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 365.534276 212.82 
+L 371.534276 215.82 
+L 365.534276 218.82 
+z
+" style="fill: #596b7b; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 485.122335 215.82 
+Q 526.57434 215.82 565.790276 215.82 
+" style="fill: none; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 559.790276 212.82 
+L 565.790276 215.82 
+L 559.790276 218.82 
+z
+" style="fill: #596b7b; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 623.7 251.046435 
+Q 623.7 287.386692 623.7 321.490882 
+" style="fill: none; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 626.7 315.490882 
+L 623.7 321.490882 
+L 620.7 315.490882 
+z
+" style="fill: #596b7b; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #596b7b" x="664.596" y="290.245852" transform="rotate(-0 664.596 290.245852)">Liquid</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 522.014133 358.956 
+Q 503.566482 358.956 487.3549 358.956 
+" style="fill: none; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 493.3549 361.956 
+L 487.3549 358.956 
+L 493.3549 355.956 
+z
+" style="fill: #596b7b; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #16324f" x="524.016" y="307.877656" transform="rotate(-0 524.016 307.877656)">Vapor</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 235.188 290.497665 
+Q 235.188 270.773403 235.188 253.285208 
+" style="fill: none; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 232.188 259.285208 
+L 235.188 253.285208 
+L 238.188 259.285208 
+z
+" style="fill: #596b7b; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="311.868" y="341.106047" transform="rotate(-0 311.868 341.106047)">Recycle</text>
+   </g>
+   <g id="patch_12">
+    <path d="M 132.391995 215.82 
+Q 155.952149 215.82 177.276235 215.82 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 171.276235 212.82 
+L 177.276235 215.82 
+L 171.276235 218.82 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #00866b" transform="translate(193.856359 145.620777)">Reactant feeds</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #00866b" transform="translate(209.386984 158.822926)">A, C, D, E</text>
+   </g>
+   <g id="patch_13">
+    <path d="M 235.188 169.259115 
+Q 235.188 174.924615 235.188 178.354046 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 238.188 172.354046 
+L 235.188 178.354046 
+L 232.188 172.354046 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 679.376931 358.956 
+Q 705.49119 358.956 729.369381 358.956 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 723.369381 355.956 
+L 729.369381 358.956 
+L 723.369381 361.956 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="626.256" y="425.713852" transform="rotate(-0 626.256 425.713852)">Products G/H</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="134.589656" transform="rotate(-0 432 134.589656)">8 species • 12 manipulated inputs • 41 measured outputs</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="458.682047" transform="rotate(-0 432 458.682047)">Original model: 50 states • revised 2015 implementation: 52 continuous states</text>
+   </g>
+  </g>
+  <g id="text_13">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #16324f" x="47.52" y="41.156719" transform="rotate(-0 47.52 41.156719)">Tennessee Eastman: plantwide topology</text>
+  </g>
+  <g id="text_14">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="57.96" transform="rotate(-0 47.52 57.96)">Section 3.13 • conceptual unit connections; stream instrumentation is intentionally omitted</text>
+  </g>
+  <g id="text_15">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="486.36" transform="rotate(-0 47.52 486.36)">Conceptual equipment schematic • topology and model variables, not a detailed P&amp;ID</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p1b91882748">
+   <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
+  </clipPath>
+ </defs>
+</svg>

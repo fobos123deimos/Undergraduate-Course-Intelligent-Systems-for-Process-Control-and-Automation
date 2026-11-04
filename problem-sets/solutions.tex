@@ -1,0 +1,287 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\emergencystretch}{2em}
+\definecolor{water}{RGB}{205,231,241}
+\definecolor{ink}{RGB}{30,62,79}
+\tikzset{flow/.style={-{Latex},thick,ink}, equipment/.style={thick,ink},
+         box/.style={draw=ink,rounded corners,align=center,inner sep=5pt}}
+\title{Worked solutions and design reasoning\\[4pt]{\large Forty integrated process-control problems}}
+\author{Independent study collection}
+\date{}
+\begin{document}
+\maketitle
+\noindent Academic context: Intelligent Systems for Process Control and Automation, Prof. Michela Mulas. These newly written learning materials are not an official course plan and do not imply the professor's authorship, review or endorsement.
+
+\tableofcontents\newpage
+\clearpage\section{Unit 01: Modeling, identification and simulation}
+\subsection{Problem 01.1 - From vessel balances to an admissible simulation}
+\textbf{Problem.} A tank initially contains 100 L at $c(0)=0.2$. The total inlet and outlet flows are 10 L/min and the high-concentration fraction becomes $u=0.7$. (a) Derive the concentration equation from total and solute balances, retaining the volume derivative until the end. (b) Obtain $c(t)$, its value at 10 min, and the time to reach 95\% of its total change. (c) Explain what changes if the outlet is fixed at 8 L/min; derive the new volume and concentration equations and identify which transfer-function assumption fails.
+
+
+\textbf{Worked answer.} (a) The total balance is $\dot V=q_H+q_L-q_o=0$. The solute balance is $V\dot c+c\dot V=q_H-q_oc$; substituting $q_H=10u$ and $q_o=10$ gives $10\dot c=u-c$. (b) $c(t)=0.7-0.5e^{-t/10}$, so $c(10)=0.5160603$. Solving $e^{-t/10}=0.05$ gives $t_{95}=29.9573$ min. The concentration remains between its initial and final values. (c) $V(t)=100+2t$ and $\dot c=10(0.7-c)/(100+2t)$. Separation gives $c(t)=0.7-0.5[100/(100+2t)]^5$. The response slows as the vessel fills; the constant residence-time, time-invariant transfer function no longer applies. A finite tank also needs an overflow limit.
+
+\subsection{Problem 01.2 - A sampled model that respects concentration bounds}
+\textbf{Problem.} Use the same tank with a held input. (a) Derive the exact sampled model for an arbitrary $T_s$ and prove interval invariance. (b) Compare its pole with Euler at $T_s=1$, 15 and 25 min. (c) A numerical model produces a negative concentration after a valid inlet change. Decide which evidence would distinguish an integration artifact from a wrong balance or inconsistent initial condition.
+
+
+\textbf{Worked answer.} (a) Integration yields $c_{k+1}=e^{-T_s/10}c_k+(1-e^{-T_s/10})u_k$. Both coefficients are nonnegative and sum to one, proving invariance for admissible $c_k,u_k$. (b) Exact poles are approximately 0.90484, 0.22313 and 0.08208. Euler poles are 0.9, -0.5 and -1.5. At 15 min Euler is stable but can leave the physical interval; at 25 min it is unstable. (c) Re-run with successively smaller steps, check the analytical solution for a constant input and audit units and state initialization. Convergence to a physically impossible result points beyond time-step error. Do not conceal the failure by clipping the state, since clipping creates or destroys material.
+
+\subsection{Problem 01.3 - Identify a process without leaking the answer}
+\textbf{Problem.} Noiseless input-output samples are $(c_k,u_k,c_{k+1})=(0.2,0.8,0.26)$ and $(0.26,0.1,0.244)$. (a) Estimate $a,b$ and identify the time constant if these are exact one-minute samples. (b) Show why equilibrium-only observations do not uniquely determine both parameters. (c) Design independent training, validation and test trajectories for a noisy experiment and state which model choices may use each split.
+
+
+\textbf{Worked answer.} (a) Solving $0.2a+0.8b=0.26$ and $0.26a+0.1b=0.244$ gives $a=0.9$, $b=0.1$. The exact continuous time constant would be $-1/\ln(0.9)=9.49122$ min; interpreting this as the earlier Euler discretization instead gives 10 min. The discretization convention matters. (b) At equilibrium $u_k=c_k$ and $c_{k+1}=c_k$, so only $a+b=1$ is identified: the columns of $\Phi$ coincide. (c) Use different bounded multilevel sequences and different initial concentrations; reserve the last complete sequence for final reporting. Fit coefficients and scaling on training data, choose model order/regularization using validation data, then evaluate the frozen model once on test data. Report free-run and one-step errors separately.
+
+\subsection{Problem 01.4 - Disturbance linearization and sensor dynamics}
+\textbf{Problem.} Let the low-concentration feed carry an unknown normalized concentration $d$. Its balance is $10\dot c=u+(1-u)d-c$. A concentration sensor obeys $2\dot y=c-y$. (a) Linearize around $(u,d,c)=(0.4,0,0.4)$ and obtain both measured-output transfer functions. (b) Find the steady concentration after $d$ rises to 0.1 with fixed $u=0.4$. (c) Explain why fitting a single first-order model to $u\mapsto y$ can distort controller tuning.
+
+
+\textbf{Worked answer.} (a) The derivatives are $\partial f/\partial c=-0.1$, $\partial f/\partial u=0.1$, $\partial f/\partial d=0.06$. Therefore $Y/U=1/[(10s+1)(2s+1)]$ and $Y/D=0.6/[(10s+1)(2s+1)]$ in deviation variables. (b) The exact steady value is $0.4+0.6(0.1)=0.46$; the local prediction happens to be exact for this disturbance with fixed $u$. (c) A single lag may absorb the sensor's lag into an effective residence time or delay. An aggressively tuned controller then acts on a slower measurement than the plant-only design assumes. Identify sensor dynamics independently where possible, and report whether the model output is physical concentration or the measured signal.
+
+\subsection{Problem 01.5 - Choose an identification claim that the evidence supports}
+\textbf{Problem.} A model gives test errors $e=[0.1,-0.1,0.2,-0.2]$ on $y=[0,1,0,1]$. (a) Compute SSE, MSE, RMSE, maximum absolute error and $R^2$. (b) Give a case where a small one-step error would coexist with poor free simulation. (c) Propose two checks that would make a comparison against a model from Kroll and Schulte meaningful, and one conclusion these four samples cannot support.
+
+
+\textbf{Worked answer.} (a) SSE is 0.10, MSE 0.025, RMSE $\sqrt{0.025}=0.158114$, and maximum absolute error 0.2. The target mean is 0.5 and the sum of squared deviations is 1, hence $R^2=0.90$. (b) A recursively simulated autoregressive model with a pole slightly above one can make small corrections when measured outputs are supplied, yet drift when fed its own outputs. (c) Match the paper's plant variant, parameters, sampling, input sequence, initial state and noise convention; keep a common independent test record and metric normalization. Four samples do not establish generalization, robustness or physical validity. The article uses MAE for maximum absolute error; write the metric out to avoid confusing it with mean absolute error.
+
+
+\clearpage\section{Unit 02: Feedback, stability and IMC tuning}
+\subsection{Problem 02.1 - An IMC reference design with a physical actuator}
+\textbf{Problem.} The tank operates initially at $c=u=0.4$ and the reference changes to 0.6. (a) Derive PI gains for $\lambda=5$ min and the nominal reference response. (b) Compute the immediate actuator command using the equilibrium integral state. (c) Repeat for a reference of 1.2 and explain which part of the nominal calculation ceases to predict the real response.
+
+
+\textbf{Worked answer.} (a) $K_p=10/5=2$ and $K_i=1/5=0.2$ per minute. The ideal deviation response is $0.2(1-e^{-t/5})$. (b) At the original equilibrium, $I=0.4$; immediately after the step, $v=2(0.2)+0.4=0.8$, within the bounds. (c) The larger error is 0.8, giving $v=2.0$, but $u$ can only be 1. Concentration approaches at most 1. The linear closed-loop transfer function assumes $u=v$ and cannot predict saturation or the accumulating integral state. The target itself is infeasible, so anti-windup can improve recovery but cannot make it attainable.
+
+\subsection{Problem 02.2 - A stable continuous design with an unstable software choice}
+\textbf{Problem.} For $K_p=2$, $K_i=0.2$ per minute, use the exact held-input plant and the explicit integral update in the lesson. (a) Derive the closed-loop matrix. (b) Evaluate its eigenvalues for $T_s=1$ min. (c) Test $T_s=10$ min and explain why the continuous-time stability proof is insufficient.
+
+
+\textbf{Worked answer.} (a) With zero reference, $e_k=-c_k$ and $c_{k+1}=(a-bK_p)c_k+bI_k$, while $I_{k+1}=I_k-T_sK_ic_k$. This gives the stated matrix. (b) For $a=0.9048374$, the trace is 1.7145123 and determinant 0.7335448; eigenvalues are approximately $0.89390714$ and $0.82060511$, inside the unit circle. (c) For $a=e^{-1}$, the matrix has trace about 0.1036383 and determinant $e^{-1}=0.3678794$. The poles are a complex pair of magnitude $\sqrt{e^{-1}}=0.606531$, so this particular sample remains stable, although response quality differs. This is a deliberate check against assuming coarse sampling always destabilizes. At $T_s=20$ min the determinant is $2-e^{-2}=1.864665>1$, so at least one pole is outside the unit circle. Derive and test the implemented update instead of guessing.
+
+\subsection{Problem 02.3 - Recover from windup}
+\textbf{Problem.} At one sample $I=0.9$, $e=0.2$, $K_p=2$, $K_i=0.2$, $T_s=1$ min. (a) Calculate requested and applied commands. (b) Calculate the next integral state without anti-windup and with $K_{aw}=0.5$ per minute. (c) Explain why back-calculation should use actual actuator feedback when the valve differs from the software saturation.
+
+
+\textbf{Worked answer.} (a) $v=0.9+0.4=1.3$ and $u=1$. (b) Without correction, $I^+=0.9+0.04=0.94$. With back-calculation, $I^+=0.9+0.04+0.5(1-1.3)=0.79$. The correction removes the portion of the integral state responsible for an unrealizable command. (c) A stuck valve, rate limit or failed low-level flow loop can make the actual blend differ from the clipped software request. Tracking actual actuator feedback aligns the internal controller state with what the plant receives. Sensor delay in that feedback must itself be considered. Excessively fast back-calculation can create undesirable sampled transients.
+
+\subsection{Problem 02.4 - Delay uncertainty and a robustness budget}
+\textbf{Problem.} An identified model is $P(s)=e^{-2s}/(10s+1)$. (a) Apply the stated approximate IMC-PI rule for $\lambda=5$ min. (b) Compare gains to the delay-free design. (c) Propose a reproducible experiment with delay ranging from 1 to 4 min and explain which result would disqualify the fast tuning even if nominal IAE is smaller.
+
+
+\textbf{Worked answer.} (a) $K_p=10/(5+2)=10/7$ and $T_i=10$ min, hence $K_i=1/7$ per minute. (b) The delay-free gains are 2 and 0.2, so both new gains are $5/7$ of those values. The lower gain accounts approximately for the missing phase information caused by delay. (c) Use the same bounded reference and disturbance trajectories at each delay, with a delay buffer that represents fractional samples explicitly. Record stability, peak error, constraint violations, IAE and actuator variation. Sustained oscillation, growing error, or violation of a declared operating limit in an allowed delay case disqualifies a candidate even if its nominal tracking integral is lower. A finite grid is evidence for those cases, not a proof for every delay.
+
+\subsection{Problem 02.5 - Choose metrics before choosing the winner}
+\textbf{Problem.} Controller A has absolute errors $[0.2,0.1,0.05,0]$ and applied inputs $[0.8,0.3,0.7,0.5]$. Controller B has errors $[0.2,0.12,0.06,0.02]$ and inputs $[0.6,0.58,0.55,0.52]$. Assume one-minute equal-duration intervals and an initial input of 0.4. (a) Compute rectangle-rule IAE and total input variation. (b) Compare $J=\mathrm{IAE}+0.1\,\mathrm{TV}(u)$. (c) Explain what a fair report must disclose about this scalar score.
+
+
+\textbf{Worked answer.} (a) A has IAE 0.35 and variation $0.4+0.5+0.4+0.2=1.5$. B has IAE 0.40 and variation $0.2+0.02+0.03+0.03=0.28$. (b) $J_A=0.50$ and $J_B=0.428$, so B wins under this explicitly chosen cost although A tracks more tightly by IAE. (c) State the sample interval, quadrature convention, input normalization, initial input and weight units. Changing the weight can reverse the ranking; neither controller is universally superior. Treat hard safety/operating constraints separately rather than allowing a favorable average score to compensate for violations.
+
+
+\clearpage\section{Unit 03: Multiloop, multivariable, feedforward and cascade control}
+\subsection{Problem 03.1 - A feed composition disturbance}
+\textbf{Problem.} The concentration target is 0.5. The low feed changes from $d=0$ to 0.2 while total flow remains constant. (a) Calculate the new blend fraction required for zero steady error. (b) Compare exact nonlinear feedforward with the linearization around $u=0.5,d=0$. (c) Determine what occurs if $d$ rises to 0.7 and the target is unchanged.
+
+
+\textbf{Worked answer.} (a) $u=(0.5-0.2)/(1-0.2)=0.375$. (b) The local relation is $\delta c=\delta u+0.5\delta d$, giving $u_{lin}=0.5-0.5(0.2)=0.4$. Its actual equilibrium is $0.4+0.6(0.2)=0.52$, so feedback must remove 0.02 concentration error. (c) Even $u=0$ gives concentration 0.7; any high-feed addition increases it. The target is infeasible. The supervisor should flag the condition or change the admissible target rather than continue integrating an error that the actuator cannot remove.
+
+\subsection{Problem 03.2 - When perfect feedforward cannot be built}
+\textbf{Problem.} Suppose $G_u=e^{-3s}/(10s+1)$ and $G_d=0.6e^{-s}/(10s+1)$. (a) Derive the ideal cancellation transfer function. (b) Explain the implementation obstacle. (c) Propose an implementable architecture and an experiment that separates feedforward benefit from ordinary feedback correction.
+
+
+\textbf{Worked answer.} (a) $F=-G_d/G_u=-0.6e^{2s}$. (b) This needs the disturbance two minutes into the future; the actuator path is slower than the disturbance path. A causal controller cannot supply an unknown future value. (c) Use upstream sensing that provides at least two minutes of genuine transport preview if available; otherwise use a causal gain/filter and accept residual transient error, with feedback trimming. Compare feedback alone and feedback plus the feasible feedforward on the same recorded disturbance and initial state. Account for sensor location, latency and noise. Do not model an artificial negative delay and describe the resulting cancellation as implementable.
+
+\subsection{Problem 03.3 - Design the inner flow loop before the outer loop}
+\textbf{Problem.} A blend actuator has $\tau_v=2$ min and the vessel has $\tau=10$ min. Use $v=u_{sp}+K_f(u_{sp}-u)$. (a) Choose $K_f$ for an inner time constant of 0.5 min. (b) Derive the transfer functions from $u_{sp}$ and $w$ to $u$. (c) Discuss what a valve limit and sensor noise can invalidate in the desired bandwidth separation.
+
+
+\textbf{Worked answer.} (a) $2/(1+K_f)=0.5$, so $K_f=3$. (b) From $2\dot u=(1+K_f)u_{sp}-(1+K_f)u+w$, $U/U_{sp}=4/(2s+4)$ and $U/W=1/(2s+4)$. The steady load sensitivity is reduced from 1 to 1/4. (c) Saturation prevents the requested initial response, and a noisy inner sensor is multiplied by the feedback gain. Rate limits add dynamics that the first-order design omits. Before tuning the outer loop around the 0.5-minute response, verify the inner loop over its actual working range, including setpoint bounds and disturbance amplitudes.
+
+\subsection{Problem 03.4 - Pairing and decoupling a coupled process}
+\textbf{Problem.} Use $K=\begin{bmatrix}1&0.6\\0.4&1\end{bmatrix}$. (a) Calculate its inverse and relative gain array. (b) Find the steady input change required for output change $[0.2,0]^T$. (c) If the available input deviations are each limited to $[-0.1,0.1]$, explain why independent output targets cannot be assumed achievable.
+
+
+\textbf{Worked answer.} (a) $K^{-1}=\frac1{0.76}\begin{bmatrix}1&-0.6\\-0.4&1\end{bmatrix}$ and the RGA has diagonal $1/0.76=1.315789$ and off-diagonal $-0.24/0.76=-0.315789$. (b) The required change is $[0.263158,-0.105263]^T$. (c) Both demands exceed their respective limits in magnitude, so the target is infeasible under these bounds. Saturating the inverse output destroys nominal cancellation and creates error in both outputs. A constrained optimization can select an attainable compromise, with output weights reflecting declared priorities.
+
+\subsection{Problem 03.5 - Select a structure with a fair information budget}
+\textbf{Problem.} A concentration loop is affected by slow inlet-composition drift and rapid supply-pressure disturbances at its valve. Available upgrades are an upstream composition sensor and an inner flow sensor. (a) Map each sensor to the disturbance it can address. (b) Design a three-case comparison that attributes improvement to architecture rather than extra actuator range. (c) State why a static RGA from one operating point cannot settle the full design choice.
+
+
+\textbf{Worked answer.} (a) The composition sensor enables feedforward for changes in the entering material. The flow sensor enables a cascade loop that rejects supply disturbances before concentration changes appreciably. (b) Compare feedback only, feedback plus measured composition feedforward, and that architecture plus inner flow regulation. Hold plant parameters, final actuator bounds, reference schedule, disturbance realizations and initial conditions fixed; disclose the added sensors and their noise/latency. Report concentration error and valve movement separately. (c) RGA describes local steady gains; it does not represent disturbance location, measurement timing, dynamic interaction, noise amplification or actuator constraints. Repeat local analyses across operating points and validate the chosen dynamic structure.
+
+
+\clearpage\section{Unit 04: Constrained model predictive control}
+\subsection{Problem 04.1 - Build the prediction matrices by hand}
+\textbf{Problem.} For $c^+=ac+bu$, use $a=0.9,b=0.1$ and a prediction horizon of three. (a) Write $F$ and $G$ for $Y=[c_{k+1},c_{k+2},c_{k+3}]^T$. (b) Predict the sequence for $c_k=0.2$ and planned inputs $[0.5,0.7,0.4]^T$. (c) Explain which action a receding-horizon controller actually sends to the plant and when the other actions may change.
+
+
+\textbf{Worked answer.} (a) $F=[0.9,0.81,0.729]^T$ and $G=\begin{bmatrix}0.1&0&0\\0.09&0.1&0\\0.081&0.09&0.1\end{bmatrix}$. (b) Multiplication, or recursive substitution, gives $[0.23,0.277,0.2893]^T$. (c) Only 0.5 is applied now. At the next sample, the state estimate and reference forecast may differ, so the optimization is repeated and the previous 0.7/0.4 plans are not commitments. All language implementations must use the same initial state and timing to obtain matching predictions.
+
+\subsection{Problem 04.2 - Solve a constrained one-step controller}
+\textbf{Problem.} Use $a=0.9,b=0.1$, $c=0.2$, $r=0.8$, $u_{old}=0.4$ and $\rho=0.01$. (a) Derive and calculate the unconstrained optimum. (b) Enforce $0\leq u\leq1$ and $|u-u_{old}|\leq0.1$. (c) Compute the next concentration and explain why clipping the reference would solve a different problem.
+
+
+\textbf{Worked answer.} (a) Differentiating the objective gives $2b(ac+bu-r)+2\rho(u-u_{old})=0$. Thus $u^*=[0.1(0.8-0.18)+0.01(0.4)]/0.02=3.3$. (b) The intersection of amplitude and rate bounds is $[0.3,0.5]$, so the exact constrained optimum is 0.5. (c) $c^+=0.9(0.2)+0.1(0.5)=0.23$. The target remains a desired future output even though it cannot be reached in one step; clipping it to an immediately reachable value changes the performance objective and future plan. In this scalar convex problem projection is exact, but that property does not extend to arbitrary coupled QPs.
+
+\subsection{Problem 04.3 - Input increments and operating-point offsets}
+\textbf{Problem.} A controller operates at $u=0.6$. (a) Write the difference matrix and initial-value vector for three planned absolute inputs. (b) Compare the penalties on $U=[0.6,0.6,0.6]^T$ when penalizing $U^TU$ and $(DU-d_0)^T(DU-d_0)$. (c) Explain the effect of using absolute inputs in a model identified in deviations.
+
+
+\textbf{Worked answer.} (a) $D=\begin{bmatrix}1&0&0\\-1&1&0\\0&-1&1\end{bmatrix}$ and $d_0=[0.6,0,0]^T$. (b) The magnitude penalty is $3(0.6)^2=1.08$; the increment penalty is zero. The former encourages lower absolute actuation, while the latter only discourages movement. (c) A deviation model expects $\delta u=u-u^*$ and predicts $\delta y=y-y^*$. Feeding absolute $u$ introduces a systematic operating-point error and may lead the optimizer to inappropriate actions. Store and test the offsets explicitly, including state initialization, reference translation and actuator bounds in deviation coordinates.
+
+\subsection{Problem 04.4 - A multivariable feasibility calculation}
+\textbf{Problem.} At steady state $y=Ku$ with $K$ from Unit 03 and $0\leq u_i\leq1$. Target $y=[1.4,0.2]^T$. (a) Calculate the unconstrained input. (b) Prove that this target is infeasible. (c) Formulate a constrained steady target optimizer with output weights 4 and 1 and explain how it can support a dynamic MPC.
+
+
+\textbf{Worked answer.} (a) Apply the inverse from Unit 03:
+
+
+\[u=\frac{1}{0.76}\begin{bmatrix}1.4-0.12\\-0.56+0.2\end{bmatrix}=\begin{bmatrix}1.684211\\-0.473684\end{bmatrix}.\]
+
+(b) Because $K$ is nonsingular this is the unique input producing the target; both components violate bounds. (c) Solve $\min_{0\leq u\leq1}(Ku-r)^T\operatorname{diag}(4,1)(Ku-r)$. Its optimum is a feasible compromise, not an exact realization of $r$. A steady target layer can supply consistent equilibrium inputs/outputs to the dynamic regulator, avoiding an impossible terminal goal. The 4:1 weights express priority; report the resulting errors in both outputs.
+
+\subsection{Problem 04.5 - A solver failure is an operating event}
+\textbf{Problem.} A constrained MPC normally finishes in 0.02 s but occasionally exceeds a 0.1 s sampling deadline. (a) Design a causal fallback and identify what state it must retain. (b) Explain how disturbance-state augmentation can address steady mismatch but not a missed deadline. (c) Specify a validation record that prevents an apparently good output plot from hiding solver failures.
+
+
+\textbf{Worked answer.} (a) One conservative fallback is to hold the previous feasible input after applying declared rate and amplitude limits, while recording the event. Retain the actual applied input and the latest trustworthy state estimate. A separately validated backup controller is another option; transfer its integral state consistently. (b) A constant-disturbance estimator can correct bias in model predictions, improving offset behavior, but it does not provide computing time or a guaranteed feasible optimization result. (c) Log solve status, elapsed time, objective, maximum constraint residual, input actually applied and fallback flag at every sample. Report deadline misses and their effects separately, including worst-case intervals. Neither a successful solver status nor a short nominal trace proves recursive feasibility for untested conditions.
+
+
+\clearpage\section{Unit 05: Knowledge-based supervision and fuzzy control}
+\subsection{Problem 05.1 - Diagnose a symptom without overclaiming a fault}
+\textbf{Problem.} During a 20-minute experiment the concentration residual becomes positive, the commanded blend is 0.5, and measured blend remains 0.3. (a) Construct a rule that flags a flow-tracking problem after three consecutive samples. (b) Add a reset condition with hysteresis. (c) Explain which alternative hypotheses remain and what additional measurement would separate them.
+
+
+\textbf{Worked answer.} (a) For one-minute samples, define $r_u=u_{cmd}-u_{meas}$ and flag when $r_u>0.1$ for three consecutive valid samples; attach the evidence and sample times. With residual 0.2 this condition is met after the third sample. Name the state 'flow-tracking discrepancy', not 'valve definitely stuck'. (b) Reset only after $|r_u|<0.05$ for five valid samples; invalid sensor data should enter a distinct unknown state rather than count as successful tracking. (c) Valve limitation, supply-pressure loss, calibration error or a faulty flow sensor can all produce this record. Independent valve-position/supply-pressure measurement or a redundant flow check helps distinguish them. Concentration alone adds delayed, model-dependent evidence.
+
+\subsection{Problem 05.2 - A reproducible Sugeno control action}
+\textbf{Problem.} Use the three memberships from the lesson with normalized error $e=0.3$. Single-input zero-order consequents are $z_N=-1,z_Z=0,z_P=1$. (a) Calculate every membership and the Sugeno output. (b) If this gives an input increment with $K_u=0.2$ and previous input 0.96, determine the requested and applied actions. (c) Explain why changing the error normalization changes the physical controller.
+
+
+\textbf{Worked answer.} (a) Memberships are $[0,0.7,0.3]$, so the weighted output is 0.3. (b) The requested increment is 0.06; the requested command is 1.02 and the applied blend is 1.0. Record the difference for any internal integrator or anti-windup mechanism. (c) If $e=e_{physical}/E$, reducing $E$ produces a larger normalized error for the same physical condition and activates more extreme rules. Thus normalization acts like a gain and must be part of the controller specification. The normalized domain and saturation policy also determine behavior outside the trained/design range.
+
+\subsection{Problem 05.3 - Mamdani centroid is not singleton averaging}
+\textbf{Problem.} Two disjoint triangular output sets have centers -0.5 and 0.5, each base width 1 and height 1. Their supports are $[-1,0]$ and $[0,1]$. Minimum implication clips them at heights 0.8 and 0.2; aggregation is maximum. (a) Calculate each clipped area. (b) Calculate the centroid of the aggregate. (c) Compare with a Sugeno system using the centers as singleton consequents and the same firing strengths.
+
+
+\textbf{Worked answer.} (a) For a symmetric triangle of base width 1, clipping at height $h$ leaves area $h-h^2/2$. The areas are 0.48 and 0.18. Each clipped set retains its center by symmetry. (b) The supports do not overlap except at a zero-membership endpoint, so the total first moment is $-0.5(0.48)+0.5(0.18)=-0.15$ and the area is 0.66. The centroid is $-0.2272727$. (c) The Sugeno result is $[-0.5(0.8)+0.5(0.2)]/(0.8+0.2)=-0.3$. The difference comes from the nonlinear dependence of clipped area on firing strength. A program that returns -0.3 for this Mamdani construction has implemented a different inference system.
+
+\subsection{Problem 05.4 - A fuzzy gain schedule with an explicit implementation}
+\textbf{Problem.} Let $K_p(e)=1+2\min(|e|/0.2,1)$ and $K_i=K_p/10$. (a) Calculate the gains at errors 0, 0.1 and 0.3. (b) Write a sampled PI update with saturation and back-calculation using these gains. (c) State why testing the three fixed-gain linear models is useful but insufficient to validate the gain-scheduled loop.
+
+
+\textbf{Worked answer.} (a) The proportional gains are 1, 2 and 3; the integral gains are 0.1, 0.2 and 0.3 per minute. (b) At sample $k$, evaluate $K_{p,k},K_{i,k}$ from the current error, calculate $v_k=K_{p,k}e_k+I_k$, apply $u_k=\operatorname{sat}_{[0,1]}v_k$, and update $I_{k+1}=I_k+T_s[K_{i,k}e_k+K_{aw}(u_k-v_k)]$. This integral state is already in actuator units. (c) Fixed-gain tests reveal local behavior and numerical errors, but the actual system is nonlinear and time-varying. Rapid scheduling, noise, delays and saturation may produce behaviors absent in frozen models. Test transitions and perturbations throughout the operating region; a formal global claim requires additional analysis.
+
+\subsection{Problem 05.5 - Validate the rule surface before a closed-loop comparison}
+\textbf{Problem.} A two-input fuzzy controller uses concentration error and its sampled difference. (a) Specify a grid-based test that checks correct sign, boundedness and coverage. (b) Explain why a symmetric rule table need not produce an odd control surface. (c) Design an ablation comparison between PI, fuzzy PI and fuzzy gain scheduling.
+
+
+\textbf{Worked answer.} (a) Evaluate a dense grid including corners and every membership breakpoint; require a finite output within declared limits and nonzero aggregate firing. Along zero error change, check that positive error does not command a decrease in high-feed fraction under the chosen sign convention. Examine neighboring values for unintended jumps. (b) Asymmetric input/output membership widths, asymmetric normalization or non-symmetric saturation can break odd symmetry even if linguistic labels appear symmetric. (c) Keep reference, disturbance, noise, sample rate, initial state and actuator limits identical. Compare PI, an incremental fuzzy controller, and a PI with only fuzzy gain scheduling. Report tuning effort and all gains/rules. This separates the effect of inference from the effect of merely changing nominal gain or actuator smoothing.
+
+
+\clearpage\section{Unit 06: Neural modeling and control of dynamic systems}
+\subsection{Problem 06.1 - A perceptron for a simple supervisory condition}
+\textbf{Problem.} Inputs are binary indicators $x_1$ (high residual) and $x_2$ (flow mismatch); the desired alarm is their logical OR. (a) Give weights and bias implementing the desired truth table with output 1 when $w^Tx+b\geq0$. (b) Starting from $w=[0,0]$, $b=0$ and learning rate 1, calculate the update after the sample $x=[0,0],t=0$, then after $x=[1,0],t=1$. (c) Explain why this classifier does not localize a specific physical fault.
+
+
+\textbf{Worked answer.} (a) $w=[1,1]$ and $b=-0.5$ classify only $[0,0]$ as zero. (b) The initial prediction for $[0,0]$ is 1 because of the specified tie rule. With $\Delta w=(t-\hat t)x$ and $\Delta b=t-\hat t$, the new state is $w=[0,0],b=-1$. The next sample is incorrectly predicted zero, so $w=[1,0],b=0$. (c) OR identifies a combined alarm condition, not a unique cause. Several faults and ordinary operating changes can generate either indicator. Validate labels, persistence and class imbalance, and preserve the distinction between classification performance and causal diagnosis.
+
+\subsection{Problem 06.2 - Differentiate a minimal neural predictor}
+\textbf{Problem.} For one scalar regressor $x=0.5$, let $h=\tanh(w_1x)$, $\hat y=w_2h$, $w_1=1,w_2=0.8$, target $y=0.4$ and loss $L=(\hat y-y)^2/2$. (a) Compute the prediction. (b) Derive both weight gradients. (c) State how a finite-difference check and a separate validation trajectory catch different errors.
+
+
+\textbf{Worked answer.} (a) $h=\tanh(0.5)=0.4621172$ and $\hat y=0.3696937$. (b) With residual $e=-0.0303063$, $\partial L/\partial w_2=eh\approx-0.0140050$. The chain rule gives $\partial L/\partial w_1=ew_2(1-h^2)x\approx-0.0095337$. Gradient descent subtracts these derivatives, so both weights initially increase. (c) Centered finite differences compare code derivatives with the implemented loss and detect chain-rule/indexing errors. An independent trajectory tests whether learning generalizes beyond the fitted samples. A correct gradient can still optimize an overfitted or causally invalid model.
+
+\subsection{Problem 06.3 - Fit and interpret a two-center RBF}
+\textbf{Problem.} Use centers 0 and 1, width $\sigma=1$, no bias term, and training pairs $(x,y)=(0,0),(1,1)$. (a) Write the design matrix. (b) Solve for the two exact interpolation weights. (c) Explain what predictions far outside $[0,1]$ reveal about this architecture and why regularization changes interpolation.
+
+
+\textbf{Worked answer.} (a) With $r=e^{-1/2}$, $\Psi=\begin{bmatrix}1&r\\r&1\end{bmatrix}$. (b) Solving gives $w_1=-r/(1-r^2)\approx-0.9595174$ and $w_2=1/(1-r^2)\approx1.5819767$. The interpolating values follow directly by substitution. (c) Both radial basis functions approach zero far from their centers, so the prediction approaches zero regardless of the process physics. This is unsupported extrapolation, not evidence that the real output vanishes. Ridge regularization shrinks the weights and usually sacrifices exact interpolation to reduce variance and ill-conditioning; choose its strength using independent validation.
+
+\subsection{Problem 06.4 - A SOM organizes operating modes}
+\textbf{Problem.} A two-unit SOM has prototypes $m_1=[0.2,0.3]^T$ and $m_2=[0.8,0.7]^T$. The normalized observation is $x=[0.3,0.4]^T$. Use learning rate 0.5, neighborhood weight 1 for the winner and 0.2 for the other unit. (a) Find the winner. (b) Calculate both updates. (c) Explain how training-data scaling and a subsequent fault label affect interpretation.
+
+
+\textbf{Worked answer.} (a) Squared distances are 0.02 and 0.34, so unit 1 wins. (b) $m_1^+=[0.2,0.3]+0.5[0.1,0.1]=[0.25,0.35]$. The second unit moves by $0.5(0.2)([-0.5,-0.3])$, giving $m_2^+=[0.75,0.67]$. (c) Euclidean distances depend on feature scales, so estimate normalization on training data and keep it fixed. A cluster of high residuals is not automatically a known fault; attach labels only using independently documented operating/fault evidence. A SOM can reveal a regime shift while leaving its physical cause unresolved.
+
+\subsection{Problem 06.5 - Put a neural prediction inside a bounded control decision}
+\textbf{Problem.} A local learned model predicts $\hat c^+=0.9c+0.1u+0.02u^2$. At $c=0.4$, current $u=0.4$ and desired next concentration 0.5, use a Newton inverse step with $\gamma=1$. (a) Calculate the prediction, derivative and candidate input. (b) Enforce $0\leq u\leq1$ and $|u-u_{old}|\leq0.1$. (c) Give two reasons to retain a fallback even if this training model fits well.
+
+
+\textbf{Worked answer.} (a) The prediction is $0.36+0.04+0.0032=0.4032$, and the derivative is $0.1+0.04(0.4)=0.116$. The Newton candidate is $0.4-(0.4032-0.5)/0.116=1.234483$. (b) The feasible interval is $[0.3,0.5]$, so the bounded candidate is 0.5; its prediction is 0.415. The target is not immediately reachable within the rate limit. (c) The model derivative may be unreliable outside its supported region, and plant mismatch or unobserved dynamics may invalidate the prediction. Repeated bounded steps are not a closed-loop stability proof. Compare on independent trajectories and use a tested controller when confidence or numerical conditions fail.
+
+
+\clearpage\section{Unit 07: Evolutionary optimization and controller tuning}
+\subsection{Problem 07.1 - Binary resolution has a physical cost}
+\textbf{Problem.} Encode $K_p\in[0,4]$ with four bits. (a) Decode chromosome 1001 and compute its resolution. (b) Find the nearest representable value to $K_p=2$. (c) Determine the minimum number of bits needed for resolution no greater than 0.02 and discuss the effect on search-space size.
+
+
+\textbf{Worked answer.} (a) Binary 1001 is integer 9, hence $K_p=4(9)/15=2.4$. Resolution is $4/15=0.2666667$. (b) Integers 7 and 8 give 1.8666667 and 2.1333333, equally far from 2. There is no exact code for 2 with this endpoint mapping. (c) Require $4/(2^b-1)\leq0.02$, or $2^b\geq201$, so $b=8$. A single parameter now has 256 codes instead of 16; two such parameters have 65,536 combinations. More resolution increases possible candidates but does not by itself improve the algorithm's ability to find a useful region.
+
+\subsection{Problem 07.2 - Selection, crossover and mutation}
+\textbf{Problem.} Two real chromosomes are $p_1=[2,0.2]$ and $p_2=[1,0.1]$. (a) Perform blend crossover with $\alpha=0.25$. (b) Apply mutation $[0.2,-0.15]$ and repair into bounds $K_p\in[0,4]$, $K_i\in[0.02,0.5]$ by projection. (c) Explain how a two-member tournament chooses among costs 0.6 and 0.4 and why recording the random seed is insufficient without the full evaluation protocol.
+
+
+\textbf{Worked answer.} (a) $p_c=0.25p_1+0.75p_2=[1.25,0.125]$. (b) Mutation gives $[1.45,-0.025]$; projection gives $[1.45,0.02]$. The repair creates a pileup at the lower bound if many mutations cross it, which can affect diversity. (c) For minimization the cost-0.4 member wins. A seed reproduces pseudo-random choices only with the same generator, ordering and software behavior. Initial states, plant parameters, sampling, constraints, termination thresholds and cost definitions are also needed to reproduce fitness and selection.
+
+\subsection{Problem 07.3 - A fitness function that does not hide violations}
+\textbf{Problem.} Candidate A has IAE 0.35, input variation 1.5 and no violations. Candidate B has IAE 0.30, variation 0.4 and one violation of a declared hard concentration limit. (a) Rank them under the soft cost $J=\mathrm{IAE}+0.1\,\mathrm{TV}$. (b) Rank them when the declared hard constraint is enforced. (c) Explain how to treat a simulation that becomes nonfinite rather than completing the horizon.
+
+
+\textbf{Worked answer.} (a) The scalar costs are 0.50 and 0.34, so B appears better if the violation is ignored. (b) B is infeasible and must be rejected or ranked behind every feasible candidate under a feasibility-first policy; A is preferred. A hard limit cannot be traded away merely because tracking is good. (c) Detect the nonfinite state, terminate the trial, label it invalid and assign the predetermined worst fitness. Do not average only the successful prefix, because an unstable controller would then appear cheap by ending early. Preserve the failure count and cause in optimization results.
+
+\subsection{Problem 07.4 - Tune MPC parameters without changing the ruler}
+\textbf{Problem.} A chromosome contains horizon $N$, output weight $q$ and move weight $r_u$. Bounds are $N\in\{3,\ldots,20\}$, $q\in[0.1,10]$, $r_u\in[0.001,1]$. (a) Propose a valid decoding for real genes. (b) Explain why multiplying both weights by 10 does not change an exact unconstrained optimizer. (c) Define an external fitness that still permits meaningful comparison among these chromosomes.
+
+
+\textbf{Worked answer.} (a) Round a bounded horizon gene to the nearest allowed integer and decode weight genes logarithmically, for example $q=10^{z_q}$ with $z_q\in[-1,1]$ and $r_u=10^{z_r}$ with $z_r\in[-3,0]$. Log encoding allocates resolution across ratios. (b) A positive common scaling multiplies the entire objective by a constant and leaves its minimizer unchanged, although solver numerical tolerances can be affected. (c) Use a fixed external tracking/variation/constraint metric on the same scenarios, independent of the internal MPC weights, and include deadline misses. Otherwise candidates could lower their reported internal objective simply by shrinking both weights without changing any control behavior.
+
+\subsection{Problem 07.5 - Assess a stochastic tuning claim}
+\textbf{Problem.} Two search methods each use population 20 for 15 evaluated generations, including their initial population. Method A reports only its best seed; B reports ten seeds. (a) Calculate the nominal evaluation budget per seed. (b) Propose a matched experiment and final test. (c) Explain why a lower best training cost does not prove superior generalization or a global optimum.
+
+
+\textbf{Worked answer.} (a) The nominal budget is $20\times15=300$ evaluations if every generation evaluates 20 candidates and caching/elitism do not reduce the count. Report actual calls as well. (b) Run both methods for the same number of independent seeds with matched total simulation budgets and identical training scenarios. Choose any algorithm settings on validation scenarios, freeze the selected design, then evaluate a separate family of disturbances, delays and plant parameters. Report median, spread, failures and evaluation time. (c) The best seed is a selection-biased statistic, and repeated training queries can overfit the scenario family. A finite heuristic search does not prove a global optimum. A defensible claim is an observed improvement under the specified budgets and independent test protocol.
+
+
+\clearpage\section{Unit 08: Integration, benchmark evidence and technical communication}
+\subsection{Problem 08.1 - Design an integrated Blending Tank study}
+\textbf{Problem.} Prepare a comparison of IMC-PI, feedforward PI, constrained MPC and one fuzzy or neural method on the hypothetical tank. (a) Define a common reference/disturbance protocol with a training period and a separate final test. (b) State the measurements each controller receives and how to disclose additional information. (c) Specify six reported outcomes and the minimum evidence required to reproduce them.
+
+
+\textbf{Worked answer.} (a) One valid protocol starts all runs at $c=u=0.4$, uses one-minute sampling and a 120-minute horizon, with reference 0.4 until 20 min, 0.6 until 70 min, then 0.3. Tune on this schedule with a low-feed disturbance of 0.1 at 50 min; freeze designs, then test a new schedule with step times 15/65 min and disturbance 0.15 at 45 min, plus a declared changed residence time. Keep the exact schedule in configuration. (b) All controllers receive concentration and the previous applied input. Feedforward additionally receives measured inlet composition; this information advantage must be explicit. Use the same sensor noise and delay for shared channels. (c) Report IAE, peak error, settling rule/result, input variation, saturation duration and violations/fallbacks. Save parameters, seeds, initial states, numerical settings, applied input and output trajectories, plus the executable command producing the report. These are designed experiments, not claimed outcomes.
+
+\subsection{Problem 08.2 - A biased model can have perfect VAF}
+\textbf{Problem.} Measured targets are $y=[0,1,2,3]$ and a model predicts $\hat y=y+0.5$. (a) Compute RMSE, VAF and $R^2$ using population variances and the standard definitions. (b) Explain why the metrics disagree. (c) Propose an additional validation check and explain what to report for a constant-output test record.
+
+
+\textbf{Worked answer.} (a) Every residual is -0.5, so RMSE is 0.5. Residual variance is zero and target variance is 1.25, giving VAF 100\%. Residual SSE is 1 while the target centered sum of squares is 5, so $R^2=0.8$. (b) VAF removes the residual mean; it measures unexplained variation while ignoring a constant bias. $R^2$ retains that bias in SSE. (c) Report mean residual and maximum absolute error, and inspect residual versus operating point. For constant target data the variance denominator is zero: VAF and standard $R^2$ are undefined. Report that status and absolute metrics instead of silently setting either score to 0 or 100\%.
+
+\subsection{Problem 08.3 - Distinguish reproduction from a teaching model}
+\textbf{Problem.} Consider three submissions: A implements the article's specified artificial recurrence with matching input/initial conditions; B simulates a wind rotor with an invented constant torque coefficient; C runs an official Tennessee Eastman implementation with a documented disturbance schedule. (a) Classify what each can support. (b) List metadata needed before comparing A or C with published scores. (c) Explain how B can still be useful without overstating its identity.
+
+
+\textbf{Worked answer.} (a) A is an equation-based reproduction candidate, subject to matching conventions and numerical checks. B is an educational wind-rotor approximation, not a reproduction of the full wind benchmark. C is a reference-simulator experiment, subject to version, controller and protocol matching. (b) Record model/source version, parameters, units, initial state, sampling, inputs/disturbances, noise, data split, controller information, metric formula and failure policy. Match these before comparing scores. (c) B can demonstrate inertia, aerodynamic/mechanical power balance and sensitivity to a chosen coefficient. Name and document the approximation, identify the missing map and restrict conclusions to its simplified dynamics. Do not use the benchmark name alone as evidence of comparability.
+
+\subsection{Problem 08.4 - Cross-language agreement has several levels}
+\textbf{Problem.} Python and Octave simulations differ by $10^{-7}$ in concentration but by 0.02 in a threshold-based settling time. MATLAB/Simulink has not yet run. (a) Explain a plausible cause of the settling difference. (b) Propose numerical and behavioral cross-language checks. (c) Write an accurate validation statement.
+
+
+\textbf{Worked answer.} (a) A trajectory near the settling-band boundary can cross it at adjacent samples after tiny floating-point differences; a threshold statistic is discontinuous even when trajectories agree closely. Different sample indexing or dwell conventions can also cause larger differences and should be checked. (b) Compare equilibria, one-step transitions, dimensions, units, applied bounds, maximum absolute trajectory error and identical sampling/metric logic. Include a case comfortably away from threshold boundaries and a case intentionally near them. (c) An accurate statement is: Python and Octave passed the specified trajectory and constraint checks; a boundary-sensitive settling statistic differed under the recorded convention; MATLAB/Simulink execution remains unverified. Do not turn source availability into a runtime claim.
+
+\subsection{Problem 08.5 - Make a defensible recommendation from mixed results}
+\textbf{Problem.} In a fixed synthetic test family, a tuned controller reduces median IAE by 12\% but increases input variation by 40\%, misses two deadlines in 1,000 samples, and was tested at only one residence time. (a) State a supported conclusion. (b) Identify which additional experiments address generalization, timing and actuator wear. (c) Give a report outline that makes both the benefit and limitations inspectable.
+
+
+\textbf{Worked answer.} (a) The controller improved median tracking error on the declared synthetic cases, with higher actuator movement and observed deadline misses. The evidence does not establish overall superiority or robustness to residence-time variation. (b) Test held-out reference/disturbance schedules and a justified range of plant parameters; measure solve time under realistic computational load and exercise the fallback; evaluate valve rate limits and a relevant wear/energy model rather than treating variation alone as a complete wear prediction. (c) Organize the report as requirements and physical model; baseline/alternative derivations; common experiment contract; tracking and effort trajectories; per-run metrics and failures; sensitivity/uncertainty results; execution record; limitations and the next decision. The recommendation should reflect the actual priorities and admissible deadline policy.
+
+
+\end{document}

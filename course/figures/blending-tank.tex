@@ -1,0 +1,23 @@
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+\fill[water] (0,0) rectangle (4,2.4);
+\draw[equipment] (0,3.4)--(0,0)--(4,0)--(4,3.4);
+\draw[ink,dashed] (0,2.4)--(4,2.4);
+\draw[flow] (-2,3.3)--(0.8,3.3)--(0.8,2.6);
+\draw[flow] (6,3.3)--(3.2,3.3)--(3.2,2.6);
+\draw[flow] (4,0.5)--(6,0.5);
+\draw[equipment] (2,3.8)--(2,0.8);
+\draw[equipment] (1.2,0.8)--(2.8,0.8);
+\draw[equipment] (1.4,1.0)--(2.6,0.6);
+\node[box,fill=white] at (2,3.9) {mixer};
+\node at (-1,3.7) {$q_H=qu,\ c_H=1$};
+\node at (5.6,3.7) {$q_L=q(1-u),\ c_L=d_{low}$};
+\node at (5.3,0.1) {$q_o,\ c$};
+\node at (2,1.7) {$V=Ah,\quad c(t)$};
+\draw[<->,ink] (-0.4,0)--node[left] {$h$}(-0.4,2.4);
+\node[box,fill=white] (sensor) at (4.7,1.7) {sensor};
+\draw[ink] (4,1.7)--(sensor);
+\draw[flow] (sensor.east)--(6.2,1.7) node[right] {$y$};
+\end{tikzpicture}
+\end{center}
+\noindent\textit{Physical boundary for the analytical tank. A constant-volume model requires inlet and outlet balance. Here the disturbance is low-feed concentration; the shared laboratory instead uses an additive disturbance to the complete inlet mixture. The sensor reading may have dynamics distinct from concentration.}

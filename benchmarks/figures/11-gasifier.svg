@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="504pt" viewBox="0 0 864 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>11-gasifier</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>11-gasifier</dc:title>
+    <dc:date>2026-11-04T11:16:44.730850</dc:date>
+    <dc:description>Original conceptual scientific equipment diagram</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 864 504 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 360.432 372.7584 
+L 503.568 372.7584 
+Q 509.7024 372.7584 509.7024 366.624 
+L 509.7024 187.704 
+Q 509.7024 181.5696 503.568 181.5696 
+L 360.432 181.5696 
+Q 354.2976 181.5696 354.2976 187.704 
+L 354.2976 366.624 
+Q 354.2976 372.7584 360.432 372.7584 
+z
+" clip-path="url(#p505f7883c3)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(393.686562 249.335367)">Gasification</text>
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(407.021719 264.937906)">process</text>
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(432 280.540445)"/>
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(376.762187 296.144)">Official nonlinear</text>
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(401.370781 311.747555)">simulator</text>
+   </g>
+   <g id="patch_3">
+    <path d="M 214.180251 203.04 
+Q 283.748691 203.04 351.081064 203.04 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 345.081064 200.04 
+L 351.081064 203.04 
+L 345.081064 206.04 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #00866b" x="196.848" y="205.897852" transform="rotate(-0 196.848 205.897852)">Char</text>
+   </g>
+   <g id="patch_4">
+    <path d="M 214.180251 238.824 
+Q 283.748691 238.824 351.081064 238.824 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 345.081064 235.824 
+L 351.081064 238.824 
+L 345.081064 241.824 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #00866b" x="196.848" y="241.681852" transform="rotate(-0 196.848 241.681852)">Air</text>
+   </g>
+   <g id="patch_5">
+    <path d="M 214.180251 274.608 
+Q 283.748691 274.608 351.081064 274.608 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 345.081064 271.608 
+L 351.081064 274.608 
+L 345.081064 277.608 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #00866b" x="196.848" y="277.465852" transform="rotate(-0 196.848 277.465852)">Coal</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 214.180251 310.392 
+Q 283.748691 310.392 351.081064 310.392 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 345.081064 307.392 
+L 351.081064 310.392 
+L 345.081064 313.392 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #00866b" x="196.848" y="313.249422" transform="rotate(-0 196.848 313.249422)">Steam</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 214.180251 346.176 
+Q 283.748691 346.176 351.081064 346.176 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 345.081064 343.176 
+L 351.081064 346.176 
+L 345.081064 349.176 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #00866b" x="196.848" y="349.033852" transform="rotate(-0 196.848 349.033852)">Limestone</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="273.528" y="399.894047" transform="rotate(-0 273.528 399.894047)">Limestone/coal ratio fixed</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 510.678435 210.708 
+Q 547.018692 210.708 581.122882 210.708 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 575.122882 207.708 
+L 581.122882 210.708 
+L 575.122882 213.708 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #8055ad" x="593.028" y="213.565852" transform="rotate(-0 593.028 213.565852)">Calorific value</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 510.678435 254.16 
+Q 547.018692 254.16 581.122882 254.16 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 575.122882 251.16 
+L 581.122882 254.16 
+L 575.122882 257.16 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #8055ad" x="593.028" y="257.017852" transform="rotate(-0 593.028 257.017852)">Bed mass</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 510.678435 297.612 
+Q 547.018692 297.612 581.122882 297.612 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 575.122882 294.612 
+L 581.122882 297.612 
+L 575.122882 300.612 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #8055ad" x="593.028" y="300.469422" transform="rotate(-0 593.028 300.469422)">Gas pressure</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 510.678435 341.064 
+Q 547.018692 341.064 581.122882 341.064 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 575.122882 338.064 
+L 581.122882 341.064 
+L 575.122882 344.064 
+z
+" style="fill: #8055ad; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #8055ad" x="593.028" y="343.921422" transform="rotate(-0 593.028 343.921422)">Gas temperature</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="644.148" y="170.113852" transform="rotate(-0 644.148 170.113852)">Controlled outputs</text>
+   </g>
+   <g id="patch_12">
+    <path d="M 432 136.028775 
+Q 432 158.311427 432 178.35801 
+" style="fill: none; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 435 172.35801 
+L 432 178.35801 
+L 429 172.35801 
+z
+" style="fill: #596b7b; stroke: #596b7b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #596b7b" x="432" y="116.437852" transform="rotate(-0 432 116.437852)">Disturbances: sink pressure, coal quality</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="445.902047" transform="rotate(-0 432 445.902047)">Numerical bounds and units must follow the installed official challenge package.</text>
+   </g>
+  </g>
+  <g id="text_15">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #16324f" x="47.52" y="41.156719" transform="rotate(-0 47.52 41.156719)">ALSTOM gasifier: control interface</text>
+  </g>
+  <g id="text_16">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="57.96" transform="rotate(-0 47.52 57.96)">Section 3.11 • nonlinear challenge model with four independent manipulated flows</text>
+  </g>
+  <g id="text_17">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="486.36" transform="rotate(-0 47.52 486.36)">Conceptual equipment schematic • topology and model variables, not a detailed P&amp;ID</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p505f7883c3">
+   <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
+  </clipPath>
+ </defs>
+</svg>

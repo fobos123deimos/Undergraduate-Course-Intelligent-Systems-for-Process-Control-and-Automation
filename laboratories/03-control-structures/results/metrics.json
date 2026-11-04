@@ -1,0 +1,74 @@
+{
+  "single loop with actuator": {
+    "iae": 3.4786881911280805,
+    "ise": 0.4466059107646795,
+    "itae": 134.23572425238683,
+    "control_energy": 31.780902079031783,
+    "total_variation": 1.7595629312866872,
+    "constraint_violation": 0.0,
+    "final_error": -0.016108778046034278
+  },
+  "cascade": {
+    "iae": 2.642941088624113,
+    "ise": 0.4241762562323778,
+    "itae": 84.04468106647386,
+    "control_energy": 32.31726322963261,
+    "total_variation": 2.8813738798080686,
+    "constraint_violation": 0.0,
+    "final_error": 0.0003687518239480214
+  },
+  "decentralized": {
+    "final_output": [
+      0.5997749003465047,
+      0.6503265314051084
+    ],
+    "max_actuator": 0.6040000000000001
+  },
+  "decoupled": {
+    "final_output": [
+      0.5999878859809327,
+      0.6497882447638212
+    ],
+    "max_actuator": 0.5049814814814815
+  },
+  "feedback": {
+    "iae": 2.8622955662746614,
+    "ise": 0.3630729165011101,
+    "itae": 103.07106908774517,
+    "control_energy": 24.714924617917937,
+    "total_variation": 1.5981973872837782,
+    "constraint_violation": 0.0,
+    "final_error": -0.003721239895360884
+  },
+  "measured feedforward": {
+    "iae": 2.4902412929523248,
+    "ise": 0.3293571108211127,
+    "itae": 81.4373221075773,
+    "control_energy": 24.27550803668192,
+    "total_variation": 1.6187613924021198,
+    "constraint_violation": 0.0,
+    "final_error": -0.0013762484481559256
+  },
+  "steady_gain_matrix": [
+    [
+      1.0,
+      0.4
+    ],
+    [
+      0.3,
+      1.2
+    ]
+  ],
+  "relative_gain_array": [
+    [
+      1.1111111111111112,
+      -0.1111111111111111
+    ],
+    [
+      -0.1111111111111111,
+      1.111111111111111
+    ]
+  ],
+  "comparison_scope": "Cascade pair uses an actuator-load disturbance; feedforward pair uses an inlet-concentration disturbance.",
+  "elapsed_seconds": 0.1922513999743387
+}

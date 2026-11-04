@@ -1,0 +1,19 @@
+\begin{center}
+\begin{tikzpicture}[node distance=1.0cm,scale=0.85,transform shape]
+\node[box] (outer) {Concentration\\controller};
+\node[box,right=of outer] (inner) {Flow\\controller};
+\node[box,right=of inner] (valve) {Valve and\\flow actuator};
+\node[box,right=of valve] (tank) {Mixed\\vessel};
+\draw[flow] (-2,0)--node[above] {$r$}(outer);
+\draw[flow] (outer)--node[above] {$u_{sp}$}(inner);
+\draw[flow] (inner)--node[above] {$v$}(valve);
+\draw[flow] (valve)--node[above] {$u$}(tank);
+\draw[flow] (tank)--++(1.3,0) coordinate (out) node[right] {$c$};
+\draw[flow] ($(valve.east)+(0.25,0)$)--++(0,-1.0)-|(inner.south);
+\draw[flow] (out)--++(0,-2)-|(outer.south);
+\node at (5,-1.3) {measured blend feedback};
+\node at (4,-2.3) {measured concentration feedback};
+\draw[flow] ($(valve.north)+(0,1)$)--node[right] {supply disturbance}(valve.north);
+\end{tikzpicture}
+\end{center}
+\noindent\textit{Cascade uses a measured inner variable. Both feedback paths are negative under the error conventions stated in the text.}

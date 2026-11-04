@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="504pt" viewBox="0 0 864 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>07-three-tanks</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>07-three-tanks</dc:title>
+    <dc:date>2026-11-04T11:16:42.655351</dc:date>
+    <dc:description>Original conceptual scientific equipment diagram</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 864 504 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 177.678 355.122 
+L 272.25 355.122 
+L 272.25 236.7792 
+L 177.678 236.7792 
+z
+" clip-path="url(#pf491f14481)" style="fill: #d9edf6"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 382.158 355.122 
+L 476.73 355.122 
+L 476.73 264.384 
+L 382.158 264.384 
+z
+" clip-path="url(#pf491f14481)" style="fill: #d9edf6"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 586.638 355.122 
+L 681.21 355.122 
+L 681.21 291.9888 
+L 586.638 291.9888 
+z
+" clip-path="url(#pf491f14481)" style="fill: #d9edf6"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 176.4 203.04 
+L 176.4 356.4 
+L 273.528 356.4 
+L 273.528 203.04 
+" clip-path="url(#pf491f14481)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 177.9336 236.7792 
+L 271.9944 236.7792 
+" clip-path="url(#pf491f14481)" style="fill: none; stroke: #6ba8c4; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 380.88 203.04 
+L 380.88 356.4 
+L 478.008 356.4 
+L 478.008 203.04 
+" clip-path="url(#pf491f14481)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 382.4136 264.384 
+L 476.4744 264.384 
+" clip-path="url(#pf491f14481)" style="fill: none; stroke: #6ba8c4; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 585.36 203.04 
+L 585.36 356.4 
+L 682.488 356.4 
+L 682.488 203.04 
+" clip-path="url(#pf491f14481)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 586.8936 291.9888 
+L 680.9544 291.9888 
+" clip-path="url(#pf491f14481)" style="fill: none; stroke: #6ba8c4; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="224.964" y="190.821187" transform="rotate(-0 224.964 190.821187)">T1</text>
+   </g>
+   <g id="patch_5">
+    <path d="M 194.292 347.049566 
+Q 194.292 294.03326 194.292 241.016954 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 197.292 341.049566 
+L 194.292 347.049566 
+L 191.292 341.049566 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 191.292 247.016954 
+L 194.292 241.016954 
+L 197.292 247.016954 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="235.188" y="299.447452" transform="rotate(-0 235.188 299.447452)">h₁ (m)</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="429.444" y="190.821187" transform="rotate(-0 429.444 190.821187)">T3</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 398.772 347.049597 
+Q 398.772 307.83366 398.772 268.617724 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 401.772 341.049597 
+L 398.772 347.049597 
+L 395.772 341.049597 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 395.772 274.617724 
+L 398.772 268.617724 
+L 401.772 274.617724 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="439.668" y="313.249852" transform="rotate(-0 439.668 313.249852)">h₃ (m)</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="633.924" y="190.821187" transform="rotate(-0 633.924 190.821187)">T2</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 603.252 347.050439 
+Q 603.252 321.636097 603.252 296.221755 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 606.252 341.050439 
+L 603.252 347.050439 
+L 600.252 341.050439 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 600.252 302.221755 
+L 603.252 296.221755 
+L 606.252 302.221755 
+" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8055ad" x="644.148" y="327.052252" transform="rotate(-0 644.148 327.052252)">h₂ (m)</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 275.529711 323.172 
+Q 327.203372 323.172 376.640965 323.172 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 370.640965 320.172 
+L 376.640965 323.172 
+L 370.640965 326.172 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="327.204" y="310.693422" transform="rotate(-0 327.204 310.693422)">q₁₃</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 480.009711 323.172 
+Q 531.683372 323.172 581.120965 323.172 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 575.120965 320.172 
+L 581.120965 323.172 
+L 575.120965 326.172 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="531.684" y="310.693422" transform="rotate(-0 531.684 310.693422)">q₃₂</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 224.964 143.699115 
+Q 224.964 172.368108 224.964 198.801032 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 227.964 192.801032 
+L 224.964 198.801032 
+L 221.964 192.801032 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="199.404" y="175.225422" transform="rotate(-0 199.404 175.225422)">q₁</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 633.924 143.699115 
+Q 633.924 172.368108 633.924 198.801032 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 636.924 192.801032 
+L 633.924 198.801032 
+L 630.924 192.801032 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="659.484" y="175.225422" transform="rotate(-0 659.484 175.225422)">q₂</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="432" y="136.885422" transform="rotate(-0 432 136.885422)">0 ≤ q₁,q₂ ≤ 10⁻⁴ m³/s</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="410.637656" transform="rotate(-0 432 410.637656)">Aₜ = 0.0154 m² • 0 ≤ hᵢ ≤ 0.62 m</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="445.902047" transform="rotate(-0 432 445.902047)">Internal flows are signed: they reverse when the level difference changes sign.</text>
+   </g>
+  </g>
+  <g id="text_14">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #16324f" x="47.52" y="41.156719" transform="rotate(-0 47.52 41.156719)">Three interacting tanks</text>
+  </g>
+  <g id="text_15">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="57.96" transform="rotate(-0 47.52 57.96)">Section 3.7 • T1 ↔ T3 ↔ T2 connectivity; nominal outlet valves closed</text>
+  </g>
+  <g id="text_16">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="486.36" transform="rotate(-0 47.52 486.36)">Conceptual equipment schematic • topology and model variables, not a detailed P&amp;ID</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pf491f14481">
+   <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
+  </clipPath>
+ </defs>
+</svg>

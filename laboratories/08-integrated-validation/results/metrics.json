@@ -1,0 +1,107 @@
+{
+  "scenarios": [
+    {
+      "method": "PI",
+      "tau_min": 7.0,
+      "iae": 2.7162001610510336,
+      "ise": 0.29058294825387215,
+      "itae": 99.46275282689194,
+      "control_energy": 23.78138662077123,
+      "total_variation": 3.9705555635584115,
+      "constraint_violation": 0.0,
+      "final_error": -0.008117820058093306
+    },
+    {
+      "method": "fuzzy PID",
+      "tau_min": 7.0,
+      "iae": 3.3203395502642468,
+      "ise": 0.3275615523682021,
+      "itae": 123.88567045024051,
+      "control_energy": 23.430263032174214,
+      "total_variation": 3.8449794000094997,
+      "constraint_violation": 0.0,
+      "final_error": -0.014177821098773857
+    },
+    {
+      "method": "feedforward PI",
+      "tau_min": 7.0,
+      "iae": 2.39937603992464,
+      "ise": 0.2634700727376293,
+      "itae": 80.83773700586849,
+      "control_energy": 23.371874488071015,
+      "total_variation": 4.026308931523395,
+      "constraint_violation": 0.0,
+      "final_error": -0.005701663988360528
+    },
+    {
+      "method": "PI",
+      "tau_min": 10.0,
+      "iae": 2.869384472927772,
+      "ise": 0.36421438527096484,
+      "itae": 103.15343977698647,
+      "control_energy": 24.716459851647684,
+      "total_variation": 3.8521212370871782,
+      "constraint_violation": 0.0,
+      "final_error": -0.003782261630158268
+    },
+    {
+      "method": "fuzzy PID",
+      "tau_min": 10.0,
+      "iae": 3.4463858182285265,
+      "ise": 0.39257933494145403,
+      "itae": 127.44536295477006,
+      "control_energy": 24.390397614149464,
+      "total_variation": 3.72762380535336,
+      "constraint_violation": 0.0,
+      "final_error": -0.010004834734123835
+    },
+    {
+      "method": "feedforward PI",
+      "tau_min": 10.0,
+      "iae": 2.5010430252080775,
+      "ise": 0.3306233569837925,
+      "itae": 81.7077002027804,
+      "control_energy": 24.277921973406226,
+      "total_variation": 3.915073154249249,
+      "constraint_violation": 0.0,
+      "final_error": -0.0014372701829535317
+    },
+    {
+      "method": "PI",
+      "tau_min": 14.0,
+      "iae": 3.359301668643039,
+      "ise": 0.4628316236020299,
+      "itae": 120.38725393896132,
+      "control_energy": 26.08199128369849,
+      "total_variation": 3.7746270949809757,
+      "constraint_violation": 0.0,
+      "final_error": 0.003078128585468909
+    },
+    {
+      "method": "fuzzy PID",
+      "tau_min": 14.0,
+      "iae": 3.794086024194469,
+      "ise": 0.4940807900526012,
+      "itae": 138.6265957875038,
+      "control_energy": 25.57539658212138,
+      "total_variation": 3.678443254365842,
+      "constraint_violation": 0.0,
+      "final_error": -0.004169930638199315
+    },
+    {
+      "method": "feedforward PI",
+      "tau_min": 14.0,
+      "iae": 3.0099440031024,
+      "ise": 0.42093936843520197,
+      "itae": 100.41077865941074,
+      "control_energy": 25.605171742626275,
+      "total_variation": 3.842116433986614,
+      "constraint_violation": 0.0,
+      "final_error": 0.0055011702063008094
+    }
+  ],
+  "seed": 2026,
+  "noise_std": 0.003,
+  "scope": "Matched deterministic uncertainty scenarios, not experimental validation or a universal ranking. Feedforward receives measured disturbance; PI and fuzzy PID do not.",
+  "elapsed_seconds": 0.7428262999746948
+}

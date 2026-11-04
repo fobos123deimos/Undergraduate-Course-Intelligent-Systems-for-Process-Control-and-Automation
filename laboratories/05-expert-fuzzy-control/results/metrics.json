@@ -1,0 +1,69 @@
+{
+  "controllers": {
+    "PI": {
+      "iae": 2.8622955662746614,
+      "ise": 0.3630729165011101,
+      "itae": 103.07106908774517,
+      "control_energy": 24.714924617917937,
+      "total_variation": 1.5981973872837782,
+      "constraint_violation": 0.0,
+      "final_error": -0.003721239895360884
+    },
+    "Mamdani fuzzy PI": {
+      "iae": 3.693665395042502,
+      "ise": 0.5148406653707887,
+      "itae": 129.61003741708646,
+      "control_energy": 25.948940580848028,
+      "total_variation": 2.443401367724391,
+      "constraint_violation": 0.0,
+      "final_error": -0.015348775097354106
+    },
+    "Sugeno fuzzy PI": {
+      "iae": 3.832038381810863,
+      "ise": 0.5235975959181622,
+      "itae": 137.44645710044267,
+      "control_energy": 26.098919535656208,
+      "total_variation": 2.303610133168311,
+      "constraint_violation": 0.0,
+      "final_error": -0.01963093879612554
+    },
+    "fuzzy gain PID": {
+      "iae": 3.4455162305114837,
+      "ise": 0.3925889553639099,
+      "itae": 127.54108206168269,
+      "control_energy": 24.387364180558805,
+      "total_variation": 1.811441974924471,
+      "constraint_violation": 0.0,
+      "final_error": -0.00997799919776049
+    }
+  },
+  "diagnostic_cases": [
+    {
+      "state": "high_concentration",
+      "action": "reduce_high_feed",
+      "reason": "c > 0.9"
+    },
+    {
+      "state": "actuator_limit",
+      "action": "review_setpoint",
+      "reason": "saturation with positive error"
+    },
+    {
+      "state": "model_mismatch",
+      "action": "inspect_disturbance",
+      "reason": "prediction residual exceeds 0.08"
+    },
+    {
+      "state": "sensor_fault",
+      "action": "hold_safe",
+      "reason": "invalid measurement"
+    },
+    {
+      "state": "normal",
+      "action": "continue",
+      "reason": "no rule threshold exceeded"
+    }
+  ],
+  "rule_policy": "Sensor validity has priority over process alarms; thresholds are educational and require plant-specific review.",
+  "elapsed_seconds": 0.6807713999878615
+}

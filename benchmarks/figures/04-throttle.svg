@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="504pt" viewBox="0 0 864 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>04-throttle</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>04-throttle</dc:title>
+    <dc:date>2026-11-04T11:16:40.887818</dc:date>
+    <dc:description>Original conceptual scientific equipment diagram</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 864 504 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 181.512 293.5224 
+L 278.64 293.5224 
+Q 284.7744 293.5224 284.7744 287.388 
+L 284.7744 233.712 
+Q 284.7744 227.5776 278.64 227.5776 
+L 181.512 227.5776 
+Q 175.3776 227.5776 175.3776 233.712 
+L 175.3776 287.388 
+Q 175.3776 293.5224 181.512 293.5224 
+z
+" clip-path="url(#pa8ab5251d4)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 334.872 293.5224 
+L 416.664 293.5224 
+Q 422.7984 293.5224 422.7984 287.388 
+L 422.7984 233.712 
+Q 422.7984 227.5776 416.664 227.5776 
+L 334.872 227.5776 
+Q 328.7376 227.5776 328.7376 233.712 
+L 328.7376 287.388 
+Q 328.7376 293.5224 334.872 293.5224 
+z
+" clip-path="url(#pa8ab5251d4)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 539.352 309.3696 
+C 552.231323 309.3696 564.584877 304.252591 573.691934 295.145534 
+C 582.798991 286.038477 587.916 273.684923 587.916 260.8056 
+C 587.916 247.926277 582.798991 235.572723 573.691934 226.465666 
+C 564.584877 217.358609 552.231323 212.2416 539.352 212.2416 
+C 526.472677 212.2416 514.119123 217.358609 505.012066 226.465666 
+C 495.905009 235.572723 490.788 247.926277 490.788 260.8056 
+C 490.788 273.684923 495.905009 286.038477 505.012066 295.145534 
+C 514.119123 304.252591 526.472677 309.3696 539.352 309.3696 
+z
+" clip-path="url(#pa8ab5251d4)" style="fill: #ffffff; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 571.302 260.8056 
+C 571.302 255.008487 569.724229 249.319229 566.738495 244.350134 
+C 563.752761 239.381038 559.470163 235.317004 554.351616 232.595424 
+" clip-path="url(#pa8ab5251d4)" style="fill: none; stroke: #8055ad; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 283.752 260.8056 
+L 329.76 260.8056 
+" clip-path="url(#pa8ab5251d4)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 421.776 260.8056 
+L 493.344 260.8056 
+" clip-path="url(#pa8ab5251d4)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 516.348 303.2352 
+L 562.356 218.376 
+" clip-path="url(#pa8ab5251d4)" style="fill: none; stroke: #8055ad; stroke-width: 6; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 370.656 292.5 
+L 370.656 323.172 
+" clip-path="url(#pa8ab5251d4)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 370.656 323.172 
+L 357.876 330.84 
+L 383.436 341.064 
+L 357.876 351.288 
+L 383.436 361.512 
+L 370.656 369.18 
+L 370.656 384.516 
+" clip-path="url(#pa8ab5251d4)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 339.984 384.516 
+L 401.328 384.516 
+" clip-path="url(#pa8ab5251d4)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="230.076" y="263.667187" transform="rotate(-0 230.076 263.667187)">DC motor</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="375.768" y="263.667656" transform="rotate(-0 375.768 263.667656)">Gearbox</text>
+   </g>
+   <g id="text_3">
+    <!-- $\varphi$ -->
+    <g style="fill: #8055ad" transform="translate(566.0964 252.944484)">
+     <text>
+      <tspan x="0" y="-0.734375" style="font-style: oblique; font-size: 15px; font-family: 'DejaVu Sans'; fill: #8055ad">φ</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="patch_6">
+    <path d="M 127.279995 260.8056 
+Q 150.840149 260.8056 172.164235 260.8056 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 166.164235 257.8056 
+L 172.164235 260.8056 
+L 166.164235 263.8056 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #00866b" x="227.52" y="185.449852" transform="rotate(-0 227.52 185.449852)">Input: PWM duty u (%)</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 227.52 202.484931 
+Q 227.52 214.031173 227.52 223.341347 
+" style="fill: none; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 230.52 217.341347 
+L 227.52 223.341347 
+L 224.52 217.341347 
+z
+" style="fill: #00866b; stroke: #00866b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="539.352" y="180.857461" transform="rotate(-0 539.352 180.857461)">Throttle plate</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(456.469578 347.544348)">Output: angle y = φ (degrees)</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #8055ad" transform="translate(476.868562 360.747355)">10° closed → 90° open</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(252.560344 355.55268)">Return spring</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #16324f" transform="translate(257.780656 367.555414)">and friction</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="438.493852" transform="rotate(-0 432 438.493852)">Measured datasets: 0.01 s sampling • 10000 train / 2500 validation observations</text>
+   </g>
+  </g>
+  <g id="text_9">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #16324f" x="47.52" y="41.156719" transform="rotate(-0 47.52 41.156719)">Electromechanical throttle</text>
+  </g>
+  <g id="text_10">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="57.96" transform="rotate(-0 47.52 57.96)">Section 3.4 • measured voltage-duty-to-angle identification problem</text>
+  </g>
+  <g id="text_11">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #596b7b" x="47.52" y="486.36" transform="rotate(-0 47.52 486.36)">Conceptual equipment schematic • topology and model variables, not a detailed P&amp;ID</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pa8ab5251d4">
+   <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
+  </clipPath>
+ </defs>
+</svg>

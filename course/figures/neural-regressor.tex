@@ -1,0 +1,11 @@
+\begin{center}
+\begin{tikzpicture}[node distance=1.0cm]
+\node[box] (data) {Past measured outputs\\and applied inputs};
+\node[box,right=of data] (scaler) {Training-fitted\\normalization};
+\node[box,right=of scaler] (net) {MLP or RBF\\predictor};
+\draw[flow] (data)--node[above] {$\phi_k$}(scaler);
+\draw[flow] (scaler)--(net);
+\draw[flow] (net.east)--++(1.3,0) node[right] {$\hat y_{k+1}$};
+\end{tikzpicture}
+\end{center}
+\noindent\textit{Causal regressors and fixed preprocessing are part of the model. Recursive simulation substitutes previous predictions for measured outputs; it is a different validation task.}

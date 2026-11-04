@@ -1,0 +1,30 @@
+{
+  "arx_coefficients": [
+    0.9503764749525814,
+    0.04909108826686848,
+    0.00026345367266585734
+  ],
+  "estimated_tau_min": 9.823745604932348,
+  "estimated_gain": 0.989270476451615,
+  "free_run": {
+    "max_abs_error": 0.0022159779442598726,
+    "mean_abs_error": 0.0007655862042690801,
+    "sse": 0.0004990119075765116,
+    "mse": 8.303026748361258e-07,
+    "rmse": 0.0009112094571700437,
+    "vaf_percent": 99.99226497484072,
+    "r_squared": 0.9999180695410953
+  },
+  "one_step": {
+    "max_abs_error": 0.00036850478087502303,
+    "mean_abs_error": 8.173286063993734e-05,
+    "sse": 6.725592380698718e-06,
+    "mse": 1.1209320634497863e-08,
+    "rmse": 0.00010587407914356499,
+    "vaf_percent": 99.99989043552742,
+    "r_squared": 0.9999988928042781
+  },
+  "analytic_max_error": 2.220446049250313e-16,
+  "split": "Independent excitation trajectories, seeds 21 and 73; noise in training only",
+  "elapsed_seconds": 0.017259899992495775
+}

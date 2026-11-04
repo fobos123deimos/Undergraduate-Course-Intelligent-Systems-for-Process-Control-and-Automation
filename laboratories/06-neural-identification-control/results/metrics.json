@@ -1,0 +1,41 @@
+{
+  "models": {
+    "MLP": {
+      "max_abs_error": 0.0019866280656837265,
+      "mean_abs_error": 0.00025138690137498353,
+      "sse": 3.458144932920427e-05,
+      "mse": 1.3832579731681708e-07,
+      "rmse": 0.0003719217623597967,
+      "vaf_percent": 99.99974495735108,
+      "r_squared": 0.9999974446822414,
+      "free_run_rmse": 0.0015491954049571812
+    },
+    "RBF": {
+      "max_abs_error": 0.0011055846794069124,
+      "mean_abs_error": 0.00011963490803138005,
+      "sse": 7.670523584425632e-06,
+      "mse": 3.068209433770253e-08,
+      "rmse": 0.00017516305072047165,
+      "vaf_percent": 99.99994427558468,
+      "r_squared": 0.9999994332040585,
+      "free_run_rmse": 0.000432060569459126
+    }
+  },
+  "training_samples": 650,
+  "validation_samples": 250,
+  "perceptron_accuracy": 1.0,
+  "som_quantization_error": 0.11539883513128943,
+  "som_occupied_nodes": 9,
+  "neural_control": {
+    "iae": 1.8853691642485184,
+    "ise": 0.47568809509108356,
+    "itae": 84.19768379321643,
+    "control_energy": 71.67145000000002,
+    "total_variation": 2.15,
+    "constraint_violation": 0.0,
+    "final_error": 3.1524356958190225e-08
+  },
+  "out_of_domain_rmse": 0.00808837932315893,
+  "validation_protocol": "Train normalization on 650 independent state/input transitions, validate on 250 untouched transitions, then test free-run trajectory. Hyperparameters fixed before validation.",
+  "elapsed_seconds": 1.7066944000544026
+}
