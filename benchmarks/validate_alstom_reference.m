@@ -23,6 +23,7 @@ for load_percent=[0 50 100]
    struct('load_percent',load_percent,'scenario',scenario{1}));
   if strcmp(scenario{1},'nominal')
    nominal=data;
+   if load_percent==50,nominal50=data;end
   else
    % Compare trajectories on the disturbed run's grid. Solvers may choose
    % different output times, and events may create duplicate timestamps.
@@ -40,8 +41,29 @@ for scenario={'load_ramp','coal_quality'}
  [cases{index},~]=run_alstom_reference(source_directory,fullfile(output_directory,[scenario{1} '.csv']),...
   struct('load_percent',load_percent,'scenario',scenario{1}));
 end
+% Recheck the observed nominal drift with tighter integration and the exact
+% solver/tolerance settings stored in the author's diagram. Keep this separate
+% from the eleven challenge cases and do not retune the official controller.
+sensitivity=cell(1,2);
+for k=1:2
+ profiles={'refined','author_default'};profile=profiles{k};
+ [record,data]=run_alstom_reference(source_directory,...
+  fullfile(output_directory,['load050-nominal-' profile '.csv']),...
+  struct('load_percent',50,'scenario','nominal','solver_profile',profile));
+ grid=(0:1:300)';[t0,i0]=unique(nominal50.time_s,'stable');[t1,i1]=unique(data.time_s,'stable');
+ baseline=interp1(t0,nominal50.outputs(i0,:),grid,'linear');
+ candidate=interp1(t1,data.outputs(i1,:),grid,'linear');
+ scaled=max(abs(candidate-baseline)./[10000 500 10000 1],[],1);
+ record.maximum_output_difference_scaled_to_pressure_limits=scaled;
+ record.final_temperature_error_K=data.outputs(end,4)-data.setpoints(end,4);
+ if strcmp(profile,'refined')
+  assert(max(scaled)<.05,'Nominal output changed materially under solver refinement');
+ end
+ sensitivity{k}=record;
+end
 report=struct('date',datestr(now,'yyyy-mm-dd'),'status','integration_and_input_checks_passed',...
  'case_count',index,'cases',{cases},'pressure_comparisons',comparisons,...
+ 'solver_sensitivity',{sensitivity},'solver_refinement_check_passed',true,...
  'controller_performance_claim','See measured violations in each case; passing integration is not satisfaction of all challenge constraints',...
  'uncovered_challenge_scope','Other candidate controllers, full +/-18 percent coal-quality sweep, global stability assessment');
 filename=fullfile(output_directory,'validation.json');
