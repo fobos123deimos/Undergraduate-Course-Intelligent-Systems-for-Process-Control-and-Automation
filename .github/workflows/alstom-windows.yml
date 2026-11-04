@@ -43,12 +43,23 @@ jobs:
           ALSTOM_ARCHIVE_16: ${{ secrets.ALSTOM_ARCHIVE_16 }}
           ALSTOM_ARCHIVE_17: ${{ secrets.ALSTOM_ARCHIVE_17 }}
         run: python benchmarks/prepare_alstom_ci.py
-      - name: Check legacy Microsoft runtime
+      - name: Prepare verified legacy Microsoft runtime
         shell: pwsh
         run: |
           if (-not (Test-Path -LiteralPath "$env:WINDIR\System32\msvcr100.dll")) {
-            throw 'The official MEX needs Microsoft Visual C++ 2010 x64 (MSVCR100.dll).'
+            $installer = Join-Path $env:RUNNER_TEMP 'alstom-vcredist-x64.exe'
+            Invoke-WebRequest -Uri 'https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe' -OutFile $installer
+            if ((Get-FileHash -LiteralPath $installer -Algorithm SHA256).Hash -ne 'F3B7A76D84D23F91957AA18456A14B4E90609E4CE8194C5653384ED38DADA6F3') {
+              throw 'Microsoft redistributable checksum changed.'
+            }
+            $signature = Get-AuthenticodeSignature -LiteralPath $installer
+            if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'CN=Microsoft Corporation,') {
+              throw 'Microsoft redistributable signature verification failed.'
+            }
+            $installation = Start-Process -FilePath $installer -ArgumentList '/q','/norestart' -Wait -PassThru -WindowStyle Hidden
+            if ($installation.ExitCode -notin @(0,3010)) { throw 'Microsoft runtime installation failed.' }
           }
+          if (-not (Test-Path -LiteralPath "$env:WINDIR\System32\msvcr100.dll")) { throw 'MSVCR100.dll remains unavailable.' }
       - uses: matlab-actions/setup-matlab@v3
         with:
           release: R2025b
