@@ -1,0 +1,62 @@
+name: Validate official ALSTOM on Windows
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/alstom-windows.yml'
+      - 'benchmarks/prepare_alstom_ci.py'
+      - 'benchmarks/run_alstom_reference.m'
+      - 'benchmarks/validate_alstom_reference.m'
+permissions:
+  contents: read
+concurrency:
+  group: alstom-windows-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  alstom:
+    if: github.ref == 'refs/heads/main'
+    runs-on: windows-2022
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare verified author package
+        env:
+          ALSTOM_ARCHIVE_01: ${{ secrets.ALSTOM_ARCHIVE_01 }}
+          ALSTOM_ARCHIVE_02: ${{ secrets.ALSTOM_ARCHIVE_02 }}
+          ALSTOM_ARCHIVE_03: ${{ secrets.ALSTOM_ARCHIVE_03 }}
+          ALSTOM_ARCHIVE_04: ${{ secrets.ALSTOM_ARCHIVE_04 }}
+          ALSTOM_ARCHIVE_05: ${{ secrets.ALSTOM_ARCHIVE_05 }}
+          ALSTOM_ARCHIVE_06: ${{ secrets.ALSTOM_ARCHIVE_06 }}
+          ALSTOM_ARCHIVE_07: ${{ secrets.ALSTOM_ARCHIVE_07 }}
+          ALSTOM_ARCHIVE_08: ${{ secrets.ALSTOM_ARCHIVE_08 }}
+          ALSTOM_ARCHIVE_09: ${{ secrets.ALSTOM_ARCHIVE_09 }}
+          ALSTOM_ARCHIVE_10: ${{ secrets.ALSTOM_ARCHIVE_10 }}
+          ALSTOM_ARCHIVE_11: ${{ secrets.ALSTOM_ARCHIVE_11 }}
+          ALSTOM_ARCHIVE_12: ${{ secrets.ALSTOM_ARCHIVE_12 }}
+          ALSTOM_ARCHIVE_13: ${{ secrets.ALSTOM_ARCHIVE_13 }}
+        run: python benchmarks/prepare_alstom_ci.py
+      - name: Check legacy Microsoft runtime
+        shell: pwsh
+        run: |
+          if (-not (Test-Path -LiteralPath "$env:WINDIR\System32\msvcr100.dll")) {
+            throw 'The official MEX needs Microsoft Visual C++ 2010 x64 (MSVCR100.dll).'
+          }
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2025b
+          products: Simulink
+      - name: Execute eleven official PI cases
+        uses: matlab-actions/run-command@v3
+        with:
+          command: addpath('benchmarks'); validate_alstom_reference(fullfile(pwd,'benchmarks','external','alstom-gasifier','Gasifier_R2017'),fullfile(pwd,'ci-artifacts','alstom-native'));
+      - name: Preserve numerical results only
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alstom-native-validation
+          path: ci-artifacts/alstom-native/
+          if-no-files-found: warn
