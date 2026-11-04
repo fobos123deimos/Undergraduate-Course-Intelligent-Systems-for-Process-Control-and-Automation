@@ -1,4 +1,4 @@
-"""Eight reproducible laboratories using a shared, explicitly hypothetical tank."""
+"""Nine reproducible laboratories using a shared, explicitly hypothetical tank."""
 from pathlib import Path
 import json
 import time
@@ -16,11 +16,12 @@ TITLES = {
  5:'Expert supervision and fuzzy control',
  6:'Neural identification and control',
  7:'Evolutionary controller tuning',
- 8:'Integrated validation and robustness'}
+ 8:'Integrated validation and robustness',
+ 9:'Markov chains and hidden-state diagnosis'}
 SLUGS = {1:'01-modeling-identification',2:'02-feedback-imc',3:'03-control-structures',
          4:'04-model-predictive-control',5:'05-expert-fuzzy-control',
          6:'06-neural-identification-control',7:'07-evolutionary-tuning',
-         8:'08-integrated-validation'}
+         8:'08-integrated-validation',9:'09-markov-hidden-state-diagnosis'}
 
 
 def scenario(dt=.2, duration=80.):
@@ -243,7 +244,15 @@ def unit8():
          'scope':'Matched deterministic uncertainty scenarios, not experimental validation or a universal ranking. Feedforward receives measured disturbance; PI and fuzzy PID do not.'},traces=traces)
 
 
+def unit9():
+    from .markov_lab import run_markov_experiment
+    return run_markov_experiment()
+
+
 def save_result(unit,result,outdir):
+    if unit==9:
+        from .markov_lab import save_markov_result
+        return save_markov_result(result,outdir)
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -291,7 +300,7 @@ def save_result(unit,result,outdir):
 
 
 def run_unit(unit,outdir=None):
-    if unit not in TITLES:raise ValueError('Unit must be 1 through 8')
+    if unit not in TITLES:raise ValueError(f'Unit must be one of {sorted(TITLES)}')
     start=time.perf_counter();result=globals()[f'unit{unit}']()
     result['summary']['elapsed_seconds']=time.perf_counter()-start
     if outdir is not None:save_result(unit,result,outdir)

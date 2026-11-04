@@ -508,5 +508,330 @@
     "noise_std": 0.003,
     "scope": "Matched deterministic uncertainty scenarios, not experimental validation or a universal ranking. Feedforward receives measured disturbance; PI and fuzzy PID do not.",
     "elapsed_seconds": 0.7428262999746948
+  },
+  "9": {
+    "scope": "Synthetic enrichment beyond the supplied syllabus and article; sensor modes, not additional physical benchmark models.",
+    "states": [
+      "normal",
+      "drift",
+      "sensor fault"
+    ],
+    "sample_time_min": 0.2,
+    "noise_std": 0.035,
+    "bias_true": [
+      0.0,
+      0.055,
+      0.14
+    ],
+    "bias_calibrated": [
+      -0.00023138616321102107,
+      0.05765251733903317,
+      0.1400174401410107
+    ],
+    "residual_cutpoints": [
+      0.025,
+      0.095
+    ],
+    "true_transition": [
+      [
+        0.97,
+        0.025,
+        0.005
+      ],
+      [
+        0.04,
+        0.93,
+        0.03
+      ],
+      [
+        0.02,
+        0.08,
+        0.9
+      ]
+    ],
+    "true_initial": [
+      0.8,
+      0.15,
+      0.05
+    ],
+    "theoretical_emission": [
+      [
+        0.7624747379730235,
+        0.23420431928876317,
+        0.0033209427382133727
+      ],
+      [
+        0.19568296915377603,
+        0.6777680763726662,
+        0.12654895447355774
+      ],
+      [
+        0.0005086206751643255,
+        0.09876277616816659,
+        0.900728603156669
+      ]
+    ],
+    "estimated_transition": [
+      [
+        0.9665634674922601,
+        0.02910216718266254,
+        0.0043343653250774
+      ],
+      [
+        0.04090419806243272,
+        0.9257265877287406,
+        0.03336921420882669
+      ],
+      [
+        0.020224719101123594,
+        0.058426966292134834,
+        0.9213483146067416
+      ]
+    ],
+    "estimated_emission": [
+      [
+        0.7604679802955665,
+        0.23645320197044334,
+        0.003078817733990148
+      ],
+      [
+        0.18356456776947705,
+        0.6691568836712913,
+        0.1472785485592316
+      ],
+      [
+        0.004464285714285714,
+        0.09598214285714286,
+        0.8995535714285714
+      ]
+    ],
+    "estimated_initial": [
+      0.7391304347826086,
+      0.21739130434782608,
+      0.043478260869565216
+    ],
+    "calibration": {
+      "seed": 17,
+      "independent_trajectories": 20,
+      "samples_per_trajectory": 150,
+      "label_access": "Synthetic calibration only; separate sequences preserve boundaries.",
+      "pseudocount": 1.0
+    },
+    "test": {
+      "seed": 2026,
+      "samples": 600,
+      "hyperparameters": "Fixed before test; no label-based tuning."
+    },
+    "chain": {
+      "stationary": [
+        0.5348837209302324,
+        0.3372093023255816,
+        0.12790697674418605
+      ],
+      "healthy_after_50_steps": [
+        0.5527940403440555,
+        0.3259131571930949,
+        0.12129280246284876
+      ],
+      "expected_holding_steps": [
+        33.33333333333331,
+        14.285714285714295,
+        10.000000000000002
+      ],
+      "first_fault_probability": [
+        0.9999999999999994,
+        1.0,
+        1.0
+      ],
+      "expected_first_fault_steps": [
+        86.36363636363629,
+        63.63636363636363,
+        0.0
+      ],
+      "absorbing_fault_scenario_transition": [
+        [
+          0.97,
+          0.025,
+          0.005
+        ],
+        [
+          0.04,
+          0.93,
+          0.03
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "absorbing_fault_note": "Hypothetical irreversible fault; the original sensor chain permits recovery."
+    },
+    "diagnosis": {
+      "instantaneous_emission_MAP": {
+        "accuracy": 0.7566666666666667,
+        "confusion_true_rows_predicted_columns": [
+          [
+            322,
+            103,
+            0
+          ],
+          [
+            29,
+            83,
+            8
+          ],
+          [
+            0,
+            6,
+            49
+          ]
+        ]
+      },
+      "online_filter": {
+        "accuracy": 0.8766666666666667,
+        "confusion_true_rows_predicted_columns": [
+          [
+            404,
+            20,
+            1
+          ],
+          [
+            43,
+            75,
+            2
+          ],
+          [
+            0,
+            8,
+            47
+          ]
+        ]
+      },
+      "offline_smoother": {
+        "accuracy": 0.9316666666666666,
+        "confusion_true_rows_predicted_columns": [
+          [
+            418,
+            7,
+            0
+          ],
+          [
+            31,
+            89,
+            0
+          ],
+          [
+            0,
+            3,
+            52
+          ]
+        ]
+      },
+      "offline_viterbi": {
+        "accuracy": 0.9383333333333334,
+        "confusion_true_rows_predicted_columns": [
+          [
+            419,
+            6,
+            0
+          ],
+          [
+            28,
+            92,
+            0
+          ],
+          [
+            0,
+            3,
+            52
+          ]
+        ]
+      },
+      "online_alarm": {
+        "threshold": 0.7,
+        "true_positive": 42,
+        "false_positive": 0,
+        "false_negative": 13,
+        "true_negative": 545,
+        "precision": 1.0,
+        "recall": 0.7636363636363637,
+        "false_alarm_rate": 0.0
+      },
+      "test_log_likelihood_supervised": -415.9319301936549
+    },
+    "baum_welch": {
+      "training_log_likelihood": [
+        -2270.539831929262,
+        -2263.652080610407,
+        -2261.8069011759085,
+        -2261.1269088135937,
+        -2260.8532792101687,
+        -2260.73677045758,
+        -2260.684669907926,
+        -2260.6601830463587,
+        -2260.6480500965354,
+        -2260.641691265396,
+        -2260.6381604952794,
+        -2260.636087020526
+      ],
+      "iterations": 11,
+      "converged": true,
+      "test_log_likelihood": -414.758016916111,
+      "semantic_accuracy": null,
+      "note": "Unsupervised latent labels are permutation invariant. Test labels are not used to relabel or select the fit."
+    },
+    "control": [
+      {
+        "policy": "PI, tau=10",
+        "actual_tau_min": 10.0,
+        "predictor_tau_min": 10.0,
+        "iae": 4.809764891053173,
+        "ise": 0.4576942629711839,
+        "itae": 285.76861460231265,
+        "control_energy": 37.26252774977749,
+        "total_variation": 50.476547186773594,
+        "constraint_violation": 0.0,
+        "final_error": 0.04669901303966023
+      },
+      {
+        "policy": "HMM compensated PI, tau=10",
+        "actual_tau_min": 10.0,
+        "predictor_tau_min": 10.0,
+        "iae": 2.834161809345816,
+        "ise": 0.34542048423529287,
+        "itae": 127.24394695674329,
+        "control_energy": 39.78302026978944,
+        "total_variation": 45.57868188067037,
+        "constraint_violation": 0.0,
+        "final_error": 3.145101077162149e-05
+      },
+      {
+        "policy": "PI, tau=14",
+        "actual_tau_min": 14.0,
+        "predictor_tau_min": 10.0,
+        "iae": 5.089297340956305,
+        "ise": 0.5390123763430527,
+        "itae": 301.8310122189852,
+        "control_energy": 38.236123117785056,
+        "total_variation": 50.200230195256324,
+        "constraint_violation": 0.0,
+        "final_error": 0.057138125317896415
+      },
+      {
+        "policy": "HMM compensated PI, tau=14",
+        "actual_tau_min": 14.0,
+        "predictor_tau_min": 10.0,
+        "iae": 3.6274136157061356,
+        "ise": 0.4605510347818496,
+        "itae": 175.7353713952528,
+        "control_energy": 41.01949662973059,
+        "total_variation": 45.964397099637765,
+        "constraint_violation": 0.0,
+        "final_error": -0.001114742013613168
+      }
+    ],
+    "limitations": "One synthetic test seed; conditional independence is exact only for the calibrated residual generator. Predictor mismatch confounds process dynamics and sensor modes. Offline estimates are excluded from control. Results are not safety guarantees.",
+    "elapsed_seconds": 32.29873200005386
   }
 }

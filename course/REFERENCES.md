@@ -1,7 +1,7 @@
 # Bibliography and reading map
 
 
-The first twelve entries reproduce the bibliographic scope of the supplied integrated syllabus. Years/editions follow that source; they are not a claim that every chapter or edition was consulted. The article supplies the benchmark framework.
+The first twelve entries reproduce the bibliographic scope of the supplied integrated syllabus. Years/editions follow that source; they are not a claim that every chapter or edition was consulted. The article supplies the benchmark framework. Entries 14 and 15 support the additional Markov/HMM unit, which extends that scope.
 
 1. Massa de Campos, M.; Saito, K. *Sistemas inteligentes em controle e automação de processos*. Ciência Moderna, 2004.
 2. Nascimento Jr., C. L.; Yoneyama, T. *Inteligência artificial em controle e automação*. Blücher, 2000.
@@ -16,5 +16,7 @@ The first twelve entries reproduce the bibliographic scope of the supplied integ
 11. Skogestad, Sigurd; Postlethwaite, Ian. *Multivariable Feedback Control: Analysis and Design*. 2nd ed., Wiley, 2005.
 12. Tuovinen, T.; Périaux, J.; Neittaanmäki, P. (eds.). *Computational Sciences and Artificial Intelligence in Industry: New Digital Technologies for Solving Future Societal and Economical Challenges*. Springer, 2022.
 13. Kroll, A.; Schulte, H. Benchmark problems for nonlinear system identification and control using Soft Computing methods: Need and overview. *Applied Soft Computing* 25 (2014), 496-513. DOI: 10.1016/j.asoc.2014.08.034.
+14. Grinstead, C. M.; Snell, J. L. *Introduction to Probability*. 2nd ed., American Mathematical Society, 1997. Chapter 11: Markov chains, absorption and stationary distributions. [Author-hosted open text](https://www.math.dartmouth.edu/~prob/prob/NEW/amsbookwithlinks.mac.pdf).
+15. Rabiner, L. R. A tutorial on hidden Markov models and selected applications in speech recognition. *Proceedings of the IEEE* 77(2) (1989), 257-286. DOI: 10.1109/5.18626. Sections II-III and V: inference, learning, scaling and separate observation sequences. [University-hosted article](https://web.mit.edu/6.435/www/Rabiner89.pdf).
 
-Suggested reading by unit: 01 (3, 9, 13); 02 (1, 6, 7); 03 (1, 11); 04 (8, 11); 05 (1, 2, 4, 5, 10); 06 (2, 3); 07 (1, 2, 12); 08 (8, 9, 11, 12, 13).
+Suggested reading by unit: 01 (3, 9, 13); 02 (1, 6, 7); 03 (1, 11); 04 (8, 11); 05 (1, 2, 4, 5, 10); 06 (2, 3); 07 (1, 2, 12); 08 (8, 9, 11, 12, 13); 09 (14, 15).

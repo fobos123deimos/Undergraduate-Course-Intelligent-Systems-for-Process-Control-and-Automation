@@ -52,5 +52,11 @@
     "code_cells": 7,
     "executed": true,
     "errors": 0
+  },
+  {
+    "path": "laboratories/09-markov-hidden-state-diagnosis/notebook.ipynb",
+    "code_cells": 6,
+    "executed": true,
+    "errors": 0
   }
 ]

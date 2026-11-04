@@ -24,6 +24,13 @@ The twelve books below reproduce the bibliography supplied with the integrated s
 
 Kroll, A.; Schulte, H. *Benchmark problems for nonlinear system identification and control using Soft Computing methods: Need and overview*. Applied Soft Computing 25, 496–513, 2014. [DOI and publisher record](https://doi.org/10.1016/j.asoc.2014.08.034). Its metric named MAE denotes **maximum** absolute error; this repository explicitly separates `max_abs_error` from `mean_abs_error` to avoid the common ambiguity.
 
+## Markov and hidden-state enrichment
+
+- Rabiner, L. R. (1989). *A tutorial on hidden Markov models and selected applications in speech recognition*. Proceedings of the IEEE 77(2), 257–286. [DOI](https://doi.org/10.1109/5.18626). Forward/backward inference, Viterbi and Baum–Welch provide the mathematical basis of unit 09; the tank sensor example is an original synthetic application.
+- [MIT 6.856: Markov Chains](https://courses.csail.mit.edu/6.856/21/Notes/n25-markov-chains.html). Row-vector transition conventions, stationary distributions and hitting times.
+
+These references support the additional laboratory; Markov/HMM coverage is not attributed to the supplied syllabus or Kroll–Schulte survey.
+
 ## Lessons and demonstrations
 
 Links verified on 4 November 2026. Videos and external teaching materials are linked, not copied into this repository.

@@ -9,12 +9,12 @@ from intelligent_control.experiments import run_unit, SLUGS
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--unit',type=int,choices=range(1,9))
+    parser.add_argument('--unit',type=int,choices=sorted(SLUGS))
     parser.add_argument('--all',action='store_true')
     args=parser.parse_args()
     if not args.all and args.unit is None:parser.error('Choose --unit N or --all')
     records={}
-    for unit in range(1,9) if args.all else [args.unit]:
+    for unit in sorted(SLUGS) if args.all else [args.unit]:
         result=run_unit(unit,ROOT/'laboratories'/SLUGS[unit]/'results')
         records[str(unit)]=result['summary']
         print(f'Unit {unit:02d} completed ({result["summary"]["elapsed_seconds"]:.2f} s)')

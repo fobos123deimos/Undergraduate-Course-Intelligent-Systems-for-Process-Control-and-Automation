@@ -1,12 +1,12 @@
 # MATLAB and GNU Octave laboratories
 
-The eight units run without add-on toolboxes. The implementation includes its own box-constrained quadratic MPC solver, fuzzy inference, neural training and genetic search. Run from the repository root:
+The nine laboratories run without add-on toolboxes. The implementation includes its own box-constrained quadratic MPC solver, fuzzy inference, neural training, genetic search, Markov-chain analysis and categorical hidden Markov models. Run from the repository root:
 
 ```matlab
 addpath('matlab');
 results = validate_all();
 checks = validate_paper();
-run_lesson(8, true);
+run_lesson(9, true);
 ```
 
 For GNU Octave, use `octave --no-gui --quiet --eval "addpath('matlab'); validate_all(); validate_paper();"`.
@@ -21,12 +21,44 @@ For GNU Octave, use `octave --no-gui --quiet --eval "addpath('matlab'); validate
 | 06 | Perceptron, trained tanh MLP, regularized RBF, one-dimensional self-organizing map and neural forward-model inversion |
 | 07 | Real and binary genetic search with tournament selection, crossover, mutation and elitism; a counted 12-evaluation genetic MIMO move-penalty search and a deterministic sweep |
 | 08 | Common-scenario PI/feedforward/fuzzy/MPC comparison with IAE, ISE, input variation and a plant-mismatch experiment |
+| 09 | Markov regimes, stationary and finite-horizon probabilities, first hitting times, categorical HMM filtering/smoothing/Viterbi, separate calibration records, Baum-Welch estimation and sensor-bias supervision of PI |
 
 The shared teaching plant is `10 dc/dt = u + d - c`: a 100 L well-mixed vessel with 10 L/min flow, normalized feed composition, `0 <= u <= 1`, sampling interval 0.2 min and 80 min horizon. The initial concentration is 0.35. References are 0.35, 0.65 at 10 min and 0.45 at 55 min. A concentration disturbance of +0.08 begins at 45 min. These are illustrative parameters, separate from both the historical physical Blending Tank and the article's benchmarks. All inputs, outputs and training samples are simulated.
 
 The MPC uses full-state feedback, constant future reference/disturbance estimates and input box constraints. It does not claim terminal-set stability, state constraint satisfaction or robust feasibility. Each move is a projected-gradient solution with a numerical tolerance and iteration limit. The MIMO exercise uses a separate 2x2 discrete model; it is not a multivariable model of the one-state vessel. Unit 07 includes a small evolutionary search over the MIMO move weight, plus an explicitly separate deterministic sweep; neither establishes a global optimum.
 
 Neural validation samples are separate from training samples. Random streams and optimization details can differ between Python and MATLAB/Octave; numerical equality of trained weights is not expected. Unit 06's learned forward-model inversion is an illustrative nonlinear extension and its unconstrained generalization outside the training domain is not certified. A SOM is unsupervised and is not evaluated using classification labels.
+
+## Markov chains and hidden Markov models
+
+`run_markov_lab(true)` is also available directly; the [ninth laboratory](../laboratories/09-markov-hidden-state-diagnosis/README.md) provides the study guide. It uses the 100 L tank and 0.2 min sampling interval, with sensor modes **normal**, **drift** and **sensor fault**. The sensor biases are `[0, 0.055, 0.14]`, Gaussian noise has standard deviation `0.035`, and residual thresholds are `[0.025, 0.095]`. Twenty independent records of 150 samples (seed 17) supply calibration labels; a separate 600-sample record (seed 2026) supplies evaluation. Supervised transition/emission estimates use a pseudocount of one. A new record resets the initial state distribution; its first sample is not joined to the previous record's last sample.
+
+The transition matrix is `[.97 .025 .005; .04 .93 .03; .02 .08 .9]` and the initial distribution is `[.8 .15 .05]`. The continuous residual is the measured concentration minus the prediction from the known nominal tank and applied input. Conditional independence given the sensor state is an assumption of this calibration experiment. The analytic Gaussian category probabilities are retained as simulation references; supervised inference uses estimates fitted to calibration records. Diagnosis is compared with an instantaneous emission-MAP classifier that uses the fitted stationary prior and the current category alone. The reported alarm metrics include precision, recall and the false-positive rate among non-fault samples.
+
+The PI comparison uses `Kp=2`, `Ki=0.2`, input bounds `[0,1]`, bias `0.35`, conditional-integration anti-windup and reference changes from `0.35` to `0.65` at 10 min, then `0.45` at 75 min. There is no process disturbance. The supervisor subtracts the **filtered** expected sensor bias before the PI update. Smoothing and Viterbi use the whole record and are retrospective diagnostics only. Identical state/noise records drive both policies. The plant time constant is 10 min in the nominal comparison and 14 min in the mismatch comparison, while the predictor remains at 10 min. Mismatch contaminates the residual; bias compensation has no general stability or performance guarantee. Printed classification scores and control metrics describe the simulated records, not an industrial fault detector.
+
+`markov_models(action,...)` uses **one-based** state and symbol indices, unlike Python's zero-based indices. All probability matrices are row-stochastic; an emission at the first sample is generated from the initial state before any transition.
+
+| Action | Arguments after the action | Returned value |
+|---|---|---|
+| `propagate` | `P, initial, steps` | Row vector `initial * P^steps`; zero steps returns the initial distribution |
+| `stationary` | `P` | Unique invariant row distribution; nonunique cases raise an error |
+| `hitting` | `P, target_indices` | `[expected_steps, hit_probability]`, both columns; targets have time zero and are stopped at first visit |
+| `simulate_chain` | `P, initial, length, optional_seed` | State column |
+| `simulate` | `P, B, initial, length, optional_seed` | Structure with `states` and `observations` |
+| `filter` / `forward` | `P, B, initial, observations` | `filtered`, per-sample `scales` and total `log_likelihood` |
+| `smooth` | `P, B, initial, observations` | Filter results plus `smoothed` and summed posterior `transition_expectations` |
+| `viterbi` | `P, B, initial, observations` | Most probable joint `path` and its `log_probability` |
+| `supervised` | `state_cells, observation_cells, n_states, n_symbols, optional_pseudocount` | Estimated `transition`, `emission`, `initial` and counts including the pseudocount |
+| `baum_welch` | `observation_cells, P0, B0, initial0, optional_iterations, optional_tolerance` | Estimated model and `log_likelihood_history` including the initialization |
+
+Forward/backward calculations use per-sample scaling; Viterbi works in log probabilities. Invalid probabilities and impossible observation records raise errors. Supervised estimation defaults to a pseudocount of one; an explicit zero requests unsmoothed counts and requires every row to be observed. For first hitting times, a nonzero probability of never reaching a target means an infinite unconditional expectation; the separate hit probability reports that distinction. Multiplying steps by the sampling interval converts the result to minutes. The laboratory's absorbing fault model is an explicit modification of the reversible sensor-regime chain, not a claim that sensor faults can never recover.
+
+Baum-Welch maximizes the sum of log likelihoods of the independent observation records. It uses no labels or pseudocount, retains a parameter row if its expected count is zero, and reports the full likelihood history. Convergence uses improvement relative to `max(1, abs(previous_log_likelihood))`; a tiny negative change from roundoff retains the preceding iterate, while a material decrease raises an error. Its likelihood can improve without recovering the physical state names: state permutations, local optima and model mismatch must be considered. Calibration labels give physical names to the supervised model only.
+
+The laboratory's EM demonstration starts from the disclosed simulator transition, emission and initial probabilities, with 30 iterations and relative tolerance `1e-6`. This is a favorable initialization for studying the likelihood updates, not evidence of discovering an unknown physical model from scratch. Neither test labels nor test observations enter its fit. Markov-chain outputs also include mean holding durations and the 50-step (10 min) distribution starting from the normal state. IAE is integrated over time with the trapezoidal rule in both language implementations.
+
+`validate_all()` runs the ninth laboratory and `validate_markov()`. The latter checks chain propagation and stationarity against analytic answers; first hitting times with certain, partial and impossible absorption; filtering, smoothing, transition expectations and Viterbi against exhaustive latent-path enumeration; long-record numerical scaling; independent-record count boundaries; EM likelihood and singleton records; and invalid inputs. The same two-state fixture is used in the Python tests. Random sequences are reproducible within each runtime, but exact MATLAB/Python random samples are not expected to coincide.
 
 ## Published benchmark equations
 
@@ -56,6 +88,6 @@ For pneumatic pressure, the default printed gas constant `8.314` is dimensionall
 
 The Tennessee Eastman simulator and industrial laboratory datasets remain external, provenance-controlled cases; they are not replaced by synthetic plants. No local MATLAB/Simulink execution is claimed. See the repository validation record for actual Octave execution status.
 
-GNU Octave 11.1.0 passed `validate_all` and `validate_paper` on the published source commit `c8a9a6f`: [verified CI job](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41849137529/job/126640403549). This includes all eight units and ten mathematical benchmark checks.
+The previous eight-unit version passed `validate_all` and `validate_paper` with GNU Octave 11.1.0 on published source commit `c8a9a6f`: [verified CI job](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41849137529/job/126640403549). That run includes the original eight units and ten mathematical benchmark checks; it predates the ninth laboratory. See the repository validation record for the current run.
 
 `local_arx_fit` and `local_arx_predict` also implement the eight-local-model PWA/TS architecture discussed for the throttle in section 4.1. Their standardized partition features are output change and previous input, fitted on training records only. Crisp nearest-center and inverse-distance soft partitions are explicit teaching choices. The validation checks both on an unseen linear synthetic experiment; it does not claim the unavailable published throttle measurements or fitted partition parameters were reproduced.

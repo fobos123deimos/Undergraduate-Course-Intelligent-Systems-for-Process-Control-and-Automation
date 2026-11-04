@@ -2,7 +2,7 @@
 
 [Exercise book (PDF)](exercises.pdf) · [Worked solutions (PDF)](solutions.pdf) · [Course notes](../course/notes.pdf)
 
-Eight sets of five original integrated problems connect derivations, physical interpretation, implementation and evaluation. Every problem has linked parts and a worked answer. Hypothetical numerical data are stated explicitly; design protocols are proposed experiments, not fabricated results.
+Nine sets of five original integrated problems connect derivations, physical interpretation, implementation and evaluation: 40 problems cover the eight core units and five extend the collection with Markov chains and hidden-state diagnosis. Every problem has linked parts and a worked answer. Hypothetical numerical data are stated explicitly; design protocols are proposed experiments, not fabricated results.
 
 | Unit | Topic | Exercises | Solutions |
 |---|---|---|---|
@@ -14,5 +14,6 @@ Eight sets of five original integrated problems connect derivations, physical in
 | 06 | Neural modeling and control of dynamic systems | [Five problems](06-neural-identification-control/exercises.md) | [Worked answers](06-neural-identification-control/solutions.md) |
 | 07 | Evolutionary optimization and controller tuning | [Five problems](07-evolutionary-tuning/exercises.md) | [Worked answers](07-evolutionary-tuning/solutions.md) |
 | 08 | Integration, benchmark evidence and technical communication | [Five problems](08-integrated-validation/exercises.md) | [Worked answers](08-integrated-validation/solutions.md) |
+| 09 | Markov chains and hidden-state diagnosis | [Five problems](09-markov-hidden-state-diagnosis/exercises.md) | [Worked answers](09-markov-hidden-state-diagnosis/solutions.md) |
 
 Attempt the quantitative derivation before opening the solution. For design questions, other answers are acceptable when they preserve the problem constraints and make evidence and limitations explicit.

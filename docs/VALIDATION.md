@@ -4,9 +4,11 @@ Validation date: 4 November 2026. All course experiments use synthetic data.
 
 ## Numerical experiments
 
-All eight Python laboratory programs executed locally. Their actual outputs are stored in the per-laboratory `results/metrics.json` and trace CSV files. The aggregate [execution record](execution.json) records numerical values and elapsed time from the final notebook executions. Runtime is environment-dependent and is not used to rank methods.
+All nine Python laboratory programs executed locally. Their actual outputs are stored in the per-laboratory `results/metrics.json` and trace CSV files. The aggregate [execution record](execution.json) records numerical values and elapsed time from the final notebook executions. Runtime is environment-dependent and is not used to rank methods.
 
-All **41 numerical tests passed** locally: 12 method checks, 8 independent worked-answer checks and 21 benchmark checks. The eight course notebooks and the benchmark notebook executed with fresh Jupyter kernels, with saved numerical outputs and no error cells. See the [notebook record](notebook-validation.json). All eight course comparison figures were visually inspected; unrelated identification/control scenarios occupy separate panels.
+The original **41 numerical tests passed** locally: 12 method checks, 8 independent worked-answer checks and 21 benchmark checks. The Markov extension adds **43 passing checks**, including independent enumeration of hidden paths, first-passage equations, long-sequence scaling, training-sequence boundaries, EM likelihood monotonicity and causal supervision. The nine course notebooks and the benchmark notebook executed with fresh Jupyter kernels, with saved numerical outputs and no error cells. See the [notebook record](notebook-validation.json). All nine course comparison figures and the additional sensor-diagnosis figure were visually inspected; unrelated scenarios occupy separate panels.
+
+The Markov test uses 600 samples from an independent seed after calibration on 20 separate 150-sample records. Online filtering attained 0.876667 state accuracy, versus 0.756667 for instantaneous emission MAP. The fixed alarm threshold produced 42 true positives, 13 false negatives and no false positives in this particular realization. These are synthetic sample results, not population reliability estimates. Offline smoothing and Viterbi are scored separately and never enter control. The controller uses calibrated sensor biases; the Baum–Welch illustration has a favorable initialization at the simulator probabilities, as stated in the [limitations](LIMITATIONS.md).
 
 The local runtime is Python 3.12 with NumPy 2.5.4, SciPy 1.18.1 and Matplotlib 3.11.2. Dependency ranges are recorded in `requirements.txt`; this run does not certify every allowed version combination.
 
@@ -20,7 +22,7 @@ The three LaTeX editions compiled with Tectonic 0.17.0: 17 pages of course notes
 
 Eleven additional original equipment schematics are supplied as SVG and PNG in the [benchmark gallery](../benchmarks/DIAGRAMS.md). They were visually inspected, including full-size checks of repaired labels.
 
-All local Markdown links and all nine notebook document structures were checked. Colab links point to the corresponding real repository notebook paths; this does not claim an interactive Colab-browser session was tested.
+All local Markdown links and all ten notebook document structures were checked. Colab links point to the corresponding real repository notebook paths; this does not claim an interactive Colab-browser session was tested.
 
 ## Reproduction commands
 

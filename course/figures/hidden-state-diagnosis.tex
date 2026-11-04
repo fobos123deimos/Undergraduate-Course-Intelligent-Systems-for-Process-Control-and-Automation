@@ -1,0 +1,16 @@
+\begin{center}
+\begin{tikzpicture}[node distance=14mm and 25mm]
+\node[box] (z0) {Hidden regime\\$z_{k-1}$};
+\node[box,right=of z0] (z1) {Hidden regime\\$z_k$};
+\node[box,right=of z1] (z2) {Hidden regime\\$z_{k+1}$};
+\node[box,below=of z0,fill=water] (o0) {Residual symbol\\$o_{k-1}$};
+\node[box,below=of z1,fill=water] (o1) {Residual symbol\\$o_k$};
+\node[box,below=of z2,fill=water] (o2) {Residual symbol\\$o_{k+1}$};
+\draw[flow] (z0)--node[above] {$P$}(z1);
+\draw[flow] (z1)--node[above] {$P$}(z2);
+\draw[flow] (z0)--node[right] {$B$}(o0);
+\draw[flow] (z1)--node[right] {$B$}(o1);
+\draw[flow] (z2)--node[right] {$B$}(o2);
+\end{tikzpicture}
+\end{center}
+\noindent\textit{Transitions describe regime persistence; emissions connect a regime to uncertain evidence. At sample $k$, an online filter can use observations only through $o_k$.}

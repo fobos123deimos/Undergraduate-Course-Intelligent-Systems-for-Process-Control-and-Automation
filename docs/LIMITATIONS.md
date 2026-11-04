@@ -14,6 +14,16 @@ Expert rules are illustrative thresholds. Fuzzy memberships, rule surfaces, lear
 
 The capstone uses matched uncertainty cases and a common sensor-noise seed. Feedforward has a disturbance measurement unavailable to the other controllers. Aggregate metrics include multiple setpoint segments; ITAE is measured from the beginning of the whole experiment. No universal ranking is implied.
 
+## Markov chains and hidden-state diagnosis
+
+Unit 09 is an enrichment beyond the supplied eight-unit syllabus and the article's benchmark inventory. Its hidden states describe sensor modes, not a new physical tank model. The transition matrix, positive sensor biases, independent Gaussian noise and residual cutpoints are declared teaching choices. Calibration labels are available only because the trajectories are synthetic; real deployments need labeled fault records or a separately justified identification strategy.
+
+Twenty independent calibration trajectories are kept separate during parameter estimation. An independent seeded test is used only for scoring; thresholds and model settings are fixed beforehand. The continuous compensation biases are estimated only from calibration data. Baum–Welch fits symbols without labels, can reach a local optimum and cannot identify semantic state names without additional information. This demonstration starts EM at the known simulator transition, initial and theoretical emission probabilities: a favorable initialization, not blind identification from unknown operating conditions. Its states are not relabeled using held-out labels.
+
+Filtering is causal; full-record smoothing and Viterbi are retrospective and never enter the controller. Conditional independence of residual emissions is exact for the nominal synthetic generator, but generally fails when the predictor is wrong or residuals are autocorrelated. The compensated PI has an additional nominal model, a known initial concentration and known past inputs. It therefore has an information advantage over ordinary PI. The changed residence-time case exposes confounding between model error and sensor faults. One seeded comparison does not establish a universal performance improvement or safe fault-tolerant operation.
+
+The sensor chain permits recovery. Making the fault state absorbing is an explicitly hypothetical variant. First passage to fault and long-run occupancy are different quantities; expected first-passage time is infinite for starting states that do not reach the target almost surely.
+
 ## Article models and software environments
 
 Read the [benchmark inventory](../benchmarks/README.md) before interpreting a result as reproduction of a published benchmark. Missing measured data, unprovided valve laws, rotor maps, implementation variants and inaccessible plant distributions are material scientific limitations. A closure supplied for teaching is labeled separately from the paper equations.

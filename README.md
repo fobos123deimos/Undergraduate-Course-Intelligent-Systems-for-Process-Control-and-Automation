@@ -8,7 +8,7 @@
 ![MATLAB / Octave](https://img.shields.io/badge/MATLAB%20%2F%20Octave-Control-orange)
 ![LaTeX](https://img.shields.io/badge/LaTeX-Notes_and_solutions-008080)
 
-An English study collection with eight computational laboratories, connected derivations, 40 integrated problems and worked solutions. A separate benchmark track covers every section of Kroll and Schulte's 2014 survey, with a model-by-model account of equations, data requirements and reproduction limits. All newly simulated course data are synthetic.
+An English study collection with nine computational laboratories, connected derivations, 45 integrated problems and worked solutions. Eight units follow the supplied syllabus; a ninth extends the laboratories with Markov chains and hidden Markov models for process diagnosis. A separate benchmark track covers every section of Kroll and Schulte's 2014 survey, with a model-by-model account of equations, data requirements and reproduction limits. All newly simulated course data are synthetic.
 
 Course context: **Sistemas Inteligentes em Controle e Automação de Processos**, associated by the repository owner with **Prof. Michela Mulas**. [Official UFC faculty profile](https://ppgeti.ufc.br/pt/michela-mulas/). These new materials are an independent study collection, not an official syllabus, nor materials reviewed or endorsed by the professor.
 
@@ -21,7 +21,7 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 - [References and English/Portuguese video lessons](docs/REFERENCES.md)
 - [Execution evidence](docs/VALIDATION.md) and [limitations](docs/LIMITATIONS.md)
 
-## Eight connected laboratories
+## Nine connected laboratories
 
 | Unit | Focus | Notebook | Computed results |
 |---|---|---|---|
@@ -33,6 +33,7 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 | 06 | [Perceptron, MLP, RBF, SOM and neural control](laboratories/06-neural-identification-control/README.md) | [Colab](https://colab.research.google.com/github/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/laboratories/06-neural-identification-control/notebook.ipynb) | [Metrics](laboratories/06-neural-identification-control/results/metrics.json) |
 | 07 | [Binary/real genetic algorithms and MPC tuning](laboratories/07-evolutionary-tuning/README.md) | [Colab](https://colab.research.google.com/github/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/laboratories/07-evolutionary-tuning/notebook.ipynb) | [Metrics](laboratories/07-evolutionary-tuning/results/metrics.json) |
 | 08 | [Integration, uncertainty and fair comparison](laboratories/08-integrated-validation/README.md) | [Colab](https://colab.research.google.com/github/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/laboratories/08-integrated-validation/notebook.ipynb) | [Metrics](laboratories/08-integrated-validation/results/metrics.json) |
+| 09 | [Markov chains, HMM diagnosis and causal supervision](laboratories/09-markov-hidden-state-diagnosis/README.md) | [Colab](https://colab.research.google.com/github/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/laboratories/09-markov-hidden-state-diagnosis/notebook.ipynb) | [Metrics](laboratories/09-markov-hidden-state-diagnosis/results/metrics.json) |
 
 ![Computed controller comparison](laboratories/05-expert-fuzzy-control/results/comparison.png)
 
@@ -67,8 +68,8 @@ Reference: A. Kroll and H. Schulte, *Benchmark problems for nonlinear system ide
 ## Organization
 
 ```text
-course/                 eight lessons, mathematical notes and bibliography
-laboratories/           eight executable notebooks with results
+course/                 eight core lessons, one enrichment, notes and bibliography
+laboratories/           nine executable notebooks with results
 problem-sets/           integrated questions and worked reasoning
 python/intelligent_control/  inspectable methods, experiments and benchmarks
 matlab/                 MATLAB/Octave implementations

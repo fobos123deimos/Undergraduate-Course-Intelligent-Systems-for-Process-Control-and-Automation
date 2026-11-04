@@ -1,8 +1,9 @@
 function result = run_lesson(unit, make_plots)
-%RUN_LESSON Eight toolbox-free process-control laboratories.
-%   result = run_lesson(1);  run_lesson(8, true)
+%RUN_LESSON Nine toolbox-free process-control laboratories.
+%   result = run_lesson(1);  run_lesson(9, true)
 %   MATLAB and GNU Octave use identical equations. Random streams can differ.
 if nargin < 2, make_plots = false; end
+if isequal(unit,9),result=run_markov_lab(make_plots);return;end
 rng(42, 'twister');
 dt = 0.2; tau = 10;
 a = exp(-dt/tau); b = 1-a;
@@ -168,7 +169,7 @@ switch unit
   % One common unmeasured plant mismatch, same disturbances and limits.
   result.mismatch=closed_loop('pi',t,r,d,exp(-dt/14),1-exp(-dt/14),[2 .2 0]);
   result.t=t; result.y=ys; result.reference=r;
- otherwise,error('Unit must be an integer from 1 to 8.');
+ otherwise,error('Unit must be an integer from 1 to 9.');
 end
 if make_plots && isfield(result,'t')
  figure; plot(result.t,result.y,'LineWidth',1.4); grid on;
