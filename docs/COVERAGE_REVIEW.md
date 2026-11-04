@@ -81,7 +81,7 @@ The detailed source corrections and assumptions remain in the [benchmark guide](
 | 3.12, reduced wind turbine | Nine-state mechanical/pitch model | Uses declared 2022 ROSCO map; original map/results and optional reduced-order/second-order pitch variants not reproduced |
 | 3.12, FAST aeroelastic turbine | External run protocol/interface | Complete version-pinned simulator, turbine, controller and wind case not executed |
 | 3.13, Tennessee Eastman | Verified official source retrieval and [MATLAB launcher](../benchmarks/run_te_reference.m) | Original 50-state and revised 52-state versions remain distinct; simulator execution unverified |
-| 4.2, wind TS/PDC controller example | [Worked architecture discussion](../benchmarks/CASE_STUDIES.md#12-reduced-and-aeroelastic-wind-turbines-312) | No implemented LQR gain schedule or reproduced Tables 11-12; article does not supply a complete set of gains/memberships |
+| 4.2, wind TS/PDC controller example | [Worked architecture discussion](../benchmarks/CASE_STUDIES.md#12-reduced-and-aeroelastic-wind-turbines-312) | No implemented LQR gain schedule or reproduced Table 12; article does not supply a complete set of gains/memberships |
 
 The **ten mathematical cores** are SISO, MIMO, pendulum, pneumatic, hydrostatic, three tanks, bioreactor, CSTR, Column A and reduced wind. LV and sampled bioreactor are variants of existing families, not extra cores. The thirteen-section count refers to Sections 3.1-3.13, not thirteen fully reproduced industrial simulations.
 
@@ -94,6 +94,6 @@ The **ten mathematical cores** are SISO, MIMO, pendulum, pneumatic, hydrostatic,
 
 ## Validation and open requirements
 
-The local review reran all **115 Python tests**, the Markdown navigation check and structural validation of all **eleven notebooks**. The targeted Markov/HMM review independently reran its 43 checks. The updated MATLAB source requires the new Octave CI result recorded in [VALIDATION.md](VALIDATION.md); earlier successful runs do not validate changed code.
+The local review reran all **115 Python tests**, the Markdown navigation check and structural validation of all **eleven notebooks**. The targeted Markov/HMM review independently reran its 43 checks. [Run 41871009584](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41871009584) then passed on source commit `4662549b215be92714a874ef3caed9992cce1063`: Python reran all 115 tests and executed eleven notebooks; GNU Octave 11.1.0 passed all nine units, including the new multiloop and fuzzy-PID assertions, seven Markov/HMM check groups, seven physical-tank groups and ten mathematical benchmark checks. The subsequent record update changes documentation only. See [VALIDATION.md](VALIDATION.md) for the execution boundary.
 
 Completion of full canonical article reproduction still requires recovered throttle measurements, the ALSTOM challenge distribution, versioned FAST inputs and runtime, Tennessee Eastman runtime execution, resolution of pneumatic/hydrostatic source ambiguities, and the defined full controller/observer experiments. Full Simulink coverage and proprietary-runtime validation are separate remaining work. These are substantive limits, not missing titles in the topic index.

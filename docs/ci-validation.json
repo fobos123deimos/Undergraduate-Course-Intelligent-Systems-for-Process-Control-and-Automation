@@ -1,10 +1,10 @@
 {
   "date": "2026-11-04",
-  "source_commit": "7fcb51d9904748f998b459593f1730946ee39d24",
-  "workflow_run_id": 41866227718,
-  "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41866227718",
+  "source_commit": "4662549b215be92714a874ef3caed9992cce1063",
+  "workflow_run_id": 41871009584,
+  "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41871009584",
   "python": {
-    "job_id": 126700992430,
+    "job_id": 126717729880,
     "conclusion": "success",
     "tests_passed": 115,
     "corrected_tank_tests_passed": 31,
@@ -13,11 +13,13 @@
     "notebooks_executed": 11
   },
   "octave": {
-    "job_id": 126700992179,
+    "job_id": 126717729398,
     "conclusion": "success",
     "version": "11.1.0",
     "runner": "Ubuntu 26.04.1",
     "course_units_passed": 9,
+    "dynamic_multiloop_checks_passed": true,
+    "fuzzy_pid_ablation_checks_passed": true,
     "markov_mathematical_check_groups": 7,
     "corrected_tank_mathematical_check_groups": 7,
     "mathematical_benchmarks_checked": 10
@@ -25,6 +27,11 @@
   "matlab_executed": false,
   "simulink_executed": false,
   "previous_validations": [
+    {
+      "source_commit": "7fcb51d9904748f998b459593f1730946ee39d24",
+      "workflow_run_id": 41866227718,
+      "workflow_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41866227718"
+    },
     {
       "source_commit": "0418af4458abf7c264ea4f1cba320e4a940cf29c",
       "workflow_run_id": 41860754694,
