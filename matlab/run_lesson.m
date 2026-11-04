@@ -69,13 +69,18 @@ switch unit
   result.siso=closed_loop('mpc',t,r,d,a,b,[2 .2 0]);
   % 2x2 constrained receding horizon control, H=12, Nc=4.
   A=diag([.96 .94]); B=[.04 .012;.01 .05];
-  x=[0;0]; logx=zeros(101,2); logu=zeros(100,2); up=[0;0];
+  x=[0;0]; logx=zeros(101,2); logu=zeros(100,2); up=[0;0];failures=0;max_violation=0;
+  constraints=struct('max_move',.08,'output_lower',0,'output_upper',.65);
   for k=1:100
-   target=[.4;.5]; [u,info]=mpc_move(A,B,x,target,12,4,.15,up);
+   target=[.4;.5]; [u,info]=mpc_control(A,B,x,target,12,4,.15,up,constraints);
+   failures=failures+~info.success;max_violation=max(max_violation,info.applied_plan_max_violation);
    x=A*x+B*u; logx(k+1,:)=x'; logu(k,:)=u'; up=u;
   end
-  result.mimo=struct('states',logx,'inputs',logu,'last_solver',info);
+  result.mimo=struct('states',logx,'inputs',logu,'last_solver',info,...
+   'solver_failures',failures,'max_constraint_violation',max_violation,'constraints',constraints);
   assert(all(logu(:)>=-1e-10 & logu(:)<=1+1e-10));
+  assert(max(max(abs(diff([zeros(1,2);logu]))))<=.08+1e-7);
+  assert(all(logx(:)>=-1e-7 & logx(:)<=.65+1e-7) && failures==0);
   assert(norm(logx(end,:)'-target)<.03);
   result.t=t; result.y=result.siso.y; result.reference=r;
  case 5
@@ -114,6 +119,29 @@ switch unit
   weights=(Phi'*Phi+1e-8*eye(size(Phi,2)))\(Phi'*target);
   predR=rbf_features(Xt,centers,.3)*weights;
   result.rbf_rmse=sqrt(mean((predR-yt).^2));
+  models=struct('mlp',struct('kind','mlp','W1',W1,'W2',W2),...
+   'rbf',struct('kind','rbf','centers',centers,'width',.3,'weights',weights));
+  % Fixed models are evaluated on a fresh complete trajectory. One-step
+  % prediction uses measured history; recursive free run uses predictions.
+  tv=(0:dt:40)';uv=.3+.15*sin(tv(1:end-1)/3)+.05*sin(tv(1:end-1)/1.1);
+  actual=zeros(size(tv));actual(1)=.25;
+  for k=1:numel(uv),actual(k+1)=a*actual(k)+b*uv(k)+.015*sin(3*actual(k))*uv(k);end
+  % Deliberately outside training [0,1]^2; no fitting or parameter selection
+  % uses these points, their targets, or the independent trajectory.
+  ood=[linspace(1.2,1.6,101)' linspace(1.1,1.4,101)'];
+  ood_truth=a*ood(:,1)+b*ood(:,2)+.015*sin(3*ood(:,1)).*ood(:,2);
+  validation=struct('time',tv,'inputs',uv,'truth',actual,'training_domain',[0 1;0 1],...
+   'ood_inputs',ood,'ood_truth',ood_truth);
+  for family={'mlp','rbf'}
+   name=family{1};model=models.(name);
+   step=neural_predict(model,[actual(1:end-1) uv]);free=neural_rollout(model,uv,actual(1));
+   outside=neural_predict(model,ood);
+   validation.(name)=struct('one_step',step,'free_run',free,'ood_prediction',outside,...
+    'one_step_rmse',sqrt(mean((step-actual(2:end)).^2)),...
+    'free_run_rmse',sqrt(mean((free(2:end)-actual(2:end)).^2)),...
+    'ood_rmse',sqrt(mean((outside-ood_truth).^2)));
+  end
+  result.neural_models=models;result.neural_validation=validation;
   % A 1-D self-organizing map preserves neighborhood topology.
   prototypes=rand(8,2);
   for epoch=1:30
@@ -186,13 +214,15 @@ end
 
 function q=closed_loop(mode,t,r,d,a,b,g)
 dt=t(2)-t(1); n=numel(t); y=zeros(n,1); u=y;y(1)=.35; I=.35; olde=0; oldy=.35; deriv=0; up=.35;
-gains=zeros(n,3); derivative_term=zeros(n,1);
+gains=zeros(n,3); derivative_term=zeros(n,1);solver_failures=0;solver_max_violation=0;
 for k=1:n-1
  e=r(k)-y(k); de=(e-olde)/dt; kp=g(1); ki=g(2);
  switch mode
   case 'mpc'
    % Known disturbance is included as a constant affine term.
-   u(k)=mpc_move(a,b,y(k),r(k),18,5,.08,up,b*d(k));
+   [u(k),status]=mpc_move(a,b,y(k),r(k),18,5,.08,up,b*d(k));
+   solver_failures=solver_failures+~status.success;
+   solver_max_violation=max(solver_max_violation,status.applied_plan_max_violation);
   case 'fuzzy'
    raw=I+.5*sugeno(clip(e/.3,-1,1),clip(de/.1,-1,1));
    u(k)=clip(raw,0,1); I=I+dt*(.16*e+.5*(u(k)-raw));
@@ -216,7 +246,8 @@ end
 u(end)=u(end-1); error=r-y;
 gains(end,:)=gains(end-1,:); derivative_term(end)=derivative_term(end-1);
 q=struct('y',y,'u',u,'iae',trapz(t,abs(error)),'ise',trapz(t,error.^2),...
- 'total_variation',sum(abs(diff(u))),'gains',gains,'derivative_term',derivative_term);
+ 'total_variation',sum(abs(diff(u))),'gains',gains,'derivative_term',derivative_term,...
+ 'solver_failures',solver_failures,'solver_max_violation',solver_max_violation);
 assert(all(isfinite(y)) && all(u>=0 & u<=1));
 end
 
@@ -242,24 +273,7 @@ end
 
 function [u,info]=mpc_move(A,B,x,reference,H,Nc,rho,previous,affine)
 if nargin<9,affine=zeros(size(x));end
-nx=numel(x); nu=size(B,2); F=zeros(H*nx,nx); G=zeros(H*nx,Nc*nu); offset=zeros(H*nx,1);
-Ap=eye(nx); op=zeros(nx,1);
-for i=1:H
- Ap=A*Ap; op=A*op+affine; rows=(i-1)*nx+(1:nx); F(rows,:)=Ap; offset(rows)=op;
- for j=1:i
-  col=min(j,Nc); cols=(col-1)*nu+(1:nu);
-  G(rows,cols)=G(rows,cols)+(A^(i-j))*B;
- end
-end
-E=eye(Nc*nu); for j=2:Nc,E((j-1)*nu+(1:nu),(j-2)*nu+(1:nu))=-eye(nu);end
-anchor=[previous;zeros((Nc-1)*nu,1)]; target=repmat(reference,H,1);
-Q=G'*G+rho*(E'*E); c=G'*(F*x+offset-target)-rho*E'*anchor;
-z=repmat(previous,Nc,1); L=norm(Q,2); residual=Inf;
-for iter=1:1200
- next=clip(z-(Q*z+c)/L,0,1); residual=norm(next-z,Inf);z=next;
- if residual<1e-8,break;end
-end
-u=z(1:nu); info=struct('iterations',iter,'projected_residual',residual);
+[u,info]=mpc_control(A,B,x,reference,H,Nc,rho,previous,struct('affine',affine,'max_move',.08));
 end
 
 function mu=membership(x)

@@ -13,6 +13,7 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python tools/run_course.py --all
       - run: python blending-tank/run_study.py
+      - run: python benchmarks/run_wind_control.py
       - run: python tools/validate.py --notebooks
   octave:
     runs-on: ubuntu-latest
@@ -20,4 +21,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y octave
-      - run: octave --no-gui --quiet --eval "addpath('matlab'); validate_all; validate_paper;"
+      - run: octave --no-gui --quiet --eval "addpath('matlab'); validate_all; validate_paper; validate_online_hmm; validate_wind_control;"
+  matlab-simulink:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2025b
+          products: Simulink
+      - uses: matlab-actions/run-command@v3
+        with:
+          command: addpath('matlab'); addpath('simulink'); validate_all; validate_paper; validate_online_hmm; validate_wind_control; validate_simulink_suite(fullfile(pwd,'ci-artifacts','simulink'));
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: matlab-simulink-validation
+          path: ci-artifacts/
+          if-no-files-found: warn

@@ -22,6 +22,21 @@ assert(max(abs(fuzzy.fuzzy_pid.derivative_term))>1e-5);
 assert(all(fuzzy.fuzzy_pi.gains(:,3)==0));
 assert(norm(fuzzy.fuzzy_pid.u-fuzzy.fuzzy_pi.u,Inf)>1e-5);
 assert(abs(fuzzy.fuzzy_pid.y(end)-.45)<.03);
+validate_mpc();
+% Neural free run must use its own output history after the initial sample.
+neural=results{6};validation=neural.neural_validation;
+assert(all(validation.ood_inputs(:,1)>1) && all(validation.ood_inputs(:,2)>1));
+for family={'mlp','rbf'}
+ name=family{1};record=validation.(name);model=neural.neural_models.(name);
+ assert(record.free_run(1)==validation.truth(1));
+ assert(all(isfinite([record.one_step;record.free_run;record.ood_prediction])));
+ assert(abs(record.free_run(3)-neural_predict(model,[record.free_run(2) validation.inputs(2)]))<1e-12);
+ assert(abs(record.one_step(2)-neural_predict(model,[validation.truth(2) validation.inputs(2)]))<1e-12);
+ assert(norm(record.free_run(2:end)-record.one_step)>1e-5);
+ assert(record.free_run_rmse>=0 && record.ood_rmse>=0);
+end
+assert(results{4}.siso.solver_failures==0 && results{4}.mimo.solver_failures==0);
+fprintf('Neural one-step, recursive and out-of-domain validation checks passed.\n');
 validate_markov();
 validate_blending_tank();
 fprintf('All nine laboratory units passed.\n');

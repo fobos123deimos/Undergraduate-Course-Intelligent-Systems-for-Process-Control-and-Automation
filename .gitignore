@@ -11,3 +11,4 @@ __pycache__/
 build/
 external-data/
 simulink/generated/
+ci-artifacts/

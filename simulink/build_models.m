@@ -6,13 +6,7 @@ if nargin<2,overwrite=false;end
 if exist('new_system','file')==0 && exist('new_system','builtin')==0,error('MATLAB with Simulink is required.');end
 base=fileparts(mfilename('fullpath'));addpath(base);addpath(fullfile(base,'..','matlab'));
 if ~exist(output_dir,'dir'),mkdir(output_dir);end
-specs={...
- 'blend_physical','blending',[0;2],[500;200;.4;.75;700],struct('ninputs',5,'rho',1000),10;...
- 'paper_pendulum','pendulum',[.03;0;0;0],0,struct('ninputs',1),.5;...
- 'paper_three_tank','three_tank',[.3;.3;.3],[0;0],struct('ninputs',2),20;...
- 'paper_bioreactor','bioreactor',[.08729754781771586;.9235897740828826],.769,struct('ninputs',1),5;...
- 'paper_cstr','cstr',[3517.5;740;87;79.8],[8.256;-6.239],struct('ninputs',2),.05;...
- 'paper_column_a','column_a',[linspace(.01,.99,41)';.5*ones(41,1)],[2.70629;3.20629;.5;.5;1;.5;1],struct('ninputs',7),.2};
+specs=paper_simulink_cases('continuous');
 paths=cell(size(specs,1)+2,1);
 for k=1:size(specs,1)
  name=['si_' specs{k,1}];paths{k}=prepare(name,output_dir,overwrite);
@@ -24,7 +18,8 @@ for k=1:size(specs,1)
    'Parameters',['''' specs{k,2} ''',xinit,params'],'Position',[160 60 300 110]);
   add_block('simulink/Sinks/To Workspace',[name '/States'],'VariableName','state_history','SaveFormat','StructureWithTime','Position',[370 60 470 110]);
   add_line(name,'Input/1','Plant/1');add_line(name,'Plant/1','States/1');
-  set_param(name,'Solver','ode15s','StopTime',num2str(specs{k,6}),'MaxStep','0.01','ReturnWorkspaceOutputs','on');
+  set_param(name,'Solver','ode15s','StopTime',num2str(specs{k,6}),...
+   'MaxStep',num2str(min(.01,specs{k,6}/100),17),'RelTol','1e-8','AbsTol','1e-10','ReturnWorkspaceOutputs','on');
   save_system(name,paths{k});close_system(name,0);
  catch err
   close_system(name,0);rethrow(err);
