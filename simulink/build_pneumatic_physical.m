@@ -12,7 +12,7 @@ try
  p=pneumatic_physical('parameters');ws=get_param(name,'ModelWorkspace');assignin(ws,'p',p);
  assignin(ws,'xinit',pneumatic_physical('equilibrium',0,5e5,p));
  add_block('simulink/Sources/Sine Wave',[name '/Voltage'],'Amplitude','2','Frequency','2*pi','SampleTime','0','Position',[30 90 100 130]);
- add_block('simulink/User-Defined Functions/S-Function',[name '/MassEnergyCylinder'],...
+ add_block('simulink/User-Defined Functions/Level-2 MATLAB S-Function',[name '/MassEnergyCylinder'],...
   'FunctionName','pneumatic_physical_sfun','Parameters','xinit,p','Position',[180 60 400 155]);
  add_block('simulink/Signal Routing/Demux',[name '/MechanicalMassThermal'],'Outputs','[1 1 2 2]','Position',[465 10 470 125]);
  add_block('simulink/Sinks/To Workspace',[name '/StateTrace'],'VariableName','state_history','SaveFormat','StructureWithTime','Position',[465 230 595 270]);
