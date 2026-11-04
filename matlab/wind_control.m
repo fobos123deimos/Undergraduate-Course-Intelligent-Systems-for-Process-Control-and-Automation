@@ -89,7 +89,8 @@ end
 
 function u=command(x,v,points,previous,dt,scheduled)
 if nargin<6,scheduled=true;end
-assert(dt>0);h=weights(v,points);raw=zeros(2,1);
+x=x(:);previous=previous(:);assert(numel(x)==8&&numel(previous)==2);
+assert(isfinite(dt)&&dt>0&&all(isfinite([x;previous])));h=weights(v,points);raw=zeros(2,1);
 if scheduled
  for j=1:numel(points),raw=raw+h(j)*(points(j).command-points(j).gain*(x-points(j).state));end
 else

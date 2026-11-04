@@ -5,7 +5,7 @@ if nargin<2,duration=60;end
 if nargin<3,dt=.02;end
 if nargin<4,points=wind_control('design');end
 assert(dt>0&&duration>0&&abs(duration/dt-round(duration/dt))<1e-9);
-t=(0:dt:duration)';v=12+2*(t>=20)+2*(t>=40);n=numel(t);x=zeros(n,8);u=zeros(n,2);
+t=(0:dt:duration)';v=12+1*(t>=20)+2*(t>=40);n=numel(t);x=zeros(n,8);u=zeros(n,2);
 p=wind_control('equilibrium',v(1));x(1,:)=p.state';previous=p.command;
 for k=1:n-1
  command=wind_control('command',x(k,:)',v(k),points,previous,dt,scheduled);u(k,:)=command';

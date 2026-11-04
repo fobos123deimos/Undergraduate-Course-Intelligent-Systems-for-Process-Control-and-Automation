@@ -1,0 +1,293 @@
+{
+  "release": "v5.0.0",
+  "release_url": "https://github.com/OpenFAST/openfast/releases/tag/v5.0.0",
+  "rtest_commit": "dd5feaaaa500ba7283140107806300d551cff0a7",
+  "source_repo": "https://github.com/OpenFAST/r-test",
+  "case": "5MW_Land_DLL_WTurb",
+  "assets": [
+    {
+      "name": "DISCON.dll",
+      "url": "https://github.com/OpenFAST/openfast/releases/download/v5.0.0/DISCON.dll",
+      "sha256": "a2501ada8494c665c3a2ae6aa287a646dd2465ce4ab8c751998a47cf6a9ba548",
+      "size": 515072
+    },
+    {
+      "name": "OpenFAST.exe",
+      "url": "https://github.com/OpenFAST/openfast/releases/download/v5.0.0/OpenFAST.exe",
+      "sha256": "3a7cb8edbe10e4bcc2b048377f4fa7ca2cb906a78265e01c25ab94929c265e42",
+      "size": 43699200
+    }
+  ],
+  "files": [
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/AeroData/Cylinder1.dat",
+      "git_blob_sha1": "f72d8393ae1f392e19f7d73a42e24ff78b4dd8ce",
+      "size": 711
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/AeroData/Cylinder2.dat",
+      "git_blob_sha1": "8caca909f3cd53756dc8441356e584168576a946",
+      "size": 711
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/AeroData/DU21_A17.dat",
+      "git_blob_sha1": "602bd0e79498c6dc55a2b97eec76e0014c5462a3",
+      "size": 6035
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/AeroData/DU25_A17.dat",
+      "git_blob_sha1": "47082acbc87b796a6f06195487053bda09b873fc",
+      "size": 5999
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/AeroData/DU30_A17.dat",
+      "git_blob_sha1": "ec068628b5567dd44e5d9f7c770e3adf40878aa2",
+      "size": 6071
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/AeroData/DU35_A17.dat",
+      "git_blob_sha1": "fb2fde5b30c59426d4f88b7059fdfa9efebe58b1",
+      "size": 5783
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/AeroData/DU40_A17.dat",
+      "git_blob_sha1": "bb597935a3457049612e175736aa017c286b14ed",
+      "size": 5819
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/AeroData/NACA64_A17.dat",
+      "git_blob_sha1": "005acbb5f57bdda619cb2ba35ccf30037ab97a3c",
+      "size": 5497
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/Cylinder1.dat",
+      "git_blob_sha1": "d9e59b2321156a19996fe8d80c14e59d29f8a2e3",
+      "size": 7026
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/Cylinder1_coords.txt",
+      "git_blob_sha1": "30663b70643176a021da5502e446c50e0abf572b",
+      "size": 8396
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/Cylinder2.dat",
+      "git_blob_sha1": "f6e6a9fe261e9ed7d7dd1ed9f3f8dee1c25cff15",
+      "size": 7095
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/Cylinder2_coords.txt",
+      "git_blob_sha1": "ba5741b6fb0b1b0951f9357cb43baefae55f6b4d",
+      "size": 8400
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/DU21_A17.dat",
+      "git_blob_sha1": "9fb97f0da94e17b895f51c466a0eeafd2f7fc854",
+      "size": 12679
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/DU21_A17_coords.txt",
+      "git_blob_sha1": "72e36bf83544ddc25f3908dfc2eacb619f51d1bc",
+      "size": 7865
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/DU25_A17.dat",
+      "git_blob_sha1": "60730d0a1a35ad928c212b008bd4a9a97febf91e",
+      "size": 12601
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/DU25_A17_coords.txt",
+      "git_blob_sha1": "8e481fb89d794425ffac750cfcbf283636c133c3",
+      "size": 8060
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/DU30_A17.dat",
+      "git_blob_sha1": "438015cbb39d27b23578713c0d559920bd8b5f12",
+      "size": 12720
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/DU30_A17_coords.txt",
+      "git_blob_sha1": "722bf83a83fa76d02e8c47c96ac700dd8cf0c521",
+      "size": 8066
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/DU35_A17.dat",
+      "git_blob_sha1": "48e2b5f3f22c91157f328797990975455bb16dc6",
+      "size": 12406
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/DU35_A17_coords.txt",
+      "git_blob_sha1": "5d3f84e831568da5505e5c9c0ba0824808caf8d0",
+      "size": 8066
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/DU40_A17.dat",
+      "git_blob_sha1": "54a6d4acd2410ef3628184104cd6d81c011516cb",
+      "size": 12445
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/DU40_A17_coords.txt",
+      "git_blob_sha1": "18d11b7ba287ccac8fbc7fbb921855bcaf295357",
+      "size": 8066
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/NACA64_A17.dat",
+      "git_blob_sha1": "b9dca301be498d99911b3d1cdbb120b43e5eb2b2",
+      "size": 12098
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Airfoils/NACA64_A17_coords.txt",
+      "git_blob_sha1": "b2b49e07ac2587b5d2ef074adc6b00b9ee7af88d",
+      "size": 8272
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/IceDyn_Input.dat",
+      "git_blob_sha1": "bc79791198a91325a8522a01282f470c36a4b0c3",
+      "size": 5133
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/IceFloe_IEC_Crushing.dat",
+      "git_blob_sha1": "43332ce34be81bf4a169170c7d2864802d5f033e",
+      "size": 1022
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/NRELOffshrBsline5MW_AeroDyn_blade.dat",
+      "git_blob_sha1": "32d5be2f2496c20b4aeb58b230a95a0c92d3ffab",
+      "size": 4546
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/NRELOffshrBsline5MW_BeamDyn.dat",
+      "git_blob_sha1": "d7834fcaf1bfc4dd61c6af60c31c40a7eb9f79c4",
+      "size": 7039
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/NRELOffshrBsline5MW_BeamDyn_Blade.dat",
+      "git_blob_sha1": "c7fb7d7379af9939ab08760fae0ff88d5dee3b65",
+      "size": 58819
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/NRELOffshrBsline5MW_Blade.dat",
+      "git_blob_sha1": "2ea715d8a6320b9b43ed39ce8fb7d281e148ee9b",
+      "size": 8049
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/NRELOffshrBsline5MW_InflowWind_12mps.dat",
+      "git_blob_sha1": "954b1d3d5d3ad1286a9e678f952454688d149c7c",
+      "size": 7655
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/NRELOffshrBsline5MW_InflowWind_Steady13mps.dat",
+      "git_blob_sha1": "b95fe07e11faa7ebafb7779ed37e2fd9f8c259b3",
+      "size": 7571
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/NRELOffshrBsline5MW_InflowWind_Steady8mps.dat",
+      "git_blob_sha1": "0c9e952486332c5032de459ec8567fe555ab5ad0",
+      "size": 7603
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/NRELOffshrBsline5MW_Monopile_IEC_Crushing.inp",
+      "git_blob_sha1": "48d727c0c3d0e75873a59a39a234c639e23402a7",
+      "size": 525
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/NRELOffshrBsline5MW_Onshore_ElastoDyn_Tower.dat",
+      "git_blob_sha1": "664185cbd6569363ea6336be8d992db4712915d0",
+      "size": 3469
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/NRELOffshrBsline5MW_ServoDyn_StC.dat",
+      "git_blob_sha1": "36e44f65565880aff30e92b62e38c883d8f40696",
+      "size": 9859
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/README.rst",
+      "git_blob_sha1": "0ed43a44b595a8d3184c8ce7b234ad29ea7bf482",
+      "size": 272
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/ServoData/DISCON/CMakeLists.txt",
+      "git_blob_sha1": "dbebd2cc3df74f4b5c9946fe144843c03cd0db83",
+      "size": 3062
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/ServoData/DISCON/DISCON.F90",
+      "git_blob_sha1": "9cf5bdd177abd6e9e5809305bdd06c5045798a50",
+      "size": 32562
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/ServoData/DISCON_ITI/CMakeLists.txt",
+      "git_blob_sha1": "e279d9617b9bfd98dc1e2ed26695842e2d4d3d32",
+      "size": 3107
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/ServoData/DISCON_ITI/DISCON_ITIBarge.F90",
+      "git_blob_sha1": "527d5abe3bea589cfb55054508cb7d075650c2d7",
+      "size": 36924
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/ServoData/DISCON_OC3/CMakeLists.txt",
+      "git_blob_sha1": "6b2cbd66c5ce5e630cf7e96dabd53f5b83e3df01",
+      "size": 3112
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/ServoData/DISCON_OC3/DISCON_OC3Hywind.F90",
+      "git_blob_sha1": "27c678cf50bb69ebecc18045e5c1ce8dfdb4d206",
+      "size": 31494
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Wind/90m_12mps_twr.bts",
+      "git_blob_sha1": "de33d4c53216a79e3d0af3041b1a1589f92587c0",
+      "size": 8349359
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Wind/90m_12mps_twr.inp",
+      "git_blob_sha1": "220e043646579dce4bd612701bc02b211b63472e",
+      "size": 7305
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Wind/90m_12mps_twr.sum",
+      "git_blob_sha1": "99a1872c8a59a7f81a76ee9063dffa4f452de0d6",
+      "size": 34265
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Baseline/Wind/NoShr_12.wnd",
+      "git_blob_sha1": "155c56fc7fc36d6248c332be68f4d32193e4254c",
+      "size": 273
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Land_DLL_WTurb/5MW_Land_DLL_WTurb.fst",
+      "git_blob_sha1": "776a4c89963f7d7e3af4920d9db52a2c63249b1d",
+      "size": 8869
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Land_DLL_WTurb/5MW_Land_DLL_WTurb.outb",
+      "git_blob_sha1": "e40a4acc5edebe0c7f34588da95f15279a41d1bd",
+      "size": 3150365
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Land_DLL_WTurb/NRELOffshrBsline5MW_Onshore_AeroDyn.dat",
+      "git_blob_sha1": "50a18db70ea4facaabe6bb897a26f978f38a8040",
+      "size": 12943
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Land_DLL_WTurb/NRELOffshrBsline5MW_Onshore_ElastoDyn.dat",
+      "git_blob_sha1": "39409e5ecc6ba27d7a0c8c2fdb767d63f13dd679",
+      "size": 18405
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Land_DLL_WTurb/NRELOffshrBsline5MW_Onshore_ElastoDyn_Tower.dat",
+      "git_blob_sha1": "cbb726978efb2c6c771ac5ea24944512e3b356de",
+      "size": 3523
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Land_DLL_WTurb/NRELOffshrBsline5MW_Onshore_ServoDyn.dat",
+      "git_blob_sha1": "29fe98a2b3305a994de31398a46b1f5a3c057325",
+      "size": 13044
+    },
+    {
+      "path": "glue-codes/openfast/5MW_Land_DLL_WTurb/README.md",
+      "git_blob_sha1": "3a5762010292f5bf7f7ca46e754397dcdf28e495",
+      "size": 22
+    }
+  ]
+}

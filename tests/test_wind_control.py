@@ -51,6 +51,7 @@ def test_actual_midpoint_linearizations_stable_under_interpolated_gains(design):
 def test_closed_loop_actuator_limits_rates_and_step_convergence(design):
     aero, points = design
     result = w.simulate(aero, points)
+    assert np.count_nonzero(w.memberships(result['wind'][-1], points)) == 2
     u, x = result['command'], result['state']
     assert np.all(u >= w.LOWER-1e-9) and np.all(u <= w.UPPER+1e-9)
     assert np.all(np.abs(np.diff(u, axis=0)) <= w.RATE*.02+1e-8)

@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-04",
+  "status": "passed",
+  "release": "v5.0.0",
+  "rtest_commit": "dd5feaaaa500ba7283140107806300d551cff0a7",
+  "case": "5MW_Land_DLL_WTurb",
+  "runtime": "**************************************************************************************************\nOpenFAST\n\nCopyright (C) 2026 National Renewable Energy Laboratory\nCopyright (C) 2026 Envision Energy USA LTD\n\nThis program is licensed under Apache License Version 2.0 and comes with ABSOLUTELY NO WARRANTY.\nSee the \"LICENSE\" file distributed with this software for details.\n**************************************************************************************************\n\nOpenFAST-v5.0.0\nCompile Info:\n - Compiler: Intel(R) Fortran Compiler 20250302\n - Architecture: 64 bit\n - Precision: single\n - OpenMP: No\n - Date: Mar 13 2026\n - Time: 19:00:22\nExecution Info:\n - Date: 11/04/2026\n - Time: 14:22:48-0300\n\n\n OpenFAST terminated normally.",
+  "sample_count": 9601,
+  "duration_s": 60.0,
+  "dt_s": 0.0062499999999987566,
+  "channel_count_including_time": 42,
+  "all_outputs_finite": true,
+  "source_files_verified": 56,
+  "changes": [
+    "Output format 4 (binary) to 1 (text)",
+    "Controller path points to official same-release DISCON.dll"
+  ],
+  "interpretation": "Official 60-second NREL 5 MW onshore turbulent-wind case; OpenFAST successor, not 2014 table reproduction.",
+  "selected_channels": {
+    "RotSpeed": {
+      "unit": "(rpm)",
+      "minimum": 11.44883,
+      "maximum": 12.82302,
+      "final": 11.47808
+    },
+    "GenSpeed": {
+      "unit": "(rpm)",
+      "minimum": 1100.657,
+      "maximum": 1245.416,
+      "final": 1116.321
+    },
+    "GenPwr": {
+      "unit": "(kW)",
+      "minimum": 3534.126,
+      "maximum": 5139.092,
+      "final": 4480.529
+    },
+    "BldPitch1": {
+      "unit": "(deg)",
+      "minimum": 0.0,
+      "maximum": 7.990769,
+      "final": 0.0
+    },
+    "TwrBsMyt": {
+      "unit": "(kN-m)",
+      "minimum": -2181.837,
+      "maximum": 118460.8,
+      "final": 54738.49
+    }
+  },
+  "output_sha256": "ac21a796274a89c24d77549abc2bf247829639993d5a2a2a36d3e6bb4f28a464",
+  "manifest_sha256": "47ac409fe73b4da2bda094b0df69ff102fd87fb31110d95f185863a62de422e0",
+  "binary_sha256": "3a7cb8edbe10e4bcc2b048377f4fa7ca2cb906a78265e01c25ab94929c265e42",
+  "log_sha256": "d145984b0bea1772867f9a915db0aad4782e2c58de1aa12a79a70973bcb79113",
+  "official_reference_comparison": {
+    "status": "passed",
+    "channels_compared": 41,
+    "normalization": "max(1, peak absolute reference channel value)",
+    "azimuth_difference": "shortest signed angular difference modulo 360 degrees",
+    "normalized_rmse_tolerance": 0.01,
+    "maximum_normalized_rmse": 0.0036082512575759114,
+    "worst_channel": "ConvIter",
+    "reference_sha256": "47759818419c87536af2ec09905b0fd0ebe97530018268a5370e530e2da8ce89"
+  }
+}

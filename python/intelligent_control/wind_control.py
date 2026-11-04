@@ -102,12 +102,15 @@ def controller(state, wind, points, previous, dt, scheduled=True):
 
 
 def simulate(aero, points=None, scheduled=True, duration=60., dt=.02):
+    if not np.isfinite(dt) or not np.isfinite(duration) or dt <= 0 or duration <= 0:
+        raise ValueError('Positive finite duration and sample period required')
     points = design(aero) if points is None else points
     n = int(round(duration/dt))+1
-    if dt <= 0 or duration <= 0 or not np.isclose((n-1)*dt, duration):
+    if not np.isclose((n-1)*dt, duration):
         raise ValueError('Duration must be a positive whole number of sample periods')
     t = np.arange(n)*dt
-    wind = np.where(t < 20., 12., np.where(t < 40., 14., 16.))
+    # Interior points exercise two active memberships, not only switched gains.
+    wind = np.where(t < 20., 12., np.where(t < 40., 13., 15.))
     x = np.empty((n, 8)); u = np.empty((n, 2))
     x[0], previous = equilibrium(wind[0], aero)
     for k in range(n-1):

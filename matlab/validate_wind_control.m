@@ -12,6 +12,7 @@ for v=12:.25:16
  assert(max(real(eig(s.A-s.B*K)))<0);
 end
 result=run_wind_control(true,60,.02,points);u=result.command;
+assert(nnz(wind_control('weights',result.wind(end),points))==2);
 assert(all(all(u>=[0 0]))&&all(all(u<=[6e6 30*pi/180])));
 assert(all(all(abs(diff(u))<=[5e5 8*pi/180]*.02+1e-8)));
 assert(abs(result.state(end,6)-1.2)<.01&&result.speed_peak_error<.2);

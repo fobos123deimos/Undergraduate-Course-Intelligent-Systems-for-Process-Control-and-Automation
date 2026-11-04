@@ -48,9 +48,11 @@ for j=1:numel(paths)
  export_diagram(name,fullfile(output_dir,'discrete',[name '.png']));clear cleanup;
 end
 markov=validate_markov_simulink(fullfile(output_dir,'markov'));
+intelligent=validate_intelligent_simulink(fullfile(output_dir,'intelligent'));
+wind=validate_wind_pdc_simulink(fullfile(output_dir,'wind-control'));
 tank=validate_blending_simulink(fullfile(output_dir,'blending'));
-report=struct('runtime',version,'simulink',ver('simulink'),'generated_models',numel(records)+numel(discrete)+6+2,...
- 'general_models',{records},'discrete_models',{discrete},'markov',markov,'physical_tank',tank,'passed',true);
+report=struct('runtime',version,'simulink',ver('simulink'),'generated_models',numel(records)+numel(discrete)+6+2+1+2,...
+ 'general_models',{records},'discrete_models',{discrete},'markov',markov,'intelligent',intelligent,'wind_pdc',wind,'physical_tank',tank,'passed',true);
 path=fullfile(output_dir,'validation.json');fid=fopen(path,'w');assert(fid>=0);cleanup=onCleanup(@()fclose(fid));
 fprintf(fid,'%s\n',jsonencode(report,'PrettyPrint',true));clear cleanup;
 fprintf('All %d generated Simulink models passed; evidence: %s\n',report.generated_models,path);

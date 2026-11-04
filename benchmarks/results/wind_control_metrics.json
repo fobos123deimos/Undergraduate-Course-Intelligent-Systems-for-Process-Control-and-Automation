@@ -8,6 +8,11 @@
     14.0,
     16.0
   ],
+  "test_winds_m_s": [
+    12.0,
+    13.0,
+    15.0
+  ],
   "state_scales": [
     1.0,
     5.0,
@@ -51,14 +56,14 @@
   ],
   "cases": {
     "scheduled_pdc": {
-      "speed_rmse": 0.002450916282239018,
-      "speed_peak_error": 0.01346716820788596,
-      "pitch_peak_deg": 14.46689407755447
+      "speed_rmse": 0.0015698011282051472,
+      "speed_peak_error": 0.010398075433347254,
+      "pitch_peak_deg": 12.931738601132663
     },
     "fixed_local_lqr": {
-      "speed_rmse": 0.0024723667042652188,
-      "speed_peak_error": 0.01346716820788596,
-      "pitch_peak_deg": 14.180615737790054
+      "speed_rmse": 0.0017285076824623072,
+      "speed_peak_error": 0.01086486586562918,
+      "pitch_peak_deg": 12.754613709718154
     }
   },
   "interpretation": "New operating-point design; no global stability proof or reproduction of Table 12."

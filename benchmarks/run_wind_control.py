@@ -17,6 +17,7 @@ def main(write_reference=False):
     report={'data_type':'synthetic','model':'8-state regulation form of the 9-state reduced turbine',
             'map_sha256':aero.sha256,'map_variant':'ROSCO 2022, not recovered 2014 map',
             'design_winds_m_s':[p['wind'] for p in points],
+            'test_winds_m_s':[12.,13.,15.],
             'state_scales':w.STATE_SCALE.tolist(),'input_scales':w.INPUT_SCALE.tolist(),
             'Q_diagonal':np.diag(w.Q).tolist(),'R_diagonal':np.diag(w.R).tolist(),
             'solver':'RK4, held commands; sample and integration step 0.02 s',
@@ -42,7 +43,7 @@ def main(write_reference=False):
     axes[0].axhline(1.2,color='black',linestyle=':',linewidth=1)
     axes[0].set_ylabel('Rotor speed (rad/s)');axes[0].legend()
     axes[1].set_ylabel('Pitch command (deg)');axes[2].set_ylabel('Torque (MN m)');axes[2].set_xlabel('Time (s)')
-    fig.suptitle('Declared later-map wind study: 12, 14 and 16 m/s')
+    fig.suptitle('Interpolated wind study: 12, 13 and 15 m/s')
     fig.savefig(out/'wind_control.png',dpi=150);plt.close(fig)
     print(json.dumps(report['cases'],indent=2))
     return report
