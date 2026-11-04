@@ -1,0 +1,37 @@
+{
+  "validated_on": "2026-11-04",
+  "python_tests_passed": 8,
+  "octave_validation_groups_passed": 8,
+  "octave_version": "11.3.0",
+  "compared_trajectory_samples": 3001,
+  "column_order": [
+    "time_s",
+    "pump_command",
+    "motor_command",
+    "pump_angle",
+    "motor_angle",
+    "pressure_pa",
+    "motor_speed_rad_s"
+  ],
+  "column_max_absolute_errors": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    3.725290298461914e-08,
+    4.973799150320701e-14
+  ],
+  "trajectory_scaled_max_error": 3.725290298461914e-15,
+  "derivative_fixture_count": 3,
+  "derivative_relative_max_error": 1.7142388511483377e-16,
+  "code_sha256": {
+    "python/intelligent_control/hydrostatic_si.py": "dd115bb9eaa652091a76282461e5ae16b784f010186f1c2115bccf6e92ddfbe2",
+    "tests/test_hydrostatic_si.py": "0b444f01e90440e3757f552c848ac62b9f1aa8f39f0276a3de2a62277da7d7fe",
+    "matlab/hydrostatic_si_parameters.m": "a6a48e34c846b308283c9ce8a98d31e1afd15d8c40464301ddfb039b4f2dd49a",
+    "matlab/hydrostatic_si.m": "0bace0705cc37b3fcd8a9a94d8c8d330d055b19cc48b46316acfa8dd8a45056a",
+    "matlab/run_hydrostatic_si.m": "4cdcf2ddb0284ba75bdce3a1c42e9f7c6aa677b0279eff96d18f02b93da65039",
+    "matlab/validate_hydrostatic_si.m": "ab16c35c9c62c3a2a61b31889f4585a506d6938d325d52509700e123bc066717"
+  },
+  "scope": "implementation parity and physical identities for the declared SI interpretation; not experimental calibration or IEEE 2007 reproduction"
+}

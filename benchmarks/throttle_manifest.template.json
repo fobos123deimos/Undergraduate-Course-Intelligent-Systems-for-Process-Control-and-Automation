@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "dataset_kind": "measured_original_candidate",
+  "sample_time_s": 0.01,
+  "units": {"time_s": "s", "duty_percent": "%", "angle_deg": "deg"},
+  "provenance": {
+    "source_url": "http://www.rst.e-technik.tu-dortmund.de/cms/Medienpool/Downloads/Veranstaltungen/GMA-Fachausschuss/Benchmark/Throttle.zip",
+    "source_title": "No-load Electro-mechanical Throttle Dataset for System Identification",
+    "source_file": "Throttle.zip",
+    "source_sha256": "REPLACE_WITH_ACTUAL_SHA256",
+    "license_notes": "",
+    "conversion_notes": ""
+  },
+  "experiments": {
+    "train": {"csv_file": "train.csv", "sha256": "REPLACE_WITH_ACTUAL_SHA256", "rows": 10000, "original_member": ""},
+    "test": {"csv_file": "test.csv", "sha256": "REPLACE_WITH_ACTUAL_SHA256", "rows": 2500, "original_member": ""}
+  }
+}

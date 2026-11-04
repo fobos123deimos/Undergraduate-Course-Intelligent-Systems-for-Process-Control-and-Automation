@@ -1,0 +1,72 @@
+{
+  "checks": 8,
+  "source_units_relative_error": 1.1713980412568726e-15,
+  "lossless_energy_relative_drift": 1.5565518873827955e-09,
+  "step_refinement_scaled_error": 1.1823679786175489e-08,
+  "derivative_fixtures": [
+    [
+      -0.769230769230769,
+      -0.454545454545455,
+      89045844.95037587,
+      138.3456963176229
+    ],
+    [
+      4.615384615384616,
+      0.4545454545454544,
+      -650170562.8265172,
+      -82.89891869900397
+    ],
+    [
+      1.5384615384615385,
+      3.1818181818181817,
+      0,
+      0
+    ]
+  ],
+  "demo": {
+    "model": "separate_si_interpretation",
+    "data_kind": "simulated_demonstration",
+    "displacement_basis": "per_revolution",
+    "capacitance_basis": "effective",
+    "input_contract": "requested_normalized_angles; no voltage/current calibration",
+    "parameters": {
+      "pump_m3_per_rad": 2.307746674832482e-05,
+      "motor_m3_per_rad": 2.7056340325622206e-05,
+      "capacitance_m3_per_pa": 1.8408e-12,
+      "leakage_m3_per_s_pa": 1.4e-15,
+      "vehicle_inertia_kg_m2": 16512,
+      "cardan_damping_nm_s": 0.33,
+      "gear_ratio": -6.12,
+      "axle_ratio": -23.3,
+      "gearbox_efficiency": 0.98,
+      "motor_efficiency": 0.697,
+      "pump_time_constant_s": 0.13,
+      "motor_time_constant_s": 0.22
+    },
+    "dt_s": 0.002,
+    "duration_s": 6,
+    "samples": 3001,
+    "max_abs_power_balance_residual_w": 9.379164112033322e-13,
+    "all_motoring": true,
+    "pressure_min_pa": 2058820.8202383264,
+    "pressure_max_pa": 2742416.650616065,
+    "motor_speed_min_rad_s": 47.94364483236235,
+    "motor_speed_max_rad_s": 55.62872217648146,
+    "final_state": [
+      0.25000036533172904,
+      0.8,
+      2410951.013262802,
+      47.94637295059534
+    ],
+    "limitations": [
+      "not a replication of IEEE 2007 numerical results",
+      "unresolved Table 5 conventions are explicit choices",
+      "constant efficiencies restricted to motoring",
+      "no relief valves, cavitation or actuator power model"
+    ]
+  },
+  "runtime": "11.3.0",
+  "platform": "Windows x86_64-w64-mingw32",
+  "validated_on": "2026-11-04",
+  "simulink_executed": false
+}

@@ -90,7 +90,14 @@ rhs = @(t,x) paper_models('three_tank',x,[0;0]);
 dx = paper_models('cstr',[3517.5;740;87;79.8],[8.256;-6.239]);
 ```
 
-For pneumatic pressure, the default printed gas constant `8.314` is dimensionally questionable with kg/s mass flows; `options.gas_constant=287.05` explicitly chooses a specific-air variant. Valve equations are not supplied by the article. Hydrostatic results are transcriptions, not validated SI predictions. CSTR cooling is converted from MJ/h to kJ/h. The column balances correct the vapor inflow index in Eq. (47) and use NTNU nominal flow precision. The wind map is read without extrapolation. These qualifications match the Python implementation and [benchmark documentation](../benchmarks/README.md).
+For pneumatic pressure, the default printed gas constant `8.314` is dimensionally questionable with kg/s mass flows; `options.gas_constant=287.05` explicitly chooses a specific-air variant. Valve equations are not supplied by the article. Hydrostatic results from `paper_models` remain transcriptions. The separate `pneumatic_physical` and `hydrostatic_si` functions implement declared physical variants, with dedicated source reviews and independent conservation/unit checks. CSTR cooling is converted from MJ/h to kJ/h. The column balances correct the vapor inflow index in Eq. (47) and use NTNU nominal flow precision. The wind map is read without extrapolation. These qualifications match the Python implementation and [benchmark documentation](../benchmarks/README.md).
+
+```matlab
+validate_pneumatic_physical;
+validate_hydrostatic_si;
+```
+
+The [pneumatic audit](../benchmarks/PNEUMATIC_AUDIT.md) separates identified gravity offsets from an absolute-pressure model. The [hydrostatic review](../benchmarks/HYDROSTATIC_SOURCE_REVIEW.md) explains bar/mm³ conversions, motor displacement in torque and the unresolved calibration choices. The latter constructor requires displacement and capacitance conventions explicitly; no default claims to recover the historical apparatus.
 
 The official revised Tennessee Eastman source was compiled and executed in native MATLAB/Simulink for three short mode-1 cases. Other industrial datasets and the Windows-only ALSTOM binary retain their documented source/runtime requirements. See the [external-source guide](../benchmarks/EXTERNAL_MODELS.md) and [validation record](../docs/VALIDATION.md) for actual native and CI evidence. These cases do not reproduce every historical industrial protocol.
 

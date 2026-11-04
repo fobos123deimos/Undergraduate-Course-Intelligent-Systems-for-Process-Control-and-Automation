@@ -1,0 +1,42 @@
+{
+  "model": "separate_si_interpretation",
+  "data_kind": "simulated_demonstration",
+  "displacement_basis": "per_revolution",
+  "capacitance_basis": "effective",
+  "input_contract": "requested_normalized_angles; no voltage/current calibration",
+  "parameters": {
+    "pump_m3_per_rad": 2.307746674832482e-05,
+    "motor_m3_per_rad": 2.7056340325622206e-05,
+    "capacitance_m3_per_pa": 1.8408e-12,
+    "leakage_m3_per_s_pa": 1.4e-15,
+    "vehicle_inertia_kg_m2": 16512.0,
+    "cardan_damping_nm_s": 0.33,
+    "gear_ratio": -6.12,
+    "axle_ratio": -23.3,
+    "gearbox_efficiency": 0.98,
+    "motor_efficiency": 0.697,
+    "pump_time_constant_s": 0.13,
+    "motor_time_constant_s": 0.22
+  },
+  "dt_s": 0.002,
+  "duration_s": 6.0,
+  "samples": 3001,
+  "max_abs_power_balance_residual_w": 9.379164112033322e-13,
+  "all_motoring": true,
+  "pressure_min_pa": 2058820.8202383013,
+  "pressure_max_pa": 2742416.650616065,
+  "motor_speed_min_rad_s": 47.94364483236236,
+  "motor_speed_max_rad_s": 55.62872217648149,
+  "final_state": [
+    0.25000036533172904,
+    0.8,
+    2410951.0132627934,
+    47.94637295059533
+  ],
+  "limitations": [
+    "not a replication of IEEE 2007 numerical results",
+    "unresolved Table 5 conventions are explicit choices",
+    "constant efficiencies restricted to motoring",
+    "no relief valves, cavitation or actuator power model"
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "status": "executed_synthetic_fixture",
+  "runtime": "Python 3.12.14",
+  "manifest_sha256": "425d808b1cd2e44f47799250890b8e4e3b499bf65a6ba5764420f5d7722437fe",
+  "dataset_kind": "synthetic_fixture",
+  "provenance": {
+    "source_url": "local:synthetic-integration-fixture",
+    "source_title": "Artificial throttle pipeline fixture",
+    "source_file": "fixture-description.txt",
+    "source_sha256": "bdbc6be260eb6c151ebe046431eaf0fc68ad9dd1dc3e2ec05b39a16bd69f84a4",
+    "license_notes": "Repository-authored synthetic fixture; no third-party measurements.",
+    "conversion_notes": "Generated directly as CSV; no original experiment or archive."
+  },
+  "experiments": {
+    "train": {
+      "csv_file": "train.csv",
+      "sha256": "012cfa0e7dfcbca847b3d37f4abb854bde7a144d870640b8928ffb163fb77d7e",
+      "rows": 10000,
+      "original_member": "synthetic:train",
+      "first_time_s": 0.0,
+      "last_time_s": 99.99000000000001,
+      "angle_range_deg": [
+        35.241881688639054,
+        54.71406855596356
+      ],
+      "duty_range_percent": [
+        30.062118007383816,
+        69.98185607963805
+      ]
+    },
+    "test": {
+      "csv_file": "test.csv",
+      "sha256": "1d052e47b719c139def21112061f5ade4f8a94bb73ce0ef72765a1293b8bf388",
+      "rows": 2500,
+      "original_member": "synthetic:test",
+      "first_time_s": 0.0,
+      "last_time_s": 24.990000000000002,
+      "angle_range_deg": [
+        35.17020310990595,
+        54.483559291769666
+      ],
+      "duty_range_percent": [
+        30.225665554000294,
+        69.66697529013243
+      ]
+    }
+  },
+  "rules": 8,
+  "sample_time_s": 0.01,
+  "models": {
+    "crisp": {
+      "training_mean": [
+        0.0002597001717382375,
+        49.42850068131851
+      ],
+      "training_scale": [
+        0.5212777818838757,
+        11.480377320173318
+      ],
+      "centers": [
+        [
+          0.8934863776747931,
+          0.14326856729844942
+        ],
+        [
+          2.2080537250784023,
+          1.1918705894494743
+        ],
+        [
+          -0.23078123646491966,
+          -1.2220920498486156
+        ],
+        [
+          0.013266599365002418,
+          0.747609188042858
+        ],
+        [
+          -0.1998161148989856,
+          -0.20255366294215676
+        ],
+        [
+          0.6257449073854975,
+          1.3612010998486703
+        ],
+        [
+          -2.555264423782977,
+          -1.24586892370756
+        ],
+        [
+          -1.2840096156773613,
+          -0.9175770046371461
+        ]
+      ],
+      "coefficients": [
+        [
+          1.2000000051984,
+          -0.3000000044876205,
+          0.049999999695762326,
+          1.9999999830682396
+        ],
+        [
+          1.2000000014154937,
+          -0.3000000012195962,
+          0.050000000002710376,
+          1.9999999897286938
+        ],
+        [
+          1.199999999344058,
+          -0.2999999993040061,
+          0.05000000003711026,
+          1.9999999970316222
+        ],
+        [
+          1.1999999997237305,
+          -0.29999999968225144,
+          0.05000000004736278,
+          1.999999995234935
+        ],
+        [
+          1.200000000287269,
+          -0.3000000002307769,
+          0.05000000001663915,
+          1.9999999967286382
+        ],
+        [
+          1.2000000003917246,
+          -0.3000000003156514,
+          0.05000000005362703,
+          1.9999999925639107
+        ],
+        [
+          1.2000000000849382,
+          -0.2999999998441884,
+          0.0499999999980963,
+          1.9999999887082722
+        ],
+        [
+          1.200000002221759,
+          -0.3000000018136463,
+          0.04999999980953981,
+          1.9999999908485968
+        ]
+      ],
+      "experiments": {
+        "train": {
+          "one_step": {
+            "scored_samples": 9998,
+            "seed_samples_excluded": 2,
+            "rmse_deg": 3.4756207976643035e-10,
+            "maximum_absolute_error_deg": 5.724615448343684e-09,
+            "fit_percent": 99.9999999925571
+          },
+          "free_run": {
+            "scored_samples": 9998,
+            "seed_samples_excluded": 2,
+            "rmse_deg": 1.9912797749487807e-09,
+            "maximum_absolute_error_deg": 9.91614967915666e-09,
+            "fit_percent": 99.99999995735752
+          }
+        },
+        "test": {
+          "one_step": {
+            "scored_samples": 2498,
+            "seed_samples_excluded": 2,
+            "rmse_deg": 3.2853528575653786e-10,
+            "maximum_absolute_error_deg": 1.908908586756297e-09,
+            "fit_percent": 99.99999999295012
+          },
+          "free_run": {
+            "scored_samples": 2498,
+            "seed_samples_excluded": 2,
+            "rmse_deg": 1.8941332885401134e-09,
+            "maximum_absolute_error_deg": 7.155186665386282e-09,
+            "fit_percent": 99.99999995935475
+          }
+        }
+      }
+    },
+    "soft": {
+      "training_mean": [
+        0.0002597001717382375,
+        49.42850068131851
+      ],
+      "training_scale": [
+        0.5212777818838757,
+        11.480377320173318
+      ],
+      "centers": [
+        [
+          0.8934863776747931,
+          0.14326856729844942
+        ],
+        [
+          2.2080537250784023,
+          1.1918705894494743
+        ],
+        [
+          -0.23078123646491966,
+          -1.2220920498486156
+        ],
+        [
+          0.013266599365002418,
+          0.747609188042858
+        ],
+        [
+          -0.1998161148989856,
+          -0.20255366294215676
+        ],
+        [
+          0.6257449073854975,
+          1.3612010998486703
+        ],
+        [
+          -2.555264423782977,
+          -1.24586892370756
+        ],
+        [
+          -1.2840096156773613,
+          -0.9175770046371461
+        ]
+      ],
+      "coefficients": [
+        [
+          1.2000000004445974,
+          -0.30000000034012003,
+          0.04999999997405148,
+          1.9999999966051227
+        ],
+        [
+          1.2000000008713048,
+          -0.3000000007019655,
+          0.04999999996484825,
+          1.9999999939014832
+        ],
+        [
+          1.1999999999950113,
+          -0.29999999995882753,
+          0.04999999999599093,
+          1.999999998687913
+        ],
+        [
+          1.2000000002644153,
+          -0.30000000021224216,
+          0.04999999999307153,
+          1.9999999978863707
+        ],
+        [
+          1.2000000001816666,
+          -0.30000000012270206,
+          0.04999999998896679,
+          1.9999999979165488
+        ],
+        [
+          1.2000000001062079,
+          -0.30000000003994687,
+          0.04999999999239857,
+          1.9999999971846325
+        ],
+        [
+          1.2000000007744025,
+          -0.3000000005787244,
+          0.04999999995905289,
+          1.9999999932327401
+        ],
+        [
+          1.200000000585306,
+          -0.30000000044855657,
+          0.04999999995580488,
+          1.9999999960758026
+        ]
+      ],
+      "experiments": {
+        "train": {
+          "one_step": {
+            "scored_samples": 9998,
+            "seed_samples_excluded": 2,
+            "rmse_deg": 1.9283824040545632e-10,
+            "maximum_absolute_error_deg": 1.0635901048772212e-09,
+            "fit_percent": 99.99999999587045
+          },
+          "free_run": {
+            "scored_samples": 9998,
+            "seed_samples_excluded": 2,
+            "rmse_deg": 1.3675623402987314e-09,
+            "maximum_absolute_error_deg": 4.348180482338648e-09,
+            "fit_percent": 99.99999997071419
+          }
+        },
+        "test": {
+          "one_step": {
+            "scored_samples": 2498,
+            "seed_samples_excluded": 2,
+            "rmse_deg": 1.8810729519906407e-10,
+            "maximum_absolute_error_deg": 1.0206164802184503e-09,
+            "fit_percent": 99.99999999596349
+          },
+          "free_run": {
+            "scored_samples": 2498,
+            "seed_samples_excluded": 2,
+            "rmse_deg": 1.3484930679737299e-09,
+            "maximum_absolute_error_deg": 4.4758081685358775e-09,
+            "fit_percent": 99.99999997106337
+          }
+        }
+      }
+    }
+  },
+  "historical_source_authenticity_verified_by_this_runner": false,
+  "paper_table_11_reproduced": false,
+  "method": "Teaching LocalARX fit: training-only k-means partitions, nearest-center crisp or inverse-distance soft weights, ridge 1e-8. Original fitted partitions/coefficients are not supplied.",
+  "protocol": "Whole supplied experiments; no shuffled split or test fitting. Two measured seeds per experiment, excluded from scores. Free run then uses predicted outputs only."
+}

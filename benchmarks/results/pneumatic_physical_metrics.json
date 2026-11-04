@@ -1,0 +1,71 @@
+{
+  "data_type": "synthetic",
+  "canonical_valve_calibration_recovered": false,
+  "model": "six-state SI mass/energy variant with vertical gravity",
+  "solver": "DOP853, rtol1e-9, atol1e-11, max_step0.005s",
+  "input": "2 sin(2 pi t) V; each payload constant during its own 2s run",
+  "parameters": {
+    "area": 0.0028,
+    "half_stroke": 0.125,
+    "midpoint_volume": 0.0005,
+    "piston_mass": 2.9,
+    "load_mass": 3.0,
+    "viscous": 135.0,
+    "coulomb": 21.0,
+    "valve_gain": 0.0001,
+    "voltage_limit": 10.0,
+    "supply_pressure": 900000.0,
+    "exhaust_pressure": 100000.0,
+    "reservoir_temperature": 293.15,
+    "universal_R": 8.31446261815324,
+    "air_molar_mass": 0.0289644,
+    "gamma": 1.4,
+    "gravity": 9.81,
+    "port_width": 0.002,
+    "discharge_coefficient": 0.7,
+    "bypass_area": 0.0,
+    "friction_velocity": 0.005,
+    "wall_conductance": 0.0,
+    "wall_temperature": 293.15
+  },
+  "cases": [
+    {
+      "load_kg": 3.0,
+      "position_min_m": 0.0,
+      "position_max_m": 0.008073922350415175,
+      "temperature_min_K": 292.6836229095538,
+      "temperature_max_K": 299.3533014971621,
+      "pressure_min_Pa": 486943.3291319068,
+      "pressure_max_Pa": 544394.7828858466,
+      "energy_balance_max_residual_W": 8.171241461241152e-14
+    },
+    {
+      "load_kg": 6.0,
+      "position_min_m": 0.0,
+      "position_max_m": 0.008049484626801953,
+      "temperature_min_K": 292.65837051442486,
+      "temperature_max_K": 299.41410818151394,
+      "pressure_min_Pa": 481571.7254955397,
+      "pressure_max_Pa": 549710.0864185749,
+      "energy_balance_max_residual_W": 6.139533326177116e-14
+    },
+    {
+      "load_kg": 9.0,
+      "position_min_m": 0.0,
+      "position_max_m": 0.008015721945012605,
+      "temperature_min_K": 292.63910583192484,
+      "temperature_max_K": 299.46159390697807,
+      "pressure_min_Pa": 476237.41318641015,
+      "pressure_max_Pa": 554948.0730116657,
+      "energy_balance_max_residual_W": 6.38378239159465e-14
+    }
+  ],
+  "specific_R_J_kgK": 287.05799595894405,
+  "implicit_end_volume_m3": 0.00015000000000000001,
+  "limitations": [
+    "No measured valve area/discharge/leakage calibration recovered.",
+    "No experimental validation; synthetic traces are not published tracking results.",
+    "Smoothed Coulomb friction has no static stick-slip or hysteresis.",
+    "Constant payload within each run; no attachment momentum or hard-stop impact model."
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "reviewed_date_utc": "2026-11-04",
+  "status": "original_url_recovered_measurements_not_recovered",
+  "original_provider_landing_url": "http://www.rst.e-technik.tu-dortmund.de/cms/de/Veranstaltungen/GMA-Fachausschuss/Benchmark/index.html",
+  "original_archive_url": "http://www.rst.e-technik.tu-dortmund.de/cms/Medienpool/Downloads/Veranstaltungen/GMA-Fachausschuss/Benchmark/Throttle.zip",
+  "original_archive_sha256": null,
+  "original_data_downloaded": false,
+  "historical_measurement_validation_executed": false,
+  "license": "Original archive terms not recovered; no redistribution assumed.",
+  "expected_protocol": {
+    "source": "User-supplied Kroll and Schulte review, sections 3.4 and 4.1; Zaidi and Kroll 2014 workshop chapter pp. 173-186",
+    "sample_time_s": 0.01,
+    "train_rows": 10000,
+    "train_excitation": "multisine",
+    "test_rows": 2500,
+    "test_excitation": "quasi amplitude-modulated pseudorandom sequence",
+    "input_unit": "PWM duty cycle percent",
+    "output_unit": "throttle angle degrees",
+    "rules": 8,
+    "local_regressor": [
+      "y(k-1)",
+      "y(k-2)",
+      "u(k-1)",
+      "1"
+    ],
+    "partition_variables": [
+      "y(k-1)-y(k-2)",
+      "u(k-1)"
+    ]
+  },
+  "source_checks": [
+    {
+      "url": "https://web.archive.org/web/20150724223059id_/http://www.rst.e-technik.tu-dortmund.de:80/cms/de/Veranstaltungen/GMA-Fachausschuss/Benchmark/index.html",
+      "result": "HTTP 200; original Throttle.zip link and 2014 workshop description recovered",
+      "local_evidence": "external/throttle-recovery/gma-20150724.html",
+      "checked_date_utc": "2026-11-04",
+      "local_evidence_sha256": "21f3fe9d7d0c963f6f589cfd0354dc68162b398ddbafd56f09348fe22ec1c6d8",
+      "local_evidence_bytes": 25296
+    },
+    {
+      "url": "https://web.archive.org/web/20191209193343id_/http://www.rst.e-technik.tu-dortmund.de/cms/de/Veranstaltungen/GMA-Fachausschuss/Benchmark/index.html",
+      "result": "HTTP 200; same exact Throttle.zip link; no alternate data address",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "http://www.rst.e-technik.tu-dortmund.de/cms/Medienpool/Downloads/Veranstaltungen/GMA-Fachausschuss/Benchmark/Throttle.zip",
+      "result": "HTTP 200 after redirect to https://rst.etit.tu-dortmund.de/; response text/html, not ZIP or measurements",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "https://www.rst.e-technik.tu-dortmund.de/cms/Medienpool/Downloads/Veranstaltungen/GMA-Fachausschuss/Benchmark/Throttle.zip",
+      "result": "SSL connection could not be established; no data received",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.rst.e-technik.tu-dortmund.de%2Fcms%2FMedienpool%2FDownloads%2FVeranstaltungen%2FGMA-Fachausschuss%2FBenchmark%2FThrottle.zip&output=json&collapse=digest",
+      "result": "HTTP 200; empty JSON array; no exact-file indexed capture returned",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.rst.e-technik.tu-dortmund.de%2Fcms%2FMedienpool%2FDownloads%2FVeranstaltungen%2FGMA-Fachausschuss%2FBenchmark%2F*&output=json&filter=statuscode%3A200&collapse=urlkey",
+      "result": "HTTP 200; empty JSON array for original download directory",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "https://archive.org/wayback/available?url=http%3A%2F%2Fwww.rst.e-technik.tu-dortmund.de%2Fcms%2FMedienpool%2FDownloads%2FVeranstaltungen%2FGMA-Fachausschuss%2FBenchmark%2FThrottle.zip&timestamp=20191209",
+      "result": "HTTP 200; archived_snapshots empty. Earlier attempts returned HTTP 429; after a pause, final query returned this empty record.",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "https://rst.etit.tu-dortmund.de/forschung/datensaetze/",
+      "result": "Current provider lists unrelated datasets; throttle link not present",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "https://mrt-pc2.mrt.maschinenbau.uni-kassel.de/MRT/",
+      "result": "HTTP and HTTPS attempts timed out; modern university pages link the accessible mrt-pc1 host instead",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "https://mrt-pc1.mrt.maschinenbau.uni-kassel.de/MRT/Publikationen/MRT_WP_tab.html",
+      "result": "HTTP 200; author publication bibliography retrieved, no original measurement download identified",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "https://daks.uni-kassel.de/server/api/discover/search/objects?scope=488b8783-e3be-4fbf-a724-ee8e8d71a853&size=100",
+      "result": "HTTP 200; collection contains 7 public deposits, none concerning throttle measurements",
+      "local_evidence": "external/throttle-recovery/daks-search.json",
+      "checked_date_utc": "2026-11-04",
+      "local_evidence_sha256": "96cb485cdf4ed70148328f87aee7ac1a03360c95af64abcc1c9384d7e515dd51",
+      "local_evidence_bytes": 71448
+    },
+    {
+      "url": "https://www.uni-kassel.de/maschinenbau/institute/analyse-und-regelung-technischer-systeme/mess-und-regelungstechnik/forschung/software-projekte/ts-toolbox.html",
+      "result": "HTTP 200; official TS toolbox requires manual download permission requested by email. No request sent and no restricted package retrieved.",
+      "local_evidence": "external/throttle-recovery/ts-toolbox.html",
+      "checked_date_utc": "2026-11-04",
+      "local_evidence_sha256": "5c9226e20b6cb67cd3d78d098037378fd9b413e69f5e37a5c7edaa7ae9a93590",
+      "local_evidence_bytes": 25776
+    },
+    {
+      "url": "https://api.github.com/users/MRT-RT/repos?per_page=100",
+      "result": "Three public repositories listed; access-controlled TS_Toolbox not among them",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "https://api.github.com/repos/arehmer/LPV_SysID/git/trees/main?recursive=1",
+      "result": "Public tree inspected; other benchmark data listed; no throttle or Drossel filename identified",
+      "checked_date_utc": "2026-11-04"
+    },
+    {
+      "url": "https://api.github.com/repos/arehmer/ICSTCC_2022/git/trees/main?recursive=1",
+      "result": "Public tree inspected; other benchmark data listed; no throttle or Drossel filename identified",
+      "checked_date_utc": "2026-11-04"
+    }
+  ],
+  "distinct_later_experiment": {
+    "url": "https://ifatwww.et.uni-magdeburg.de/ifac2020/media/pdfs/3208.pdf",
+    "citation": "Alexander Rehmer and Andreas Kroll (2020), On the vanishing and exploding gradient problem in Gated Recurrent Units, IFAC-PapersOnLine 53(2), 1243-1248, DOI 10.1016/j.ifacol.2020.12.1342",
+    "reason_not_substituted": "About 1000 multisine samples and two 2500-sample APRBS sequences with different scaling and splitting; not the review protocol."
+  },
+  "evaluation_pipeline": {
+    "python": "run_throttle_reference.py",
+    "matlab_octave": "../matlab/run_throttle_reference.m",
+    "manifest_template": "throttle_manifest.template.json",
+    "measurement_status": "awaiting original archive, channel/unit documentation, provenance and use terms",
+    "method_limitation": "Eight-rule teaching LocalARX fit; original PWA/TS identification partitions and coefficients are not reproduced",
+    "fixture_status": "Python and Octave executed the same full-length synthetic integration records; tracked evidence is explicitly synthetic.",
+    "fixture_evidence": [
+      "results/throttle-fixture-python.json",
+      "results/throttle-fixture-octave.json"
+    ],
+    "native_validator": "../matlab/validate_throttle_reference.m"
+  },
+  "next_external_requirement": "Original Throttle.zip or authenticated equivalent, provenance and use terms. Exact Table 11 reproduction additionally requires the original identification method/partitions/coefficients.",
+  "authors_contacted": false,
+  "access_controls_bypassed": false
+}

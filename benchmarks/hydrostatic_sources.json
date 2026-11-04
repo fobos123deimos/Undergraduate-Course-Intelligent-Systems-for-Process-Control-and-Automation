@@ -1,0 +1,69 @@
+{
+  "checked_on": "2026-11-04",
+  "source_pdfs_redistributed": false,
+  "sources": [
+    {
+      "id": "schulte2006",
+      "url": "https://publikationen.bibliothek.kit.edu/1000005189/3236",
+      "printed_pages": "62-70; derivation p.65",
+      "pdf_pages": "74-82; derivation p.77",
+      "status": "open_institutional_full_text_inspected",
+      "sha256": "0d63b163488aa57010c01dbbf49c92542d8f3b4f0f7b6bab410b22850dc13584",
+      "bytes": 11683759
+    },
+    {
+      "id": "schulte2008",
+      "url": "https://publikationen.bibliothek.kit.edu/1000009271/645011",
+      "printed_pages": "90-104; model pp.93-95",
+      "pdf_pages": "102-116; model pp.105-107",
+      "status": "open_institutional_full_text_inspected",
+      "sha256": "1f0d25ecd72f3ca6b5d4117f85575fcde02004615bc5353f2e529586f3e1d6b9",
+      "bytes": 13720907
+    },
+    {
+      "id": "schulte_gerland2011",
+      "url": "https://www.atlantis-press.com/article/2203.pdf",
+      "printed_pages": "797-804; model p.800",
+      "pdf_pages": "1-8; model p.4",
+      "status": "open_publisher_full_text_inspected",
+      "sha256": "959adf48a151ee34e26c9b84c8850adc2bd294bbac8d16d8151a87e79760fd11",
+      "bytes": 1400314
+    },
+    {
+      "id": "schulte2007",
+      "doi": "10.1109/FUZZY.2007.4295677",
+      "url": "https://doi.org/10.1109/FUZZY.2007.4295677",
+      "status": "metadata_only_full_text_not_retrieved",
+      "openalex_record": "https://openalex.org/W2106533546",
+      "open_access_status": {
+        "is_oa": false,
+        "oa_status": "closed",
+        "oa_url": null,
+        "any_repository_has_fulltext": false
+      },
+      "access_note": "IEEE verification page; institutional author catalog and public searches did not supply a downloadable full text. Crossref similarity-checking link was not used as an access route."
+    },
+    {
+      "id": "kroll_schulte2014",
+      "doi": "10.1016/j.asoc.2014.08.034",
+      "url": "https://mrt-pc2.mrt.maschinenbau.uni-kassel.de/MRT/Veroeffentlichungen/Online/2014-Kroll_Schulte-ASC-Benchmark.pdf",
+      "status": "user_supplied_publisher_pdf_inspected_institutional_preprint_located",
+      "printed_pages": "502-503",
+      "pdf_pages": "7-8 in supplied publisher PDF",
+      "direct_table5_reference": "Schulte2007; Kugi2000 is background only"
+    }
+  ],
+  "unresolved": [
+    "IEEE 2007 full text",
+    "numerical displacement basis in Table 5",
+    "effective versus per-line hydraulic capacitance",
+    "electrical actuator calibration",
+    "original benchmark initial conditions and driving profile data"
+  ],
+  "implemented_variant": "separate SI dimensional reconstruction; not an authenticated historical reproduction",
+  "demo_choices": {
+    "displacement_basis": "per_revolution",
+    "capacitance_basis": "effective",
+    "commands": "requested normalized angles, not voltage/current"
+  }
+}

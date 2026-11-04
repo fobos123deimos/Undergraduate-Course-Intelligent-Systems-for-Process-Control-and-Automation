@@ -17,6 +17,7 @@ jobs:
       - run: python tools/run_course.py --all
       - run: python blending-tank/run_study.py
       - run: python benchmarks/run_wind_control.py
+      - run: python benchmarks/run_pneumatic.py
       - run: python tools/validate.py --notebooks
   octave:
     runs-on: ubuntu-latest
@@ -24,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y octave
-      - run: octave --no-gui --quiet --eval "addpath('matlab'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_io_csv;"
+      - run: octave --no-gui --quiet --eval "addpath('matlab'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_io_csv; validate_pneumatic_physical; validate_hydrostatic_si; validate_throttle_reference;"
   matlab-simulink:
     runs-on: ubuntu-22.04
     timeout-minutes: 60
@@ -42,7 +43,7 @@ jobs:
           products: Simulink
       - uses: matlab-actions/run-command@v3
         with:
-          command: addpath('matlab'); addpath('simulink'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_io_csv; validate_simulink_suite(fullfile(pwd,'ci-artifacts','simulink'));
+          command: addpath('matlab'); addpath('simulink'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_io_csv; validate_pneumatic_physical; validate_hydrostatic_si; validate_throttle_reference(fullfile(pwd,'ci-artifacts','throttle-native')); validate_simulink_suite(fullfile(pwd,'ci-artifacts','simulink')); validate_pneumatic_simulink(fullfile(pwd,'ci-artifacts','pneumatic')); validate_hydrostatic_simulink(fullfile(pwd,'ci-artifacts','hydrostatic'));
       - name: Fetch official revised Tennessee Eastman
         if: always()
         run: python benchmarks/fetch_external.py --source te-revised
