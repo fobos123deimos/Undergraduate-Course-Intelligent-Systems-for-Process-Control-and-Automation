@@ -8,3 +8,5 @@ benchmarks/results/alstom-native/** -text whitespace=cr-at-eol
 benchmarks/results/throttle-fixture-matlab.json -text whitespace=cr-at-eol
 simulink/models/physical-variants/** -text whitespace=cr-at-eol
 docs/native-simulink-latest.json -text whitespace=cr-at-eol
+# Preserve pdoc output verbatim and collapse generated files in code reviews.
+docs/api/** -whitespace linguist-generated=true

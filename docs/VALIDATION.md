@@ -58,6 +58,12 @@ Eleven additional original equipment schematics are supplied as SVG and PNG in t
 
 All local Markdown links and all eleven notebook document structures were checked. Colab links point to the corresponding real repository notebook paths; this does not claim an interactive Colab-browser session was tested.
 
+## Python API documentation
+
+The [pdoc reference](https://fobos123deimos.github.io/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/) was built and published from `dc41bf882a448d4d4da85a115cc338d6dd4d4b71`. The [publication run](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41906120177) checked the committed HTML and an independent build: ten module pages, 124 public definitions, eleven HTML files including the entry redirect, and 7,437 local links and anchors. Public HTTP access, live search, function navigation, source expansion, layout and formula rendering were verified. The introductory Python example also passed locally.
+
+The same source passed [all three course validation jobs](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41906119956), including 175 Python tests, eleven executed notebooks, the nine MATLAB/Octave units and 27 local Simulink models. Documentation edits left the executable Python syntax trees unchanged relative to `80971a14708c5437e72675854476a7fe88a3e45c`. This run did not repeat ALSTOM; its separately pinned evidence above remains applicable. The [API record](api-validation.json) identifies jobs, public checks and scope; the [maintenance guide](API_DOCUMENTATION.md) explains regeneration.
+
 ## Reproduction commands
 
 ```bash

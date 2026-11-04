@@ -4,6 +4,8 @@ The [online API reference](https://fobos123deimos.github.io/Undergraduate-Course
 
 The Python docstrings are the documentation source. The course notes, worked problems, notebooks and MATLAB/Simulink guides remain linked companion material. pdoc does not generate a MATLAB or Simulink API reference.
 
+The first publication was verified on 4 November 2026: [build and deployment](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41906120177) passed for source `dc41bf882a448d4d4da85a115cc338d6dd4d4b71`. All ten modules, 124 public definitions and 7,437 local links were checked. The public site was opened in a browser; searching for `viterbi` returned five results, its function link navigated to the correct anchor, source expansion worked and the introductory equation rendered. See the [publication validation record](api-validation.json) for checks and scope.
+
 ## Build and inspect
 
 From the repository root, with Python 3.12:

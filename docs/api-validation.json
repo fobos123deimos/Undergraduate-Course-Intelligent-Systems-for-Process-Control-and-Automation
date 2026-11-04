@@ -1,0 +1,52 @@
+{
+  "validated_at_utc": "2026-11-04T20:36:32Z",
+  "source_commit": "dc41bf882a448d4d4da85a115cc338d6dd4d4b71",
+  "site_url": "https://fobos123deimos.github.io/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/",
+  "generator": {"name": "pdoc", "version": "16.0.0"},
+  "build_record": "api/build.json",
+  "coverage": {"module_pages": 10, "public_definitions": 124, "html_files_including_redirect": 11, "local_links_and_anchors_checked": 7437},
+  "publication": {
+    "run_id": 41906120177,
+    "conclusion": "success",
+    "jobs": {"build": 126841119243, "deploy": 126841520421},
+    "committed_html_check": "passed",
+    "independent_build_and_check": "passed",
+    "public_http_200": ["", "intelligent_control.html", "intelligent_control/markov.html", "intelligent_control/markov_lab.html", "intelligent_control/pneumatic_physical.html", "intelligent_control/hydrostatic_si.html", "search.js", "build.json"]
+  },
+  "browser_checks": {
+    "target": "published HTTPS site",
+    "home_layout": "visually inspected",
+    "introductory_equation": "rendered",
+    "search_query": "viterbi",
+    "search_results": 5,
+    "result_navigation": "intelligent_control/markov.html#CategoricalHMM.viterbi",
+    "source_expansion": "passed"
+  },
+  "local_checks": {
+    "introductory_python_example": "passed",
+    "markdown_links_and_notebook_structure": "passed",
+    "executable_python_ast_unchanged": true,
+    "comparison_base": "80971a14708c5437e72675854476a7fe88a3e45c",
+    "python_files_compared": 10,
+    "ast_comparison_scope": "Module, class and function docstrings removed before comparison; executable statements and signatures preserved."
+  },
+  "course_validation": {
+    "run_id": 41906119956,
+    "conclusion": "success",
+    "jobs": {"python": 126841118216, "matlab_simulink": 126841118568, "octave": 126841118836},
+    "python_tests_passed": 175,
+    "notebooks_executed": 11,
+    "matlab_octave_units": 9,
+    "local_simulink_models": 27,
+    "base_simulink_models": 25,
+    "physical_variant_models": 2,
+    "external_tennessee_eastman_cases": ["nominal", "IDV1", "IDV4"],
+    "alstom_reexecuted": false
+  },
+  "scope": [
+    "pdoc documents the Python API; MATLAB, Simulink, course notes and notebooks are linked companion material.",
+    "Browser verification sampled the home page and a Markov/HMM search/function path; structural checks covered every generated page.",
+    "The published site is rebuilt in CI; its build.json records that build's artifact hashes.",
+    "Synthetic teaching and physical-consistency checks do not establish experimental calibration or historical benchmark reproduction."
+  ]
+}
