@@ -56,4 +56,6 @@ For pneumatic pressure, the default printed gas constant `8.314` is dimensionall
 
 The Tennessee Eastman simulator and industrial laboratory datasets remain external, provenance-controlled cases; they are not replaced by synthetic plants. No local MATLAB/Simulink execution is claimed. See the repository validation record for actual Octave execution status.
 
+GNU Octave 11.1.0 passed `validate_all` and `validate_paper` on the published source commit `c8a9a6f`: [verified CI job](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41849137529/job/126640403549). This includes all eight units and ten mathematical benchmark checks.
+
 `local_arx_fit` and `local_arx_predict` also implement the eight-local-model PWA/TS architecture discussed for the throttle in section 4.1. Their standardized partition features are output change and previous input, fitted on training records only. Crisp nearest-center and inverse-distance soft partitions are explicit teaching choices. The validation checks both on an unseen linear synthetic experiment; it does not claim the unavailable published throttle measurements or fitted partition parameters were reproduced.

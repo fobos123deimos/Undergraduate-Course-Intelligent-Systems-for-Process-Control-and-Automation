@@ -38,6 +38,12 @@ validate_paper;
 
 The [validation workflow](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/workflows/validate.yml) runs Python and GNU Octave in separate jobs. Its status belongs to the particular commit shown by GitHub.
 
+## Verified published execution
+
+[Run 41849137529](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41849137529) passed both jobs on source commit `c8a9a6fc6b4e4631152e5d00c8b781982ca97f8a`. Python reran all eight laboratory programs, all 41 tests and all nine notebooks successfully. GNU Octave 11.1.0 on Ubuntu 26.04 passed all eight curriculum units and the checks for ten mathematical benchmarks, including cross-language derivative fixtures, conservation/equilibrium checks, rotor-map evaluation and the PWA/TS held-out validation. No code corrections were needed after this run. The follow-up commit recording this evidence changes documentation only.
+
+The [machine-readable CI record](ci-validation.json) identifies the validated source commit and individual jobs. This is actual Octave execution; it does not imply execution in proprietary MATLAB or Simulink.
+
 ## Evidence boundary
 
 MATLAB/Simulink is not installed as an executable runtime in the local environment. The Simulink builder and original binary archive are therefore supplied without a claim of local proprietary-runtime execution. Opening a notebook through a Colab URL is also distinct from executing it locally with Jupyter.
