@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-04",
+  "baseline_commit": "3d50dbdafc609450ba5fb7febc8f1a30203e4aef",
+  "scope": "Markdown and notebook rendering repairs, illustrated cross-benchmark learning studies and illustrated pdoc reference.",
+  "local_python": {"tests_passed": 180, "elapsed_seconds": 42.25},
+  "learning": {
+    "native_cases": 10,
+    "stages_per_case": 9,
+    "executed_stages": 90,
+    "train_test_record_pairs": 10,
+    "external_offline_analyses": ["gasifier", "wind_fast", "tennessee_eastman"],
+    "external_simulators_rerun_by_learning_extension": false,
+    "octave_execution_record": "benchmark-learning-octave.json"
+  },
+  "figures": {
+    "new_conceptual_png": 9,
+    "new_computed_png": 22,
+    "editable_svg_counterparts": 31,
+    "png_visually_inspected": 31,
+    "final_adjustment": "Moved the evolutionary-loop caption away from its arrow in unit 07."
+  },
+  "notebooks": {
+    "count": 11,
+    "html_exports_passed": 11,
+    "unchanged_executable_cells": 43,
+    "local_reexecution_sample_units": [4, 9],
+    "persistent_markdown_images": 22,
+    "rendering_record": "rendering-validation.json",
+    "local_execution_record": "notebook-rendering-execution.json"
+  },
+  "pdoc": {
+    "module_pages": 11,
+    "public_definitions": 130,
+    "html_files_including_redirect": 12,
+    "local_links_and_anchors_checked": 8005,
+    "bundled_png_images": 27,
+    "build_record": "api/build.json"
+  },
+  "boundaries": [
+    "Native nonlinear records are synthetic; controller panels run fitted scalar predictors, not full nonlinear plants.",
+    "The pendulum tracking failure and other poor fits remain reported; completed denotes computation, not successful control.",
+    "External archived traces support output-only forecasting and a separately injected synthetic sensor study.",
+    "Original throttle measurements, calibrated pneumatic parameters and historical hydrostatic conventions remain external requirements.",
+    "Section 3.2 requires selecting and licensing a specific dataset; full-order external controller comparisons remain pending.",
+    "Local Jupyter execution and HTML export are distinct from execution inside a Colab runtime.",
+    "Existing PDF editions and their historical validation records were preserved."
+  ]
+}

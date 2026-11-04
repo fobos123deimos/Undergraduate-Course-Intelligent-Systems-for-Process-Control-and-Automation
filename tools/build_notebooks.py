@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 import argparse
 import nbformat as nb
+from document_rendering import normalize_math, notebook_markdown, preserve_outputs
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'python'))
 from intelligent_control.experiments import SLUGS,TITLES
@@ -29,8 +30,12 @@ summarized by $\Lambda=K\circ(K^{-1})^T$; a static decoupler $K^{-1}$
 cancels steady interaction, not all transient dynamics. Compare only cases
 with the same disturbance location and measurement information.''',
 4:r'''At each sample solve
-$\min_U\sum_{j=1}^{N_p}\|\hat x_{k+j}-r\|_Q^2+
-\sum_{j=0}^{N_c-1}\|\Delta u_{k+j}\|_R^2$,
+
+$$
+\min_U\sum_{j=1}^{N_p}\lVert\hat x_{k+j}-r\rVert_Q^2+
+\sum_{j=0}^{N_c-1}\lVert\Delta u_{k+j}\rVert_R^2.
+$$
+
 subject to $\hat x^+=A\hat x+B u$, actuator bounds and move bounds.
 Only the first optimized action is applied. Beyond the control horizon, hold
 the final move. Inspect solver failures as well as tracking error.
@@ -73,6 +78,32 @@ Finally, use only the causal posterior to compensate a sensor in a PI loop,
 and repeat with process-model mismatch. This unit is an enrichment beyond the
 eight supplied syllabus units and the article benchmark inventory.'''}
 
+VISUAL_GUIDE = {
+1: "Read the tank boundary from left to right: the two inlet streams mix, the outlet carries the current concentration, and balanced total flow fixes the volume. The right-hand diagram separates training from an independent validation input. In the computed figure, compare the training excitation with the held-out one-step and recursive traces; the latter propagates its own errors.",
+2: "Follow the command through saturation before it reaches the plant. The feedback path closes on the measured output, while conditional integration protects the integral state. In the computed comparison, locate the reference change and distinguish a faster transient from increased actuator movement; a nominal stability calculation does not remove saturation effects.",
+3: "The short inner path uses the measured actuator/flow variable; the long outer path uses concentration. Cascade can correct an actuator disturbance before it strongly affects concentration. Compare it only with the single-loop case having that same actuator. The feedforward pair is a separate comparison, and its disturbance measurement is additional information.",
+4: "Solid points are past observations and dashed points are predictions. The shaded interval marks the only action applied before remeasurement. The curve is a conceptual sketch, not the optimizer output. In the computed result, inspect input and move limits, horizon choices and solver success alongside SISO tracking and the two MIMO outputs.",
+5: "The triangles show overlapping negative, zero and positive membership sets. Rule firing combines error and error-change memberships before producing an incremental action. The two inference methods differ in aggregation and defuzzification. Compare the recorded tracking and actuator curves; membership values are not calibrated probabilities or stability guarantees.",
+6: "Chronology separates fitting, selection and final scoring. Fit normalization on the training set and freeze it before evaluating the others. A one-step predictor sees measured history; the recursive path sees its own past predictions. Read these scores separately, and use the out-of-domain experiment to expose unsupported extrapolation.",
+7: "Each candidate is evaluated by a closed-loop simulation before selection and variation. Elitism retains the best candidate under the declared objective, and the loop stops at a fixed evaluation budget. The final test changes residence time after gains have been frozen. Read both convergence history and held-out closed-loop behavior; the best sampled candidate is not a proven global optimum.",
+8: "Rows change the process residence time, while columns change the controller. Within a row, target, disturbance and noise are matched. Evaluate error, effort, movement and constraint violations together. Feedforward receives an extra disturbance measurement; describe that advantage when interpreting the comparison.",
+9: "Hidden states persist through the transition matrix and emit uncertain observation symbols. The orange time boundary separates available evidence from future observations. Forward filtering alone can enter PI compensation; smoothing and Viterbi remain retrospective. Compare the diagnosis panel with true synthetic states only for scoring, then inspect control with nominal and mismatched process models."
+}
+
+
+def visual_section(unit):
+    return (f"## Read the method visually\n\n![Unit {unit:02d} conceptual diagram](../../course/figures/learning/unit-{unit:02d}.png)\n\n"
+            + VISUAL_GUIDE[unit] + "\n\nThe conceptual diagram is deliberately separate from the computed experiment below. [Editable SVG](../../course/figures/learning/unit-" + f"{unit:02d}.svg).")
+
+
+def article_section(unit):
+    return (f"## Apply this unit to the article benchmarks\n\n"
+            f"[Worked benchmark study for Unit {unit:02d}](../../benchmarks/learning/unit-{unit:02d}.md)\n\n"
+            f"![Unit {unit:02d} benchmark study](../../benchmarks/learning/figures/unit-{unit:02d}.png)\n\n"
+            "Read the per-model method, chosen signals, numerical results and interpretation in the linked study. "
+            "The learning track declares its local-model approximations and separates equation-based experiments "
+            "from external datasets and simulators. It does not turn an unavailable measured record into a synthetic benchmark result.")
+
 
 def markov_cells(slug):
     """Keep the probabilistic calculations inspectable before the full experiment."""
@@ -103,12 +134,19 @@ def main():
           nb.v4.new_code_cell(f'from IPython.display import Image, display\ndisplay(Image(filename=str(ROOT / "laboratories/{slug}/results/comparison.png")))'),
           nb.v4.new_markdown_cell('## Inspect the evidence\n\n1. Identify the physical assumptions, input limits and units.\n2. Explain a visible transient using the governing equation.\n3. Change one model or controller parameter, rerun and compare the saved metrics.\n4. State what the test does and does not establish.\n\nUse the [course guide](../../course/README.md), [worked problems](../../problem-sets/README.md) and [benchmark inventory](../../benchmarks/README.md) for the corresponding derivations and extensions.')]
         if unit==9:cells=cells[:3]+markov_cells(slug)
+        cells=cells[:3]+[nb.v4.new_markdown_cell(visual_section(unit))]+cells[3:]
+        cells.append(nb.v4.new_markdown_cell(article_section(unit)))
+        for cell in cells:
+            if cell.cell_type=='markdown':cell.source=notebook_markdown(cell.source,folder)
         note=nb.v4.new_notebook(cells=cells,metadata={'kernelspec':{'name':'python3','display_name':'Python 3','language':'python'},'language_info':{'name':'python','version':'3.12'}})
+        if (folder/'notebook.ipynb').exists():note=preserve_outputs(nb.read(folder/'notebook.ipynb',as_version=4),note)
         nb.write(note,folder/'notebook.ipynb')
         (folder/'README.md').write_text(f'# {unit:02d}. {TITLES[unit]}\n\n[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{REPO}/blob/main/laboratories/{slug}/notebook.ipynb)\n\n'+INTRO[unit]+f'\n\n```bash\npython tools/run_course.py --unit {unit}\n```\n\n[Notebook](notebook.ipynb) · [Metrics](results/metrics.json) · [Course notes](../../course/README.md) · [Problems and solutions](../../problem-sets/README.md)\n\n![Computed comparison](results/comparison.png)\n',encoding='utf-8')
         if unit==9:
             with (folder/'README.md').open('a',encoding='utf-8') as handle:
                 handle.write('\n![Computed diagnosis](results/diagnosis.png)\n\n[Detailed lesson](../../course/'+slug+'/lesson.md) · [Exercises](../../problem-sets/'+slug+'/exercises.md) · [Worked solutions](../../problem-sets/'+slug+'/solutions.md)\n\nThe notebook separates chains, a hand-checkable HMM, supervised calibration, Baum-Welch, held-out diagnosis and causal PI supervision. CSV traces include true states for retrospective scoring only. Offline estimates never enter the controller.\n')
+        guide=folder/'README.md'
+        guide.write_text(normalize_math(guide.read_text(encoding='utf-8'))+'\n'+visual_section(unit)+'\n\n'+article_section(unit)+'\n',encoding='utf-8')
     print(f'Built {len(selected)} notebooks and laboratory guides')
 
 if __name__=='__main__':main()

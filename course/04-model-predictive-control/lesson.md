@@ -10,7 +10,9 @@ For $x_{k+1}=Ax_k+Bu_k$, $y_k=Cx_k$, assemble predicted outputs as $Y=Fx_k+GU$, 
 
 A useful objective is
 
-$$J=(Y-R)^TQ(Y-R)+(DU-d_0)^TR_u(DU-d_0),$$
+$$
+J=(Y-R)^TQ(Y-R)+(DU-d_0)^TR_u(DU-d_0),
+$$
 
 where $DU-d_0$ stacks input increments and its first element is $u_k-u_{k-1}$. Bounds on $U$, input increments and predicted outputs become linear inequalities. Penalizing input magnitude instead of increments solves a different problem, especially around nonzero operating points. The Hessian is positive definite when the regularization supplies strictly positive curvature in every free input direction.
 
@@ -20,7 +22,9 @@ At each sample, estimate the state, solve the optimization, apply the first acti
 
 For $c^+=ac+bu$ and $J=(c^+-r)^2+\rho(u-u_{old})^2$, the unconstrained optimum is
 
-$$u^*=\frac{b(r-ac)+\rho u_{old}}{b^2+\rho}.$$
+$$
+u^*=\frac{b(r-ac)+\rho u_{old}}{b^2+\rho}.
+$$
 
 With only scalar interval constraints, project this value onto their intersection. This is exact for the scalar one-step problem; independently clipping a general coupled multistep solution is not equivalent to solving its constrained quadratic program.
 
@@ -35,3 +39,14 @@ Finite-horizon optimization and decreasing simulated error do not automatically 
 ## Computational practice
 
 From the repository root, run `python tools/run_course.py --unit 4`. Use the notebook to inspect assumptions, rerun calculations and compare them with the worked reasoning. The lesson's hypothetical examples illustrate the method; inspect each program's configuration before comparing numerical outputs.
+
+
+## Visual method and article applications
+
+![Unit 04 method diagram](../figures/learning/unit-04.png)
+
+This conceptual diagram separates the method's signals and information flow from its measured or simulated evidence. Read the [laboratory explanation](../../laboratories/04-model-predictive-control/README.md#read-the-method-visually) alongside the computed traces.
+
+![Unit 04 benchmark results](../../benchmarks/learning/figures/unit-04.png)
+
+The [worked article study](../../benchmarks/learning/unit-04.md) applies this unit across the equation-based benchmarks and records the chosen local approximations, results and remaining external-data limits.

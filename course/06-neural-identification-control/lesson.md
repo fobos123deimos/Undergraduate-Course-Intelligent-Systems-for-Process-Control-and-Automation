@@ -8,7 +8,9 @@
 
 A nonlinear autoregressive model with external input uses past observations and applied inputs to predict the next output. One causal choice is
 
-$$\phi_k=[y_k,y_{k-1},u_k,u_{k-1}]^T,\qquad \hat y_{k+1}=f_\theta(\phi_k).$$
+$$
+\phi_k=[y_k,y_{k-1},u_k,u_{k-1}]^T,\qquad \hat y_{k+1}=f_\theta(\phi_k).
+$$
 
 The regressor timing must be causal. Randomly shuffling heavily overlapping windows before splitting can place nearly identical trajectories in both training and testing. Split trajectories first, then construct lagged windows inside each partition. Save scaling parameters, random seed, architecture, weights and the complete data protocol.
 
@@ -29,3 +31,14 @@ A neural predictor can replace a prediction model inside MPC, or a differentiabl
 ## Computational practice
 
 From the repository root, run `python tools/run_course.py --unit 6`. Use the notebook to inspect assumptions, rerun calculations and compare them with the worked reasoning. The lesson's hypothetical examples illustrate the method; inspect each program's configuration before comparing numerical outputs.
+
+
+## Visual method and article applications
+
+![Unit 06 method diagram](../figures/learning/unit-06.png)
+
+This conceptual diagram separates the method's signals and information flow from its measured or simulated evidence. Read the [laboratory explanation](../../laboratories/06-neural-identification-control/README.md#read-the-method-visually) alongside the computed traces.
+
+![Unit 06 benchmark results](../../benchmarks/learning/figures/unit-06.png)
+
+The [worked article study](../../benchmarks/learning/unit-06.md) applies this unit across the equation-based benchmarks and records the chosen local approximations, results and remaining external-data limits.

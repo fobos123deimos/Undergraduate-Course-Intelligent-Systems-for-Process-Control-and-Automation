@@ -8,7 +8,9 @@
 
 Feedback acts after an output error is visible. Feedforward uses a measured disturbance before that error develops. For $10\dot c=u+(1-u)d-c$, holding the equilibrium at $r$ requires
 
-$$u_{ff}=\frac{r-d}{1-d},\qquad d\ne1.$$
+$$
+u_{ff}=\frac{r-d}{1-d},\qquad d\ne1.
+$$
 
 For $0\leq d<1$, this is feasible only when $d\leq r\leq1$. Feedback can trim errors in $d$, mixing and actuator calibration; it cannot repair an impossible target. The linear cancellation formula is $F(s)=-G_d(s)/G_u(s)$. A nonminimum-phase zero or unfavorable delay in $G_u$ can make the ideal inverse unstable or noncausal, so practical feedforward often uses a filtered approximation.
 
@@ -20,7 +22,9 @@ Suppose a valve command $v$ produces the actual blend $u$ through $\tau_v\dot u=
 
 For a local steady two-input/two-output gain matrix $K$, the relative gain array is $\Lambda=K\circ(K^{-1})^T$, where $\circ$ denotes elementwise multiplication. For
 
-$$K=\begin{bmatrix}1&0.6\\0.4&1\end{bmatrix},\qquad \Lambda=\begin{bmatrix}1.315789&-0.315789\\-0.315789&1.315789\end{bmatrix}.$$
+$$
+K=\begin{bmatrix}1&0.6\\0.4&1\end{bmatrix},\qquad \Lambda=\begin{bmatrix}1.315789&-0.315789\\-0.315789&1.315789\end{bmatrix}.
+$$
 
 Diagonal pairing avoids negative relative gains here. RGA is a local steady-state diagnostic, not a stability proof: dynamics, delays and operating-point changes still matter. Static decoupling $u=K^{-1}v$ removes steady interaction for the nominal model, but can demand infeasible or rapidly changing physical inputs. If saturation occurs, the assumed decoupling is lost.
 
@@ -31,3 +35,14 @@ Start with independently tuned PI loops, then add measured-disturbance feedforwa
 ## Computational practice
 
 From the repository root, run `python tools/run_course.py --unit 3`. Use the notebook to inspect assumptions, rerun calculations and compare them with the worked reasoning. The lesson's hypothetical examples illustrate the method; inspect each program's configuration before comparing numerical outputs.
+
+
+## Visual method and article applications
+
+![Unit 03 method diagram](../figures/learning/unit-03.png)
+
+This conceptual diagram separates the method's signals and information flow from its measured or simulated evidence. Read the [laboratory explanation](../../laboratories/03-control-structures/README.md#read-the-method-visually) alongside the computed traces.
+
+![Unit 03 benchmark results](../../benchmarks/learning/figures/unit-03.png)
+
+The [worked article study](../../benchmarks/learning/unit-03.md) applies this unit across the equation-based benchmarks and records the chosen local approximations, results and remaining external-data limits.

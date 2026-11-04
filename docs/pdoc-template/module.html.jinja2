@@ -8,3 +8,19 @@
         <a href="https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/tree/main/simulink/models">MATLAB &amp; Simulink</a>
     </div>
 {% endblock %}
+{% block module_info %}
+{{ super() }}
+{% set prefix = '../' * (module.modulename.count('.')) %}
+{% if course_images.get(module.modulename) %}
+<section class="visual-guide" aria-label="Illustrated guide">
+  <h2>Illustrated guide</h2>
+  <p>Equipment, information flow and computed evidence. Captions distinguish nonlinear records from fitted-predictor exercises.</p>
+  {% for item in course_images[module.modulename] %}
+  <figure>
+    <a href="{{ prefix }}assets/{{ item.source }}"><img src="{{ prefix }}assets/{{ item.source }}" alt="{{ item.caption }}" loading="lazy"></a>
+    <figcaption>{{ item.caption }}{% if item.link %} <a href="{{ item.link }}">Worked explanation and evidence</a>.{% endif %}</figcaption>
+  </figure>
+  {% endfor %}
+</section>
+{% endif %}
+{% endblock %}

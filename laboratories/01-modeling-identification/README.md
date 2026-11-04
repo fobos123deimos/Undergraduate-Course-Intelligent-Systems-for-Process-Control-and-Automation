@@ -17,3 +17,19 @@ python tools/run_course.py --unit 1
 [Notebook](notebook.ipynb) · [Metrics](results/metrics.json) · [Course notes](../../course/README.md) · [Problems and solutions](../../problem-sets/README.md)
 
 ![Computed comparison](results/comparison.png)
+
+## Read the method visually
+
+![Unit 01 conceptual diagram](../../course/figures/learning/unit-01.png)
+
+Read the tank boundary from left to right: the two inlet streams mix, the outlet carries the current concentration, and balanced total flow fixes the volume. The right-hand diagram separates training from an independent validation input. In the computed figure, compare the training excitation with the held-out one-step and recursive traces; the latter propagates its own errors.
+
+The conceptual diagram is deliberately separate from the computed experiment below. [Editable SVG](../../course/figures/learning/unit-01.svg).
+
+## Apply this unit to the article benchmarks
+
+[Worked benchmark study for Unit 01](../../benchmarks/learning/unit-01.md)
+
+![Unit 01 benchmark study](../../benchmarks/learning/figures/unit-01.png)
+
+Read the per-model method, chosen signals, numerical results and interpretation in the linked study. The learning track declares its local-model approximations and separates equation-based experiments from external datasets and simulators. It does not turn an unavailable measured record into a synthetic benchmark result.

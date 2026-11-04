@@ -26,19 +26,85 @@ jobs:
       - run: python blending-tank/run_study.py
       - run: python benchmarks/run_wind_control.py
       - run: python benchmarks/run_pneumatic.py
+      - name: Regenerate all benchmark learning studies
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+        run: python benchmarks/run_learning_studies.py
+      - name: Validate regenerated benchmark learning records
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import runpy
+          import numpy as np
+
+          builder = runpy.run_path('benchmarks/run_learning_studies.py')
+          names = set(builder['learn'].case_catalog())
+          expected_hashes = builder['computation_hashes']()
+          folder = Path('benchmarks/results/learning')
+          summary = json.loads((folder / 'summary.json').read_text())
+          assert len(names) == summary['native_cases'] == 10
+          assert summary['learning_stages'] == 9
+          assert summary['executed_native_case_stages'] == 90
+          assert set(summary['cases']) == names
+          assert summary['external_simulators_rerun'] is False
+          for name in sorted(names):
+              record = json.loads((folder / (name + '.json')).read_text())
+              assert record['case'] == name and record['record_seeds'] == [1401, 2401]
+              assert record['computation_sha256_lf'] == expected_hashes
+              for split in ('train', 'test'):
+                  data = np.loadtxt(folder / (name + '-' + split + '.csv'), delimiter=',', skiprows=1)
+                  assert data.ndim == 2 and data.shape[0] >= 30 and data.shape[1] >= 3
+                  assert np.isfinite(data).all() and (np.diff(data[:, 0]) > 0).all()
+              assert set(record['loops']) == {'pi', 'feedforward', 'cascade', 'mpc', 'fuzzy', 'genetic_pi'}
+              for result in record['loops'].values():
+                  assert result['status'] in {'completed', 'diverged'}
+                  trace = np.asarray(result['trace'])
+                  assert trace.ndim == 2 and trace.shape[1] == 5 and np.isfinite(trace).all()
+                  assert np.abs(trace[:, 3]).max() <= 2 + 1e-7
+              assert record['ga']['evaluations'] == 90
+              assert record['diagnosis']['calibration_sequences'] == 20
+          print('Validated ten regenerated cases and ninety learning-stage records.')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-learning-records
+          path: benchmarks/results/learning/
+          if-no-files-found: error
       - run: python tools/validate.py --notebooks
   octave:
+    needs: python
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: benchmark-learning-records
+          path: benchmarks/results/learning/
       - run: sudo apt-get update && sudo apt-get install -y octave
       - run: octave --no-gui --quiet --eval "addpath('matlab'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_io_csv; validate_pneumatic_physical; validate_hydrostatic_si; validate_throttle_reference;"
+      - name: Replay nine benchmark learning stages in Octave
+        run: |
+          mkdir -p ci-artifacts
+          octave --no-gui --quiet --eval "addpath('matlab'); learning=validate_benchmark_learning(); assert(learning.case_count==10 && learning.learning_stage_count==90); report=struct('status','passed','runtime','GNU Octave','version',version,'platform',computer,'case_count',learning.case_count,'learning_stage_count',learning.learning_stage_count,'scope',learning.scope); fid=fopen('ci-artifacts/benchmark-learning-octave.json','w'); assert(fid>=0); fprintf(fid,'%s\n',jsonencode(report)); fclose(fid);"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: octave-benchmark-learning-validation
+          path: ci-artifacts/benchmark-learning-octave.json
+          if-no-files-found: error
   matlab-simulink:
+    needs: python
     runs-on: ubuntu-22.04
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: benchmark-learning-records
+          path: benchmarks/results/learning/
       - name: Enable virtual display for Simulink diagram exports
         run: |
           sudo apt-get update
@@ -52,6 +118,10 @@ jobs:
       - uses: matlab-actions/run-command@v3
         with:
           command: addpath('matlab'); addpath('simulink'); validate_all; validate_paper; validate_online_hmm; validate_intelligent_adapters; validate_wind_control; validate_io_csv; validate_pneumatic_physical; validate_hydrostatic_si; validate_throttle_reference(fullfile(pwd,'ci-artifacts','throttle-native')); validate_simulink_suite(fullfile(pwd,'ci-artifacts','simulink')); validate_pneumatic_simulink(fullfile(pwd,'ci-artifacts','pneumatic')); validate_hydrostatic_simulink(fullfile(pwd,'ci-artifacts','hydrostatic'));
+      - name: Replay nine benchmark learning stages in MATLAB
+        uses: matlab-actions/run-command@v3
+        with:
+          command: addpath('matlab'); learning=validate_benchmark_learning(); assert(learning.case_count==10 && learning.learning_stage_count==90); report=struct('status','passed','runtime','MATLAB','version',version,'platform',computer,'case_count',learning.case_count,'learning_stage_count',learning.learning_stage_count,'scope',learning.scope); folder=fullfile(pwd,'ci-artifacts'); if ~isfolder(folder), mkdir(folder); end; fid=fopen(fullfile(folder,'benchmark-learning-matlab.json'),'w'); assert(fid>=0); fprintf(fid,'%s\n',jsonencode(report)); fclose(fid);
       - name: Fetch official revised Tennessee Eastman
         if: always()
         run: python benchmarks/fetch_external.py --source te-revised

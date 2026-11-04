@@ -10,7 +10,9 @@ For the hypothetical tank $P(s)=1/(\tau s+1)$, define the tracking error $e=r-y$
 
 With ideal measurement, no saturation and PI feedback, the closed-loop characteristic polynomial is
 
-$$\tau s^2+(1+K_p)s+K_i.$$
+$$
+\tau s^2+(1+K_p)s+K_i.
+$$
 
 The second-order continuous model is asymptotically stable when $\tau>0$, $1+K_p>0$ and $K_i>0$. This result does not cover delays, sampled implementation or saturating nonlinear dynamics. The final-value theorem also requires a stable closed loop before it can justify zero constant-reference error.
 
@@ -18,7 +20,9 @@ The second-order continuous model is asymptotically stable when $\tau>0$, $1+K_p
 
 For the stable minimum-phase model $\hat P=1/(\tau s+1)$, choose $Q=(\tau s+1)/(\lambda s+1)$. Converting the internal-model structure to ordinary feedback gives
 
-$$C=\frac{Q}{1-\hat P Q}=\frac{\tau s+1}{\lambda s},\qquad K_p=\frac{\tau}{\lambda},\quad K_i=\frac1\lambda.$$
+$$
+C=\frac{Q}{1-\hat P Q}=\frac{\tau s+1}{\lambda s},\qquad K_p=\frac{\tau}{\lambda},\quad K_i=\frac1\lambda.
+$$
 
 Nominal pole-zero cancellation makes $Y/R=1/(\lambda s+1)$, but the canceled pole still matters to internal dynamics and mismatch. With $\tau=10$ min and $\lambda=5$ min, $K_p=2$ and $K_i=0.2$ per minute. For a first-order-plus-dead-time approximation, the commonly used IMC-PI rule $K_p=\tau/[K(\lambda+\theta)]$, $T_i=\tau$ trades speed for delay tolerance; it is an approximation, not exact cancellation of a delay.
 
@@ -28,7 +32,9 @@ One explicit digital update is $v_k=K_pe_k+I_k$, $u_k=\operatorname{sat}(v_k)$, 
 
 The local discrete closed-loop matrix for the unsaturated explicit update and zero reference is
 
-$$M=\begin{bmatrix}a-bK_p&b\\-T_sK_i&1\end{bmatrix}.$$
+$$
+M=\begin{bmatrix}a-bK_p&b\\-T_sK_i&1\end{bmatrix}.
+$$
 
 Its eigenvalues, not continuous poles alone, determine sampled stability. A reference beyond the attainable concentration range has no feasible equilibrium, however stable the local model is.
 
@@ -39,3 +45,14 @@ Use identical initial state, reference steps, feed disturbances and actuator lim
 ## Computational practice
 
 From the repository root, run `python tools/run_course.py --unit 2`. Use the notebook to inspect assumptions, rerun calculations and compare them with the worked reasoning. The lesson's hypothetical examples illustrate the method; inspect each program's configuration before comparing numerical outputs.
+
+
+## Visual method and article applications
+
+![Unit 02 method diagram](../figures/learning/unit-02.png)
+
+This conceptual diagram separates the method's signals and information flow from its measured or simulated evidence. Read the [laboratory explanation](../../laboratories/02-feedback-imc/README.md#read-the-method-visually) alongside the computed traces.
+
+![Unit 02 benchmark results](../../benchmarks/learning/figures/unit-02.png)
+
+The [worked article study](../../benchmarks/learning/unit-02.md) applies this unit across the equation-based benchmarks and records the chosen local approximations, results and remaining external-data limits.

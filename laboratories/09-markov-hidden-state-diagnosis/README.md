@@ -25,3 +25,19 @@ python tools/run_course.py --unit 9
 [Detailed lesson](../../course/09-markov-hidden-state-diagnosis/lesson.md) · [Exercises](../../problem-sets/09-markov-hidden-state-diagnosis/exercises.md) · [Worked solutions](../../problem-sets/09-markov-hidden-state-diagnosis/solutions.md)
 
 The notebook separates chains, a hand-checkable HMM, supervised calibration, Baum-Welch, held-out diagnosis and causal PI supervision. CSV traces include true states for retrospective scoring only. Offline estimates never enter the controller.
+
+## Read the method visually
+
+![Unit 09 conceptual diagram](../../course/figures/learning/unit-09.png)
+
+Hidden states persist through the transition matrix and emit uncertain observation symbols. The orange time boundary separates available evidence from future observations. Forward filtering alone can enter PI compensation; smoothing and Viterbi remain retrospective. Compare the diagnosis panel with true synthetic states only for scoring, then inspect control with nominal and mismatched process models.
+
+The conceptual diagram is deliberately separate from the computed experiment below. [Editable SVG](../../course/figures/learning/unit-09.svg).
+
+## Apply this unit to the article benchmarks
+
+[Worked benchmark study for Unit 09](../../benchmarks/learning/unit-09.md)
+
+![Unit 09 benchmark study](../../benchmarks/learning/figures/unit-09.png)
+
+Read the per-model method, chosen signals, numerical results and interpretation in the linked study. The learning track declares its local-model approximations and separates equation-based experiments from external datasets and simulators. It does not turn an unavailable measured record into a synthetic benchmark result.

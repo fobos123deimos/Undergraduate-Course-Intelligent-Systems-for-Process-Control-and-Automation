@@ -64,6 +64,16 @@ The [pdoc reference](https://fobos123deimos.github.io/Undergraduate-Course-Intel
 
 The same source passed [all three course validation jobs](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41906119956), including 175 Python tests, eleven executed notebooks, the nine MATLAB/Octave units and 27 local Simulink models. Documentation edits left the executable Python syntax trees unchanged relative to `80971a14708c5437e72675854476a7fe88a3e45c`. This run did not repeat ALSTOM; its separately pinned evidence above remains applicable. The [API record](api-validation.json) identifies jobs, public checks and scope; the [maintenance guide](API_DOCUMENTATION.md) explains regeneration.
 
+## Illustrated learning and rendering review — 4 November 2026
+
+The [cross-benchmark studies](../benchmarks/learning/README.md) add ten nonlinear training/test record pairs and nine learning stages per case, with 22 computed figures and nine additional conceptual diagrams. The complete local Python suite passed **180 tests**. The MATLAB-compatible replay passed **all ten cases and 90 stages in GNU Octave 11.3.0**; the largest deterministic-trace difference was 1.5458801608704712e-16, with no MPC solver fallback. See [the execution record](benchmark-learning-octave.json) and [the MATLAB guide](../benchmarks/learning/MATLAB.md).
+
+These are fitted scalar-predictor control exercises, not new full-order controller certifications. ALSTOM, OpenFAST and Tennessee Eastman contribute archived simulation traces for explicitly offline forecast/synthetic-sensor studies. No external simulator was re-executed for this extension. Missing throttle measurements, pneumatic calibration and historical hydrostatic conventions remain visible in the individual case pages.
+
+Markdown math delimiters, multiline equations, absolute notebook links and persistent notebook images were repaired. All eleven notebooks exported to HTML without errors; all 43 executable cells remained byte-identical to the preceding source. Units 04 and 09 were also executed locally after repair. [Rendering evidence](rendering-validation.json) and [notebook execution evidence](notebook-rendering-execution.json) distinguish these checks from a live Colab session. The existing PDF sources and compiled editions were not changed by this rendering repair.
+
+The illustrated pdoc build now contains eleven module pages and 130 public definitions, with captioned local images and image-hash stale-build detection. Current publication and browser results are recorded separately after deployment.
+
 ## Reproduction commands
 
 ```bash

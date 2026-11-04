@@ -4,6 +4,8 @@ This track works through every benchmark section in Andreas Kroll and Horst Schu
 
 ## Start here
 
+The [illustrated unit-by-benchmark track](learning/README.md) now connects all nine units to the article inventory. Ten native mathematical cases supply independently excited nonlinear records and 90 executed learning stages. Later control curves explicitly use fitted scalar predictors. Three external families add offline audits of preserved native traces; unavailable throttle measurements and full-order external controller redesign remain identified dependencies. Every native case has a nine-panel result sheet, and every unit has a ten-case comparison figure. [MATLAB/Octave counterpart](learning/MATLAB.md).
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/notebook.ipynb)
 
 [Browse eleven original equipment diagrams](DIAGRAMS.md), with editable SVG sources and the state/input conventions used by the code.

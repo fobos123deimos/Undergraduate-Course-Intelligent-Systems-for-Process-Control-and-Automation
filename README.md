@@ -18,6 +18,8 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 - [Course guide, prerequisites and complete syllabus mapping](course/README.md)
 - [Integrated problems and worked solutions](problem-sets/README.md)
 - [All article benchmarks: models, protocols and evidence boundaries](benchmarks/README.md)
+- [Illustrated applications: nine learning units across the article benchmarks](benchmarks/learning/README.md)
+- [Mathematical rendering and Colab compatibility](docs/RENDERING.md)
 - [Corrected physical Blending Tank: independent equations, linearization and validated Simulink models](blending-tank/README.md)
 - [References and English/Portuguese video lessons](docs/REFERENCES.md)
 - [Execution evidence](docs/VALIDATION.md) and [limitations](docs/LIMITATIONS.md)

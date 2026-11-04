@@ -15,6 +15,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import sys
 from urllib.parse import unquote, urlsplit, quote
 
@@ -110,8 +111,24 @@ def validate_site(output, modules):
 def source_hashes():
     sources = sorted(PACKAGE.glob('*.py')) + sorted((ROOT / 'docs/pdoc-template').glob('*'))
     sources += [ROOT / 'tools/build_api_docs.py', ROOT / 'requirements-docs.txt']
-    return {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes().replace(b'\r\n', b'\n')).hexdigest()
-            for p in sources if p.is_file()}
+    hashes = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes().replace(b'\r\n', b'\n')).hexdigest()
+              for p in sources if p.is_file()}
+    for entries in image_catalog().values():
+        for item in entries:
+            p = ROOT / item['source']
+            hashes[item['source']] = hashlib.sha256(p.read_bytes()).hexdigest()
+    return hashes
+
+
+def image_catalog():
+    """Load the explicit image manifest; source assets stay inside this checkout."""
+    catalog = json.loads((ROOT / 'docs/pdoc-template/images.json').read_text(encoding='utf-8'))
+    for entries in catalog.values():
+        for item in entries:
+            source = (ROOT / item['source']).resolve()
+            if not source.is_relative_to(ROOT) or not source.is_file() or source.suffix != '.png':
+                raise ValueError('Invalid documentation image: ' + item['source'])
+    return catalog
 
 
 def main():
@@ -142,6 +159,13 @@ def main():
             favicon='data:image/svg+xml,' + quote(favicon),
             footer_text='Synthetic teaching models; see validation evidence and limitations.')
         output.mkdir(parents=True, exist_ok=True)
+        catalog = image_catalog()
+        pdoc.render.env.globals['course_images'] = catalog
+        for entries in catalog.values():
+            for item in entries:
+                destination = output / 'assets' / item['source']
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / item['source'], destination)
         # Only remove obsolete module pages within this generator's own namespace.
         expected = {output / (name.replace('.', '/') + '.html') for name in modules}
         for stale in (output / 'intelligent_control').glob('*.html'):

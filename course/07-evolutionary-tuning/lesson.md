@@ -25,3 +25,14 @@ For multivariable MPC, chromosomes must retain positive weights and integer hori
 ## Computational practice
 
 From the repository root, run `python tools/run_course.py --unit 7`. Use the notebook to inspect assumptions, rerun calculations and compare them with the worked reasoning. The lesson's hypothetical examples illustrate the method; inspect each program's configuration before comparing numerical outputs.
+
+
+## Visual method and article applications
+
+![Unit 07 method diagram](../figures/learning/unit-07.png)
+
+This conceptual diagram separates the method's signals and information flow from its measured or simulated evidence. Read the [laboratory explanation](../../laboratories/07-evolutionary-tuning/README.md#read-the-method-visually) alongside the computed traces.
+
+![Unit 07 benchmark results](../../benchmarks/learning/figures/unit-07.png)
+
+The [worked article study](../../benchmarks/learning/unit-07.md) applies this unit across the equation-based benchmarks and records the chosen local approximations, results and remaining external-data limits.

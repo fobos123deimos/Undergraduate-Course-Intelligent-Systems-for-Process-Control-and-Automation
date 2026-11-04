@@ -25,6 +25,7 @@ implementations and their execution evidence remain in the course repository.
 | `intelligent_control.markov_lab` | Independent calibration, hidden sensor modes, fault scoring and causal supervision |
 | `intelligent_control.physical_blending` | Physical tank balances, equilibrium, Jacobians, transfer functions and variable volume |
 | `intelligent_control.benchmarks` | Ten article equation cores, local ARX predictors, rotor maps and external interfaces |
+| `intelligent_control.benchmark_learning` | Nine learning stages across ten native cases, with nonlinear excitation and explicitly separate fitted-predictor control exercises |
 | `intelligent_control.pneumatic_physical` | Separate six-state, conservative pneumatic mass/energy interpretation |
 | `intelligent_control.hydrostatic_si` | Separate hydrostatic SI interpretation with explicit displacement and capacitance conventions |
 | `intelligent_control.wind_control` | Local LQR/PDC design, scheduling, actuator limits and nonlinear wind studies |
@@ -67,6 +68,14 @@ include nine course labs, benchmarks and the physical Blending Tank. They call
 the same inspectable Python functions documented here.
 
 ## Interpretation and evidence
+
+The [illustrated unit-by-benchmark track](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/tree/main/benchmarks/learning)
+connects every unit to every article section. Ten native cases have independent
+synthetic excitation records and nine numerical learning stages. Three external
+plant families have additional offline prediction/sensor analyses of preserved
+native traces. Original throttle measurements and full-order external controller
+redesign remain explicit dependencies. Control curves in this new learning
+track use identified scalar predictors; they are not full nonlinear-plant results.
 
 The teaching experiments are synthetic. Numerical agreement, conservation and
 successful integration do not establish experimental calibration or industrial

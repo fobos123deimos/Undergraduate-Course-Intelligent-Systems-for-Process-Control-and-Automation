@@ -8,11 +8,15 @@
 
 A controller changes a physical input; its software output is not automatically that input. Draw the vessel, inlet streams, outlet, sensor and valve before naming states. For a perfectly mixed tank with constant density and cross-sectional area $A$, conservation gives
 
-$$A\dot h=q_H+q_L-q_o,\qquad \frac{d(Ahc)}{dt}=q_Hc_H+q_Lc_L-q_oc.$$
+$$
+A\dot h=q_H+q_L-q_o,\qquad \frac{d(Ahc)}{dt}=q_Hc_H+q_Lc_L-q_oc.
+$$
 
 Expanding the derivative and substituting the volume balance cancels the outlet term in the concentration equation:
 
-$$\dot c=\frac{q_H(c_H-c)+q_L(c_L-c)}{Ah}.$$
+$$
+\dot c=\frac{q_H(c_H-c)+q_L(c_L-c)}{Ah}.
+$$
 
 This cancellation does not mean the outlet is irrelevant: it changes $h$, which changes the residence time. Mixing is assumed instantaneous; density differences, reaction, evaporation and sensor dynamics are absent. A simulation approaching $h=0$ must stop or change its physical model rather than divide by a clipped volume silently.
 
@@ -20,11 +24,15 @@ This cancellation does not mean the outlet is irrelevant: it changes $h$, which 
 
 The exercises use hypothetical values $V=100$ L, total flow $q=10$ L/min and normalized feed concentrations $c_H=1$, $c_L=0$. A low-level flow system holds $q$ constant while $q_H=qu$ and $q_L=q(1-u)$, with $0\leq u\leq1$. Thus
 
-$$\tau\dot c=u-c,\qquad \tau=V/q=10\ {\rm min}.$$
+$$
+\tau\dot c=u-c,\qquad \tau=V/q=10\ {\rm min}.
+$$
 
 These teaching parameters define the hypothetical process used in this unit. At a constant input, $c^*=u^*$. In deviation variables, $G(s)=1/(10s+1)$. At a one-minute sampling period with a zero-order-held input,
 
-$$c_{k+1}=ac_k+bu_k,\qquad a=e^{-0.1}=0.904837418,\quad b=1-a=0.095162582.$$
+$$
+c_{k+1}=ac_k+bu_k,\qquad a=e^{-0.1}=0.904837418,\quad b=1-a=0.095162582.
+$$
 
 The analytical feed-composition problems use $d=d_{low}$ for the concentration of the low feed, giving an inlet mixture $u+(1-u)d_{low}$. The shared executable laboratory scenario instead uses an additive disturbance to the total inlet mixture, $u+d_{mix}$. Their conversion is $d_{mix}=(1-u)d_{low}$, so they are not interchangeable at fixed numerical values. Feedforward in the additive scenario compensates by $-d_{mix}$; the low-feed examples derive the nonlinear blend formula explicitly. Check the disturbance definition before comparing a worked answer with a laboratory run.
 
@@ -43,3 +51,14 @@ Check mass conservation, equilibria, convergence when the integration step is ha
 ## Computational practice
 
 From the repository root, run `python tools/run_course.py --unit 1`. Use the notebook to inspect assumptions, rerun calculations and compare them with the worked reasoning. The lesson's hypothetical examples illustrate the method; inspect each program's configuration before comparing numerical outputs.
+
+
+## Visual method and article applications
+
+![Unit 01 method diagram](../figures/learning/unit-01.png)
+
+This conceptual diagram separates the method's signals and information flow from its measured or simulated evidence. Read the [laboratory explanation](../../laboratories/01-modeling-identification/README.md#read-the-method-visually) alongside the computed traces.
+
+![Unit 01 benchmark results](../../benchmarks/learning/figures/unit-01.png)
+
+The [worked article study](../../benchmarks/learning/unit-01.md) applies this unit across the equation-based benchmarks and records the chosen local approximations, results and remaining external-data limits.

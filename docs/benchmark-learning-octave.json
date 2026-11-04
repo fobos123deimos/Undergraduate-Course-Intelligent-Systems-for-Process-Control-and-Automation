@@ -1,0 +1,2566 @@
+{
+  "validated_at_utc": "2026-11-04T21:37:33Z",
+  "runtime": "Official portable GNU Octave",
+  "version": "11.3.0",
+  "platform": "x86_64-w64-mingw32",
+  "status": "passed",
+  "case_count": 10,
+  "learning_stage_count": 90,
+  "elapsed_seconds": 48.47231101989746,
+  "maximum_controller_replay_scaled_error": 1.5458801608704712e-16,
+  "mpc_solver_failures_recorded": 0,
+  "source_and_record_hashes": [
+    {
+      "path": "matlab/validate_benchmark_learning.m",
+      "sha256_lf": "f80c74068d1aa9c7af976c4b167507eb0cfa3d2c126051150e1afd8e9d2e57c7"
+    },
+    {
+      "path": "matlab/mpc_control.m",
+      "sha256_lf": "4edb9f4b30edf74090a9f58ee1336bff0e09c36855d7553a9fad563393cb5ff8"
+    },
+    {
+      "path": "matlab/markov_models.m",
+      "sha256_lf": "9185e65d194aa52e5600032dbe81b5d4d203f869a43db47810133d7cd6eb4bb4"
+    },
+    {
+      "path": "benchmarks/results/learning/artificial_mimo-train.csv",
+      "sha256_lf": "9e83db044bb151a2f6dd5224a1a9751515f689ab445c24b381c873b9a05bccb5"
+    },
+    {
+      "path": "benchmarks/results/learning/artificial_siso-train.csv",
+      "sha256_lf": "dc034a2ab561415538559b600ee3c182cfd4b0d0330b54f97f2c43b20bdba67d"
+    },
+    {
+      "path": "benchmarks/results/learning/bioreactor-train.csv",
+      "sha256_lf": "183788be56bb0399edc5006724087203c8f5dfd427929494d74538d0910fa741"
+    },
+    {
+      "path": "benchmarks/results/learning/column_a-train.csv",
+      "sha256_lf": "a019e1ba985db074a895ef4d1d7491805a2f69347fe6985f7db592b87b964254"
+    },
+    {
+      "path": "benchmarks/results/learning/cstr-train.csv",
+      "sha256_lf": "a022f241e7b5f4a34c43e3bc5072aa25f86d256506ab228f3c613de7ddb17217"
+    },
+    {
+      "path": "benchmarks/results/learning/hydrostatic-train.csv",
+      "sha256_lf": "b7f5d69ff31092f993b0078e3625a291515245402adda87845cb4dfb209b4d56"
+    },
+    {
+      "path": "benchmarks/results/learning/pendulum-train.csv",
+      "sha256_lf": "2bcb2006f88f26464ba4cd9f1cd2ea9cd57cc89dbda216aa337e6177da82d890"
+    },
+    {
+      "path": "benchmarks/results/learning/pneumatic-train.csv",
+      "sha256_lf": "5c7f94f8e55b674365e4c187e98dd31fac3f896996f97c2f2594936b34f18d1f"
+    },
+    {
+      "path": "benchmarks/results/learning/three_tank-train.csv",
+      "sha256_lf": "a514206274fe5ef8e0ed3b917fb3f2d8f86e49fe5ceac7219c33dba9c96cc410"
+    },
+    {
+      "path": "benchmarks/results/learning/wind_reduced-train.csv",
+      "sha256_lf": "0559b9d7c40a15c40e4db090cd67f891bc4daec95741416433dffad5d1a8da24"
+    },
+    {
+      "path": "benchmarks/results/learning/artificial_mimo-test.csv",
+      "sha256_lf": "9467cf0cb748da6971e4e8bb680401d87638bc6e8230e6062e76eb1e3a5e5d5c"
+    },
+    {
+      "path": "benchmarks/results/learning/artificial_siso-test.csv",
+      "sha256_lf": "b1812e059b528f34120922a32aeeec449f2ebb160dac53d4a2d7d6ef869e5adc"
+    },
+    {
+      "path": "benchmarks/results/learning/bioreactor-test.csv",
+      "sha256_lf": "d958e60f08b6f3ef7f17aba965aa004b41c6979e962c11955e668387bfb1bebd"
+    },
+    {
+      "path": "benchmarks/results/learning/column_a-test.csv",
+      "sha256_lf": "ad0610841ec14bf57cf3ff318803af0d9274b598c8e52fbd54552ce25dae3e86"
+    },
+    {
+      "path": "benchmarks/results/learning/cstr-test.csv",
+      "sha256_lf": "ee30b7948cc0a6d39a7ac9e9272f1a5136b84777d502d96bc6517523ceeb9b6a"
+    },
+    {
+      "path": "benchmarks/results/learning/hydrostatic-test.csv",
+      "sha256_lf": "3be5eeff40ee45e0153acbca24ce678e53a3ffd197d37839ec4be664e8264d58"
+    },
+    {
+      "path": "benchmarks/results/learning/pendulum-test.csv",
+      "sha256_lf": "208161f0cdd4aa59293e745c463c8fb6ddac71f0867400bb28d3bc0fa224e3bd"
+    },
+    {
+      "path": "benchmarks/results/learning/pneumatic-test.csv",
+      "sha256_lf": "17a9fb64c324707bbfcc953e87a79df34c8090e0bb2f52787c2f945d8f3943a8"
+    },
+    {
+      "path": "benchmarks/results/learning/three_tank-test.csv",
+      "sha256_lf": "9ba7583e9230553c1d0130b327fa872a3dd3ce47eb027efccb0eb5bc18e14319"
+    },
+    {
+      "path": "benchmarks/results/learning/wind_reduced-test.csv",
+      "sha256_lf": "5ce43e682dfd3c16ed9b4984411c8f894d7efe3fdbfea554ba2f233958162e8a"
+    },
+    {
+      "path": "benchmarks/results/learning/artificial_siso.json",
+      "sha256_lf": "a73f71ffee7ddbc65c62e657f71c88c9f1f23f70d8038020cf1851253f990b56"
+    },
+    {
+      "path": "benchmarks/results/learning/artificial_mimo.json",
+      "sha256_lf": "dcca9e28c6f22516057f6e882119155afc144771e7569bafb94e620e2c1cfeef"
+    },
+    {
+      "path": "benchmarks/results/learning/pendulum.json",
+      "sha256_lf": "60fc1554b3e5a2e6153cc9983e45743c4b3048f2d60c4caf79d6fa1762b5974c"
+    },
+    {
+      "path": "benchmarks/results/learning/pneumatic.json",
+      "sha256_lf": "6b867d59b8d94ef407d48a4a6513acb31ab6dbcc5e3635965e0c564a54c667ae"
+    },
+    {
+      "path": "benchmarks/results/learning/hydrostatic.json",
+      "sha256_lf": "a660a37bde1c4b3542c24c9005d25e2baecc0e5ee05241078910de0c5cb9c46c"
+    },
+    {
+      "path": "benchmarks/results/learning/three_tank.json",
+      "sha256_lf": "04cf3d5be6caa1e3b408121ce69e217c1f6fbc1b0b568dd32781dbe61489e60e"
+    },
+    {
+      "path": "benchmarks/results/learning/bioreactor.json",
+      "sha256_lf": "03fb11d19ad3c40eb07fea270edc00850d57fd3ccd0f2dce799ccd26f3269ddf"
+    },
+    {
+      "path": "benchmarks/results/learning/cstr.json",
+      "sha256_lf": "b0c6c2a083a1d8d933788154a17b24ddb15b6ca7400d79bc52474138e8a8d4db"
+    },
+    {
+      "path": "benchmarks/results/learning/column_a.json",
+      "sha256_lf": "35f9698838dca78ae3cced2b1566477017fb9953b9af39149abd160b7cdae63d"
+    },
+    {
+      "path": "benchmarks/results/learning/wind_reduced.json",
+      "sha256_lf": "142e71cd808eeef2dba6a0f871e1068e8336c117b1d5e8bf7c920ac42f982aba"
+    }
+  ],
+  "scope": "Saved nonlinear records; scalar predictor control; native learning RNG; no nonlinear/external simulator rerun",
+  "cases": [
+    {
+      "case_name": "artificial_siso",
+      "stages_executed": 9,
+      "training_rows": 301,
+      "test_rows": 301,
+      "theta": [
+        0.007182577578315976,
+        0.7428442049393772,
+        0.0004031559307503159
+      ],
+      "arx_rmse": [
+        0.6416222547819422,
+        0.6418175700074481
+      ],
+      "pi_poles": [
+        0.8499999999999996,
+        0.8000000000000003
+      ],
+      "controller_replay_scaled_error": 2.8106912015826747e-18,
+      "controllers": {
+        "pi": {
+          "rmse": 0.4703998913428912,
+          "movement": 3.864866135820232,
+          "max_input": 1.1743216404823134,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.3307306364816516
+        },
+        "feedforward": {
+          "rmse": 0.4329568860332441,
+          "movement": 3.8377919462809342,
+          "max_input": 1.1743216404823134,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.1272690665997968
+        },
+        "cascade": {
+          "rmse": 0.4728279101268139,
+          "movement": 3.7660746296791694,
+          "max_input": 1.149534857527063,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.338851244005141
+        },
+        "fuzzy": {
+          "rmse": 0.15532252000520047,
+          "movement": 1.055665583348356,
+          "max_input": 0.3772324857887736,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.16307278694048008
+        },
+        "mpc": {
+          "rmse": 0.08135367369564118,
+          "movement": 1.0043174471754905,
+          "max_input": 0.4004097613173532,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15000000047237272
+        }
+      },
+      "neural": {
+        "mlp_rmse": 0.6764509296934536,
+        "rbf_rmse": 0.6727476283839932,
+        "training_feature_mean": [
+          -0.0009775255105944538,
+          -0.0006778139720109438
+        ],
+        "training_feature_scale": [
+          1.0015216976880985,
+          1.0015962481795528
+        ],
+        "mlp_training_loss": [
+          0.4170540702591482,
+          0.4070431373554763,
+          0.40127161523743,
+          0.39909416605003994,
+          0.3964385538393367
+        ],
+        "rbf_center_training_indices": [
+          204,
+          236,
+          158,
+          155,
+          121,
+          300,
+          92,
+          51,
+          85,
+          9,
+          105,
+          89,
+          44,
+          107,
+          103,
+          178
+        ],
+        "seed": 19,
+        "python_weight_parity_claimed": false
+      },
+      "genetic": {
+        "parameters": [
+          0.4,
+          1.1957278606311106
+        ],
+        "fitness": 0.1760524562617792,
+        "history": [
+          0.22864017583358348,
+          0.20867847240920803,
+          0.20867847240920803,
+          0.18048129818928332,
+          0.18048129818928332,
+          0.17868476760929852,
+          0.17868476760929852,
+          0.1760524562617792,
+          0.1760524562617792
+        ],
+        "evaluations": 90,
+        "seed": 19,
+        "python_rng_parity_claimed": false,
+        "validation": {
+          "rmse": 0.26515341195672637,
+          "movement": 1.3317931194040336,
+          "max_input": 0.4689409435504387,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.12219654276543034
+        }
+      },
+      "robustness": {
+        "gain_0_8": [
+          [
+            0.40643541902294117,
+            1.0122824685103051,
+            0
+          ],
+          [
+            0.09011871889032255,
+            0.40090765108230525,
+            0
+          ],
+          [
+            0.16618237540641045,
+            0.452335350551586,
+            0
+          ]
+        ],
+        "gain_1_0": [
+          [
+            0.4703998913428912,
+            1.1743216404823134,
+            0
+          ],
+          [
+            0.08135367369564118,
+            0.4004097613173532,
+            0
+          ],
+          [
+            0.15532252000520047,
+            0.3772324857887736,
+            0
+          ]
+        ],
+        "gain_1_2": [
+          [
+            0.555441094768936,
+            1.3067586233224642,
+            0
+          ],
+          [
+            0.09256778678188107,
+            0.3999131066834236,
+            0
+          ],
+          [
+            0.14672437335215913,
+            0.32172531057067677,
+            0
+          ]
+        ]
+      },
+      "diagnosis": {
+        "filtered_accuracy": 0.9302325581395349,
+        "smoothed_accuracy": 0.973421926910299,
+        "viterbi_accuracy": 0.973421926910299,
+        "instantaneous_accuracy": 0.8803986710963455,
+        "test_state_support": [
+          198,
+          93,
+          10
+        ],
+        "stationary": [
+          0.5186200865740133,
+          0.3590896295149096,
+          0.12229028391107716
+        ],
+        "calibration_sequences": 20,
+        "transition": [
+          [
+            0.9691577698695136,
+            0.028469750889679714,
+            0.002372479240806643
+          ],
+          [
+            0.030876494023904383,
+            0.953187250996016,
+            0.01593625498007968
+          ],
+          [
+            0.04013377926421405,
+            0.016722408026755852,
+            0.9431438127090301
+          ]
+        ],
+        "emission": [
+          [
+            0.9310548025928108,
+            0.05951679434295816,
+            0.009428403064230996
+          ],
+          [
+            0.07920792079207921,
+            0.8554455445544554,
+            0.06534653465346535
+          ],
+          [
+            0.023178807947019868,
+            0.06622516556291391,
+            0.9105960264900662
+          ]
+        ],
+        "initial": [
+          0.9130434782608695,
+          0.043478260869565216,
+          0.043478260869565216
+        ],
+        "known_clean_reference_required": true,
+        "python_calibration_parity_claimed": false
+      }
+    },
+    {
+      "case_name": "artificial_mimo",
+      "stages_executed": 9,
+      "training_rows": 301,
+      "test_rows": 301,
+      "theta": [
+        0.7575877916710881,
+        0.7214650183342877,
+        0.0032043349362860345
+      ],
+      "arx_rmse": [
+        0.20211932040378786,
+        0.29042774779235103
+      ],
+      "pi_poles": [
+        0.8499999999999974,
+        0.8000000000000025
+      ],
+      "controller_replay_scaled_error": 7.026728003956687e-19,
+      "controllers": {
+        "pi": {
+          "rmse": 0.1721602848752631,
+          "movement": 0.46288001808857193,
+          "max_input": 0.18894268744441509,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.3449510541271739
+        },
+        "feedforward": {
+          "rmse": 0.12809741320759496,
+          "movement": 0.5505982809394732,
+          "max_input": 0.20335541508031668,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.1473451439388931
+        },
+        "cascade": {
+          "rmse": 0.17322807918033822,
+          "movement": 0.46387499148970956,
+          "max_input": 0.18942796893984026,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.34787175470129555
+        },
+        "fuzzy": {
+          "rmse": 0.11917073520178958,
+          "movement": 0.5987759072168429,
+          "max_input": 0.20987097760249362,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.2379711532669842
+        },
+        "mpc": {
+          "rmse": 0.08594087328154536,
+          "movement": 1.428980635243345,
+          "max_input": 0.314649932407783,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.1500007798787854
+        }
+      },
+      "neural": {
+        "mlp_rmse": 0.20253442138074473,
+        "rbf_rmse": 0.21689403358882617,
+        "training_feature_mean": [
+          -0.003837967861211848,
+          -0.0008165562804445179
+        ],
+        "training_feature_scale": [
+          0.9994496506302458,
+          1.0015650939012568
+        ],
+        "mlp_training_loss": [
+          0.043506513645599605,
+          0.03925164496003251,
+          0.03733152606651235,
+          0.03656123727378084,
+          0.0361285695905002
+        ],
+        "rbf_center_training_indices": [
+          204,
+          236,
+          158,
+          155,
+          121,
+          300,
+          92,
+          51,
+          85,
+          9,
+          105,
+          89,
+          44,
+          107,
+          103,
+          178
+        ],
+        "seed": 19,
+        "python_weight_parity_claimed": false
+      },
+      "genetic": {
+        "parameters": [
+          1.4813034015578053,
+          1.3798684541229569
+        ],
+        "fitness": 0.11684846685973513,
+        "history": [
+          0.12382038285050335,
+          0.12382038285050335,
+          0.12382038285050335,
+          0.11865553959260758,
+          0.11760289432824292,
+          0.11750134030351442,
+          0.11738098313182255,
+          0.11684846685973513,
+          0.11684846685973513
+        ],
+        "evaluations": 90,
+        "seed": 19,
+        "python_rng_parity_claimed": false,
+        "validation": {
+          "rmse": 0.1445094149738649,
+          "movement": 0.5010588717932762,
+          "max_input": 0.19971186672795233,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.3190055895899289
+        }
+      },
+      "robustness": {
+        "gain_0_8": [
+          [
+            0.17804361026940324,
+            0.18832832868439287,
+            0
+          ],
+          [
+            0.08803881421785692,
+            0.31390478526387183,
+            0
+          ],
+          [
+            0.12297914235528368,
+            0.2221877673704954,
+            0
+          ]
+        ],
+        "gain_1_0": [
+          [
+            0.1721602848752631,
+            0.18894268744441509,
+            0
+          ],
+          [
+            0.08594087328154536,
+            0.314649932407783,
+            0
+          ],
+          [
+            0.11917073520178958,
+            0.20987097760249362,
+            0
+          ]
+        ],
+        "gain_1_2": [
+          [
+            0.16983425676150432,
+            0.18741123188697448,
+            0
+          ],
+          [
+            0.08613519428183543,
+            0.31574606077966794,
+            0
+          ],
+          [
+            0.11727098951039007,
+            0.2019790776913576,
+            0
+          ]
+        ]
+      },
+      "diagnosis": {
+        "filtered_accuracy": 0.9302325581395349,
+        "smoothed_accuracy": 0.973421926910299,
+        "viterbi_accuracy": 0.973421926910299,
+        "instantaneous_accuracy": 0.8803986710963455,
+        "test_state_support": [
+          198,
+          93,
+          10
+        ],
+        "stationary": [
+          0.5186200865740133,
+          0.3590896295149096,
+          0.12229028391107716
+        ],
+        "calibration_sequences": 20,
+        "transition": [
+          [
+            0.9691577698695136,
+            0.028469750889679714,
+            0.002372479240806643
+          ],
+          [
+            0.030876494023904383,
+            0.953187250996016,
+            0.01593625498007968
+          ],
+          [
+            0.04013377926421405,
+            0.016722408026755852,
+            0.9431438127090301
+          ]
+        ],
+        "emission": [
+          [
+            0.9310548025928108,
+            0.05951679434295816,
+            0.009428403064230996
+          ],
+          [
+            0.07920792079207921,
+            0.8554455445544554,
+            0.06534653465346535
+          ],
+          [
+            0.023178807947019868,
+            0.06622516556291391,
+            0.9105960264900662
+          ]
+        ],
+        "initial": [
+          0.9130434782608695,
+          0.043478260869565216,
+          0.043478260869565216
+        ],
+        "known_clean_reference_required": true,
+        "python_calibration_parity_claimed": false
+      }
+    },
+    {
+      "case_name": "pendulum",
+      "stages_executed": 9,
+      "training_rows": 301,
+      "test_rows": 301,
+      "theta": [
+        1.0079919379224627,
+        -0.00025595325669197123,
+        0.011570517649730995
+      ],
+      "arx_rmse": [
+        0.001198297359922454,
+        0.26502287028805377
+      ],
+      "pi_poles": [
+        0.8499999999999998,
+        0.8000000000000004
+      ],
+      "controller_replay_scaled_error": 2.8106912015826747e-18,
+      "controllers": {
+        "pi": {
+          "rmse": 0.7173062067435544,
+          "movement": 8,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": 1.2517638613624689
+        },
+        "feedforward": {
+          "rmse": 0.7173062067435544,
+          "movement": 8,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": 1.2517638613624689
+        },
+        "cascade": {
+          "rmse": 0.7184293490811933,
+          "movement": 9.177843527120906,
+          "max_input": 1.999999995909473,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": 1.2535932274306636
+        },
+        "fuzzy": {
+          "rmse": 0.7285356696329917,
+          "movement": 2.344306514089962,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": 1.2712442885164668
+        },
+        "mpc": {
+          "rmse": 0.7269529184859765,
+          "movement": 2.085368421166849,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": 1.2685617848543476
+        }
+      },
+      "neural": {
+        "mlp_rmse": 0.01929826677153292,
+        "rbf_rmse": 0.0005563791003098306,
+        "training_feature_mean": [
+          -0.008029733800834656,
+          -0.0001816638518550982
+        ],
+        "training_feature_scale": [
+          0.9919303751951257,
+          1.0016603215686732
+        ],
+        "mlp_training_loss": [
+          0.0012732804157427832,
+          0.001073362418144321,
+          0.0008939111050395969,
+          0.0006961144585614396,
+          0.0005288047454369509
+        ],
+        "rbf_center_training_indices": [
+          204,
+          236,
+          158,
+          155,
+          121,
+          300,
+          92,
+          51,
+          85,
+          9,
+          105,
+          89,
+          44,
+          107,
+          103,
+          178
+        ],
+        "seed": 19,
+        "python_weight_parity_claimed": false
+      },
+      "genetic": {
+        "parameters": [
+          0.4,
+          0.6467240249475106
+        ],
+        "fitness": 0.4274671936606882,
+        "history": [
+          0.4287071921764962,
+          0.42870579224060257,
+          0.4284142981036394,
+          0.4274671936606882,
+          0.4274671936606882,
+          0.4274671936606882,
+          0.4274671936606882,
+          0.4274671936606882,
+          0.4274671936606882
+        ],
+        "evaluations": 90,
+        "seed": 19,
+        "python_rng_parity_claimed": false,
+        "validation": {
+          "rmse": 0.7142806905100585,
+          "movement": 8,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": 1.2467682546402366
+        }
+      },
+      "robustness": {
+        "gain_0_8": [
+          [
+            0.72061832206418,
+            2,
+            0
+          ],
+          [
+            0.7283333559881193,
+            2,
+            0
+          ],
+          [
+            0.7296019981687838,
+            2,
+            0
+          ]
+        ],
+        "gain_1_0": [
+          [
+            0.7173062067435544,
+            2,
+            0
+          ],
+          [
+            0.7269529184859765,
+            2,
+            0
+          ],
+          [
+            0.7285356696329917,
+            2,
+            0
+          ]
+        ],
+        "gain_1_2": [
+          [
+            0.7139947542895207,
+            2,
+            0
+          ],
+          [
+            0.7255742921626473,
+            2,
+            0
+          ],
+          [
+            0.7274699362062526,
+            2,
+            0
+          ]
+        ]
+      },
+      "diagnosis": {
+        "filtered_accuracy": 0.9302325581395349,
+        "smoothed_accuracy": 0.973421926910299,
+        "viterbi_accuracy": 0.973421926910299,
+        "instantaneous_accuracy": 0.8803986710963455,
+        "test_state_support": [
+          198,
+          93,
+          10
+        ],
+        "stationary": [
+          0.5186200865740133,
+          0.3590896295149096,
+          0.12229028391107716
+        ],
+        "calibration_sequences": 20,
+        "transition": [
+          [
+            0.9691577698695136,
+            0.028469750889679714,
+            0.002372479240806643
+          ],
+          [
+            0.030876494023904383,
+            0.953187250996016,
+            0.01593625498007968
+          ],
+          [
+            0.04013377926421405,
+            0.016722408026755852,
+            0.9431438127090301
+          ]
+        ],
+        "emission": [
+          [
+            0.9310548025928108,
+            0.05951679434295816,
+            0.009428403064230996
+          ],
+          [
+            0.07920792079207921,
+            0.8554455445544554,
+            0.06534653465346535
+          ],
+          [
+            0.023178807947019868,
+            0.06622516556291391,
+            0.9105960264900662
+          ]
+        ],
+        "initial": [
+          0.9130434782608695,
+          0.043478260869565216,
+          0.043478260869565216
+        ],
+        "known_clean_reference_required": true,
+        "python_calibration_parity_claimed": false
+      }
+    },
+    {
+      "case_name": "pneumatic",
+      "stages_executed": 9,
+      "training_rows": 301,
+      "test_rows": 301,
+      "theta": [
+        1.0259679216530395,
+        0.03187786225271433,
+        -0.0038356033538642204
+      ],
+      "arx_rmse": [
+        0.045830134329336775,
+        34.72811508080103
+      ],
+      "pi_poles": [
+        0.8499999999999998,
+        0.8000000000000004
+      ],
+      "controller_replay_scaled_error": 5.6213824031653495e-18,
+      "controllers": {
+        "pi": {
+          "rmse": 0.10184902827013659,
+          "movement": 8.438263235665122,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.162633341428934
+        },
+        "feedforward": {
+          "rmse": 0.1022485529717649,
+          "movement": 8.492866729537711,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15390214334555644
+        },
+        "cascade": {
+          "rmse": 0.12586067900935408,
+          "movement": 7.49945530084754,
+          "max_input": 1.8468325769307175,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.16380835120503154
+        },
+        "fuzzy": {
+          "rmse": 0.46794604264931067,
+          "movement": 3.3859956927898653,
+          "max_input": 1.9391392765232969,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.2552083883362568
+        },
+        "mpc": {
+          "rmse": 0.12957761189915737,
+          "movement": 6.553584817196609,
+          "max_input": 1.813229460790905,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.14886952751117993
+        }
+      },
+      "neural": {
+        "mlp_rmse": 0.15362280206735585,
+        "rbf_rmse": 0.05427486335435352,
+        "training_feature_mean": [
+          0.0045873730326978154,
+          -0.00018166385185510407
+        ],
+        "training_feature_scale": [
+          0.9984984185964718,
+          1.001660321568673
+        ],
+        "mlp_training_loss": [
+          0.007974292706695906,
+          0.0038637058497668934,
+          0.0023524157064728555,
+          0.001779082110254435,
+          0.0015065980301133277
+        ],
+        "rbf_center_training_indices": [
+          204,
+          236,
+          158,
+          155,
+          121,
+          300,
+          92,
+          51,
+          85,
+          9,
+          105,
+          89,
+          44,
+          107,
+          103,
+          178
+        ],
+        "seed": 19,
+        "python_weight_parity_claimed": false
+      },
+      "genetic": {
+        "parameters": [
+          1.6,
+          1.0830880190515835
+        ],
+        "fitness": 0.07519244736069036,
+        "history": [
+          0.07519720263604932,
+          0.07519720263604932,
+          0.07519720263604932,
+          0.07519720263604932,
+          0.07519720263604932,
+          0.07519244736069036,
+          0.07519244736069036,
+          0.07519244736069036,
+          0.07519244736069036
+        ],
+        "evaluations": 90,
+        "seed": 19,
+        "python_rng_parity_claimed": false,
+        "validation": {
+          "rmse": 0.10068644420891208,
+          "movement": 8.405817498827796,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.1591892606086637
+        }
+      },
+      "robustness": {
+        "gain_0_8": [
+          [
+            0.11314026102270346,
+            2,
+            0
+          ],
+          [
+            0.1410809059196036,
+            1.9241445839933475,
+            0
+          ],
+          [
+            0.48937138223102045,
+            2,
+            0
+          ]
+        ],
+        "gain_1_0": [
+          [
+            0.10184902827013659,
+            2,
+            0
+          ],
+          [
+            0.12957761189915737,
+            1.813229460790905,
+            0
+          ],
+          [
+            0.46794604264931067,
+            1.9391392765232969,
+            0
+          ]
+        ],
+        "gain_1_2": [
+          [
+            0.09456374384511335,
+            2,
+            0
+          ],
+          [
+            0.12193421561211412,
+            1.6971818194512658,
+            0
+          ],
+          [
+            0.4468081294629661,
+            1.7724588262055123,
+            0
+          ]
+        ]
+      },
+      "diagnosis": {
+        "filtered_accuracy": 0.9302325581395349,
+        "smoothed_accuracy": 0.973421926910299,
+        "viterbi_accuracy": 0.973421926910299,
+        "instantaneous_accuracy": 0.8803986710963455,
+        "test_state_support": [
+          198,
+          93,
+          10
+        ],
+        "stationary": [
+          0.5186200865740133,
+          0.3590896295149096,
+          0.12229028391107716
+        ],
+        "calibration_sequences": 20,
+        "transition": [
+          [
+            0.9691577698695136,
+            0.028469750889679714,
+            0.002372479240806643
+          ],
+          [
+            0.030876494023904383,
+            0.953187250996016,
+            0.01593625498007968
+          ],
+          [
+            0.04013377926421405,
+            0.016722408026755852,
+            0.9431438127090301
+          ]
+        ],
+        "emission": [
+          [
+            0.9310548025928108,
+            0.05951679434295816,
+            0.009428403064230996
+          ],
+          [
+            0.07920792079207921,
+            0.8554455445544554,
+            0.06534653465346535
+          ],
+          [
+            0.023178807947019868,
+            0.06622516556291391,
+            0.9105960264900662
+          ]
+        ],
+        "initial": [
+          0.9130434782608695,
+          0.043478260869565216,
+          0.043478260869565216
+        ],
+        "known_clean_reference_required": true,
+        "python_calibration_parity_claimed": false
+      }
+    },
+    {
+      "case_name": "hydrostatic",
+      "stages_executed": 9,
+      "training_rows": 301,
+      "test_rows": 301,
+      "theta": [
+        0.8341903254802626,
+        0.18193531426145632,
+        0.0008097336773874832
+      ],
+      "arx_rmse": [
+        0.05580624128001074,
+        0.1971996383970144
+      ],
+      "pi_poles": [
+        0.8499999999999974,
+        0.8000000000000025
+      ],
+      "controller_replay_scaled_error": 1.756682000989172e-18,
+      "controllers": {
+        "pi": {
+          "rmse": 0.10933048750332863,
+          "movement": 1.0816536267385968,
+          "max_input": 0.29926770505062444,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.19922577689257762
+        },
+        "feedforward": {
+          "rmse": 0.10484538176946163,
+          "movement": 1.1328750070614968,
+          "max_input": 0.29926770505062444,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.1493945412035203
+        },
+        "cascade": {
+          "rmse": 0.11025614764034862,
+          "movement": 1.0612324408964813,
+          "max_input": 0.29542664962417453,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.19995680705963864
+        },
+        "fuzzy": {
+          "rmse": 0.15938328172308935,
+          "movement": 0.9511295737695602,
+          "max_input": 0.2986557088920177,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.23733982368438597
+        },
+        "mpc": {
+          "rmse": 0.08773132216331996,
+          "movement": 2.6886419887916126,
+          "max_input": 0.6374946116807182,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15006232145380477
+        }
+      },
+      "neural": {
+        "mlp_rmse": 0.06003971501871404,
+        "rbf_rmse": 0.06487129002921507,
+        "training_feature_mean": [
+          -0.0009560034680712325,
+          -0.00018166385184554502
+        ],
+        "training_feature_scale": [
+          1.0015279509836037,
+          1.0016603215686728
+        ],
+        "mlp_training_loss": [
+          0.010787573134708687,
+          0.003124233136409261,
+          0.0016954796745612985,
+          0.001363002856740772,
+          0.0012987827447320213
+        ],
+        "rbf_center_training_indices": [
+          204,
+          236,
+          158,
+          155,
+          121,
+          300,
+          92,
+          51,
+          85,
+          9,
+          105,
+          89,
+          44,
+          107,
+          103,
+          178
+        ],
+        "seed": 19,
+        "python_weight_parity_claimed": false
+      },
+      "genetic": {
+        "parameters": [
+          1.500851044765401,
+          1.3733315025463133
+        ],
+        "fitness": 0.06468797128556435,
+        "history": [
+          0.06672426220174962,
+          0.06672426220174962,
+          0.06672426220174962,
+          0.06583305988263528,
+          0.06500283797701203,
+          0.06477650661755441,
+          0.06476160429764856,
+          0.06468797128556435,
+          0.06468797128556435
+        ],
+        "evaluations": 90,
+        "seed": 19,
+        "python_rng_parity_claimed": false,
+        "validation": {
+          "rmse": 0.09215926776456806,
+          "movement": 1.8314777695665396,
+          "max_input": 0.445077216048836,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.18703290595651656
+        }
+      },
+      "robustness": {
+        "gain_0_8": [
+          [
+            0.12030753491162444,
+            0.3358601880102908,
+            0
+          ],
+          [
+            0.09130579759635012,
+            0.6573676368272212,
+            0
+          ],
+          [
+            0.17189310069484176,
+            0.3462545624689526,
+            0
+          ]
+        ],
+        "gain_1_0": [
+          [
+            0.10933048750332863,
+            0.29926770505062444,
+            0
+          ],
+          [
+            0.08773132216331996,
+            0.6374946116807182,
+            0
+          ],
+          [
+            0.15938328172308935,
+            0.2986557088920177,
+            0
+          ]
+        ],
+        "gain_1_2": [
+          [
+            0.10149055439798299,
+            0.29994487779868984,
+            0
+          ],
+          [
+            0.08643137082403145,
+            0.6174329297192049,
+            0
+          ],
+          [
+            0.1498034288126274,
+            0.27785182307122697,
+            0
+          ]
+        ]
+      },
+      "diagnosis": {
+        "filtered_accuracy": 0.9302325581395349,
+        "smoothed_accuracy": 0.973421926910299,
+        "viterbi_accuracy": 0.973421926910299,
+        "instantaneous_accuracy": 0.8803986710963455,
+        "test_state_support": [
+          198,
+          93,
+          10
+        ],
+        "stationary": [
+          0.5186200865740133,
+          0.3590896295149096,
+          0.12229028391107716
+        ],
+        "calibration_sequences": 20,
+        "transition": [
+          [
+            0.9691577698695136,
+            0.028469750889679714,
+            0.002372479240806643
+          ],
+          [
+            0.030876494023904383,
+            0.953187250996016,
+            0.01593625498007968
+          ],
+          [
+            0.04013377926421405,
+            0.016722408026755852,
+            0.9431438127090301
+          ]
+        ],
+        "emission": [
+          [
+            0.9310548025928108,
+            0.05951679434295816,
+            0.009428403064230996
+          ],
+          [
+            0.07920792079207921,
+            0.8554455445544554,
+            0.06534653465346535
+          ],
+          [
+            0.023178807947019868,
+            0.06622516556291391,
+            0.9105960264900662
+          ]
+        ],
+        "initial": [
+          0.9130434782608695,
+          0.043478260869565216,
+          0.043478260869565216
+        ],
+        "known_clean_reference_required": true,
+        "python_calibration_parity_claimed": false
+      }
+    },
+    {
+      "case_name": "three_tank",
+      "stages_executed": 9,
+      "training_rows": 301,
+      "test_rows": 301,
+      "theta": [
+        0.9947844374999991,
+        0.010466752026506253,
+        -0.009958920987825502
+      ],
+      "arx_rmse": [
+        0.0018237286123761864,
+        0.06048014842762939
+      ],
+      "pi_poles": [
+        0.8499999999999998,
+        0.8000000000000004
+      ],
+      "controller_replay_scaled_error": 1.5458801608704712e-16,
+      "controllers": {
+        "pi": {
+          "rmse": 0.1562935988224448,
+          "movement": 7.965528051063485,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15526928884310495
+        },
+        "feedforward": {
+          "rmse": 0.15626979323611997,
+          "movement": 7.983368942139933,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15254317745073825
+        },
+        "cascade": {
+          "rmse": 0.17795507466841778,
+          "movement": 8.484190337073555,
+          "max_input": 1.9999663949018727,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15637558438998955
+        },
+        "fuzzy": {
+          "rmse": 0.3191753579241022,
+          "movement": 2.8896551522533813,
+          "max_input": 1.8641820063893815,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": 0.12649060702329107
+        },
+        "mpc": {
+          "rmse": 0.2007115921358066,
+          "movement": 9.142093806944445,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.17748434243140596
+        }
+      },
+      "neural": {
+        "mlp_rmse": 0.02198367017493109,
+        "rbf_rmse": 0.0010279153818772632,
+        "training_feature_mean": [
+          0.003470293836211144,
+          -0.0001816638518553781
+        ],
+        "training_feature_scale": [
+          0.9998541936708248,
+          1.0016603215686735
+        ],
+        "mlp_training_loss": [
+          0.0007370991028321891,
+          0.0005158577870979914,
+          0.00044252207693730596,
+          0.00036586329507027146,
+          0.0002853343788530158
+        ],
+        "rbf_center_training_indices": [
+          204,
+          236,
+          158,
+          155,
+          121,
+          300,
+          92,
+          51,
+          85,
+          9,
+          105,
+          89,
+          44,
+          107,
+          103,
+          178
+        ],
+        "seed": 19,
+        "python_weight_parity_claimed": false
+      },
+      "genetic": {
+        "parameters": [
+          1.3615487057145113,
+          0.4
+        ],
+        "fitness": 0.13985144788993217,
+        "history": [
+          0.1398819758270148,
+          0.1398819758270148,
+          0.13987685349241044,
+          0.13987072524714914,
+          0.13987072524714914,
+          0.13987072524714914,
+          0.1398560896047025,
+          0.1398560896047025,
+          0.13985144788993217
+        ],
+        "evaluations": 90,
+        "seed": 19,
+        "python_rng_parity_claimed": false,
+        "validation": {
+          "rmse": 0.15562548960281633,
+          "movement": 7.923107023242643,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15059762010237837
+        }
+      },
+      "robustness": {
+        "gain_0_8": [
+          [
+            0.1632733191671317,
+            2,
+            0
+          ],
+          [
+            0.197205476492985,
+            2,
+            0
+          ],
+          [
+            0.3119230145737965,
+            1.975236449197204,
+            0
+          ]
+        ],
+        "gain_1_0": [
+          [
+            0.1562935988224448,
+            2,
+            0
+          ],
+          [
+            0.2007115921358066,
+            2,
+            0
+          ],
+          [
+            0.3191753579241022,
+            1.8641820063893815,
+            0
+          ]
+        ],
+        "gain_1_2": [
+          [
+            0.14106162725467805,
+            2,
+            0
+          ],
+          [
+            0.17880307108507232,
+            2,
+            0
+          ],
+          [
+            0.33036828137675794,
+            1.7575083714627806,
+            0
+          ]
+        ]
+      },
+      "diagnosis": {
+        "filtered_accuracy": 0.9302325581395349,
+        "smoothed_accuracy": 0.973421926910299,
+        "viterbi_accuracy": 0.973421926910299,
+        "instantaneous_accuracy": 0.8803986710963455,
+        "test_state_support": [
+          198,
+          93,
+          10
+        ],
+        "stationary": [
+          0.5186200865740133,
+          0.3590896295149096,
+          0.12229028391107716
+        ],
+        "calibration_sequences": 20,
+        "transition": [
+          [
+            0.9691577698695136,
+            0.028469750889679714,
+            0.002372479240806643
+          ],
+          [
+            0.030876494023904383,
+            0.953187250996016,
+            0.01593625498007968
+          ],
+          [
+            0.04013377926421405,
+            0.016722408026755852,
+            0.9431438127090301
+          ]
+        ],
+        "emission": [
+          [
+            0.9310548025928108,
+            0.05951679434295816,
+            0.009428403064230996
+          ],
+          [
+            0.07920792079207921,
+            0.8554455445544554,
+            0.06534653465346535
+          ],
+          [
+            0.023178807947019868,
+            0.06622516556291391,
+            0.9105960264900662
+          ]
+        ],
+        "initial": [
+          0.9130434782608695,
+          0.043478260869565216,
+          0.043478260869565216
+        ],
+        "known_clean_reference_required": true,
+        "python_calibration_parity_claimed": false
+      }
+    },
+    {
+      "case_name": "bioreactor",
+      "stages_executed": 9,
+      "training_rows": 301,
+      "test_rows": 301,
+      "theta": [
+        0.07445180883569706,
+        0.9258325562008162,
+        0.0001822117443404308
+      ],
+      "arx_rmse": [
+        0.011560477711331835,
+        0.011917351217633768
+      ],
+      "pi_poles": [
+        0.8499999999999974,
+        0.8000000000000025
+      ],
+      "controller_replay_scaled_error": 7.026728003956687e-19,
+      "controllers": {
+        "pi": {
+          "rmse": 0.45448573589244695,
+          "movement": 2.770704164628266,
+          "max_input": 0.8131286266712132,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.3826499914719471
+        },
+        "feedforward": {
+          "rmse": 0.40420565488104265,
+          "movement": 2.730981448068772,
+          "max_input": 0.8131286266712132,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.1290687639685011
+        },
+        "cascade": {
+          "rmse": 0.4568422262067288,
+          "movement": 2.695004747746402,
+          "max_input": 0.7971293438817031,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.39067185438611396
+        },
+        "fuzzy": {
+          "rmse": 0.14210251698405904,
+          "movement": 0.9051463445566796,
+          "max_input": 0.2920552293394675,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.18628065137066607
+        },
+        "mpc": {
+          "rmse": 0.08892498658223057,
+          "movement": 0.7734241276271983,
+          "max_input": 0.30088436692533305,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.1499999998891494
+        }
+      },
+      "neural": {
+        "mlp_rmse": 0.017524325957411362,
+        "rbf_rmse": 0.012370857433960939,
+        "training_feature_mean": [
+          -0.0001541502771108496,
+          -0.0001816638518448368
+        ],
+        "training_feature_scale": [
+          1.0016617097995923,
+          1.0016603215686724
+        ],
+        "mlp_training_loss": [
+          0.008724560158687836,
+          0.002207889555129239,
+          0.000711660817198838,
+          0.00030484910052675537,
+          0.00021508325479197918
+        ],
+        "rbf_center_training_indices": [
+          204,
+          236,
+          158,
+          155,
+          121,
+          300,
+          92,
+          51,
+          85,
+          9,
+          105,
+          89,
+          44,
+          107,
+          103,
+          178
+        ],
+        "seed": 19,
+        "python_weight_parity_claimed": false
+      },
+      "genetic": {
+        "parameters": [
+          0.4,
+          1.1957278606311106
+        ],
+        "fitness": 0.17573482620945233,
+        "history": [
+          0.22657513743031327,
+          0.20718267673272608,
+          0.20718267673272608,
+          0.17969884097395564,
+          0.17969884097395564,
+          0.1780962225197769,
+          0.1780962225197769,
+          0.17573482620945233,
+          0.17573482620945233
+        ],
+        "evaluations": 90,
+        "seed": 19,
+        "python_rng_parity_claimed": false,
+        "validation": {
+          "rmse": 0.26709698439036883,
+          "movement": 1.0199135951940712,
+          "max_input": 0.3485192615595017,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15557299414418554
+        }
+      },
+      "robustness": {
+        "gain_0_8": [
+          [
+            0.39831025393044506,
+            0.7218845820524594,
+            0
+          ],
+          [
+            0.09502648509168635,
+            0.3044150239066655,
+            0
+          ],
+          [
+            0.15238187102595044,
+            0.3566652427584742,
+            0
+          ]
+        ],
+        "gain_1_0": [
+          [
+            0.45448573589244695,
+            0.8131286266712132,
+            0
+          ],
+          [
+            0.08892498658223057,
+            0.30088436692533305,
+            0
+          ],
+          [
+            0.14210251698405904,
+            0.2920552293394675,
+            0
+          ]
+        ],
+        "gain_1_2": [
+          [
+            0.5254981545584712,
+            0.8777412121795709,
+            0
+          ],
+          [
+            0.09915603198170429,
+            0.29735363826047406,
+            0
+          ],
+          [
+            0.13461019557574264,
+            0.24620089930796926,
+            0
+          ]
+        ]
+      },
+      "diagnosis": {
+        "filtered_accuracy": 0.9302325581395349,
+        "smoothed_accuracy": 0.973421926910299,
+        "viterbi_accuracy": 0.973421926910299,
+        "instantaneous_accuracy": 0.8803986710963455,
+        "test_state_support": [
+          198,
+          93,
+          10
+        ],
+        "stationary": [
+          0.5186200865740133,
+          0.3590896295149096,
+          0.12229028391107716
+        ],
+        "calibration_sequences": 20,
+        "transition": [
+          [
+            0.9691577698695136,
+            0.028469750889679714,
+            0.002372479240806643
+          ],
+          [
+            0.030876494023904383,
+            0.953187250996016,
+            0.01593625498007968
+          ],
+          [
+            0.04013377926421405,
+            0.016722408026755852,
+            0.9431438127090301
+          ]
+        ],
+        "emission": [
+          [
+            0.9310548025928108,
+            0.05951679434295816,
+            0.009428403064230996
+          ],
+          [
+            0.07920792079207921,
+            0.8554455445544554,
+            0.06534653465346535
+          ],
+          [
+            0.023178807947019868,
+            0.06622516556291391,
+            0.9105960264900662
+          ]
+        ],
+        "initial": [
+          0.9130434782608695,
+          0.043478260869565216,
+          0.043478260869565216
+        ],
+        "known_clean_reference_required": true,
+        "python_calibration_parity_claimed": false
+      }
+    },
+    {
+      "case_name": "cstr",
+      "stages_executed": 9,
+      "training_rows": 301,
+      "test_rows": 301,
+      "theta": [
+        1.0165938796768632,
+        0.04273606568323119,
+        -0.0014150946001487824
+      ],
+      "arx_rmse": [
+        0.021630652483076784,
+        26.57934111590436
+      ],
+      "pi_poles": [
+        0.8499999999999998,
+        0.8000000000000004
+      ],
+      "controller_replay_scaled_error": 2.8106912015826747e-18,
+      "controllers": {
+        "pi": {
+          "rmse": 0.09219977961607309,
+          "movement": 8.365367226554081,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.1650723338753866
+        },
+        "feedforward": {
+          "rmse": 0.09272514986268611,
+          "movement": 8.482844314186242,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15336712441603045
+        },
+        "cascade": {
+          "rmse": 0.11527926949192237,
+          "movement": 6.795263980317347,
+          "max_input": 1.7345361014469356,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.16591531098381704
+        },
+        "fuzzy": {
+          "rmse": 0.37697649667446426,
+          "movement": 2.746464694701722,
+          "max_input": 1.405775585910236,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.6881889332261214
+        },
+        "mpc": {
+          "rmse": 0.12167268886970847,
+          "movement": 5.30935880800014,
+          "max_input": 1.51731423084211,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.1495266470161089
+        }
+      },
+      "neural": {
+        "mlp_rmse": 0.07667899776090951,
+        "rbf_rmse": 0.022695740984797017,
+        "training_feature_mean": [
+          0.0013906373626960558,
+          -0.00018166385184910548
+        ],
+        "training_feature_scale": [
+          1.001374674025057,
+          1.0016603215686728
+        ],
+        "mlp_training_loss": [
+          0.0032066779872234317,
+          0.0017035691262241885,
+          0.0012679884463374666,
+          0.001049391501049691,
+          0.0008729455669223125
+        ],
+        "rbf_center_training_indices": [
+          204,
+          236,
+          158,
+          155,
+          121,
+          300,
+          92,
+          51,
+          85,
+          9,
+          105,
+          89,
+          44,
+          107,
+          103,
+          178
+        ],
+        "seed": 19,
+        "python_weight_parity_claimed": false
+      },
+      "genetic": {
+        "parameters": [
+          1.5968233888859933,
+          1.1413011310743544
+        ],
+        "fitness": 0.06831544941375398,
+        "history": [
+          0.06832076827601301,
+          0.06832076827601301,
+          0.06832076827601301,
+          0.06832076827601301,
+          0.06832076827601301,
+          0.0683167683066613,
+          0.0683167683066613,
+          0.06831544941375398,
+          0.06831544941375398
+        ],
+        "evaluations": 90,
+        "seed": 19,
+        "python_rng_parity_claimed": false,
+        "validation": {
+          "rmse": 0.08987099463732125,
+          "movement": 8.442903894656283,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15962088107194097
+        }
+      },
+      "robustness": {
+        "gain_0_8": [
+          [
+            0.10074968360678464,
+            2,
+            0
+          ],
+          [
+            0.13166877683886868,
+            1.6211126017044117,
+            0
+          ],
+          [
+            0.39223583878965623,
+            1.5771188625332804,
+            0
+          ]
+        ],
+        "gain_1_0": [
+          [
+            0.09219977961607309,
+            2,
+            0
+          ],
+          [
+            0.12167268886970847,
+            1.51731423084211,
+            0
+          ],
+          [
+            0.37697649667446426,
+            1.405775585910236,
+            0
+          ]
+        ],
+        "gain_1_2": [
+          [
+            0.08552314479339006,
+            2,
+            0
+          ],
+          [
+            0.11473884199496692,
+            1.451901145074962,
+            0
+          ],
+          [
+            0.37436946858068404,
+            1.258311967583474,
+            0
+          ]
+        ]
+      },
+      "diagnosis": {
+        "filtered_accuracy": 0.9302325581395349,
+        "smoothed_accuracy": 0.973421926910299,
+        "viterbi_accuracy": 0.973421926910299,
+        "instantaneous_accuracy": 0.8803986710963455,
+        "test_state_support": [
+          198,
+          93,
+          10
+        ],
+        "stationary": [
+          0.5186200865740133,
+          0.3590896295149096,
+          0.12229028391107716
+        ],
+        "calibration_sequences": 20,
+        "transition": [
+          [
+            0.9691577698695136,
+            0.028469750889679714,
+            0.002372479240806643
+          ],
+          [
+            0.030876494023904383,
+            0.953187250996016,
+            0.01593625498007968
+          ],
+          [
+            0.04013377926421405,
+            0.016722408026755852,
+            0.9431438127090301
+          ]
+        ],
+        "emission": [
+          [
+            0.9310548025928108,
+            0.05951679434295816,
+            0.009428403064230996
+          ],
+          [
+            0.07920792079207921,
+            0.8554455445544554,
+            0.06534653465346535
+          ],
+          [
+            0.023178807947019868,
+            0.06622516556291391,
+            0.9105960264900662
+          ]
+        ],
+        "initial": [
+          0.9130434782608695,
+          0.043478260869565216,
+          0.043478260869565216
+        ],
+        "known_clean_reference_required": true,
+        "python_calibration_parity_claimed": false
+      }
+    },
+    {
+      "case_name": "column_a",
+      "stages_executed": 9,
+      "training_rows": 301,
+      "test_rows": 301,
+      "theta": [
+        1.0114906065045592,
+        0.04648106613192503,
+        -0.000629952157400763
+      ],
+      "arx_rmse": [
+        0.013855342361839811,
+        6.890662588591232
+      ],
+      "pi_poles": [
+        0.8499999999999996,
+        0.8000000000000003
+      ],
+      "controller_replay_scaled_error": 8.432073604748025e-18,
+      "controllers": {
+        "pi": {
+          "rmse": 0.0893436680903393,
+          "movement": 8.318431464189054,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.16556458231590937
+        },
+        "feedforward": {
+          "rmse": 0.08977853477568436,
+          "movement": 8.424307255196629,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15283363466618582
+        },
+        "cascade": {
+          "rmse": 0.11306437651994913,
+          "movement": 6.480695051923935,
+          "max_input": 1.6758871126859032,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.1671878558167175
+        },
+        "fuzzy": {
+          "rmse": 0.34947516321245253,
+          "movement": 2.5544199307653748,
+          "max_input": 1.2369622992602927,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.7030568651816854
+        },
+        "mpc": {
+          "rmse": 0.11931279168829882,
+          "movement": 5.075140844669859,
+          "max_input": 1.4561326407302513,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.14983768090570498
+        }
+      },
+      "neural": {
+        "mlp_rmse": 0.08818724496141059,
+        "rbf_rmse": 0.016879870559511886,
+        "training_feature_mean": [
+          0.0008560900259129541,
+          -0.00018166385186029727
+        ],
+        "training_feature_scale": [
+          1.001555157445013,
+          1.001660321568673
+        ],
+        "mlp_training_loss": [
+          0.002258298754834837,
+          0.0011608646902616798,
+          0.0009181511001648853,
+          0.0007669470062112569,
+          0.0006042427662582967
+        ],
+        "rbf_center_training_indices": [
+          204,
+          236,
+          158,
+          155,
+          121,
+          300,
+          92,
+          51,
+          85,
+          9,
+          105,
+          89,
+          44,
+          107,
+          103,
+          178
+        ],
+        "seed": 19,
+        "python_weight_parity_claimed": false
+      },
+      "genetic": {
+        "parameters": [
+          1.5968233888859933,
+          1.1413011310743544
+        ],
+        "fitness": 0.06640723308050599,
+        "history": [
+          0.06682009186311316,
+          0.06682009186311316,
+          0.06682009186311316,
+          0.06682009186311316,
+          0.06682009186311316,
+          0.06640962564658565,
+          0.06640962564658565,
+          0.06640723308050599,
+          0.06640723308050599
+        ],
+        "evaluations": 90,
+        "seed": 19,
+        "python_rng_parity_claimed": false,
+        "validation": {
+          "rmse": 0.08679175032984342,
+          "movement": 8.399410487504003,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15914462486076322
+        }
+      },
+      "robustness": {
+        "gain_0_8": [
+          [
+            0.09837728505349377,
+            2,
+            0
+          ],
+          [
+            0.12877007368453547,
+            1.531616497072036,
+            0
+          ],
+          [
+            0.3604379029128091,
+            1.391952806948657,
+            0
+          ]
+        ],
+        "gain_1_0": [
+          [
+            0.0893436680903393,
+            2,
+            0
+          ],
+          [
+            0.11931279168829882,
+            1.4561326407302513,
+            0
+          ],
+          [
+            0.34947516321245253,
+            1.2369622992602927,
+            0
+          ]
+        ],
+        "gain_1_2": [
+          [
+            0.08343013896287582,
+            2,
+            0
+          ],
+          [
+            0.11269272166233903,
+            1.3929444797169401,
+            0
+          ],
+          [
+            0.3473574977881021,
+            1.1032277059435862,
+            0
+          ]
+        ]
+      },
+      "diagnosis": {
+        "filtered_accuracy": 0.9302325581395349,
+        "smoothed_accuracy": 0.973421926910299,
+        "viterbi_accuracy": 0.973421926910299,
+        "instantaneous_accuracy": 0.8803986710963455,
+        "test_state_support": [
+          198,
+          93,
+          10
+        ],
+        "stationary": [
+          0.5186200865740133,
+          0.3590896295149096,
+          0.12229028391107716
+        ],
+        "calibration_sequences": 20,
+        "transition": [
+          [
+            0.9691577698695136,
+            0.028469750889679714,
+            0.002372479240806643
+          ],
+          [
+            0.030876494023904383,
+            0.953187250996016,
+            0.01593625498007968
+          ],
+          [
+            0.04013377926421405,
+            0.016722408026755852,
+            0.9431438127090301
+          ]
+        ],
+        "emission": [
+          [
+            0.9310548025928108,
+            0.05951679434295816,
+            0.009428403064230996
+          ],
+          [
+            0.07920792079207921,
+            0.8554455445544554,
+            0.06534653465346535
+          ],
+          [
+            0.023178807947019868,
+            0.06622516556291391,
+            0.9105960264900662
+          ]
+        ],
+        "initial": [
+          0.9130434782608695,
+          0.043478260869565216,
+          0.043478260869565216
+        ],
+        "known_clean_reference_required": true,
+        "python_calibration_parity_claimed": false
+      }
+    },
+    {
+      "case_name": "wind_reduced",
+      "stages_executed": 9,
+      "training_rows": 301,
+      "test_rows": 301,
+      "theta": [
+        0.9948740823226883,
+        -0.05104974342227105,
+        -0.00010264725864509805
+      ],
+      "arx_rmse": [
+        0.0027328173823138848,
+        0.04965013402369904
+      ],
+      "pi_poles": [
+        0.8499999999999998,
+        0.8000000000000004
+      ],
+      "controller_replay_scaled_error": 2.8106912015826747e-18,
+      "controllers": {
+        "pi": {
+          "rmse": 0.08759359728278886,
+          "movement": 8.48037396262326,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.13862106297092558
+        },
+        "feedforward": {
+          "rmse": 0.08661359675869104,
+          "movement": 8.429430233080044,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.15260335006382805
+        },
+        "cascade": {
+          "rmse": 0.11121516892546242,
+          "movement": 6.444073200164103,
+          "max_input": 1.6229424334100884,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.13966981731168862
+        },
+        "fuzzy": {
+          "rmse": 0.2985819993304624,
+          "movement": 2.1915270327392773,
+          "max_input": 0.8085867751345155,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.5893598878612614
+        },
+        "mpc": {
+          "rmse": 0.11693082632668365,
+          "movement": 4.955472739585456,
+          "max_input": 1.348969427857796,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.14967660415050918
+        }
+      },
+      "neural": {
+        "mlp_rmse": 0.06450944514395908,
+        "rbf_rmse": 0.004601867438283666,
+        "training_feature_mean": [
+          0.00020094706681395464,
+          -0.00018166385184967686
+        ],
+        "training_feature_scale": [
+          1.0016592130243307,
+          1.0016603215686732
+        ],
+        "mlp_training_loss": [
+          0.0012170033615525279,
+          0.0008359231408635652,
+          0.0007331870995323163,
+          0.000639233105691862,
+          0.00048687531159492776
+        ],
+        "rbf_center_training_indices": [
+          204,
+          236,
+          158,
+          155,
+          121,
+          300,
+          92,
+          51,
+          85,
+          9,
+          105,
+          89,
+          44,
+          107,
+          103,
+          178
+        ],
+        "seed": 19,
+        "python_weight_parity_claimed": false
+      },
+      "genetic": {
+        "parameters": [
+          1.5994212793572005,
+          0.6717624825427096
+        ],
+        "fitness": 0.064658954357216,
+        "history": [
+          0.06471264806571254,
+          0.06471264806571254,
+          0.06466376885121546,
+          0.06466344302171988,
+          0.06466344302171988,
+          0.06466344302171988,
+          0.06465910326829066,
+          0.064658954357216,
+          0.064658954357216
+        ],
+        "evaluations": 90,
+        "seed": 19,
+        "python_rng_parity_claimed": false,
+        "validation": {
+          "rmse": 0.08334106589960907,
+          "movement": 8.309563348418912,
+          "max_input": 2,
+          "solver_failures": 0,
+          "status": "completed",
+          "terminal_state": -0.14548757425264336
+        }
+      },
+      "robustness": {
+        "gain_0_8": [
+          [
+            0.09616237780716257,
+            2,
+            0
+          ],
+          [
+            0.12454064812663082,
+            1.3945695211606455,
+            0
+          ],
+          [
+            0.2962998533918366,
+            0.8659859064991962,
+            0
+          ]
+        ],
+        "gain_1_0": [
+          [
+            0.08759359728278886,
+            2,
+            0
+          ],
+          [
+            0.11693082632668365,
+            1.348969427857796,
+            0
+          ],
+          [
+            0.2985819993304624,
+            0.8085867751345155,
+            0
+          ]
+        ],
+        "gain_1_2": [
+          [
+            0.08135349462027214,
+            2,
+            0
+          ],
+          [
+            0.11128138674936064,
+            1.3012440111850014,
+            0
+          ],
+          [
+            0.30413950142875373,
+            0.7526650444767679,
+            0
+          ]
+        ]
+      },
+      "diagnosis": {
+        "filtered_accuracy": 0.9302325581395349,
+        "smoothed_accuracy": 0.973421926910299,
+        "viterbi_accuracy": 0.973421926910299,
+        "instantaneous_accuracy": 0.8803986710963455,
+        "test_state_support": [
+          198,
+          93,
+          10
+        ],
+        "stationary": [
+          0.5186200865740133,
+          0.3590896295149096,
+          0.12229028391107716
+        ],
+        "calibration_sequences": 20,
+        "transition": [
+          [
+            0.9691577698695136,
+            0.028469750889679714,
+            0.002372479240806643
+          ],
+          [
+            0.030876494023904383,
+            0.953187250996016,
+            0.01593625498007968
+          ],
+          [
+            0.04013377926421405,
+            0.016722408026755852,
+            0.9431438127090301
+          ]
+        ],
+        "emission": [
+          [
+            0.9310548025928108,
+            0.05951679434295816,
+            0.009428403064230996
+          ],
+          [
+            0.07920792079207921,
+            0.8554455445544554,
+            0.06534653465346535
+          ],
+          [
+            0.023178807947019868,
+            0.06622516556291391,
+            0.9105960264900662
+          ]
+        ],
+        "initial": [
+          0.9130434782608695,
+          0.043478260869565216,
+          0.043478260869565216
+        ],
+        "known_clean_reference_required": true,
+        "python_calibration_parity_claimed": false
+      }
+    }
+  ],
+  "limits": [
+    "Nonlinear/external plants were not rerun; the starting points are the saved independent physical CSV records.",
+    "The scalar predictor control design includes the current PI integration increment before the state update.",
+    "MLP/RBF, GA and HMM use native random streams; equality of NumPy weights, selected gains and calibrated HMM parameters is not claimed.",
+    "MPC uses the portable dual QP solver; constraints and fallback are checked independently of SciPy SLSQP iterates.",
+    "HMM observations require a known clean reference; no physical fault-detection calibration is claimed."
+  ]
+}

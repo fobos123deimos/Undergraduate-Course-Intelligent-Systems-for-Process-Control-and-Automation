@@ -18,3 +18,19 @@ python tools/run_course.py --unit 6
 [Notebook](notebook.ipynb) · [Metrics](results/metrics.json) · [Course notes](../../course/README.md) · [Problems and solutions](../../problem-sets/README.md)
 
 ![Computed comparison](results/comparison.png)
+
+## Read the method visually
+
+![Unit 06 conceptual diagram](../../course/figures/learning/unit-06.png)
+
+Chronology separates fitting, selection and final scoring. Fit normalization on the training set and freeze it before evaluating the others. A one-step predictor sees measured history; the recursive path sees its own past predictions. Read these scores separately, and use the out-of-domain experiment to expose unsupported extrapolation.
+
+The conceptual diagram is deliberately separate from the computed experiment below. [Editable SVG](../../course/figures/learning/unit-06.svg).
+
+## Apply this unit to the article benchmarks
+
+[Worked benchmark study for Unit 06](../../benchmarks/learning/unit-06.md)
+
+![Unit 06 benchmark study](../../benchmarks/learning/figures/unit-06.png)
+
+Read the per-model method, chosen signals, numerical results and interpretation in the linked study. The learning track declares its local-model approximations and separates equation-based experiments from external datasets and simulators. It does not turn an unavailable measured record into a synthetic benchmark result.

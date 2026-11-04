@@ -16,13 +16,17 @@ In the synthetic laboratory, $y_k=c_k+b_{z_k}+\epsilon_k$, with biases $b=[0,0.0
 
 For events with positive conditioning probability, $\Pr(A\mid B)=\Pr(A\cap B)/\Pr(B)$. A first-order Markov model assumes that the present regime contains the information from its history needed to predict the next regime:
 
-$$\Pr(z_{k+1}=j\mid z_k=i,z_{k-1},\ldots,z_0)=\Pr(z_{k+1}=j\mid z_k=i)=P_{ij}.$$
+$$
+\Pr(z_{k+1}=j\mid z_k=i,z_{k-1},\ldots,z_0)=\Pr(z_{k+1}=j\mid z_k=i)=P_{ij}.
+$$
 
 This does not make successive states independent. Time homogeneity additionally assumes that the same $P$ applies at every sample. Here distributions are row vectors, rows index the current state and columns index the next state. Nonnegative entries and row sums of one imply $p_{k+1}=p_kP$ and $p_{k+n}=p_kP^n$. Matrix multiplication sums probabilities over intermediate states; do not raise each entry individually to the $n$th power.
 
 The laboratory uses the state order normal, drift, sensor fault and the following deliberately hypothetical probabilities:
 
-$$P=\begin{bmatrix}0.97&0.025&0.005\\0.04&0.93&0.03\\0.02&0.08&0.90\end{bmatrix},\qquad p_0=[0.80,0.15,0.05].$$
+$$
+P=\begin{bmatrix}0.97&0.025&0.005\\0.04&0.93&0.03\\0.02&0.08&0.90\end{bmatrix},\qquad p_0=[0.80,0.15,0.05].
+$$
 
 The matrix allows recovery from a fault. Its entries describe one 0.2-minute step, not failure rates per minute. To sample the same discrete model every five steps, use $P^5$; changing to a finer interval requires a justified model, and an arbitrary matrix root need not be a transition matrix. Physical residence time and regime persistence are distinct parameters. A self-transition probability $P_{ii}<1$ produces a geometric consecutive residence duration with mean $1/(1-P_{ii})$ samples, counted from entry through the last sample in state $i$.
 
@@ -36,7 +40,9 @@ An absorbing fault model answers a different question. Partition the states into
 
 For a categorical HMM, $B_{is}=\Pr(o_k=s\mid z_k=i)$ is the emission matrix, with one normalized row per hidden state. The model assumes conditional independence of emissions given the state sequence. Its initial distribution, transition matrix and emissions define a joint probability:
 
-$$\Pr(z_{0:T-1},o_{0:T-1})=p_0(z_0)B_{z_0o_0}\prod_{k=1}^{T-1}P_{z_{k-1}z_k}B_{z_ko_k}.$$
+$$
+\Pr(z_{0:T-1},o_{0:T-1})=p_0(z_0)B_{z_0o_0}\prod_{k=1}^{T-1}P_{z_{k-1}z_k}B_{z_ko_k}.
+$$
 
 The first observation is emitted by $z_0$ before a transition. This indexing convention must agree across simulation, filtering and estimation. The training data contain synthetic state labels, allowing emission probabilities to be learned from counts. Labels are available for evaluation but are withheld from the online estimator and controller. For a real experiment, maintenance records or an independent calibration procedure would be needed to justify such labels. Correlated noise, an unmeasured process disturbance or an incorrect tank model can violate the simple emission assumption and be confused with a sensor defect.
 
@@ -44,13 +50,17 @@ The first observation is emitted by $z_0$ before a transition. This indexing con
 
 Let $\alpha_k(i)=\Pr(z_k=i\mid o_{0:k})$. Initialize with $\alpha_0\propto p_0\odot B_{:,o_0}$. At later samples, predict $\bar\alpha_k=\alpha_{k-1}P$, multiply by the current emission likelihood and normalize:
 
-$$w_k(i)=\bar\alpha_k(i)B_{i,o_k},\qquad s_k=\sum_iw_k(i),\qquad \alpha_k(i)=w_k(i)/s_k.$$
+$$
+w_k(i)=\bar\alpha_k(i)B_{i,o_k},\qquad s_k=\sum_iw_k(i),\qquad \alpha_k(i)=w_k(i)/s_k.
+$$
 
 Use $\bar\alpha_0=p_0$ for the initial update. Scaling at every step avoids the underflow produced by multiplying a long sequence of small probabilities. With this definition of $s_k$, the sequence log likelihood is $\sum_k\log s_k$. Some references use reciprocal scale factors and therefore a negative sum; declare the convention. A zero scale signals an observation sequence impossible under the model, not permission to replace it silently with a uniform posterior.
 
 For offline smoothing, initialize $\beta_{T-1}(i)=1$ and run backwards:
 
-$$\beta_k(i)=\frac{\sum_jP_{ij}B_{j,o_{k+1}}\beta_{k+1}(j)}{s_{k+1}}.$$
+$$
+\beta_k(i)=\frac{\sum_jP_{ij}B_{j,o_{k+1}}\beta_{k+1}(j)}{s_{k+1}}.
+$$
 
 Normalize $\alpha_k\odot\beta_k$ to obtain $\gamma_k(i)=\Pr(z_k=i\mid o_{0:T-1})$. The final smoothed posterior equals the final filtered posterior, but earlier values can change when future observations arrive.
 
@@ -73,3 +83,14 @@ Stress the diagnosis by changing the actual residence time to 14 min while retai
 ## Computational practice
 
 From the repository root, run `python tools/run_course.py --unit 9`. Use the notebook to inspect assumptions, rerun calculations and compare them with the worked reasoning. The lesson's hypothetical examples illustrate the method; inspect each program's configuration before comparing numerical outputs.
+
+
+## Visual method and article applications
+
+![Unit 09 method diagram](../figures/learning/unit-09.png)
+
+This conceptual diagram separates the method's signals and information flow from its measured or simulated evidence. Read the [laboratory explanation](../../laboratories/09-markov-hidden-state-diagnosis/README.md#read-the-method-visually) alongside the computed traces.
+
+![Unit 09 benchmark results](../../benchmarks/learning/figures/unit-09.png)
+
+The [worked article study](../../benchmarks/learning/unit-09.md) applies this unit across the equation-based benchmarks and records the chosen local approximations, results and remaining external-data limits.

@@ -1,0 +1,152 @@
+{
+  "native_cases": 10,
+  "learning_stages": 9,
+  "executed_native_case_stages": 90,
+  "external_offline_analyses": [
+    "gasifier",
+    "wind_fast",
+    "tennessee_eastman"
+  ],
+  "external_simulators_rerun": false,
+  "unresolved": [
+    "Original throttle measurements",
+    "Chosen canonical section-3.2 dataset",
+    "Full-order controller comparisons for external plants"
+  ],
+  "source_sha256": {
+    "benchmarks/run_learning_studies.py": "48ce83d83adabb914271103962932df45afce923872d339a7cab75f6db209dfa",
+    "python/intelligent_control/benchmark_learning.py": "4e3b7b0a586ab4c2bf9b29a20a85174da4fb51f28d823dfd06dc2994c40d26b0"
+  },
+  "cases": {
+    "artificial_siso": {
+      "identification": {
+        "one_step_rmse": 0.6416222547819421,
+        "free_run_rmse": 0.641817570007448,
+        "predictor_pole": 0.007182577578315926
+      },
+      "neural_rmse": {
+        "ARX": 0.641622254781942,
+        "MLP": 0.6817364382092133,
+        "RBF": 0.6742230510868548
+      },
+      "hmm_accuracy": 0.9335548172757475
+    },
+    "artificial_mimo": {
+      "identification": {
+        "one_step_rmse": 0.20211932040378783,
+        "free_run_rmse": 0.2904277477923512,
+        "predictor_pole": 0.757587791671089
+      },
+      "neural_rmse": {
+        "ARX": 0.20211932040378772,
+        "MLP": 0.2046934565950017,
+        "RBF": 0.21433779336881598
+      },
+      "hmm_accuracy": 0.9335548172757475
+    },
+    "pendulum": {
+      "identification": {
+        "one_step_rmse": 0.0011982973599224474,
+        "free_run_rmse": 0.2650228702879819,
+        "predictor_pole": 1.0079919379224629
+      },
+      "neural_rmse": {
+        "ARX": 0.001198297359922447,
+        "MLP": 0.014624910696596653,
+        "RBF": 0.0005546408719918201
+      },
+      "hmm_accuracy": 0.9335548172757475
+    },
+    "pneumatic": {
+      "identification": {
+        "one_step_rmse": 0.04583013432933727,
+        "free_run_rmse": 34.728115080808756,
+        "predictor_pole": 1.0259679216530402
+      },
+      "neural_rmse": {
+        "ARX": 0.04583013432933726,
+        "MLP": 0.13955149903383698,
+        "RBF": 0.055184768684660906
+      },
+      "hmm_accuracy": 0.9335548172757475
+    },
+    "hydrostatic": {
+      "identification": {
+        "one_step_rmse": 0.055806241280010764,
+        "free_run_rmse": 0.1971996383970147,
+        "predictor_pole": 0.8341903254802628
+      },
+      "neural_rmse": {
+        "ARX": 0.05580624128001075,
+        "MLP": 0.0597262093683168,
+        "RBF": 0.06453155704894495
+      },
+      "hmm_accuracy": 0.9335548172757475
+    },
+    "three_tank": {
+      "identification": {
+        "one_step_rmse": 0.0018237286123762375,
+        "free_run_rmse": 0.06048014842763039,
+        "predictor_pole": 0.9947844374999993
+      },
+      "neural_rmse": {
+        "ARX": 0.001823728612376238,
+        "MLP": 0.02116004537930886,
+        "RBF": 0.0009990100782120664
+      },
+      "hmm_accuracy": 0.9335548172757475
+    },
+    "bioreactor": {
+      "identification": {
+        "one_step_rmse": 0.011560477711331838,
+        "free_run_rmse": 0.011917351217633773,
+        "predictor_pole": 0.07445180883569771
+      },
+      "neural_rmse": {
+        "ARX": 0.011560477711331838,
+        "MLP": 0.025765897044818558,
+        "RBF": 0.01238873199101437
+      },
+      "hmm_accuracy": 0.9335548172757475
+    },
+    "cstr": {
+      "identification": {
+        "one_step_rmse": 0.02163065248307673,
+        "free_run_rmse": 26.579341115902658,
+        "predictor_pole": 1.016593879676863
+      },
+      "neural_rmse": {
+        "ARX": 0.021630652483076728,
+        "MLP": 0.06137291484073754,
+        "RBF": 0.0259684326570196
+      },
+      "hmm_accuracy": 0.9335548172757475
+    },
+    "column_a": {
+      "identification": {
+        "one_step_rmse": 0.013855342361840425,
+        "free_run_rmse": 6.890662588595878,
+        "predictor_pole": 1.0114906065045617
+      },
+      "neural_rmse": {
+        "ARX": 0.013855342361840429,
+        "MLP": 0.08197248497128382,
+        "RBF": 0.017226153520365082
+      },
+      "hmm_accuracy": 0.9335548172757475
+    },
+    "wind_reduced": {
+      "identification": {
+        "one_step_rmse": 0.002732817382313835,
+        "free_run_rmse": 0.04965013402365759,
+        "predictor_pole": 0.9948740823226891
+      },
+      "neural_rmse": {
+        "ARX": 0.0027328173823138336,
+        "MLP": 0.056904424596621074,
+        "RBF": 0.004293756195927588
+      },
+      "hmm_accuracy": 0.9335548172757475
+    }
+  }
+}

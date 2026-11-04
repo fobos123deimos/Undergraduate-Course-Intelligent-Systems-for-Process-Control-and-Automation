@@ -29,3 +29,14 @@ Present improvements as conditional results: for this model, this information se
 ## Computational practice
 
 From the repository root, run `python tools/run_course.py --unit 8`. Use the notebook to inspect assumptions, rerun calculations and compare them with the worked reasoning. The lesson's hypothetical examples illustrate the method; inspect each program's configuration before comparing numerical outputs.
+
+
+## Visual method and article applications
+
+![Unit 08 method diagram](../figures/learning/unit-08.png)
+
+This conceptual diagram separates the method's signals and information flow from its measured or simulated evidence. Read the [laboratory explanation](../../laboratories/08-integrated-validation/README.md#read-the-method-visually) alongside the computed traces.
+
+![Unit 08 benchmark results](../../benchmarks/learning/figures/unit-08.png)
+
+The [worked article study](../../benchmarks/learning/unit-08.md) applies this unit across the equation-based benchmarks and records the chosen local approximations, results and remaining external-data limits.

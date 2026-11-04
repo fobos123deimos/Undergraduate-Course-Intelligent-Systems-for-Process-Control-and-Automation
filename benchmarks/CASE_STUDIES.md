@@ -38,14 +38,13 @@ Each case links a modeling decision to an identification or control experiment. 
 
 **Worked reasoning.** Let `a=1/(m+M)` and `d=2−ma`. To first order,
 
-\[
+$$
 \ddot\theta=\frac{g}{ld}\theta-\frac{a}{ld}u
 -\frac{d_{Mf}}{ml^2d}\dot\theta,
 \qquad
 \ddot x=-\frac{amg}{d}\theta+\frac{2a}{d}u+
 \frac{a d_{Mf}}{ld}\dot\theta.
-\]
-
+$$
 The positive gravitational coefficient accelerates a positive angular perturbation away from θ=0. State order is `[θ, θdot, x, xdot]`; assigning the cart angle to the wrong coordinate changes the feedback design.
 
 **Task B.** Compare a local linear state-feedback law and a fuzzy/gain-scheduled controller.

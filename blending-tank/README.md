@@ -49,13 +49,17 @@ Every interface uses **state order `[X,V]`** and **input order `[w1,w2,x1,x2,wou
 
 Assume a perfectly mixed, single-phase, nonreacting liquid of constant density. The outlet concentration equals the tank concentration:
 
-$$\frac{d(\rho V)}{dt}=w_1+w_2-w_{out},\qquad
-\frac{d(\rho VX)}{dt}=w_1x_1+w_2x_2-w_{out}X.$$
+$$
+\frac{d(\rho V)}{dt}=w_1+w_2-w_{out},\qquad
+\frac{d(\rho VX)}{dt}=w_1x_1+w_2x_2-w_{out}X.
+$$
 
 Applying the product rule and substituting the total-mass balance gives
 
-$$\dot V=\frac{w_1+w_2-w_{out}}{\rho},\qquad
-\dot X=\frac{w_1(x_1-X)+w_2(x_2-X)}{\rho V}.$$
+$$
+\dot V=\frac{w_1+w_2-w_{out}}{\rho},\qquad
+\dot X=\frac{w_1(x_1-X)+w_2(x_2-X)}{\rho V}.
+$$
 
 The outlet flow cancels explicitly in the concentration equation, but still affects its dynamics through volume. Finite positive density and volume, nonnegative flows and admissible fractions are checked. For known piecewise-constant inputs, the exact volume trajectory is checked before integration; a requested run reaching the minimum volume is rejected rather than integrated through the singularity. No vessel capacity or overflow mechanism is assumed without specification.
 
@@ -63,25 +67,31 @@ The outlet flow cancels explicitly in the concentration equation, but still affe
 
 The default equilibrium is
 
-$$\bar u=[500,200,0.4,0.75,700]^T,\quad
-\bar x=[0.5,2]^T,\quad \rho=1000.$$
+$$
+\bar u=[500,200,0.4,0.75,700]^T,\quad
+\bar x=[0.5,2]^T,\quad \rho=1000.
+$$
 
 The outlet equals the sum of the inlets. The equilibrium fraction is `(500*0.4 + 200*0.75)/700 = 0.5`. With no volume-dependent outlet law, the balanced tank admits any positive equilibrium volume; 2 m³ specifies the chosen operating point.
 
 Define deviations `delta_x = x - xbar` and `delta_u = u - ubar`. The first-order model is
 
-$$\delta\dot x=A\delta x+B\delta u,\quad
+$$
+\delta\dot x=A\delta x+B\delta u,\quad
 A=\begin{bmatrix}-0.35&0\\0&0\end{bmatrix},\quad
-B=\begin{bmatrix}-0.00005&0.000125&0.25&0.10&0\\0.001&0.001&0&0&-0.001\end{bmatrix}.$$
+B=\begin{bmatrix}-0.00005&0.000125&0.25&0.10&0\\0.001&0.001&0&0&-0.001\end{bmatrix}.
+$$
 
 Use `C = eye(2)` and `D = zeros(2,5)`, and restore absolute outputs with `x = xbar + delta_x`. The concentration pole is −0.35 min⁻¹, giving a nominal time constant of 2.85714 min. Volume has an integrator: constant flow imbalance accumulates volume.
 
 The transfer matrix maps **input deviations to output deviations**:
 
-$$G(s)=\begin{bmatrix}
+$$
+G(s)=\begin{bmatrix}
 \frac{-0.00005}{s+0.35}&\frac{0.000125}{s+0.35}&\frac{0.25}{s+0.35}&\frac{0.10}{s+0.35}&0\\
 \frac{0.001}{s}&\frac{0.001}{s}&0&0&\frac{-0.001}{s}
-\end{bmatrix}.$$
+\end{bmatrix}.
+$$
 
 These are zero-initial-deviation transfer functions. The negative first concentration channel is required: increasing the more dilute inlet lowers the equilibrium concentration. Transfer coefficients are calculated from the Jacobian using the declared density of 1000 kg/m³.
 

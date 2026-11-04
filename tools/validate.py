@@ -39,4 +39,6 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--notebooks',action='store_true');p.add_argument('--skip-tests',action='store_true');args=p.parse_args()
     if not args.skip_tests:subprocess.run([sys.executable,'-m','pytest','-q'],cwd=ROOT,check=True)
     navigation();notebooks(args.notebooks)
+    from validate_rendering import validate as rendering
+    rendering()
 if __name__=='__main__':main()

@@ -1,0 +1,71 @@
+{
+  "gasifier": {
+    "title": "ALSTOM gasifier",
+    "section": "3.11",
+    "source": "benchmarks/results/alstom-native/load050-pressure_step.csv",
+    "source_sha256": "574a36182ed51802e84dd396ccd953b36964158121d4aa4129b78150fb797472",
+    "output": "temperature_K",
+    "output_unit": "K",
+    "samples": 600,
+    "original_samples": 1464,
+    "uniform_step": 0.5008347245409015,
+    "resampling": "linear interpolation on uniform endpoint-inclusive time grid",
+    "training_samples": 360,
+    "one_step_rmse_physical": 0.004684344432679019,
+    "hmm_test_state_support": [
+      164,
+      76,
+      0
+    ],
+    "sensor_accuracy": 0.9625,
+    "simulator_rerun": false,
+    "diagram": "11-gasifier",
+    "scope": "Chronological output-only AR(2) prediction and additional synthetic sensor HMM. No causal plant identification or new controller evaluation."
+  },
+  "wind_fast": {
+    "title": "High-order OpenFAST",
+    "section": "3.12",
+    "source": "benchmarks/results/openfast-validation.csv",
+    "source_sha256": "ce220cd00287744f62e5f4926ef247d8a7d968966efba47a3a4a93c1b084ae8b",
+    "output": "RotSpeed",
+    "output_unit": "rpm",
+    "samples": 600,
+    "original_samples": 601,
+    "uniform_step": 0.1001669449081803,
+    "resampling": "linear interpolation on uniform endpoint-inclusive time grid",
+    "training_samples": 360,
+    "one_step_rmse_physical": 0.00918560922943971,
+    "hmm_test_state_support": [
+      164,
+      76,
+      0
+    ],
+    "sensor_accuracy": 0.9625,
+    "simulator_rerun": false,
+    "diagram": "12-wind-turbine",
+    "scope": "Chronological output-only AR(2) prediction and additional synthetic sensor HMM. No causal plant identification or new controller evaluation."
+  },
+  "tennessee_eastman": {
+    "title": "Tennessee Eastman",
+    "section": "3.13",
+    "source": "benchmarks/results/te-native/idv-01.csv",
+    "source_sha256": "39abe0d7c07e286074fd4943fbc90af3268ecd5f4d2e3d2c6501c5b94da7f8fe",
+    "output": "xmeas_09",
+    "output_unit": "deg C",
+    "samples": 21,
+    "original_samples": 21,
+    "uniform_step": 0.01,
+    "resampling": "linear interpolation on uniform endpoint-inclusive time grid",
+    "training_samples": 12,
+    "one_step_rmse_physical": 0.000744605281893109,
+    "hmm_test_state_support": [
+      9,
+      0,
+      0
+    ],
+    "sensor_accuracy": 1.0,
+    "simulator_rerun": false,
+    "diagram": "13-tennessee-eastman",
+    "scope": "Chronological output-only AR(2) prediction and additional synthetic sensor HMM. No causal plant identification or new controller evaluation."
+  }
+}

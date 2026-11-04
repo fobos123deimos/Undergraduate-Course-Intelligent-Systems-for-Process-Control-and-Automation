@@ -14,7 +14,9 @@ On a normalized error domain $[-1,1]$, define negative, zero and positive member
 
 For a two-input controller using error and error change, a rule might be IF error is positive AND error change is positive THEN increase the blend strongly. Specify whether AND is minimum or product. Mamdani inference clips or scales an output membership function for every firing rule, aggregates the results, and often defuzzifies with the centroid:
 
-$$u_f=\frac{\int z\,\mu_{out}(z)\,dz}{\int\mu_{out}(z)\,dz}.$$
+$$
+u_f=\frac{\int z\,\mu_{out}(z)\,dz}{\int\mu_{out}(z)\,dz}.
+$$
 
 For zero-order Sugeno inference, singleton consequents $z_i$ give $u_f=(\sum_i w_i z_i)/(\sum_i w_i)$. This generally differs from the centroid of overlapping Mamdani sets. If no rule fires, use a documented fallback; adding an arbitrary epsilon to the denominator does not define a meaningful inference result.
 
@@ -27,3 +29,14 @@ For the tank, positive concentration error should generally increase the high-fe
 ## Computational practice
 
 From the repository root, run `python tools/run_course.py --unit 5`. Use the notebook to inspect assumptions, rerun calculations and compare them with the worked reasoning. The lesson's hypothetical examples illustrate the method; inspect each program's configuration before comparing numerical outputs.
+
+
+## Visual method and article applications
+
+![Unit 05 method diagram](../figures/learning/unit-05.png)
+
+This conceptual diagram separates the method's signals and information flow from its measured or simulated evidence. Read the [laboratory explanation](../../laboratories/05-expert-fuzzy-control/README.md#read-the-method-visually) alongside the computed traces.
+
+![Unit 05 benchmark results](../../benchmarks/learning/figures/unit-05.png)
+
+The [worked article study](../../benchmarks/learning/unit-05.md) applies this unit across the equation-based benchmarks and records the chosen local approximations, results and remaining external-data limits.

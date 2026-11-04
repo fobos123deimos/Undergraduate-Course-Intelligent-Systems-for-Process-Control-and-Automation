@@ -1,0 +1,159 @@
+{
+  "status": "passed",
+  "checks": {
+    "markdown_files": 90,
+    "notebooks": 11,
+    "markdown_cells": 73,
+    "display_math": 28,
+    "inline_math": 581,
+    "notebook_images": 22
+  },
+  "notebooks": [
+    {
+      "path": "laboratories/01-modeling-identification/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 2,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 526676
+    },
+    {
+      "path": "laboratories/02-feedback-imc/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 2,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 518759
+    },
+    {
+      "path": "laboratories/03-control-structures/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 2,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 735516
+    },
+    {
+      "path": "laboratories/04-model-predictive-control/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 2,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 566414
+    },
+    {
+      "path": "laboratories/05-expert-fuzzy-control/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 2,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 569614
+    },
+    {
+      "path": "laboratories/06-neural-identification-control/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 2,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 605069
+    },
+    {
+      "path": "laboratories/07-evolutionary-tuning/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 2,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 481681
+    },
+    {
+      "path": "laboratories/08-integrated-validation/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 2,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 820819
+    },
+    {
+      "path": "laboratories/09-markov-hidden-state-diagnosis/notebook.ipynb",
+      "markdown_cells": 9,
+      "images": 2,
+      "code_cells": 6,
+      "code_cells_with_outputs": 6,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 1147244
+    },
+    {
+      "path": "benchmarks/notebook.ipynb",
+      "markdown_cells": 8,
+      "images": 3,
+      "code_cells": 7,
+      "code_cells_with_outputs": 7,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 624679
+    },
+    {
+      "path": "blending-tank/notebook.ipynb",
+      "markdown_cells": 8,
+      "images": 1,
+      "code_cells": 6,
+      "code_cells_with_outputs": 6,
+      "error_outputs": 0,
+      "html_export": "passed",
+      "html_bytes": 610056
+    }
+  ],
+  "scope": "Delimiter, grouping, environment, absolute-link and notebook-HTML checks. Actual formula/layout rendering additionally requires browser visual inspection; this check is not a MathJax or KaTeX engine.",
+  "figures": {
+    "conceptual_png_count": 9,
+    "editable_svg_count": 9,
+    "visual_review": "All 31 new PNG figures inspected: nine conceptual diagrams, ten nine-stage case panels, nine unit panels and three external trace panels. Full-size checks covered unit panels 1/4/6/9, pendulum, Tennessee Eastman, MPC axis margins, HMM labels and the repaired evolutionary-loop caption. No remaining clipped labels or overlapping text observed.",
+    "sha256": {
+      "course/figures/learning/unit-01.png": "b57f5e30462469750c7c4a9d0d79d4658fb74d62463edeec0966773f62910676",
+      "course/figures/learning/unit-01.svg": "dae296a9869fd48d7a242272a3adabdce645b33a59b86c9f567e8ab81b679716",
+      "course/figures/learning/unit-02.png": "1256f91cdf502209dad237d79b692cce4336950f3d4b057d21bbc439c4debbcf",
+      "course/figures/learning/unit-02.svg": "3855e638dcd6127e04fc9365930ab5cc12752d7a32991d2e8745afb29c3e9698",
+      "course/figures/learning/unit-03.png": "7923c6a9d1404e154b4bd6aee8fb9ae1b0b2452295fa42ed070ece9f18216495",
+      "course/figures/learning/unit-03.svg": "a0c4fc1ca2ea985d8af2a9754ee40e84f7bf1269695ad36ba904d3d9eb249e5b",
+      "course/figures/learning/unit-04.png": "de05426fa5fd3e8d92bae703542739ac8b8c04c6406edd53624cd7794d59a0cd",
+      "course/figures/learning/unit-04.svg": "04851555346cacd725d192d59f8a4dffaa2cab819087abd0318d452908b154d9",
+      "course/figures/learning/unit-05.png": "b7d2a9832bb980716dbc86d2d840c3742f6a349c4ffeee086acb75a0518fd923",
+      "course/figures/learning/unit-05.svg": "d662d82f819b501b02c625e9b05b2f44fd574b25e62caaf2d6ceaa3761973b66",
+      "course/figures/learning/unit-06.png": "686a2b9e38fae458f613ec1300edd0ae0817e3d4dd6f200d8d90ffc2bde76496",
+      "course/figures/learning/unit-06.svg": "1dfb491530de81aded72a9fa65aa20d6689e487d91446448f88c5e9ff08606c2",
+      "course/figures/learning/unit-07.png": "91ddc36d5a156c258e416838a21af3ca3f750a9ca626d2c0fe89f0c689cfb933",
+      "course/figures/learning/unit-07.svg": "2bf64bc817a0a9aac44eccdfc29c0da7cdab2feb845c7e4f4fc1d29632a079df",
+      "course/figures/learning/unit-08.png": "2cf0ff1a9ef950852e879ae646348e33f6afd6d9bdafc4df91609069635fcd13",
+      "course/figures/learning/unit-08.svg": "1e333e6228a1b5e4ede8c14d2e708838576f453ae0dcbaf097359cb18e546f3b",
+      "course/figures/learning/unit-09.png": "489679c04696cac5fe60f97b9751e1f16179b842fae818aea7a5fe7fa51cbc8f",
+      "course/figures/learning/unit-09.svg": "2ef3aedb1592be07d8d026af1bbdaad27be2ffc22e455eaaeb0dff73dd73c634"
+    }
+  },
+  "notebook_code_comparison": {
+    "base_commit": "3d50dbdafc609450ba5fb7febc8f1a30203e4aef",
+    "notebooks": 11,
+    "unchanged_code_cells": 43,
+    "sample_execution_record": "notebook-rendering-execution.json"
+  },
+  "html_export_runtime": {
+    "nbconvert": "7.17.2",
+    "execution_location": "Local Windows Python 3.12"
+  }
+}

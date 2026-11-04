@@ -17,3 +17,19 @@ python tools/run_course.py --unit 2
 [Notebook](notebook.ipynb) · [Metrics](results/metrics.json) · [Course notes](../../course/README.md) · [Problems and solutions](../../problem-sets/README.md)
 
 ![Computed comparison](results/comparison.png)
+
+## Read the method visually
+
+![Unit 02 conceptual diagram](../../course/figures/learning/unit-02.png)
+
+Follow the command through saturation before it reaches the plant. The feedback path closes on the measured output, while conditional integration protects the integral state. In the computed comparison, locate the reference change and distinguish a faster transient from increased actuator movement; a nominal stability calculation does not remove saturation effects.
+
+The conceptual diagram is deliberately separate from the computed experiment below. [Editable SVG](../../course/figures/learning/unit-02.svg).
+
+## Apply this unit to the article benchmarks
+
+[Worked benchmark study for Unit 02](../../benchmarks/learning/unit-02.md)
+
+![Unit 02 benchmark study](../../benchmarks/learning/figures/unit-02.png)
+
+Read the per-model method, chosen signals, numerical results and interpretation in the linked study. The learning track declares its local-model approximations and separates equation-based experiments from external datasets and simulators. It does not turn an unavailable measured record into a synthetic benchmark result.

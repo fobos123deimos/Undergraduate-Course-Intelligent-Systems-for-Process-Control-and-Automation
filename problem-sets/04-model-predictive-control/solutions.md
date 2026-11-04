@@ -20,7 +20,9 @@ These worked answers use the explicitly hypothetical problem data. Design questi
 
 (a) Apply the inverse from Unit 03:
 
-$$u=\frac{1}{0.76}\begin{bmatrix}1.4-0.12\\-0.56+0.2\end{bmatrix}=\begin{bmatrix}1.684211\\-0.473684\end{bmatrix}.$$
+$$
+u=\frac{1}{0.76}\begin{bmatrix}1.4-0.12\\-0.56+0.2\end{bmatrix}=\begin{bmatrix}1.684211\\-0.473684\end{bmatrix}.
+$$
 
 (b) Because $K$ is nonsingular this is the unique input producing the target; both components violate bounds. (c) Solve $\min_{0\leq u\leq1}(Ku-r)^T\operatorname{diag}(4,1)(Ku-r)$. Its optimum is a feasible compromise, not an exact realization of $r$. A steady target layer can supply consistent equilibrium inputs/outputs to the dynamic regulator, avoiding an impossible terminal goal. The 4:1 weights express priority; report the resulting errors in both outputs.
 

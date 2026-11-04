@@ -1,0 +1,16 @@
+[
+  {
+    "path": "laboratories/04-model-predictive-control/notebook.ipynb",
+    "status": "passed",
+    "seconds": 16.94,
+    "executable_cell_sources_identical_to_previous_commit": true,
+    "isolation": "Only result-directory paths redirected in the execution copy; numerical commands unchanged."
+  },
+  {
+    "path": "laboratories/09-markov-hidden-state-diagnosis/notebook.ipynb",
+    "status": "passed",
+    "seconds": 9.5,
+    "executable_cell_sources_identical_to_previous_commit": true,
+    "isolation": "Only result-directory paths redirected in the execution copy; numerical commands unchanged."
+  }
+]

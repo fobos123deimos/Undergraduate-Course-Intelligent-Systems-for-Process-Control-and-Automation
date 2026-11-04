@@ -4,11 +4,14 @@ Run from any directory with Python 3. No third-party dependencies are needed.
 """
 from pathlib import Path
 import re
+import sys
 
 from content import UNITS, REFERENCES
 
 COURSE = Path(__file__).resolve().parent
 ROOT = COURSE.parent
+sys.path.insert(0, str(ROOT / 'tools'))
+from document_rendering import normalize_math
 PROBLEMS = ROOT / "problem-sets"
 
 
@@ -174,6 +177,7 @@ DIAGRAMS = {
 
 def write(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.suffix == '.md':value = normalize_math(value)
     path.write_text(value.strip() + "\n", encoding="utf-8")
 
 
@@ -191,7 +195,8 @@ def main():
         heading = f"# Unit {number:02d} - {title}\n\n"
         navigation = f"[Course guide](../README.md) · [Notebook]({lab}) · [Exercises](../../problem-sets/{slug}/exercises.md) · [Worked solutions](../../problem-sets/{slug}/solutions.md)\n\n"
         run = f"\n\n## Computational practice\n\nFrom the repository root, run `python tools/run_course.py --unit {number}`. Use the notebook to inspect assumptions, rerun calculations and compare them with the worked reasoning. The lesson's hypothetical examples illustrate the method; inspect each program's configuration before comparing numerical outputs.\n"
-        write(COURSE / slug / "lesson.md", heading + navigation + "**Prerequisites:** " + unit["prerequisites"] + "\n\n" + unit["lesson"].strip() + run)
+        visual = f"\n\n## Visual method and article applications\n\n![Unit {number:02d} method diagram](../figures/learning/unit-{number:02d}.png)\n\nThis conceptual diagram separates the method's signals and information flow from its measured or simulated evidence. Read the [laboratory explanation](../../laboratories/{slug}/README.md#read-the-method-visually) alongside the computed traces.\n\n![Unit {number:02d} benchmark results](../../benchmarks/learning/figures/unit-{number:02d}.png)\n\nThe [worked article study](../../benchmarks/learning/unit-{number:02d}.md) applies this unit across the equation-based benchmarks and records the chosen local approximations, results and remaining external-data limits.\n"
+        write(COURSE / slug / "lesson.md", heading + navigation + "**Prerequisites:** " + unit["prerequisites"] + "\n\n" + unit["lesson"].strip() + run + visual)
         ex_md = heading + "[Lesson](../../course/" + slug + "/lesson.md) · [Worked solutions](solutions.md)\n\nState units, assumptions and initial conditions before calculating. For computational extensions, report the actual experiment and its limitations.\n\n"
         sol_md = heading + "[Exercises](exercises.md) · [Lesson](../../course/" + slug + "/lesson.md)\n\nThese worked answers use the explicitly hypothetical problem data. Design questions may admit other defensible solutions if their assumptions and evidence are stated.\n\n"
         section = r"\clearpage\section{" + text_escape(f"Unit {number:02d}: {title}") + "}\n"

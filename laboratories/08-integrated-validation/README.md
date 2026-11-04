@@ -17,3 +17,19 @@ python tools/run_course.py --unit 8
 [Notebook](notebook.ipynb) · [Metrics](results/metrics.json) · [Course notes](../../course/README.md) · [Problems and solutions](../../problem-sets/README.md)
 
 ![Computed comparison](results/comparison.png)
+
+## Read the method visually
+
+![Unit 08 conceptual diagram](../../course/figures/learning/unit-08.png)
+
+Rows change the process residence time, while columns change the controller. Within a row, target, disturbance and noise are matched. Evaluate error, effort, movement and constraint violations together. Feedforward receives an extra disturbance measurement; describe that advantage when interpreting the comparison.
+
+The conceptual diagram is deliberately separate from the computed experiment below. [Editable SVG](../../course/figures/learning/unit-08.svg).
+
+## Apply this unit to the article benchmarks
+
+[Worked benchmark study for Unit 08](../../benchmarks/learning/unit-08.md)
+
+![Unit 08 benchmark study](../../benchmarks/learning/figures/unit-08.png)
+
+Read the per-model method, chosen signals, numerical results and interpretation in the linked study. The learning track declares its local-model approximations and separates equation-based experiments from external datasets and simulators. It does not turn an unavailable measured record into a synthetic benchmark result.

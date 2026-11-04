@@ -10,3 +10,5 @@ simulink/models/physical-variants/** -text whitespace=cr-at-eol
 docs/native-simulink-latest.json -text whitespace=cr-at-eol
 # Preserve pdoc output verbatim and collapse generated files in code reviews.
 docs/api/** -whitespace linguist-generated=true
+benchmarks/learning/figures/*.svg -whitespace linguist-generated=true
+course/figures/learning/*.svg -whitespace linguist-generated=true

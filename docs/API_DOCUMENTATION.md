@@ -1,6 +1,6 @@
 # Python API documentation with pdoc
 
-The [online API reference](https://fobos123deimos.github.io/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/) ([versioned HTML](api/index.html)) documents all ten Python package/module pages, including Markov/HMM, course methods and experiments, the physical Blending Tank, article kernels, wind control and the separate pneumatic/hydrostatic interpretations. It follows the pdoc navigation used by [Fast Wave](https://github.com/fobos123deimos/fast-wave/tree/main/docs): search, signatures, cross-references, mathematical notation and expandable source code.
+The [online API reference](https://fobos123deimos.github.io/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/) ([versioned HTML](api/index.html)) documents all eleven Python package/module pages, including Markov/HMM, course methods and experiments, the physical Blending Tank, article kernels, wind control, the separate pneumatic/hydrostatic interpretations and the cross-benchmark learning studies. It follows the pdoc navigation used by [Fast Wave](https://github.com/fobos123deimos/fast-wave/tree/main/docs): search, signatures, cross-references, mathematical notation and expandable source code.
 
 The Python docstrings are the documentation source. The course notes, worked problems, notebooks and MATLAB/Simulink guides remain linked companion material. pdoc does not generate a MATLAB or Simulink API reference.
 
@@ -27,9 +27,12 @@ pdoc 16.0.0 and its rendering dependencies are pinned in [requirements-docs.txt]
 
 1. Edit docstrings beside the relevant Python definitions. Describe units, array shapes, return fields and limitations before adding examples.
 2. Rebuild and run `--check`; inspect the changed pages and search results in a browser.
-3. Commit the Python source and `docs/api` together. Do not hand-edit generated HTML or search data.
+3. For an illustrated explanation, add a repository PNG and its caption/source link to [images.json](pdoc-template/images.json). Rebuild to copy it into the site; image hashes participate in stale-build detection.
+4. Commit the Python source, image sources and `docs/api` together. Do not hand-edit generated HTML or search data.
 
-[The small template](pdoc-template/module.html.jinja2) adds course, validation and Simulink navigation; [custom CSS](pdoc-template/custom.css) retains the standard pdoc layout. The favicon is embedded and does not depend on a local machine path.
+[The small template](pdoc-template/module.html.jinja2) adds course, validation and Simulink navigation plus a captioned gallery on every module page; [custom CSS](pdoc-template/custom.css) retains the standard pdoc layout. Images are served from the same site and remain present without executing a notebook. The favicon is embedded and does not depend on a local machine path.
+
+The [nine illustrated benchmark units](../benchmarks/learning/README.md) explain identification, feedback, multiloop structures, MPC, fuzzy control, neural models, evolutionary tuning, uncertainty and Markov/HMM. Ten native cases provide 90 learning-stage entries using fitted scalar predictors; three archived external simulations have explicitly limited offline analyses. These exercises do not certify full-order controllers or replace unavailable measurements. The [rendering guide](RENDERING.md) covers Markdown, Colab and HTML checks.
 
 ## Automated publication
 

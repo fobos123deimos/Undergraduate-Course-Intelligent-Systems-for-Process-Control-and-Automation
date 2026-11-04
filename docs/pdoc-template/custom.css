@@ -2,3 +2,6 @@
 .course-subheading { margin: .5rem 0 .8rem; font-size: .86rem; line-height: 1.45; }
 .course-links { display: grid; gap: .25rem; margin-bottom: 1.25rem; font-size: .84rem; }
 main.pdoc .module-info > h1 { overflow-wrap: anywhere; }
+.visual-guide figure { margin: 1.5rem 0 2rem; }
+.visual-guide img { display: block; max-width: 100%; height: auto; border: 1px solid #d5e2e4; border-radius: .5rem; }
+.visual-guide figcaption { color: #37474f; font-size: .92rem; margin-top: .7rem; line-height: 1.5; }
