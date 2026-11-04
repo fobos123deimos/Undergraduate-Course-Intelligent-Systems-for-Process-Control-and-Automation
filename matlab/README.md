@@ -17,9 +17,9 @@ For GNU Octave, use `octave --no-gui --quiet --eval "addpath('matlab'); validate
 |---|---|
 | 01 | Exact sampled concentration balance, ARX least squares, independent input validation and physical Blending Tank equilibrium |
 | 02 | IMC-tuned PI, filtered-derivative PID, anti-windup and sampled closed-loop eigenvalues |
-| 03 | Relative gain array, static decoupler, measured-disturbance feedforward and fast actuator cascade |
+| 03 | Relative gain array, static decoupler, dynamic decentralized/decoupled comparison, measured-disturbance feedforward and fast actuator cascade |
 | 04 | Constrained SISO and 2x2 MIMO MPC with prediction and control horizons and move penalties |
-| 05 | Diagnostic rules, Sugeno and Mamdani inference, incremental fuzzy control and fuzzy PI gain scheduling |
+| 05 | Diagnostic rules, Sugeno and Mamdani inference, incremental fuzzy control, fuzzy PID gain scheduling and a matched fuzzy PI comparison |
 | 06 | Perceptron, trained tanh MLP, regularized RBF, one-dimensional self-organizing map and neural forward-model inversion |
 | 07 | Real and binary genetic search with tournament selection, crossover, mutation and elitism; a counted 12-evaluation genetic MIMO move-penalty search and a deterministic sweep |
 | 08 | Common-scenario PI/feedforward/fuzzy/MPC comparison with IAE, ISE, input variation and a plant-mismatch experiment |
@@ -28,6 +28,8 @@ For GNU Octave, use `octave --no-gui --quiet --eval "addpath('matlab'); validate
 The shared teaching plant is `10 dc/dt = u + d - c`: a 100 L well-mixed vessel with 10 L/min flow, normalized feed composition, `0 <= u <= 1`, sampling interval 0.2 min and 80 min horizon. The initial concentration is 0.35. References are 0.35, 0.65 at 10 min and 0.45 at 55 min. A concentration disturbance of +0.08 begins at 45 min. These are illustrative parameters, separate from the article's benchmarks. All inputs, outputs and training samples are simulated.
 
 The MPC uses full-state feedback, constant future reference/disturbance estimates and input box constraints. It does not claim terminal-set stability, state constraint satisfaction or robust feasibility. Each move is a projected-gradient solution with a numerical tolerance and iteration limit. The MIMO exercise uses a separate 2x2 discrete model; it is not a multivariable model of the one-state vessel. Unit 07 includes a small evolutionary search over the MIMO move weight, plus an explicitly separate deterministic sweep; neither establishes a global optimum.
+
+Python additionally demonstrates move bounds and MIMO output bounds. Those constraints are not enforced by the MATLAB/Octave solver. The internal solver reports its projected residual and returns its last bounded iterate at the iteration limit; it does not implement a solver-failure hold. The [coverage review](../docs/COVERAGE_REVIEW.md) distinguishes shared topics from differing numerical protocols.
 
 Neural validation samples are separate from training samples. Random streams and optimization details can differ between Python and MATLAB/Octave; numerical equality of trained weights is not expected. Unit 06's learned forward-model inversion is an illustrative nonlinear extension and its unconstrained generalization outside the training domain is not certified. A SOM is unsupervised and is not evaluated using classification labels.
 

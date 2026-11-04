@@ -200,6 +200,12 @@ The positive gravitational coefficient accelerates a positive angular perturbati
 
 **Worked reasoning.** Use the reduced model for controller synthesis and local sensitivity. Test with a pinned FAST/OpenFAST 5 MW case and documented wind files for loads and fault-tolerant verification. Partial-load energy capture and full-load speed limitation have different objectives. A small rotor-speed error alone does not establish low structural fatigue, acceptable pitch duty, or power quality.
 
+**Task D.** Explain the TS/PDC controller example in Section 4.2 and the information needed to implement it.
+
+**Worked reasoning.** Linearize a stated turbine model at a collection of operating points, express the regulation variables consistently, and check stabilizability before choosing local LQR weights and gains. In parallel distributed compensation (PDC), normalized nonnegative scheduling weights combine the local feedback laws. One explicit operating-point form is `u=sum_i h_i(rho) [u_i_star-K_i(x-x_i_star)]`, with `sum_i h_i=1`; the scheduling variable, state offsets, actuator limits and interpolation region must all be defined. Rigid rotation coordinates that are not regulation targets must be handled deliberately rather than giving an uncontrollable absolute angle an arbitrary penalty.
+
+A local LQR gain stabilizing each linearization does not by itself prove stability of the interpolated nonlinear closed loop. Rate limits, map validity, changing wind and scheduling transitions still need analysis and matched simulations. Reproducing the article's comparison requires its gains, weighting/membership definitions, operating points, rotor map, wind records and high-order validation configuration. The review does not supply that complete numerical package. This collection provides the plant and this architecture exercise, but does not implement the TS/PDC controller or claim the outcomes in Tables 11-12. The cited variants that remove tower/blade dynamics or replace the first-order pitch actuator with a second-order actuator are also not selectable implemented models.
+
 ## 13. Tennessee Eastman (3.13)
 
 [Equipment schematic](figures/13-tennessee-eastman.png) · [Editable SVG](figures/13-tennessee-eastman.svg) · [Diagram gallery](DIAGRAMS.md)

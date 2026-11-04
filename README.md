@@ -20,6 +20,7 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 - [Corrected physical Blending Tank: independent equations, linearization and fresh Simulink generator](blending-tank/README.md)
 - [References and English/Portuguese video lessons](docs/REFERENCES.md)
 - [Execution evidence](docs/VALIDATION.md) and [limitations](docs/LIMITATIONS.md)
+- [Final syllabus, article and language coverage review](docs/COVERAGE_REVIEW.md)
 
 ## Nine connected laboratories
 

@@ -38,6 +38,7 @@ The first command produces deterministic short simulations, balance checks and a
 | 3.12, Eqs. 55–58 | Control-oriented wind turbine | `wind_rhs`, `wind_matrices`, `RotorMap` | Full 9-state reduced model; bundled 2022 ROSCO map is a documented later-map variant |
 | 3.12 | High-order FAST/NREL 5 MW turbine | `run_external`; [external guide](EXTERNAL_MODELS.md) | Requires simulator, turbine files, controller, inflow and case versions; no full aeroelastic results claimed |
 | 3.13 | Tennessee Eastman original and revised simulator | Verified source download; `run_external` | Official original 50-state and revised 52-state versions kept distinct; no simplified replacement |
+| 4.2 | Wind TS/PDC controller example | [Worked architecture exercise](CASE_STUDIES.md#12-reduced-and-aeroelastic-wind-turbines-312) | Local LQR/scheduling architecture discussed; gains, memberships and full closed-loop results not reproduced |
 
 All Python functions live in [benchmarks.py](../python/intelligent_control/benchmarks.py). Model equations are evaluated without clipping states to hide integration failure. Physical domain checks stop inappropriate experiments. Integrator and step size must suit the process; the stiff CSTR/column and discontinuous-friction systems need convergence checks.
 
@@ -56,3 +57,5 @@ All Python functions live in [benchmarks.py](../python/intelligent_control/bench
 Report source version/hash, state/input units, initialization, solver tolerances, sample and hold periods, seeds, disturbances, actuator and state constraints. Split identification trajectories before normalization or feature fitting. Record one-step predictions with measured history separately from free-run predictions with predicted history. Report per-output RMSE, maximum absolute error, R²/VAF where defined, model size, and elapsed time. For control report tracking IAE/RMSE, settling specification, input energy and movement, and all constraint violations. A short synthetic experiment does not demonstrate global stability or industrial safety.
 
 The [external source guide](EXTERNAL_MODELS.md) records what has actually been retrieved and what remains necessary for canonical comparisons.
+
+The [coverage review](../docs/COVERAGE_REVIEW.md) separates the thirteen documented benchmark sections, ten implemented mathematical cores, optional variants and experiments that still require data, source clarification or an external runtime.

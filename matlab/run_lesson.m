@@ -43,7 +43,7 @@ switch unit
   result.t=t; result.y=result.pi.y; result.reference=r;
   assert(abs(result.pi.y(end)-r(end))<.02);
  case 3
-  K=[1 .3;.2 1.2]; RGA=K.*inv(K)';
+  K=[1 .4;.3 1.2]; RGA=K.*inv(K)';
   D=inv(K); assert(norm(K*D-eye(2))<1e-12);
   assert(max(abs(sum(RGA,2)-1))<1e-12);
   result.feedback=closed_loop('pi',t,r,d,a,b,[2 .2 0]);
@@ -59,6 +59,10 @@ switch unit
   end
   result.cascade=struct('y',y,'u',u,'inner_output',v);
   result.gain_matrix=K; result.rga=RGA; result.decoupler=D;
+  % Compare two interacting loops on the same 2x2 plant and reference.
+  % The transform uses applied actuator commands in anti-windup feedback.
+  result.decentralized=multiloop_response(t,K,false);
+  result.decoupled=multiloop_response(t,K,true);
   result.t=t; result.y=result.feedforward.y; result.reference=r;
   assert(all(v>=-eps & v<=1+eps));
  case 4
@@ -76,6 +80,7 @@ switch unit
   result.t=t; result.y=result.siso.y; result.reference=r;
  case 5
   result.sugeno=closed_loop('fuzzy',t,r,d,a,b,[2 .2 0]);
+  result.fuzzy_pi=closed_loop('fuzzy_pi',t,r,d,a,b,[2 .2 0]);
   result.fuzzy_pid=closed_loop('fuzzy_pid',t,r,d,a,b,[2 .2 0]);
   egrid=linspace(-1,1,101); curve=zeros(size(egrid));
   for k=1:numel(curve),curve(k)=mamdani(egrid(k),0);end
@@ -181,6 +186,7 @@ end
 
 function q=closed_loop(mode,t,r,d,a,b,g)
 dt=t(2)-t(1); n=numel(t); y=zeros(n,1); u=y;y(1)=.35; I=.35; olde=0; oldy=.35; deriv=0; up=.35;
+gains=zeros(n,3); derivative_term=zeros(n,1);
 for k=1:n-1
  e=r(k)-y(k); de=(e-olde)/dt; kp=g(1); ki=g(2);
  switch mode
@@ -191,22 +197,47 @@ for k=1:n-1
    raw=I+.5*sugeno(clip(e/.3,-1,1),clip(de/.1,-1,1));
    u(k)=clip(raw,0,1); I=I+dt*(.16*e+.5*(u(k)-raw));
   otherwise
-   if strcmp(mode,'fuzzy_pid')
-    mult=1+.8*abs(sugeno(clip(e/.3,-1,1),clip(de/.1,-1,1)));
-    kp=kp*mult; ki=ki/(1+.5*abs(e)/.3);
+   kd=0; if strcmp(mode,'pid'),kd=g(3);end
+   if strcmp(mode,'fuzzy_pid') || strcmp(mode,'fuzzy_pi')
+    % Three-set zero-order Sugeno schedule, matching the Python error-only
+    % section: singleton consequents [-1,0,1], normalized error e/0.3.
+    mu=membership(clip(e/.3,-1,1)); severity=abs(mu*[-1;0;1]/sum(mu));
+    kp=1.4+1.2*severity; ki=.14+.08*severity;
+    if strcmp(mode,'fuzzy_pid'),kd=.1*severity;end
    end
    ff=0; if strcmp(mode,'feedforward'),ff=-d(k);end
-   deriv=.7*deriv+.3*(y(k)-oldy)/dt;
-   kd=0; if strcmp(mode,'pid'),kd=g(3);end
+   deriv=deriv+dt/(.5+dt)*((y(k)-oldy)/dt-deriv);
+   gains(k,:)=[kp ki kd]; derivative_term(k)=-kd*deriv;
    raw=kp*e+I-kd*deriv+ff; u(k)=clip(raw,0,1);
    I=I+dt*(ki*e+.6*(u(k)-raw));
  end
  y(k+1)=a*y(k)+b*(u(k)+d(k)); olde=e; oldy=y(k);up=u(k);
 end
 u(end)=u(end-1); error=r-y;
+gains(end,:)=gains(end-1,:); derivative_term(end)=derivative_term(end-1);
 q=struct('y',y,'u',u,'iae',trapz(t,abs(error)),'ise',trapz(t,error.^2),...
- 'total_variation',sum(abs(diff(u))));
+ 'total_variation',sum(abs(diff(u))),'gains',gains,'derivative_term',derivative_term);
 assert(all(isfinite(y)) && all(u>=0 & u<=1));
+end
+
+function q=multiloop_response(t,K,decouple)
+% Same gain matrix, initial state, reference and limits for both structures.
+dt=t(2)-t(1); A=diag(exp(-dt./[10 15])); B=(eye(2)-A)*K;
+n=numel(t); y=zeros(n,2); u=zeros(n,2); reference=zeros(n,2);
+x0=K*[.3;.3]; y(1,:)=x0'; target=[.6;.65];
+if decouple,I=x0;else,I=[.3;.3];end
+for k=1:n-1
+ if t(k)<10,rr=x0;else,rr=target;end
+ reference(k,:)=rr'; e=rr-y(k,:)'; v=[1.5;1.5].*e+I;
+ if decouple,requested=K\v;else,requested=v;end
+ applied=clip(requested,0,1); u(k,:)=applied';
+ if decouple,tracked=K*applied;else,tracked=applied;end
+ I=I+dt*([.15;.1].*e+.6*(tracked-v));
+ y(k+1,:)=(A*y(k,:)'+B*applied)';
+end
+u(end,:)=u(end-1,:); reference(end,:)=reference(end-1,:);
+q=struct('states',y,'inputs',u,'reference',reference,...
+ 'iae',trapz(t,abs(reference-y)),'total_variation',sum(abs(diff(u)),1));
 end
 
 function [u,info]=mpc_move(A,B,x,reference,H,Nc,rho,previous,affine)
