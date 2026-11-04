@@ -25,6 +25,7 @@ def notebooks(execute=False):
     records=[]
     paths=sorted((ROOT/'laboratories').glob('*/notebook.ipynb'))
     if (ROOT/'benchmarks/notebook.ipynb').exists():paths.append(ROOT/'benchmarks/notebook.ipynb')
+    if (ROOT/'blending-tank/notebook.ipynb').exists():paths.append(ROOT/'blending-tank/notebook.ipynb')
     for path in paths:
         notebook=nbformat.read(path,as_version=4);nbformat.validate(notebook)
         if execute:

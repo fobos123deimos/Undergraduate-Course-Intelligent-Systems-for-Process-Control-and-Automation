@@ -22,7 +22,7 @@ switch unit
    truth(k+1)=a*truth(k)+b*uv(k);
    pred(k+1)=av*pred(k)+bv*uv(k);
   end
-  % The supplied physical model has variable volume and mass-flow inputs.
+  % The corrected independent physical model uses declared mass-flow inputs.
   p=struct('rho',1000,'w1',500,'w2',200,'wout',700,'x1',0.4,'x2',0.75);
   xeq=(p.w1*p.x1+p.w2*p.x2)/(p.w1+p.w2);
   dx=blending_rhs(0,[xeq;2],p);

@@ -12,6 +12,7 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python tools/run_course.py --all
+      - run: python blending-tank/run_study.py
       - run: python tools/validate.py --notebooks
   octave:
     runs-on: ubuntu-latest

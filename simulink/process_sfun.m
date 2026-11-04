@@ -1,5 +1,5 @@
 function [sys,x0,str,ts] = process_sfun(t,x,u,flag,kind,xinit,parameters)
-%PROCESS_SFUN Level-1 continuous plant wrapper for original equations.
+%PROCESS_SFUN Level-1 continuous adapter for the implemented process equations.
 % Used by build_models; no clipping of physical states is hidden here.
 x0=[];str=[];ts=[];
 switch flag
@@ -10,8 +10,9 @@ switch flag
   sys=simsizes(sizes);x0=xinit(:);ts=[0 0];
  case 1
   if strcmp(kind,'blending')
-   p=struct('rho',parameters.rho,'w1',u(1),'w2',u(2),'wout',u(3),'x1',u(4),'x2',u(5));
-   sys=blending_rhs(t,x,p);
+   % Corrected tank input order: [w1,w2,x1,x2,wout].
+   p=bt_parameters();p.rho=parameters.rho;
+   sys=bt_rhs(t,x,u,p);
   else
    sys=paper_models(kind,x,u,parameters);
   end

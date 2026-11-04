@@ -1,5 +1,7 @@
 # Historical Blending Tank project
 
+**Use the [corrected independent version](../../blending-tank/README.md) for current study and execution.** The files below are an unchanged historical archive. Neither the corrected version nor its generated diagrams load or execute them. The corrected version derives its matrices from an explicitly declared equilibrium, uses deviation coordinates and supplies its own numerical checks.
+
 `Blending_Tank-main/` preserves the six files supplied from the owner's archived project, without changing their bytes. The original archive SHA-256 is `4f5fd03ce9d7d41cd88db429da5bc4b4f086bed40050a45d2bbfa1d9afa305cd`. The adjacent `checksums.json` records each extracted member.
 
 The original README reads **Smart Systems: Blending Tank**. The Simulink models record R2015b and internal dates from 14 to 23 April 2022. Their relationship to the first homework is a chronology-based inference, not an identifier found in the files. Metadata labels are retained unchanged and do not independently establish academic authorship.

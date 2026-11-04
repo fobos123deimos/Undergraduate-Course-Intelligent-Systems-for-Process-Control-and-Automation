@@ -17,6 +17,7 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 - [Course guide, prerequisites and complete syllabus mapping](course/README.md)
 - [Integrated problems and worked solutions](problem-sets/README.md)
 - [All article benchmarks: models, protocols and evidence boundaries](benchmarks/README.md)
+- [Corrected physical Blending Tank: independent equations, linearization and fresh Simulink generator](blending-tank/README.md)
 - [Original Blending Tank archive and mathematical review](legacy/blending-tank/README.md)
 - [References and English/Portuguese video lessons](docs/REFERENCES.md)
 - [Execution evidence](docs/VALIDATION.md) and [limitations](docs/LIMITATIONS.md)
@@ -75,6 +76,7 @@ python/intelligent_control/  inspectable methods, experiments and benchmarks
 matlab/                 MATLAB/Octave implementations
 simulink/               model-building scripts
 benchmarks/             paper inventory, protocols and external-source interfaces
+blending-tank/          corrected independent physical tank, notebook and evidence
 legacy/blending-tank/   preserved user code and review
 docs/                   references, scope and validation evidence
 tools/                  experiment, notebook and validation commands

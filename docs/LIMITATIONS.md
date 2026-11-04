@@ -26,6 +26,8 @@ The sensor chain permits recovery. Making the fault state absorbing is an explic
 
 ## Article models and software environments
 
+The separate [corrected physical Blending Tank](../blending-tank/README.md) uses an explicitly chosen density of 1000 kg/m³, mass-flow units and a 2 m³ reference volume. Its 700 kg/min outlet case defines equilibrium; its 650 kg/min outlet case fills the vessel. It does not use the archived implementation or its rounded matrices. The finite-volume guard prevents evaluation through an empty tank, but no upper vessel capacity or physical protection system is modeled. Numerical Python/Octave checks and actual Simulink execution are recorded separately.
+
 Read the [benchmark inventory](../benchmarks/README.md) before interpreting a result as reproduction of a published benchmark. Missing measured data, unprovided valve laws, rotor maps, implementation variants and inaccessible plant distributions are material scientific limitations. A closure supplied for teaching is labeled separately from the paper equations.
 
 MATLAB, GNU Octave, Simulink and Python are different execution environments. Shared model equations do not imply bitwise numerical agreement. The [validation record](VALIDATION.md) states which environments were actually exercised.

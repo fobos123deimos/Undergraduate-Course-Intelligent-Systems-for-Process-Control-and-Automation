@@ -1,0 +1,250 @@
+{
+  "scope": "Fresh physical implementation based on conservation laws. No legacy source or saved model is executed.",
+  "units": {
+    "time": "min",
+    "volume": "m3",
+    "mass_flow": "kg/min",
+    "density": "kg/m3",
+    "mass_fraction": "dimensionless"
+  },
+  "state_order": [
+    "X",
+    "V"
+  ],
+  "input_order": [
+    "w1",
+    "w2",
+    "x1",
+    "x2",
+    "wout"
+  ],
+  "density_kg_per_m3": 1000.0,
+  "density_provenance": "Explicit study assumption; not recovered from the old rounded matrices.",
+  "model": {
+    "x_eq": [
+      0.5,
+      2.0
+    ],
+    "u_eq": [
+      500.0,
+      200.0,
+      0.4,
+      0.75,
+      700.0
+    ],
+    "A": [
+      [
+        -0.35000000000000003,
+        -3.552713678800501e-18
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "B": [
+      [
+        -4.999999999999999e-05,
+        0.000125,
+        0.25,
+        0.1,
+        0.0
+      ],
+      [
+        0.001,
+        0.001,
+        0.0,
+        0.0,
+        -0.001
+      ]
+    ],
+    "C": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "D": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "rho": 1000.0,
+    "state_order": [
+      "X",
+      "V"
+    ],
+    "input_order": [
+      "w1",
+      "w2",
+      "x1",
+      "x2",
+      "wout"
+    ]
+  },
+  "transfer_functions": {
+    "X/w1": {
+      "numerator": [
+        -4.999999999999999e-05
+      ],
+      "denominator": [
+        1.0,
+        0.35000000000000003
+      ]
+    },
+    "X/w2": {
+      "numerator": [
+        0.000125
+      ],
+      "denominator": [
+        1.0,
+        0.35000000000000003
+      ]
+    },
+    "X/x1": {
+      "numerator": [
+        0.25
+      ],
+      "denominator": [
+        1.0,
+        0.35000000000000003
+      ]
+    },
+    "X/x2": {
+      "numerator": [
+        0.1
+      ],
+      "denominator": [
+        1.0,
+        0.35000000000000003
+      ]
+    },
+    "X/wout": {
+      "numerator": [
+        0.0
+      ],
+      "denominator": [
+        1.0
+      ]
+    },
+    "V/w1": {
+      "numerator": [
+        0.001
+      ],
+      "denominator": [
+        1.0,
+        0.0
+      ]
+    },
+    "V/w2": {
+      "numerator": [
+        0.001
+      ],
+      "denominator": [
+        1.0,
+        0.0
+      ]
+    },
+    "V/x1": {
+      "numerator": [
+        0.0
+      ],
+      "denominator": [
+        1.0
+      ]
+    },
+    "V/x2": {
+      "numerator": [
+        0.0
+      ],
+      "denominator": [
+        1.0
+      ]
+    },
+    "V/wout": {
+      "numerator": [
+        -0.001
+      ],
+      "denominator": [
+        1.0,
+        0.0
+      ]
+    }
+  },
+  "scenarios": {
+    "balanced_startup": {
+      "initial_state": [
+        0.0,
+        2.0
+      ],
+      "constant_input": [
+        500.0,
+        200.0,
+        0.4,
+        0.75,
+        700.0
+      ],
+      "final_state": [
+        0.4999862317753249,
+        2.0
+      ],
+      "max_concentration_error_vs_closed_form": 3.319566843629218e-14,
+      "max_volume_error_vs_closed_form_m3": 0.0,
+      "solute_balance_final_residual_kg": -1.1368683772161603e-13
+    },
+    "filling_outlet_650": {
+      "initial_state": [
+        0.0,
+        2.0
+      ],
+      "constant_input": [
+        500.0,
+        200.0,
+        0.4,
+        0.75,
+        650.0
+      ],
+      "final_state": [
+        0.499802103860259,
+        3.5000000000000036
+      ],
+      "max_concentration_error_vs_closed_form": 2.8976820942716586e-14,
+      "max_volume_error_vs_closed_form_m3": 5.773159728050814e-15,
+      "solute_balance_final_residual_kg": 1.3642420526593924e-12
+    },
+    "local_flow_step": {
+      "initial_state": [
+        0.5,
+        2.0
+      ],
+      "step_time_min": 5.0,
+      "w1_step_kg_per_min": 10.0,
+      "max_concentration_linearization_error": 2.1198736522898276e-05,
+      "max_volume_linearization_error_m3": 3.1086244689504383e-15,
+      "final_nonlinear_state": [
+        0.49859187808120004,
+        2.250000000000001
+      ],
+      "final_linear_state": [
+        0.49857165494475014,
+        2.25
+      ]
+    }
+  },
+  "limits": "Ideal mixing and constant density. Equilibrium linear models are local and use deviations. The 650 kg/min outlet case fills the tank and has no constant-volume equilibrium. No vessel-capacity model or physical-plant validation is implied."
+}

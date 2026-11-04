@@ -1,5 +1,7 @@
 # MATLAB and GNU Octave laboratories
 
+The [corrected physical Blending Tank](../blending-tank/README.md) is available separately through `run_blending_tank(true)` and `validate_blending_tank`. Its new `bt_*` functions declare units, operating points, deviation models and transfer channels explicitly. `blending_rhs` is now a compatibility adapter to that implementation. No archived project file is executed. The physical tank validation also runs inside `validate_all`.
+
 The nine laboratories run without add-on toolboxes. The implementation includes its own box-constrained quadratic MPC solver, fuzzy inference, neural training, genetic search, Markov-chain analysis and categorical hidden Markov models. Run from the repository root:
 
 ```matlab
