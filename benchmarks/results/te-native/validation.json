@@ -3,7 +3,7 @@
   "status": "passed",
   "nominal": {
     "model": "official revised 2015 Tennessee Eastman",
-    "continuous_states": 52,
+    "continuous_states": 50,
     "operating_mode": 1,
     "disturbance_from_start": 0,
     "seed": 17,
@@ -35,7 +35,7 @@
   "disturbance_cases": [
     {
       "model": "official revised 2015 Tennessee Eastman",
-      "continuous_states": 52,
+      "continuous_states": 50,
       "operating_mode": 1,
       "disturbance_from_start": 1,
       "seed": 17,
@@ -67,7 +67,7 @@
     },
     {
       "model": "official revised 2015 Tennessee Eastman",
-      "continuous_states": 52,
+      "continuous_states": 50,
       "operating_mode": 1,
       "disturbance_from_start": 4,
       "seed": 17,
@@ -96,6 +96,27 @@
       "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
       "scope": "Short integration and disturbance test; not all six modes or full challenge performance",
       "max_scaled_difference_from_nominal": 0.017422959600414289
+    }
+  ],
+  "editorial_corrections": [
+    {
+      "date": "2026-11-05",
+      "field": "continuous_states in nominal and both disturbance_cases",
+      "previous_value": 52,
+      "corrected_value": 50,
+      "basis": "Executable plant NX declaration, initial-state length and S-function state registration; excludes external controller states",
+      "source_file": "temexd_mod.c",
+      "source_c_sha256": "eff57b75700e7472005785150c21f82b0c3d178ebceebe37e532794f23785aba",
+      "source_lines": {
+        "inconsistent_parameter_comment": 145,
+        "state_inventory": 181,
+        "NX_declaration": 845,
+        "initial_state_parameter_length": 1107,
+        "continuous_state_registration": 1171,
+        "derivative_array_length": 1268
+      },
+      "scope": "Source inspection and metadata correction only; no new execution. Original dates, source hashes, numerical results and CSV trajectories are unchanged.",
+      "audit": "../../TE_STATE_COUNT_AUDIT.md"
     }
   ],
   "limitations": "Three short mode1 integration checks; no complete six-mode or long-horizon benchmark claim"

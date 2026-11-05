@@ -1,0 +1,64 @@
+\documentclass[tikz,border=6pt]{standalone}
+\input{common.tex}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\atlasheader{Automotive throttle: actuation and identification}{3.4}{Electro-mechanical throttle}
+\node[anchor=west,font=\sffamily\bfseries] at (.2,-2) {Physical chain: PWM drive, DC motor, gear box, spring and throttle plate};
+% Electrical drive and motor cutaway.
+\node[box,minimum width=3.4cm,minimum height=1.5cm] (pwm) at (2.1,-4.8) {PWM power stage\\$u(k)$: duty cycle [\%]};
+\draw[signal] (.3,-3.1)--(2.1,-3.1)--(pwm.north);
+\node[annotation,anchor=west] at (.3,-2.85) {benchmark input};
+\filldraw[equipment] (4.4,-4) rectangle (7.5,-5.7);
+\filldraw[draw=ink,fill=white,line width=.8pt] (4.9,-4.25) rectangle (6.9,-5.45);
+\draw[ink,line width=1pt] (5.25,-4.45)--(6.55,-4.45)--(6.55,-5.25)--(5.25,-5.25)--cycle;
+\foreach \x in {5.35,5.65,5.95,6.25}{\draw[flow,line width=.7pt] (\x,-4.45)--(\x+.2,-5.25);}
+\draw[ink,line width=2pt] (6.8,-4.85)--(8.3,-4.85);
+\draw[process] (pwm.east)--(4.35,-4.8);
+\node[annotation,anchor=north] at (5.95,-5.95) {DC motor\\electromagnetic torque};
+% Mechanical gearing, drawn as wheels with teeth.
+\filldraw[equipment] (7.9,-3.7) rectangle (11.3,-7.25);
+\foreach \a in {0,30,...,330}{\draw[ink,line width=3pt] ($(8.85,-4.85)+(\a:.48)$)--($(8.85,-4.85)+(\a:.68)$);}
+\filldraw[draw=ink,fill=white,line width=1pt] (8.85,-4.85) circle (.5);
+\fill[ink] (8.85,-4.85) circle (.09);
+\foreach \a in {0,20,...,340}{\draw[ink,line width=3pt] ($(9.9,-6.1)+(\a:.85)$)--($(9.9,-6.1)+(\a:1.02)$);}
+\filldraw[draw=ink,fill=white,line width=1pt] (9.9,-6.1) circle (.86);
+\fill[ink] (9.9,-6.1) circle (.12);
+\draw[ink,line width=1pt] (9.25,-6.1)--(10.55,-6.1) (9.9,-5.45)--(9.9,-6.75);
+\node[annotation,anchor=north] at (9.6,-7.45) {gear box\\shaft-speed / torque conversion};
+\draw[ink,line width=2.4pt] (9.9,-6.1)--(14.2,-6.1);
+% Air passage and butterfly plate, oblique section.
+\fill[flow!5] (12.6,-4.35) rectangle (19.6,-7.9);
+\draw[ink,line width=2pt] (12.6,-4.35)--(19.6,-4.35) (12.6,-7.9)--(19.6,-7.9);
+\foreach \x in {12.6,19.6}{\draw[ink,line width=.8pt] (\x,-4.1)--(\x,-4.65) (\x,-7.6)--(\x,-8.15);}
+\draw[flow!45,densely dashed] (12.6,-6.1)--(19.6,-6.1);
+\draw[ink,line width=9pt] (15.05,-7.5)--(16.95,-4.7);
+\draw[white,line width=4pt] (15.05,-7.5)--(16.95,-4.7);
+\filldraw[draw=ink,fill=white,line width=1pt] (16,-6.1) circle (.2);
+\draw[ink,line width=2.4pt] (11.3,-6.1)--(15.8,-6.1);
+\node[labelbox,anchor=south] at (13.65,-5.95) {projected shaft};
+\draw[process] (12.9,-5.15)--(14.9,-5.15);
+\draw[process] (17.3,-7.1)--(19.2,-7.1);
+\node[labelbox,anchor=south] at (18.4,-4.25) {air passage};
+\draw[control,-{Latex[length=2mm]},line width=.9pt] (16,-4.9) arc[start angle=90,end angle=55.8,radius=1.2];
+\draw[ink!35,densely dashed] (16,-6.1)--(16,-4.65);
+\node[labelbox] at (16.8,-4.05) {$\varphi(k)$};
+\node[annotation,anchor=north,align=center,text width=3.2cm] at (14.25,-8.2) {butterfly plate and shaft\\variable opening};
+% Return spring on output shaft; mechanical attachment to housing.
+\draw[ink,line width=1pt] (12.15,-6.1)--(12.15,-9.2);
+\draw[ink,decorate,decoration={coil,aspect=.65,segment length=4pt,amplitude=4pt}] (12.15,-9.2)--(15.1,-9.2);
+\draw[ink,line width=1pt] (15.1,-9.2)--(15.1,-9.65);
+\fill[pattern=north east lines,pattern color=ink!35] (14.55,-9.65) rectangle (15.65,-9.85);
+\node[annotation,anchor=north] at (13.7,-10) {return spring\\restoring torque};
+\node[instrument] (sensor) at (18.1,-10) {$\varphi$};
+\draw[signal] (16,-6.35)--(16,-9.2)--(sensor.west);
+\node[annotation,anchor=north,align=center] at (18.1,-10.65) {potentiometer\\angle measurement [deg]};
+\node[panel,anchor=north west,text width=5cm,align=left] (acq) at (20.55,-3.2) {\textbf{Acquisition}\\Sample interval: $T_0=10$ ms.\\[7pt]Input: PWM duty [\%].\\Output: angle [deg].\\[7pt]Published plate range:\\$10^\circ$ closed to $90^\circ$ open.};
+\draw[signal] (sensor.east)--(20,-10)--(20,-6)--(20.55,-6);
+\node[panel,anchor=north west,text width=5cm,align=left] at (20.55,-7.7) {\textbf{Identification challenge}\\Friction, nonlinear spring and mechanical compliance can change the input--output response.\\[5pt]No calibrated internal parameters are inferred here.};
+\node[annotation,anchor=west,text width=9.5cm] at (.3,-9.35) {Solid blue arrows: electrical actuation or airflow.\\Dark shafts: mechanical power transmission.\\Dashed arrows: sampled command / measurement.};
+\node[panel,anchor=north west,text width=8cm,minimum height=2.5cm,align=left] at (.2,-12.7) {\textbf{Training experiment}\\Multisine excitation; $N=10\,000$.\\Fit dynamic models using the training record only. Keep measured duty and angle in their stated units.};
+\node[panel,anchor=north west,text width=8cm,minimum height=2.5cm,align=left] at (9,-12.7) {\textbf{Independent validation}\\Quasi-APRBS excitation; $N=2\,500$.\\Evaluate one-step and free-run prediction separately; report errors, residuals and model complexity.};
+\node[panel,anchor=north west,text width=6.7cm,minimum height=2.5cm,align=left] at (18,-12.7) {\textbf{Repository evidence}\\PWA/TS-inspired educational routines are available. Original measured time series have not been recovered; fixtures are synthetic.};
+\atlasfooter{Technology diagram, not a calibrated physical throttle model or an engineering assembly drawing. Gear ratio, electrical constants, spring law and friction map are intentionally unspecified. See THROTTLE\_RECOVERY.md for the data-access record.}
+\end{tikzpicture}
+\end{document}

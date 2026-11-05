@@ -1,54 +1,203 @@
 {
   "intelligent_control": [
-    {"source":"benchmarks/results/benchmark_overview.png","caption":"Six synthetic nonlinear model checks, with physical axes and declared operating conditions."},
-    {"source":"course/figures/learning/unit-08.png","caption":"The evidence chain: assumptions, matched scenarios, constraints and interpretation."}
+    {
+      "source": "benchmarks/figures/tikz/13-tennessee-eastman.png",
+      "caption": "Tennessee Eastman process control problem — original article section 3.13. Detailed TikZ flowsheet with numbered streams, utilities, valves and signal groups. Explore the complete thirteen-section atlas from the navigation menu.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/results/benchmark_overview.png",
+      "caption": "Six synthetic nonlinear model checks, with physical axes and declared operating conditions."
+    },
+    {
+      "source": "course/figures/learning/unit-08.png",
+      "caption": "The evidence chain: assumptions, matched scenarios, constraints and interpretation."
+    }
   ],
   "intelligent_control.benchmark_learning": [
-    {"source":"benchmarks/learning/figures/column_a.png","caption":"Column A through nine learning stages. Control panels use a fitted scalar predictor; they are not full nonlinear column control.","link":"https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/learning/README.md"},
-    {"source":"benchmarks/learning/figures/gasifier.png","caption":"ALSTOM: archived native trace, chronological output forecast and separately injected sensor modes. No simulator rerun."}
+    {
+      "source": "benchmarks/learning/figures/column_a.png",
+      "caption": "Column A through nine learning stages. Control panels use a fitted scalar predictor; they are not full nonlinear column control.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/learning/README.md"
+    },
+    {
+      "source": "benchmarks/learning/figures/gasifier.png",
+      "caption": "ALSTOM: archived native trace, chronological output forecast and separately injected sensor modes. No simulator rerun."
+    }
   ],
   "intelligent_control.benchmarks": [
-    {"source":"benchmarks/figures/03-pendulum.png","caption":"Cart and pendulum: forces, upright convention and observable states."},
-    {"source":"benchmarks/figures/07-three-tanks.png","caption":"Three tanks: coupled liquid flows and explicitly declared drain configuration."},
-    {"source":"benchmarks/figures/09-cstr.png","caption":"CSTR: reaction, feed and coolant energy paths."},
-    {"source":"benchmarks/figures/10-column-a.png","caption":"Column A: material flows, reflux, boilup and end-vessel levels."},
-    {"source":"benchmarks/figures/13-tennessee-eastman.png","caption":"Tennessee Eastman: external process architecture; native simulator evidence remains separate."}
+    {
+      "source": "benchmarks/figures/tikz/01-artificial.png",
+      "caption": "Section 3.1 — Artificial system identification problems. Exact SISO and two-output recurrences, delay memory, excitation and independent evaluation. This family contains two implemented examples, not a physical vessel.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/02-datasets.png",
+      "caption": "Section 3.2 — Data repositories for system identification and regression. The seven data resources named in the survey and the provenance, split and import contract. This is a resource category, not a plant model.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/03-pendulum.png",
+      "caption": "Section 3.3 — Cart with inverted pendulum. Cart, applied force, angular convention, sensors, mechanical coupling and the four-state implementation.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/04-throttle.png",
+      "caption": "Section 3.4 — Electro-mechanical throttle. Duty-cycle command, motor, transmission, spring, throttle plate and angle measurement. Original measured training/test records remain unavailable; a physical diagram does not replace them.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/05-pneumatic.png",
+      "caption": "Section 3.5 — Servo-pneumatic actuator. Vertical actuator, payload gravity, chambers, valve paths, gas mass/energy states and derived pressures. The literal survey transcription and the separate physical interpretation remain distinct.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/06-hydrostatic.png",
+      "caption": "Section 3.6 — Hydrostatic transmission in mobile working machines. Pump/motor, closed hydraulic loop, displacement commands, pressure storage, losses and mechanical load. The SI interpretation states its units and assumptions; historical calibration is still unresolved.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/07-three-tanks.png",
+      "caption": "Section 3.7 — Three-tank-system. The physical T1-T3-T2 order, signed inter-tank flows, nominal closed drains, pumps and level measurements.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/08-bioreactor.png",
+      "caption": "Section 3.8 — Continuously operated bio-chemical reactor. Mixing, dilution, equal feed/outlet flows, growth/conversion states and sampled command path.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/09-cstr.png",
+      "caption": "Section 3.9 — Continuously stirred chemical reactor. Jacketed vessel, desired and undesired reaction paths, concentration/temperature states and separate dilution/cooling inputs, retaining the audited Celsius convention.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/10-column-a.png",
+      "caption": "Section 3.10 — Continuously operated binary distillation column. 41 stages and 82 states, feed at stage 21, condenser/reboiler, reflux/boilup, products and inventory loops. The 4-input plant and 2-input LV interpretation are explicitly distinguished.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/11-gasifier.png",
+      "caption": "Section 3.11 — ALSTOM Gasifier Control Benchmark II. The five commanded mass flows, four outputs, two disturbances and fixed limestone/coal ratio. A qualitative vessel supports the documented control interface, without inventing proprietary internal hardware.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/12-wind-turbine.png",
+      "caption": "Section 3.12 — Wind turbine. Rotor, blades, tower, drivetrain, generator, pitch actuator and nine reduced states. The reduced model, later ROSCO aerodynamic map and full aeroelastic simulator remain identified as different variants.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/13-tennessee-eastman.png",
+      "caption": "Section 3.13 — Tennessee Eastman process control problem. Five process units, 11 numbered process streams, compressor bypass, purge, cooling and steam utilities, valves and measurement groups. The companion sheet maps all 12 manipulated variables and 41 standard measurements. The archived native C implementation defines 50 states; its inconsistent 52-state introductory comment is documented in the state-count audit.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/figures/tikz/13b-tennessee-eastman-signals.png",
+      "caption": "Tennessee Eastman process control problem — all 12 manipulated and 41 measured variables, units, analyzer groups and version boundaries.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/tikz/13b-tennessee-eastman-signals.tex"
+    }
   ],
   "intelligent_control.experiments": [
-    {"source":"course/figures/learning/unit-01.png","caption":"Unit 1: physical balance, excitation, training and held-out validation."},
-    {"source":"course/figures/learning/unit-02.png","caption":"Unit 2: feedback, saturation and integral memory."},
-    {"source":"course/figures/learning/unit-03.png","caption":"Unit 3: distinct information paths in feedback, feedforward and cascade."},
-    {"source":"course/figures/learning/unit-04.png","caption":"Unit 4: prediction horizon, optimized moves and receding-horizon execution."},
-    {"source":"course/figures/learning/unit-05.png","caption":"Unit 5: fuzzy memberships, inference and control action."},
-    {"source":"course/figures/learning/unit-06.png","caption":"Unit 6: training-only normalization and separate neural evaluation."},
-    {"source":"course/figures/learning/unit-07.png","caption":"Unit 7: evolutionary search and an independent evaluation stage."},
-    {"source":"course/figures/learning/unit-08.png","caption":"Unit 8: uncertainty, matched information and evidence boundaries."},
-    {"source":"course/figures/learning/unit-09.png","caption":"Unit 9: hidden modes and the distinction between causal and retrospective inference."}
+    {
+      "source": "course/figures/learning/unit-01.png",
+      "caption": "Unit 1: physical balance, excitation, training and held-out validation."
+    },
+    {
+      "source": "course/figures/learning/unit-02.png",
+      "caption": "Unit 2: feedback, saturation and integral memory."
+    },
+    {
+      "source": "course/figures/learning/unit-03.png",
+      "caption": "Unit 3: distinct information paths in feedback, feedforward and cascade."
+    },
+    {
+      "source": "course/figures/learning/unit-04.png",
+      "caption": "Unit 4: prediction horizon, optimized moves and receding-horizon execution."
+    },
+    {
+      "source": "course/figures/learning/unit-05.png",
+      "caption": "Unit 5: fuzzy memberships, inference and control action."
+    },
+    {
+      "source": "course/figures/learning/unit-06.png",
+      "caption": "Unit 6: training-only normalization and separate neural evaluation."
+    },
+    {
+      "source": "course/figures/learning/unit-07.png",
+      "caption": "Unit 7: evolutionary search and an independent evaluation stage."
+    },
+    {
+      "source": "course/figures/learning/unit-08.png",
+      "caption": "Unit 8: uncertainty, matched information and evidence boundaries."
+    },
+    {
+      "source": "course/figures/learning/unit-09.png",
+      "caption": "Unit 9: hidden modes and the distinction between causal and retrospective inference."
+    }
   ],
   "intelligent_control.methods": [
-    {"source":"course/figures/learning/unit-04.png","caption":"MPC information flow and horizon conventions used by the course implementation."},
-    {"source":"laboratories/05-expert-fuzzy-control/results/comparison.png","caption":"Computed synthetic controller comparison; these curves do not establish industrial performance."}
+    {
+      "source": "course/figures/learning/unit-04.png",
+      "caption": "MPC information flow and horizon conventions used by the course implementation."
+    },
+    {
+      "source": "laboratories/05-expert-fuzzy-control/results/comparison.png",
+      "caption": "Computed synthetic controller comparison; these curves do not establish industrial performance."
+    }
   ],
   "intelligent_control.markov": [
-    {"source":"course/figures/learning/unit-09.png","caption":"Hidden modes, emissions and the observation boundary of a causal filter."}
+    {
+      "source": "course/figures/learning/unit-09.png",
+      "caption": "Hidden modes, emissions and the observation boundary of a causal filter."
+    }
   ],
   "intelligent_control.markov_lab": [
-    {"source":"laboratories/09-markov-hidden-state-diagnosis/results/diagnosis.png","caption":"Computed sensor diagnosis on the independent synthetic evaluation record."},
-    {"source":"benchmarks/learning/figures/unit-09.png","caption":"The same explicitly synthetic sensor-mode experiment mapped onto each benchmark output scale; not apparatus-specific fault calibration."}
+    {
+      "source": "laboratories/09-markov-hidden-state-diagnosis/results/diagnosis.png",
+      "caption": "Computed sensor diagnosis on the independent synthetic evaluation record."
+    },
+    {
+      "source": "benchmarks/learning/figures/unit-09.png",
+      "caption": "The same explicitly synthetic sensor-mode experiment mapped onto each benchmark output scale; not apparatus-specific fault calibration."
+    }
   ],
   "intelligent_control.physical_blending": [
-    {"source":"blending-tank/results/comparison.png","caption":"Conservative physical tank: nonlinear, linearized and variable-volume comparisons."}
+    {
+      "source": "blending-tank/results/comparison.png",
+      "caption": "Conservative physical tank: nonlinear, linearized and variable-volume comparisons."
+    }
   ],
   "intelligent_control.pneumatic_physical": [
-    {"source":"benchmarks/figures/05-pneumatic.png","caption":"Cylinder chambers, pressures, moving mass and valve paths."},
-    {"source":"benchmarks/results/pneumatic_physical.png","caption":"Separate six-state mass/energy interpretation with explicit assumed valve parameters."}
+    {
+      "source": "benchmarks/figures/tikz/05-pneumatic.png",
+      "caption": "Section 3.5 — Servo-pneumatic actuator. Vertical actuator, payload gravity, chambers, valve paths, gas mass/energy states and derived pressures. The literal survey transcription and the separate physical interpretation remain distinct.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/results/pneumatic_physical.png",
+      "caption": "Separate six-state mass/energy interpretation with explicit assumed valve parameters."
+    }
   ],
   "intelligent_control.hydrostatic_si": [
-    {"source":"benchmarks/figures/06-hydrostatic.png","caption":"Hydrostatic transmission: pump, motor, hydraulic storage and mechanical load."},
-    {"source":"benchmarks/results/hydrostatic-si/simulation.png","caption":"SI interpretation with explicit displacement/capacitance conventions; source calibration remains unresolved."}
+    {
+      "source": "benchmarks/figures/tikz/06-hydrostatic.png",
+      "caption": "Section 3.6 — Hydrostatic transmission in mobile working machines. Pump/motor, closed hydraulic loop, displacement commands, pressure storage, losses and mechanical load. The SI interpretation states its units and assumptions; historical calibration is still unresolved.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/results/hydrostatic-si/simulation.png",
+      "caption": "SI interpretation with explicit displacement/capacitance conventions; source calibration remains unresolved."
+    }
   ],
   "intelligent_control.wind_control": [
-    {"source":"benchmarks/figures/12-wind-turbine.png","caption":"Rotor, shaft, generator and pitch paths in the reduced turbine model."},
-    {"source":"benchmarks/results/wind_control.png","caption":"Computed local-LQR and scheduled-PDC comparison on the nonlinear reduced plant; later ROSCO map variant."}
+    {
+      "source": "benchmarks/figures/tikz/12-wind-turbine.png",
+      "caption": "Section 3.12 — Wind turbine. Rotor, blades, tower, drivetrain, generator, pitch actuator and nine reduced states. The reduced model, later ROSCO aerodynamic map and full aeroelastic simulator remain identified as different variants.",
+      "link": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/blob/main/benchmarks/DIAGRAMS.md"
+    },
+    {
+      "source": "benchmarks/results/wind_control.png",
+      "caption": "Computed local-LQR and scheduled-PDC comparison on the nonlinear reduced plant; later ROSCO map variant."
+    }
   ]
 }

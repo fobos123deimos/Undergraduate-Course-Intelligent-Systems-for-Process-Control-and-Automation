@@ -1,0 +1,102 @@
+{
+  "status": "passed",
+  "checks": {
+    "markdown_files": 92,
+    "notebooks": 11,
+    "markdown_cells": 74,
+    "display_math": 28,
+    "inline_math": 581,
+    "notebook_images": 32
+  },
+  "notebooks": [
+    {
+      "path": "laboratories/01-modeling-identification/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 3,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0
+    },
+    {
+      "path": "laboratories/02-feedback-imc/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 3,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0
+    },
+    {
+      "path": "laboratories/03-control-structures/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 3,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0
+    },
+    {
+      "path": "laboratories/04-model-predictive-control/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 3,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0
+    },
+    {
+      "path": "laboratories/05-expert-fuzzy-control/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 3,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0
+    },
+    {
+      "path": "laboratories/06-neural-identification-control/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 3,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0
+    },
+    {
+      "path": "laboratories/07-evolutionary-tuning/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 3,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0
+    },
+    {
+      "path": "laboratories/08-integrated-validation/notebook.ipynb",
+      "markdown_cells": 6,
+      "images": 3,
+      "code_cells": 3,
+      "code_cells_with_outputs": 3,
+      "error_outputs": 0
+    },
+    {
+      "path": "laboratories/09-markov-hidden-state-diagnosis/notebook.ipynb",
+      "markdown_cells": 9,
+      "images": 3,
+      "code_cells": 6,
+      "code_cells_with_outputs": 6,
+      "error_outputs": 0
+    },
+    {
+      "path": "benchmarks/notebook.ipynb",
+      "markdown_cells": 9,
+      "images": 4,
+      "code_cells": 7,
+      "code_cells_with_outputs": 7,
+      "error_outputs": 0
+    },
+    {
+      "path": "blending-tank/notebook.ipynb",
+      "markdown_cells": 8,
+      "images": 1,
+      "code_cells": 6,
+      "code_cells_with_outputs": 6,
+      "error_outputs": 0
+    }
+  ],
+  "scope": "Delimiter, grouping, environment, absolute-link and notebook-HTML checks. Actual formula/layout rendering additionally requires browser visual inspection; this check is not a MathJax or KaTeX engine."
+}

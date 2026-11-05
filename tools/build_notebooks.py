@@ -98,6 +98,11 @@ def visual_section(unit):
 
 def article_section(unit):
     return (f"## Apply this unit to the article benchmarks\n\n"
+            "[Original article names and detailed TikZ atlas](../../benchmarks/DIAGRAMS.md) · "
+            "[Download the vector atlas](../../benchmarks/figures/tikz/benchmark-atlas.pdf)\n\n"
+            "![Tennessee Eastman process control problem — article section 3.13](../../benchmarks/figures/tikz/13-tennessee-eastman.png)\n\n"
+            "The atlas identifies every benchmark by its original paper name and repository alias, with equipment, states and signals. "
+            "The Tennessee Eastman companion plate maps the 12 commands and 41 measurements.\n\n"
             f"[Worked benchmark study for Unit {unit:02d}](../../benchmarks/learning/unit-{unit:02d}.md)\n\n"
             f"![Unit {unit:02d} benchmark study](../../benchmarks/learning/figures/unit-{unit:02d}.png)\n\n"
             "Read the per-model method, chosen signals, numerical results and interpretation in the linked study. "

@@ -14,6 +14,7 @@ Course context: **Sistemas Inteligentes em Controle e Automação de Processos**
 
 ## Start here
 
+- [Detailed TikZ benchmark atlas and original article names](benchmarks/DIAGRAMS.md) · [14-page vector PDF](benchmarks/figures/tikz/benchmark-atlas.pdf) · [Editable TikZ](benchmarks/tikz/)
 - [Online Python API reference](https://fobos123deimos.github.io/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/) · [Versioned HTML](docs/api/index.html) · [Build/preview guide](docs/API_DOCUMENTATION.md)
 - [Course guide, prerequisites and complete syllabus mapping](course/README.md)
 - [Integrated problems and worked solutions](problem-sets/README.md)

@@ -1,8 +1,12 @@
 # Artificial MIMO: nine-stage worked study
 
+Original article name: **Artificial system identification problems**, section **3.1**. [Detailed TikZ plate](../../figures/tikz/01-artificial.pdf) · [Editable source](../../tikz/01-artificial.tex) · [Original-name index](../../DIAGRAMS.md).
+
 Article section **3.1 / Eq. 31**. Both outputs retained; u2 is an independently excited omitted input in the scalar fit.
 
 The selected channel is **u1 (dimensionless) → y1 (dimensionless)**, with time in **sample**. All generated records are synthetic. A first-order predictor omits other states and possible channel interactions; its control exercise must not be mistaken for full-plant validation.
+
+![Detailed benchmark equipment and physical channels](../../figures/tikz/01-artificial.png)
 
 ![Computed nine-stage results](../figures/artificial_mimo.png)
 

@@ -10,6 +10,7 @@ assert(isscalar(fault)&&fault==fix(fault)&&fault>=0&&fault<=28);
 source_directory=char(java.io.File(source_directory).getCanonicalPath());
 output_csv=char(java.io.File(output_csv).getCanonicalPath());
 assert(isfile(fullfile(source_directory,'temexd_mod.c')),'Fetch te-revised first');
+plant_state_count=parse_plant_state_count(fileread(fullfile(source_directory,'temexd_mod.c')));
 assert(~isfile(output_csv),'Choose a new output file to avoid stale results');
 model='MultiLoop_mode1';assert(~bdIsLoaded(model),'Close the existing TE model first');
 run_directory=tempname;mkdir(run_directory);files=dir(source_directory);
@@ -56,7 +57,8 @@ folder=fileparts(output_csv);if ~isfolder(folder),mkdir(folder);end
 names=[{'time_h'},arrayfun(@(k)sprintf('xmeas_%02d',k),1:41,'UniformOutput',false),...
  arrayfun(@(k)sprintf('xmv_%02d',k),1:12,'UniformOutput',false)];
 writetable(array2table([t,y,u],'VariableNames',names),output_csv);
-report=struct('model','official revised 2015 Tennessee Eastman','continuous_states',52,...
+report=struct('model','official revised 2015 Tennessee Eastman','continuous_states',plant_state_count,...
+ 'state_count_basis','Plant S-function NX declaration and ssSetNumContStates(S,NX); excludes external controller states',...
  'operating_mode',1,'disturbance_from_start',fault,'seed',seed,'measurement_noise',noise,...
  'duration_h',duration,'sample_count',numel(t),'outputs',41,'manipulated_variables',12,...
  'solver','ode45','relative_tolerance',1e-7,'absolute_tolerance',1e-9,'max_step_h',.0005,...
@@ -88,4 +90,18 @@ function value=digest(filename)
 fid=fopen(filename,'rb');assert(fid>0);cleanup=onCleanup(@() fclose(fid));
 engine=java.security.MessageDigest.getInstance('SHA-256');engine.update(fread(fid,Inf,'*uint8'));
 value=lower(reshape(dec2hex(typecast(engine.digest(),'uint8'),2)',1,[]));
+end
+function state_count=parse_plant_state_count(source_text)
+% The distributed parameter comment says 52; executable NX is authoritative.
+% Legacy unit comments contain non-UTF-8 bytes; declarations are ASCII.
+source_text(double(source_text)>127)=' ';
+% Strip comments before matching so commented examples cannot define the count.
+active=regexprep(source_text,'(?s)/\*.*?\*/','');
+active=regexprep(active,'//[^\r\n]*','');
+matches=regexp(active,'(?m)^\s*const\s+integer\s+NX\s*=\s*([0-9]+)\s*;','tokens');
+assert(numel(matches)==1,'Expected one executable integer NX declaration');
+state_count=str2double(matches{1}{1});
+assert(state_count==50,'Unexpected TE plant state count: audit the source revision before running');
+assert(~isempty(regexp(active,'ssSetNumContStates\s*\(\s*S\s*,\s*NX\s*\)','once')),...
+ 'Expected the S-function continuous-state declaration to use NX');
 end

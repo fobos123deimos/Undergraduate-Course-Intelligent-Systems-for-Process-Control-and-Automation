@@ -1,10 +1,12 @@
 # Pneumatic actuator: nine-stage worked study
 
+Original article name: **Servo-pneumatic actuator**, section **3.5**. [Detailed TikZ plate](../../figures/tikz/05-pneumatic.pdf) · [Editable source](../../tikz/05-pneumatic.tex) · [Original-name index](../../DIAGRAMS.md).
+
 Article section **3.5**. Separate six-state mass/energy interpretation; assumed valve closure, not apparatus calibration.
 
 The selected channel is **valve command (V) → position (m)**, with time in **s**. All generated records are synthetic. A first-order predictor omits other states and possible channel interactions; its control exercise must not be mistaken for full-plant validation.
 
-![Equipment and physical channels](../../figures/05-pneumatic.png)
+![Detailed benchmark equipment and physical channels](../../figures/tikz/05-pneumatic.png)
 
 ![Computed nine-stage results](../figures/pneumatic.png)
 

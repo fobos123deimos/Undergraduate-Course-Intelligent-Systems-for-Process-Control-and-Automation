@@ -1,8 +1,12 @@
 # Artificial SISO: nine-stage worked study
 
+Original article name: **Artificial system identification problems**, section **3.1**. [Detailed TikZ plate](../../figures/tikz/01-artificial.pdf) · [Editable source](../../tikz/01-artificial.tex) · [Original-name index](../../DIAGRAMS.md).
+
 Article section **3.1 / Eq. 30**. Exact recurrence; short independent excitation records.
 
 The selected channel is **u (dimensionless) → y (dimensionless)**, with time in **sample**. All generated records are synthetic. A first-order predictor omits other states and possible channel interactions; its control exercise must not be mistaken for full-plant validation.
+
+![Detailed benchmark equipment and physical channels](../../figures/tikz/01-artificial.png)
 
 ![Computed nine-stage results](../figures/artificial_siso.png)
 

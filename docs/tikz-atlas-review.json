@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-05",
+  "status": "passed",
+  "scope": "Original-name mapping, detailed TikZ diagrams, notebook integration and pdoc publication inputs. This editorial revision does not add plant-control execution evidence.",
+  "atlas": {
+    "paper_sections": 13,
+    "plates": 14,
+    "pdf_pages": 14,
+    "pdf_bookmarks": 14,
+    "rendered_png_long_edge": 2600,
+    "source_and_artifact_hash_record": "../benchmarks/figures/tikz/build.json",
+    "compilation": "All fourteen sources compiled using Tectonic 0.17.0 and cached TeX dependencies, then rendered with Poppler.",
+    "typesetting": "No overfull boxes, missing glyphs or unresolved TeX errors. A local Fontconfig configuration diagnostic did not affect the rendered output.",
+    "visual_review": "Every plate was inspected after rendering. Overlapping labels and signal routes were corrected. The final Tennessee Eastman topology, coil endpoints, feed directions and signal map were cross-checked against the article and native C interface.",
+    "identity": "All thirteen original section titles are retained in headers and in the catalog; implementation aliases are explicitly mapped. Section 3.2 remains a data-resource collection."
+  },
+  "documentation": {
+    "api_html_pages": 12,
+    "api_modules": 11,
+    "public_definitions": 130,
+    "local_api_links_checked": 8036,
+    "markdown_navigation": "passed",
+    "notebook_rendering_record": "tikz-notebook-review.json",
+    "updated_notebooks": 10,
+    "preserved_code_and_outputs": "Every executable cell source, saved output and execution count in the ten updated notebooks was compared with commit 8772db9f9c51eed09a2636500c74d671a852539e and remained identical.",
+    "browser_scope": "This revision checks HTML structure, assets, links and rendered diagram files. It does not claim a new browser/Colab visual inspection of MathJax."
+  },
+  "tennessee_eastman_correction": {
+    "previous_reported_states": 52,
+    "verified_plant_states": 50,
+    "audit": "../benchmarks/TE_STATE_COUNT_AUDIT.md",
+    "source_parser_checks": 8,
+    "source_parser_runtime": "GNU Octave 11.3.0",
+    "historical_trajectories": "Three native CSV files remained byte-identical; report changes are limited to the state count and explicit editorial correction."
+  }
+}

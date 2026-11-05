@@ -8,7 +8,7 @@
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
     <dc:title>13-tennessee-eastman</dc:title>
-    <dc:date>2026-11-04T11:16:46.069491</dc:date>
+    <dc:date>2026-11-05T06:58:56.874323</dc:date>
     <dc:description>Original conceptual scientific equipment diagram</dc:description>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
@@ -43,7 +43,7 @@ Q 180.4896 181.5696 180.4896 187.704
 L 180.4896 243.936 
 Q 180.4896 250.0704 186.624 250.0704 
 z
-" clip-path="url(#p1b91882748)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p1e40498579)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 380.88 250.0704 
@@ -56,7 +56,7 @@ Q 374.7456 181.5696 374.7456 187.704
 L 374.7456 243.936 
 Q 374.7456 250.0704 380.88 250.0704 
 z
-" clip-path="url(#p1b91882748)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p1e40498579)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 575.136 250.0704 
@@ -69,7 +69,7 @@ Q 569.0016 181.5696 569.0016 187.704
 L 569.0016 243.936 
 Q 569.0016 250.0704 575.136 250.0704 
 z
-" clip-path="url(#p1b91882748)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p1e40498579)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 575.136 393.2064 
@@ -82,7 +82,7 @@ Q 569.0016 324.7056 569.0016 330.84
 L 569.0016 387.072 
 Q 569.0016 393.2064 575.136 393.2064 
 z
-" clip-path="url(#p1b91882748)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p1e40498579)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 380.88 393.2064 
@@ -95,19 +95,19 @@ Q 374.7456 324.7056 374.7456 330.84
 L 374.7456 387.072 
 Q 374.7456 393.2064 380.88 393.2064 
 z
-" clip-path="url(#p1b91882748)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p1e40498579)" style="fill: #d9edf6; stroke: #16324f; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 570.024 231.156 
 L 524.016 231.156 
 L 524.016 358.956 
-" clip-path="url(#p1b91882748)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+" clip-path="url(#p1e40498579)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
     <path d="M 375.768 358.956 
 L 235.188 358.956 
 L 235.188 249.048 
-" clip-path="url(#p1b91882748)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
+" clip-path="url(#p1e40498579)" style="fill: none; stroke: #16324f; stroke-width: 2; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="235.188" y="218.937187" transform="rotate(-0 235.188 218.937187)">Reactor</text>
@@ -225,7 +225,7 @@ z
     <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="134.589656" transform="rotate(-0 432 134.589656)">8 species • 12 manipulated inputs • 41 measured outputs</text>
    </g>
    <g id="text_12">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="458.682047" transform="rotate(-0 432 458.682047)">Original model: 50 states • revised 2015 implementation: 52 continuous states</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #16324f" x="432" y="458.682047" transform="rotate(-0 432 458.682047)">Original model: 50 states • archived revised C plant: 50 states (executable NX)</text>
    </g>
   </g>
   <g id="text_13">
@@ -239,7 +239,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p1b91882748">
+  <clipPath id="p1e40498579">
    <rect x="125.28" y="100.8" width="613.44" height="357.84"/>
   </clipPath>
  </defs>

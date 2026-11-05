@@ -1,6 +1,8 @@
 # Tennessee Eastman: preserved execution and new offline analysis
 
-![Equipment](../../figures/13-tennessee-eastman.png)
+Original article name: **Tennessee Eastman process control problem**, section **3.13**. [Detailed TikZ plate](../../figures/tikz/13-tennessee-eastman.pdf) · [Editable source](../../tikz/13-tennessee-eastman.tex) · [Original-name index](../../DIAGRAMS.md).
+
+![Detailed equipment and signals](../../figures/tikz/13-tennessee-eastman.png)
 
 ![Archived trajectory and additional sensor audit](../figures/tennessee_eastman.png)
 

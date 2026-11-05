@@ -1,0 +1,73 @@
+\documentclass[tikz,border=6pt]{standalone}
+\input{common.tex}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\atlasheader{Wind turbine: structure, drivetrain and aerodynamic coupling}{3.12}{Wind turbine}
+\node[anchor=west,font=\sffamily\bfseries] at (0,-1.9) {Physical coordinates --- schematic side view};
+% Tower reference, deflected envelope and foundation.
+\draw[ink!30,densely dashed,line width=.8pt] (6.5,-10.9)--(6.5,-4.9);
+\path[equipment] (5.8,-10.9).. controls(6,-8)and(6.5,-6.6)..(6.75,-5)
+ --(7.35,-5).. controls(7.1,-6.6)and(6.9,-8)..(6.8,-10.9)--cycle;
+\draw[ink,line width=1.5pt] (5,-11)--(8,-11);
+\fill[pattern=north east lines,pattern color=ink!40] (5,-11.05) rectangle (8,-11.45);
+\path[equipment] (6.05,-4.2) rectangle (9.7,-5.0);
+\node[font=\sffamily\footnotesize] at (8.55,-4.6) {Nacelle};
+\draw[ink,line width=2pt] (5.35,-4.6)--(7.15,-4.6);
+\draw[ink!25,densely dashed] (5.4,-2.1)--(5.4,-7.2);
+\path[draw=ink,fill=flow!15,line width=1pt] (5.3,-4.6)..controls(5.05,-3.3)and(5.2,-2.6)..(5.7,-2.1)
+ ..controls(5.65,-3.2)and(5.65,-4)..(5.55,-4.6)--cycle;
+\path[draw=ink,fill=flow!15,line width=1pt] (5.4,-4.6)..controls(5.25,-5.7)and(5.5,-6.7)..(5.9,-7.2)
+ ..controls(5.8,-6)and(5.8,-5)..(5.55,-4.6)--cycle;
+\draw[ink,fill=pale,line width=1pt] (5.45,-4.6) circle (.24);
+\foreach \yy in {-3.3,-4.6,-5.9} \draw[process] (.4,\yy)--(3.7,\yy);
+\node[anchor=west] at (.4,-2.7) {Wind $v$ [m/s]};
+\draw[dimension] (5.4,-2.5)--(5.9,-2.5);
+\node[anchor=west,labelbox] at (6.15,-2.5) {$y_B$ (relative)};
+\draw[dimension] (6.5,-6.9)--node[above,labelbox]{$y_T$}(7.1,-6.9);
+\draw[util] (5.6,-7.6)--node[below,labelbox]{$F_T$ aerodynamic thrust}(8.7,-7.6);
+\draw[signal] (5.7,-3.7) arc[start angle=50,end angle=-50,radius=.7cm];
+\node[anchor=west,labelbox] at (6.3,-3.5) {Collective pitch $\beta$};
+\node[annotation,text width=4.4cm,align=left,anchor=north west] at (.3,-8.45)
+ {Tower fore-aft motion and blade flapwise bending become two translational coordinates. Blade deflection is relative to the tower top. Geometry is not to scale.};
+
+\node[anchor=west,font=\sffamily\bfseries] at (10.5,-1.9) {Drive-train coordinates and actuator};
+\node[box,minimum width=3cm,minimum height=1.45cm] (rotor) at (12.2,-3.4) {Rotor\\$J_r,\ \theta_r,\ \omega_r$};
+\node[box,minimum width=3.2cm,minimum height=1.45cm] (shaft) at (16.8,-3.4) {Flexible shaft\\$k_S,\ d_S$};
+\node[box,minimum width=4.4cm,minimum height=1.45cm] (gen) at (23,-3.4) {Generator / gearbox\\$J_g,\ \theta_g,\ \omega_g$};
+\draw[process] (rotor.east)--(shaft.west);
+\draw[process] (shaft.east)--node[above,labelbox]{torsion}(gen.west);
+\draw[util] (12.2,-2.15)--node[right,labelbox]{$T_r$}(rotor.north);
+\draw[signal] (23,-2.15)--node[right,labelbox]{$T_g$}(gen.north);
+
+\node[box,minimum width=5.5cm,minimum height=1.5cm] (aero) at (13.4,-6.6)
+ {\textbf{Aerodynamic maps}\\$C_T(\lambda,\beta),\ C_Q(\lambda,\beta)$};
+\node[box,minimum width=6.6cm,minimum height=1.5cm] (pitch) at (22,-6.6)
+ {\textbf{Pitch actuator --- Eq. (58)}\\$\dot\beta=(\beta_d-\beta)/\tau,\quad\tau=0.1\;\mathrm{s}$};
+\draw[signal] (pitch.west)--node[above,labelbox]{$\beta$}(aero.east);
+\draw[signal] (9.2,-6.6)--node[above,labelbox]{$v$}(aero.west);
+\draw[signal] (22,-5.25)--node[right,labelbox]{$\beta_d$}(pitch.north);
+\draw[util] (aero.north)--(13.4,-5.3)--(10,-5.3)--(10,-3.4)--(rotor.west);
+\node[labelbox] at (10,-4.2) {$F_T,T_r$};
+\draw[signal] (16.8,-4.15)--(16.8,-7.9)--(13.4,-7.9)--(aero.south);
+\node[labelbox] at (16.8,-7.9) {$\omega_r,\dot y_T,\dot y_B$};
+\node[panel,align=left,text width=14.6cm,anchor=north west] at (10.6,-8.65)
+ {$\displaystyle v_{\mathrm{eff}}=v-\dot y_T-\dot y_B,\qquad\lambda=\frac{\omega_rR}{v_{\mathrm{eff}}},\quad R=63\;\mathrm m$\\[7pt]
+ $\displaystyle F_T=\tfrac12\rho\pi R^2C_Tv_{\mathrm{eff}}^2,\qquad
+ T_r=\tfrac12\rho\pi R^3C_Qv_{\mathrm{eff}}^2$\\[7pt]
+ $\displaystyle M\ddot q+D\dot q+Kq=[F_T,F_T,T_r,-T_g]^\mathsf T$\\[6pt]
+ Generator inertia, angle and torque are referred to the low-speed side. The gearbox ratio is absorbed into these quantities; gearbox dynamics are omitted.};
+
+\node[panel,anchor=north west,text width=7.5cm,minimum height=2.7cm,align=left] at (0,-12.4)
+ {\textbf{Nine-state reduced model}\\[5pt]
+ $q=[y_T,y_B,\theta_r,\theta_g]^\mathsf T$.\\
+ $x=[q^\mathsf T,\dot q^\mathsf T,\beta]^\mathsf T$.\\
+ Eqs. (55)--(58) retain four mechanical degrees of freedom and first-order pitch.};
+\node[panel,anchor=north west,text width=7.5cm,minimum height=2.7cm,align=left] at (8.8,-12.4)
+ {\textbf{Control-oriented repository variant}\\[5pt]
+ The bundled 2022 ROSCO rotor map supplies the aerodynamic coefficients. Local LQR/PDC gains are newly computed; they do not reproduce Table 12.};
+\node[panel,anchor=north west,text width=7.5cm,minimum height=2.7cm,align=left] at (17.6,-12.4)
+ {\textbf{High-order verification family}\\[5pt]
+ The article also names NREL FAST. The repository executes a later OpenFAST 5.0.0 NREL 5 MW case; it is distinct from this nine-state model.};
+\atlasfooter{Blue: rotational/mechanical propagation or incident wind. Green: aerodynamic force/torque. Orange dashed: model signals and commands. The reduced plant has two commands ($T_g,\beta_d$), wind disturbance $v$, and nine states. FAST/OpenFAST is a separate high-order verification model family.}
+\end{tikzpicture}
+\end{document}

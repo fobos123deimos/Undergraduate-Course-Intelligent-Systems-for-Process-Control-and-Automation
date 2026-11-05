@@ -1,10 +1,12 @@
 # CSTR: nine-stage worked study
 
+Original article name: **Continuously stirred chemical reactor**, section **3.9**. [Detailed TikZ plate](../../figures/tikz/09-cstr.pdf) · [Editable source](../../tikz/09-cstr.tex) · [Original-name index](../../DIAGRAMS.md).
+
 Article section **3.9 / Eqs. 39-43**. Rounded SP1 initial state; dilution held at 8.256/h; short excitation around -6.239 MJ/h.
 
 The selected channel is **cooling (MJ/h) → reactor temperature (deg C)**, with time in **h**. All generated records are synthetic. A first-order predictor omits other states and possible channel interactions; its control exercise must not be mistaken for full-plant validation.
 
-![Equipment and physical channels](../../figures/09-cstr.png)
+![Detailed benchmark equipment and physical channels](../../figures/tikz/09-cstr.png)
 
 ![Computed nine-stage results](../figures/cstr.png)
 

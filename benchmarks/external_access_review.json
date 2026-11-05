@@ -51,7 +51,7 @@
   "tennessee_eastman": {
     "status": "official_revised_source_compiled_and_executed",
     "provider_url": "https://depts.washington.edu/control/LARRY/TE/download.html",
-    "version": "2015 revised C/Simulink with 52 continuous states",
+    "version": "2015 revised C/Simulink with 50 plant continuous states; metadata corrected from executable NX on 2026-11-05, see TE_STATE_COUNT_AUDIT.md",
     "entrypoint": "validate_te_reference.m",
     "execution_evidence": "results/te-native/validation.json",
     "native_runtime": "MATLAB R2025b Update 7 / Simulink",

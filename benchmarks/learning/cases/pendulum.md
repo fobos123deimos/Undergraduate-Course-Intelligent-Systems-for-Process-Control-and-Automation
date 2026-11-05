@@ -1,10 +1,12 @@
 # Inverted pendulum: nine-stage worked study
 
+Original article name: **Cart with inverted pendulum**, section **3.3**. [Detailed TikZ plate](../../figures/tikz/03-pendulum.pdf) · [Editable source](../../tikz/03-pendulum.tex) · [Original-name index](../../DIAGRAMS.md).
+
 Article section **3.3 / Eq. 32**. Short upright-window experiment; cart Coulomb friction explicitly set to zero, as in the existing local study.
 
 The selected channel is **force (N) → angle (rad)**, with time in **s**. All generated records are synthetic. A first-order predictor omits other states and possible channel interactions; its control exercise must not be mistaken for full-plant validation.
 
-![Equipment and physical channels](../../figures/03-pendulum.png)
+![Detailed benchmark equipment and physical channels](../../figures/tikz/03-pendulum.png)
 
 ![Computed nine-stage results](../figures/pendulum.png)
 

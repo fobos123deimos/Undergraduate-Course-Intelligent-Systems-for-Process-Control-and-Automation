@@ -1,6 +1,8 @@
 # ALSTOM gasifier: preserved execution and new offline analysis
 
-![Equipment](../../figures/11-gasifier.png)
+Original article name: **ALSTOM Gasifier Control Benchmark II**, section **3.11**. [Detailed TikZ plate](../../figures/tikz/11-gasifier.pdf) · [Editable source](../../tikz/11-gasifier.tex) · [Original-name index](../../DIAGRAMS.md).
+
+![Detailed equipment and signals](../../figures/tikz/11-gasifier.png)
 
 ![Archived trajectory and additional sensor audit](../figures/gasifier.png)
 

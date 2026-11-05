@@ -8,6 +8,8 @@ The first publication was verified on 4 November 2026: [build and deployment](ht
 
 The illustrated revision was published from `14c13f4c06f9352c7d90e630e1666a96510dcf7d`: [build and deployment](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41923367042) passed with eleven modules, 130 public definitions, 27 bundled PNGs and 8,005 local link/anchor checks. Public images, the narrow-screen menu and search were verified; `sensor_diagnosis` returned 17 results. The [illustrated review record](illustrated-review.json) also records the live Colab inspection of the MPC and Markov/HMM notebooks.
 
+The detailed TikZ atlas adds fourteen vector plates for all thirteen original article sections, a code-alias index, and a two-page Tennessee Eastman process/signal reference. The API includes the high-resolution figures and a locally served atlas PDF. Sources and artifact hashes are verified with `python tools/build_benchmark_atlas.py --check`; see [the gallery](../benchmarks/DIAGRAMS.md).
+
 ## Build and inspect
 
 From the repository root, with Python 3.12:

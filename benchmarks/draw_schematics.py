@@ -266,7 +266,7 @@ def tennessee():
     arrow(a,(10.8,1.95),(11.9,1.95),color=OUTPUT)
     txt(a,9.8,.7,'Products G/H',color=OUTPUT)
     txt(a,6,6.4,'8 species • 12 manipulated inputs • 41 measured outputs',size=12)
-    txt(a,6,.05,'Original model: 50 states • revised 2015 implementation: 52 continuous states',10)
+    txt(a,6,.05,'Original model: 50 states • archived revised C plant: 50 states (executable NX)',10)
     save(f,'13-tennessee-eastman')
 
 

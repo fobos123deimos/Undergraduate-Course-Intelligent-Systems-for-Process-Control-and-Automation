@@ -1,6 +1,8 @@
 # High-order OpenFAST: preserved execution and new offline analysis
 
-![Equipment](../../figures/12-wind-turbine.png)
+Original article name: **Wind turbine**, section **3.12**. [Detailed TikZ plate](../../figures/tikz/12-wind-turbine.pdf) · [Editable source](../../tikz/12-wind-turbine.tex) · [Original-name index](../../DIAGRAMS.md).
+
+![Detailed equipment and signals](../../figures/tikz/12-wind-turbine.png)
 
 ![Archived trajectory and additional sensor audit](../figures/wind_fast.png)
 

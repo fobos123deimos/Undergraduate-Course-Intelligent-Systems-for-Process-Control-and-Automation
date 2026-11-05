@@ -1,0 +1,43 @@
+\documentclass[tikz,border=6pt]{standalone}
+\input{common.tex}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\atlasheader{Data resources: from records to a reproducible benchmark}{3.2}{Data repositories for system identification and regression}
+\node[anchor=west,font=\sffamily\bfseries\large] at (0,-1.9) {Seven resource families named in the article};
+\node[box,minimum width=5.8cm,minimum height=1.5cm] (daisy) at (3,-3.25) {\textbf{DaISy}\\Dynamic identification records};
+\node[box,minimum width=5.8cm,minimum height=1.5cm] (ifac) at (9.65,-3.25) {\textbf{IFAC}\\Identification benchmark records};
+\node[box,minimum width=5.8cm,minimum height=1.5cm] (nist) at (16.3,-3.25) {\textbf{NIST}\\Statistical reference data};
+\node[box,minimum width=5.8cm,minimum height=1.5cm] (matlab) at (22.95,-3.25) {\textbf{MATLAB}\\Toolbox and demonstration data};
+\node[box,minimum width=5.8cm,minimum height=1.5cm] (uci) at (6.3,-5.35) {\textbf{UCI}\\Machine-learning data repository};
+\node[box,minimum width=5.8cm,minimum height=1.5cm] (delve) at (12.95,-5.35) {\textbf{DELVE}\\Learning-method evaluation data};
+\node[box,minimum width=5.8cm,minimum height=1.5cm] (weka) at (19.6,-5.35) {\textbf{WEKA}\\Benchmark data collections};
+\draw[ink!25] (0,-6.65)--(26,-6.65);
+\node[anchor=north,annotation,text width=24.5cm,align=center] at (13,-6.8)
+ {These are sources of experiments and regression tasks, not seven physical process models. Availability, licensing and original links must be verified for each selected record.};
+
+\node[box,minimum width=5.5cm,minimum height=2.5cm,text width=4.9cm] (acquire) at (2.9,-9.6)
+ {\textbf{1. Acquire + identify}\\[6pt]Source URL, license, version, checksum and apparatus description};
+\node[box,minimum width=5.5cm,minimum height=2.5cm,text width=4.9cm] (contract) at (9.6,-9.6)
+ {\textbf{2. Import + inspect}\\[6pt]Time base, input/output order, units, missing values and operating range};
+\node[box,minimum width=5.5cm,minimum height=2.5cm,text width=4.9cm] (split) at (16.3,-9.6)
+ {\textbf{3. Freeze the split}\\[6pt]Separate fitting, selection and final evaluation records before estimation};
+\node[box,minimum width=5.5cm,minimum height=2.5cm,text width=4.9cm] (score) at (23,-9.6)
+ {\textbf{4. Compare models}\\[6pt]Same samples, excitation, horizon, metrics and uncertainty conventions};
+\draw[process] (acquire.east)--(contract.west);
+\draw[process] (contract.east)--(split.west);
+\draw[process] (split.east)--(score.west);
+\draw[signal] (2.9,-7.8)--(acquire.north);
+\node[anchor=west,annotation] at (3.3,-7.85) {One selected source record};
+
+\node[panel,anchor=north west,text width=7.5cm,minimum height=2.7cm,align=left] at (0,-12.4)
+ {\textbf{Dynamic identification}\\[5pt]
+ Keep temporal order and independent runs. Prevent overlap of lagged regressors across split boundaries; state the sample period and prediction horizon.};
+\node[panel,anchor=north west,text width=7.5cm,minimum height=2.7cm,align=left] at (8.8,-12.4)
+ {\textbf{Static regression}\\[5pt]
+ State the target, feature units and sampling unit. Preserve grouped dependence. Use a declared validation split and a final held-out test.};
+\node[panel,anchor=north west,text width=7.5cm,minimum height=2.7cm,align=left] at (17.6,-12.4)
+ {\textbf{Shared safeguards}\\[5pt]
+ Fit normalization only on training data. Record exclusions, provenance and random seeds. Report baseline errors with the same evaluation contract.};
+\atlasfooter{This resource map explains Section 3.2 and the repository import workflow. It does not claim that every historical third-party data set is bundled or still downloadable. Dataset-specific provenance remains necessary before numerical comparison.}
+\end{tikzpicture}
+\end{document}

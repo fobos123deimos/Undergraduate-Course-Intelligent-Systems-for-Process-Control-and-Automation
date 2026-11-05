@@ -1,10 +1,12 @@
 # Column A: nine-stage worked study
 
+Original article name: **Continuously operated binary distillation column**, section **3.10**. [Detailed TikZ plate](../../figures/tikz/10-column-a.pdf) · [Editable source](../../tikz/10-column-a.tex) · [Original-name index](../../DIAGRAMS.md).
+
 Article section **3.10**. 82-state LV model; separate end-vessel P level loops, gain 10/min; boilup held fixed.
 
 The selected channel is **reflux (kmol/min) → top composition (mole fraction)**, with time in **min**. All generated records are synthetic. A first-order predictor omits other states and possible channel interactions; its control exercise must not be mistaken for full-plant validation.
 
-![Equipment and physical channels](../../figures/10-column-a.png)
+![Detailed benchmark equipment and physical channels](../../figures/tikz/10-column-a.png)
 
 ![Computed nine-stage results](../figures/column_a.png)
 

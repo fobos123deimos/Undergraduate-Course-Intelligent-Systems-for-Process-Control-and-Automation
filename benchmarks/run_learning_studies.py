@@ -20,7 +20,15 @@ UNITS={
 7:('Evolutionary tuning',r'A real-coded genetic algorithm tunes two PI gain multipliers in $[0.4,1.6]^2$. Ten individuals and eight generations give 90 evaluations, with seed 19. Fitness is training RMSE plus $0.003$ times input movement. The saved validation curve uses a different reference and disturbance time; it is not used to select the gains.'),
 8:('Integration and uncertainty',r'Repeat PI, MPC and fuzzy PI on the same reference and disturbance with the surrogate input gain multiplied by $0.8$, $1$ and $1.2$. Keep nominal controllers fixed. The three point scenarios are a sensitivity test, not a probability distribution, confidence interval or nonlinear robustness proof.'),
 9:('Markov chains and hidden sensor modes',r'Inject synthetic normal/drift/fault residuals into the held-out physical output and calibrate a categorical HMM on 20 separate records. Compare emission-only decisions, causal filtering, smoothing and Viterbi. A known clean output is available to construct residuals: this is a strong information assumption. Only filtering could enter online supervision; the other two estimates are retrospective.')}
-DIAGRAMS={'pendulum':'03-pendulum','pneumatic':'05-pneumatic','hydrostatic':'06-hydrostatic','three_tank':'07-three-tanks','bioreactor':'08-bioreactor','cstr':'09-cstr','column_a':'10-column-a','wind_reduced':'12-wind-turbine'}
+ATLAS=json.loads((ROOT/'benchmarks/tikz/catalog.json').read_text(encoding='utf-8'))['cases']
+DIAGRAMS={alias:case['stem'] for case in ATLAS for alias in case['aliases']}
+
+
+def article_identity(key,prefix):
+    case=next(c for c in ATLAS if key in c['aliases'])
+    return (f'Original article name: **{case["original_name"]}**, section **{case["section"]}**. '
+      f'[Detailed TikZ plate]({prefix}figures/tikz/{case["stem"]}.pdf) · '
+      f'[Editable source]({prefix}tikz/{case["stem"]}.tex) · [Original-name index]({prefix}DIAGRAMS.md).')
 
 
 def jsonable(value):
@@ -111,6 +119,7 @@ def external_records(output,figures):
 def generate_pages(results,externals,directory):
     catalog=learn.case_catalog()
     overview=['# Benchmarks across the nine learning units','',
+      '[Original article names and detailed TikZ atlas](../DIAGRAMS.md) · [Complete vector PDF](../figures/tikz/benchmark-atlas.pdf)','',
       'Each native case below has two freshly generated nonlinear records, a training-only scalar model fit and all nine computational stages. The later control curves are explicitly **local fitted-predictor exercises**, not nonlinear-apparatus validation. Full-order and measured-data gaps are retained.','',
       '| Unit | Computation and illustrated results |','|---|---|']
     overview += [f'| {i:02} | [{title}](unit-{i:02}.md) |' for i,(title,_) in UNITS.items()]
@@ -130,7 +139,7 @@ def generate_pages(results,externals,directory):
         for key,result in results.items():
             title,section,y,yunit,u,uunit,tunit,limit=catalog[key]
             fit=result['fit']; ident=result['identification']
-            lines += [f'## {title} — {section}','',f'Observe **{y} ({yunit})** while exciting **{u} ({uunit})**; time is **{tunit}**. {limit}','',
+            lines += [f'## {title} — {section}','',article_identity(key,'../'),'',f'Observe **{y} ({yunit})** while exciting **{u} ({uunit})**; time is **{tunit}**. {limit}','',
               f'For this case, the held-out ARX one-step RMSE is **{ident["one_step_rmse"]:.5g}** training standard deviations, versus **{ident["free_run_rmse"]:.5g}** in free run. The fitted output scale is **{fit["output_scale"]:.5g} {yunit}**.']
             if i in (2,3,4,5,7):
                 names={2:['pi'],3:['pi','feedforward','cascade'],4:['mpc'],5:['pi','fuzzy'],7:['pi','genetic_pi']}[i]
@@ -144,18 +153,18 @@ def generate_pages(results,externals,directory):
             lines += ['',f'[Nine-stage case sheet](cases/{key}.md) · [Full numerical record](../results/learning/{key}.json)','']
         lines += ['## External models and unavailable measured records','']
         for key,r in externals.items():
-            lines += [f'### {r["title"]}','',f'The preserved native trace provides **{r["samples"]}** selected samples of `{r["output"]}`. Output-only held-out prediction RMSE is **{r["one_step_rmse_physical"]:.5g} {r["output_unit"]}**. [Illustrated trace audit](cases/{key}.md).','',
+            lines += [f'### {r["title"]}','',article_identity(key,'../'),'',f'The preserved native trace provides **{r["samples"]}** selected samples of `{r["output"]}`. Output-only held-out prediction RMSE is **{r["one_step_rmse_physical"]:.5g} {r["output_unit"]}**. [Illustrated trace audit](cases/{key}.md).','',
               'Units 1/6 use this as an output-prediction and provenance exercise, unit 8 reviews the preserved validation limits, and unit 9 adds a separate synthetic sensor layer. Units 2–5/7 specify a controller-design protocol but are **not newly executed** on this external plant: archived trajectories cannot be replayed as counterfactual responses to different inputs. Restore the pinned simulator, operating modes, actuator channels and disturbance protocol before redesigning control.','']
-        lines += ['### Throttle and identification repositories','',
+        lines += ['### Throttle and identification repositories','',article_identity('throttle','../'),'',article_identity('datasets','../'),'',
           'Original throttle measurements remain unavailable. The strict 10,000/2,500-row importer and synthetic fixture tests are documented in [the recovery record](../THROTTLE_RECOVERY.md); no new figure is labeled as measured throttle performance. For section 3.2, first choose and license a specific dataset from [the register](../DATASETS.md), preserve its original split and units, and record its hash. Model fitting, controller design and fault calibration stay pending until those inputs exist.','',
           '[All units and cases](README.md) · [Source equations and boundaries](../README.md)']
         (directory/f'unit-{i:02}.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
     cases=directory/'cases'; cases.mkdir(exist_ok=True)
     for key,result in results.items():
         title,section,y,yunit,u,uunit,tunit,limit=catalog[key]
-        lines=[f'# {title}: nine-stage worked study','',f'Article section **{section}**. {limit}','',
+        lines=[f'# {title}: nine-stage worked study','',article_identity(key,'../../'),'',f'Article section **{section}**. {limit}','',
           f'The selected channel is **{u} ({uunit}) → {y} ({yunit})**, with time in **{tunit}**. All generated records are synthetic. A first-order predictor omits other states and possible channel interactions; its control exercise must not be mistaken for full-plant validation.','']
-        if key in DIAGRAMS:lines += [f'![Equipment and physical channels](../../figures/{DIAGRAMS[key]}.png)','']
+        if key in DIAGRAMS:lines += [f'![Detailed benchmark equipment and physical channels](../../figures/tikz/{DIAGRAMS[key]}.png)','']
         lines += [f'![Computed nine-stage results](../figures/{key}.png)','',
           '| Stage | Worked explanation |','|---|---|']
         lines += [f'| {i} | [{title}](../unit-{i:02}.md) |' for i,(title,_) in UNITS.items()]
@@ -171,7 +180,8 @@ def generate_pages(results,externals,directory):
         (cases/f'{key}.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
     for key,r in externals.items():
         (cases/f'{key}.md').write_text(f'# {r["title"]}: preserved execution and new offline analysis\n\n'+
-          f'![Equipment](../../figures/{r["diagram"]}.png)\n\n![Archived trajectory and additional sensor audit](../figures/{key}.png)\n\n'+
+          article_identity(key,'../../')+'\n\n'+
+          f'![Detailed equipment and signals](../../figures/tikz/{r["diagram"]}.png)\n\n![Archived trajectory and additional sensor audit](../figures/{key}.png)\n\n'+
           f'The source is [{r["source"]}](../../{r["source"].removeprefix("benchmarks/")}); SHA-256 `{r["source_sha256"]}`. No simulator was rerun. {r["scope"]}\n\n'+
           f'The native output is linearly interpolated onto a uniform grid with step {r["uniform_step"]:.6g} in the recorded time unit. The first {r["training_samples"]} of {r["samples"]} samples fit an output-only AR(2); the later segment is held out. One-step physical RMSE is {r["one_step_rmse_physical"]:.6g} {r["output_unit"]}. This split is chronological, not an independent experimental campaign. Closed-loop data and unmeasured disturbances prevent a causal plant-identification claim.\n\n'+
           f'Injected HMM evaluation state counts (normal, drift, fault) are {r["hmm_test_state_support"]}. A short record with absent states cannot demonstrate fault recall.\n\n'+
@@ -180,7 +190,23 @@ def generate_pages(results,externals,directory):
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__); parser.add_argument('--reuse',action='store_true'); args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--reuse',action='store_true')
+    parser.add_argument('--docs-only',action='store_true',help='Refresh prose/atlas links from unchanged numerical records; do not rerun or replot experiments.')
+    args=parser.parse_args()
+    if args.docs_only:
+        out=ROOT/'benchmarks/results/learning'
+        results={key:json.loads((out/f'{key}.json').read_text(encoding='utf-8')) for key in learn.case_catalog()}
+        for key,result in results.items():
+            if result['computation_sha256_lf'] != computation_hashes():
+                raise ValueError(f'{key}: numerical source changed; regenerate the record first')
+        external=json.loads((out/'external.json').read_text(encoding='utf-8'))
+        for r in external.values():
+            if hashlib.sha256((ROOT/r['source']).read_bytes()).hexdigest() != r['source_sha256']:
+                raise ValueError('Archived external trace changed: '+r['source'])
+        generate_pages(results,external,ROOT/'benchmarks/learning')
+        print('Refreshed case and unit pages from verified existing records; numerical data and execution provenance unchanged.')
+        return
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt

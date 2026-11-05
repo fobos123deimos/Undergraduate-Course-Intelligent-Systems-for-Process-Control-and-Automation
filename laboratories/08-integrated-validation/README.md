@@ -28,6 +28,12 @@ The conceptual diagram is deliberately separate from the computed experiment bel
 
 ## Apply this unit to the article benchmarks
 
+[Original article names and detailed TikZ atlas](../../benchmarks/DIAGRAMS.md) · [Download the vector atlas](../../benchmarks/figures/tikz/benchmark-atlas.pdf)
+
+![Tennessee Eastman process control problem — article section 3.13](../../benchmarks/figures/tikz/13-tennessee-eastman.png)
+
+The atlas identifies every benchmark by its original paper name and repository alias, with equipment, states and signals. The Tennessee Eastman companion plate maps the 12 commands and 41 measurements.
+
 [Worked benchmark study for Unit 08](../../benchmarks/learning/unit-08.md)
 
 ![Unit 08 benchmark study](../../benchmarks/learning/figures/unit-08.png)

@@ -1,0 +1,62 @@
+\documentclass[tikz,border=6pt]{standalone}
+\input{common.tex}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\atlasheader{Vertical servo-pneumatic actuator}{3.5}{Servo-pneumatic actuator}
+\node[anchor=west,font=\sffamily\bfseries] at (.2,-2) {Two variable-volume chambers, valve flow and a vertical payload};
+% Double-ended rod is schematic and gives the equal effective areas in the model.
+\filldraw[equipment] (9.4,-4.5) rectangle (13.4,-9.2);
+\fill[flow!15] (9.55,-6.8) rectangle (13.25,-9.05);
+\fill[utility!13] (9.55,-4.65) rectangle (13.25,-6.45);
+\filldraw[draw=ink,fill=white,line width=1pt] (11.15,-3.4) rectangle (11.65,-10);
+\filldraw[draw=ink,fill=ink!30,line width=1pt] (9.5,-6.8) rectangle (13.3,-6.45);
+\draw[ink,line width=1pt] (9.4,-4.5)--(13.4,-4.5) (9.4,-9.2)--(13.4,-9.2);
+\filldraw[equipment] (9.8,-2.65) rectangle (13,-3.45);
+\node at (11.4,-3.05) {payload $M$ [kg]};
+\node[annotation,anchor=north] at (11.4,-10.2) {piston and rod mass $m$};
+\node[labelbox] at (10.3,-5.55) {II\\$p_{II},T_{II}$};
+\node[labelbox] at (12.3,-7.9) {I\\$p_I,T_I$};
+\draw[dimension] (14.35,-6.6)--(14.35,-4.5);
+\node[labelbox,anchor=west] at (14.55,-5.55) {$x$ [m]\\positive upward};
+\draw[process] (16.1,-2.85)--(16.1,-4.25);
+\node[labelbox,anchor=west] at (16.35,-3.55) {$(M+m)g$ [N]};
+\draw[process] (13.7,-7.8)--(13.7,-6.8);
+\node[labelbox,anchor=west] at (14.05,-7.7) {$A(p_I-p_{II})$\\pressure force [N]};
+\draw[ink!40,densely dashed] (9.4,-6.6)--(14.5,-6.6);
+\node[instrument] (pi) at (7.8,-7.45) {$p_I$};
+\node[instrument] (pii) at (7.8,-4.3) {$p_{II}$};
+% Flow paths use opposite directions for positive valve command.
+\draw[process] (5.8,-9.7)--(5.8,-8.3)--(9.4,-8.3);
+\draw[process] (9.4,-5.15)--(4.8,-5.15)--(4.8,-9.7);
+\draw[ink,line width=.7pt] (7.8,-8.3)--(pi.south) (7.8,-5.15)--(pii.south);
+\node[labelbox,anchor=east] at (4.45,-6.4) {II to exhaust};
+\node[labelbox,anchor=west] at (5.95,-7.2) {supply to I};
+\node[annotation,anchor=west,text width=5.7cm] at (.3,-3.15) {Shown flow direction: positive valve command. Negative command reverses the active chamber connections.};
+% Functional four-way valve cutaway; no standards-compliance claim.
+\filldraw[equipment] (3.8,-9.7) rectangle (7.8,-10.8);
+\draw[ink,line width=1pt] (5.8,-9.7)--(5.8,-10.8);
+\draw[process] (4.55,-10.6)--(5.1,-9.9);
+\draw[process] (5.35,-9.9)--(4.8,-10.6);
+\draw[ink,line width=.8pt] (6.15,-10.55)--(7.4,-9.95) (6.15,-9.95)--(7.4,-10.55);
+\node[annotation,anchor=north] at (5.8,-11.05) {four-way servo valve\\spool displacement $x_v=k_v u_v$};
+\node[equipment,minimum width=1.3cm,minimum height=.65cm] (coil) at (2.7,-10.25) {drive};
+\draw[ink,line width=1pt] (coil.east)--(3.8,-10.25);
+\draw[signal] (.3,-10.25)--(coil.west);
+\node[labelbox,anchor=south] at (1,-10.05) {$u_v$ [V]};
+\draw[process] (8.6,-11.7)--(8.6,-10.55)--(7.8,-10.55);
+\node[labelbox,anchor=west] at (8.85,-11.3) {supply $p_s,T_s$};
+\draw[process] (7.8,-10)--(8.3,-10)--(8.3,-9.5);
+\node[labelbox,anchor=west] at (8.55,-9.6) {$p_e$: exhaust};
+% Right-side model scope and feedback channel.
+\node[instrument] (pos) at (17.5,-9.55) {$x$};
+\draw[signal] (11.65,-9.85)--(16.4,-9.85)--(pos.west);
+\draw[signal] (pos.east)--(19.1,-9.55)--(19.1,-5.8)--(19.6,-5.8);
+\node[panel,anchor=north west,text width=5.6cm,align=left] at (19.6,-2.5) {\textbf{Absolute physical variables}\\$p_I,p_{II}$: pressure [Pa].\\$T_I,T_{II}$: temperature [K].\\$m_I,m_{II}$: gas mass [kg].\\$A$: effective piston area [m$^2$].\\[7pt]$V_I=V_0+Ax$\\$V_{II}=V_0-Ax$\\$p_j=m_jRT_j/V_j$.};
+\node[panel,anchor=north west,text width=5.6cm,align=left] at (19.6,-7.65) {\textbf{Physical variant state}\\$[x,v,m_I,m_{II},T_I,T_{II}]^{\mathsf T}$\\[7pt]Mass and energy balances evolve each chamber. Flow can choke or reverse. Valve and thermal parameters require calibration.};
+\node[annotation,anchor=west,text width=4.8cm] at (13.4,-11.2) {Blue: gas-flow paths.\\Dashed: electrical / sensor signals.\\Equal effective areas are modeled.};
+\node[panel,anchor=north west,text width=8cm,minimum height=2.5cm,align=left] at (.2,-12.7) {\textbf{Vertical force balance}\\$(M+m)\dot v=A(p_I-p_{II})$\\$\hspace*{2.5cm}-f(v)-(M+m)g-F_{ext}$.\\The physical variant includes gravity explicitly.};
+\node[panel,anchor=north west,text width=8cm,minimum height=2.5cm,align=left] at (9,-12.7) {\textbf{Three model meanings}\\Eqs. (33)--(34): literal survey form.\\Local identified models: deviation states with operating offsets removed.\\Six-state model: separate physical variant.};
+\node[panel,anchor=north west,text width=6.7cm,minimum height=2.5cm,align=left] at (18,-12.7) {\textbf{Units and payload}\\Mass-specific $R=R_u/M_{air}$ [J/(kg K)].\\Each physical simulation has constant payload; changing payload in motion needs additional assumptions.};
+\atlasfooter{Functional explanatory diagram, not a standardized pneumatic schematic. The survey's gravity omission and gas-constant units are discussed in PNEUMATIC\_AUDIT.md. The physical valve closure is an explicitly parameterized teaching variant, not an identified replica of the apparatus.}
+\end{tikzpicture}
+\end{document}

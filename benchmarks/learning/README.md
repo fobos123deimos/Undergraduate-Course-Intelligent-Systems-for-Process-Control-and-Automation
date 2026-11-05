@@ -1,5 +1,7 @@
 # Benchmarks across the nine learning units
 
+[Original article names and detailed TikZ atlas](../DIAGRAMS.md) · [Complete vector PDF](../figures/tikz/benchmark-atlas.pdf)
+
 Each native case below has two freshly generated nonlinear records, a training-only scalar model fit and all nine computational stages. The later control curves are explicitly **local fitted-predictor exercises**, not nonlinear-apparatus validation. Full-order and measured-data gaps are retained.
 
 | Unit | Computation and illustrated results |

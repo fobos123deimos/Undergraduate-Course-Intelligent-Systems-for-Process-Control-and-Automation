@@ -110,13 +110,15 @@ def validate_site(output, modules):
 
 def source_hashes():
     sources = sorted(PACKAGE.glob('*.py')) + sorted((ROOT / 'docs/pdoc-template').glob('*'))
-    sources += [ROOT / 'tools/build_api_docs.py', ROOT / 'requirements-docs.txt']
+    sources += [ROOT / 'tools/build_api_docs.py', ROOT / 'requirements-docs.txt', ROOT / 'benchmarks/tikz/catalog.json']
     hashes = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes().replace(b'\r\n', b'\n')).hexdigest()
               for p in sources if p.is_file()}
     for entries in image_catalog().values():
         for item in entries:
             p = ROOT / item['source']
             hashes[item['source']] = hashlib.sha256(p.read_bytes()).hexdigest()
+    atlas = ROOT / 'benchmarks/figures/tikz/benchmark-atlas.pdf'
+    hashes[atlas.relative_to(ROOT).as_posix()] = hashlib.sha256(atlas.read_bytes()).hexdigest()
     return hashes
 
 
@@ -161,11 +163,18 @@ def main():
         output.mkdir(parents=True, exist_ok=True)
         catalog = image_catalog()
         pdoc.render.env.globals['course_images'] = catalog
+        atlas_destination = output / 'assets/benchmarks/figures/tikz/benchmark-atlas.pdf'
+        atlas_destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / 'benchmarks/figures/tikz/benchmark-atlas.pdf', atlas_destination)
         for entries in catalog.values():
             for item in entries:
                 destination = output / 'assets' / item['source']
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(ROOT / item['source'], destination)
+        expected_images = {output / 'assets' / item['source'] for entries in catalog.values() for item in entries}
+        for stale in (output / 'assets').rglob('*.png'):
+            if stale not in expected_images:
+                stale.unlink()
         # Only remove obsolete module pages within this generator's own namespace.
         expected = {output / (name.replace('.', '/') + '.html') for name in modules}
         for stale in (output / 'intelligent_control').glob('*.html'):

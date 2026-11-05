@@ -8,6 +8,8 @@ Each panel reports its own calculation; vertical scales are independent. Normali
 
 ## Artificial SISO — 3.1 / Eq. 30
 
+Original article name: **Artificial system identification problems**, section **3.1**. [Detailed TikZ plate](../figures/tikz/01-artificial.pdf) · [Editable source](../tikz/01-artificial.tex) · [Original-name index](../DIAGRAMS.md).
+
 Observe **y (dimensionless)** while exciting **u (dimensionless)**; time is **sample**. Exact recurrence; short independent excitation records.
 
 For this case, the held-out ARX one-step RMSE is **0.64162** training standard deviations, versus **0.64182** in free run. The fitted output scale is **1.4763 dimensionless**.
@@ -17,6 +19,8 @@ Inspect the three gain-mismatch points, actuator saturation and model-reduction 
 [Nine-stage case sheet](cases/artificial_siso.md) · [Full numerical record](../results/learning/artificial_siso.json)
 
 ## Artificial MIMO — 3.1 / Eq. 31
+
+Original article name: **Artificial system identification problems**, section **3.1**. [Detailed TikZ plate](../figures/tikz/01-artificial.pdf) · [Editable source](../tikz/01-artificial.tex) · [Original-name index](../DIAGRAMS.md).
 
 Observe **y1 (dimensionless)** while exciting **u1 (dimensionless)**; time is **sample**. Both outputs retained; u2 is an independently excited omitted input in the scalar fit.
 
@@ -28,6 +32,8 @@ Inspect the three gain-mismatch points, actuator saturation and model-reduction 
 
 ## Inverted pendulum — 3.3 / Eq. 32
 
+Original article name: **Cart with inverted pendulum**, section **3.3**. [Detailed TikZ plate](../figures/tikz/03-pendulum.pdf) · [Editable source](../tikz/03-pendulum.tex) · [Original-name index](../DIAGRAMS.md).
+
 Observe **angle (rad)** while exciting **force (N)**; time is **s**. Short upright-window experiment; cart Coulomb friction explicitly set to zero, as in the existing local study.
 
 For this case, the held-out ARX one-step RMSE is **0.0011983** training standard deviations, versus **0.26502** in free run. The fitted output scale is **0.0059305 rad**.
@@ -37,6 +43,8 @@ Inspect the three gain-mismatch points, actuator saturation and model-reduction 
 [Nine-stage case sheet](cases/pendulum.md) · [Full numerical record](../results/learning/pendulum.json)
 
 ## Pneumatic actuator — 3.5
+
+Original article name: **Servo-pneumatic actuator**, section **3.5**. [Detailed TikZ plate](../figures/tikz/05-pneumatic.pdf) · [Editable source](../tikz/05-pneumatic.tex) · [Original-name index](../DIAGRAMS.md).
 
 Observe **position (m)** while exciting **valve command (V)**; time is **s**. Separate six-state mass/energy interpretation; assumed valve closure, not apparatus calibration.
 
@@ -48,6 +56,8 @@ Inspect the three gain-mismatch points, actuator saturation and model-reduction 
 
 ## Hydrostatic drive — 3.6
 
+Original article name: **Hydrostatic transmission in mobile working machines**, section **3.6**. [Detailed TikZ plate](../figures/tikz/06-hydrostatic.pdf) · [Editable source](../tikz/06-hydrostatic.tex) · [Original-name index](../DIAGRAMS.md).
+
 Observe **motor speed (rad/s)** while exciting **pump command (normalized)**; time is **s**. Separate SI model: displacement per revolution and effective capacitance; no electrical calibration.
 
 For this case, the held-out ARX one-step RMSE is **0.055806** training standard deviations, versus **0.1972** in free run. The fitted output scale is **0.99344 rad/s**.
@@ -57,6 +67,8 @@ Inspect the three gain-mismatch points, actuator saturation and model-reduction 
 [Nine-stage case sheet](cases/hydrostatic.md) · [Full numerical record](../results/learning/hydrostatic.json)
 
 ## Three tanks — 3.7 / Eq. 36
+
+Original article name: **Three-tank-system**, section **3.7**. [Detailed TikZ plate](../figures/tikz/07-three-tanks.pdf) · [Editable source](../tikz/07-three-tanks.tex) · [Original-name index](../DIAGRAMS.md).
 
 Observe **h1 (m)** while exciting **q1 (m3/s)**; time is **s**. Nominal drains remain closed; positive pumping has no steady equilibrium. Surrogate tracking is not physical tank regulation.
 
@@ -68,6 +80,8 @@ Inspect the three gain-mismatch points, actuator saturation and model-reduction 
 
 ## Bioreactor — 3.8 / Eq. 37
 
+Original article name: **Continuously operated bio-chemical reactor**, section **3.8**. [Detailed TikZ plate](../figures/tikz/08-bioreactor.pdf) · [Editable source](../tikz/08-bioreactor.tex) · [Original-name index](../DIAGRAMS.md).
+
 Observe **biomass (dimensionless)** while exciting **dilution (dimensionless)**; time is **dimensionless**. Paper sampled model: 50 Euler substeps of 0.01 per 0.5 hold.
 
 For this case, the held-out ARX one-step RMSE is **0.01156** training standard deviations, versus **0.011917** in free run. The fitted output scale is **0.00034845 dimensionless**.
@@ -77,6 +91,8 @@ Inspect the three gain-mismatch points, actuator saturation and model-reduction 
 [Nine-stage case sheet](cases/bioreactor.md) · [Full numerical record](../results/learning/bioreactor.json)
 
 ## CSTR — 3.9 / Eqs. 39-43
+
+Original article name: **Continuously stirred chemical reactor**, section **3.9**. [Detailed TikZ plate](../figures/tikz/09-cstr.pdf) · [Editable source](../tikz/09-cstr.tex) · [Original-name index](../DIAGRAMS.md).
 
 Observe **reactor temperature (deg C)** while exciting **cooling (MJ/h)**; time is **h**. Rounded SP1 initial state; dilution held at 8.256/h; short excitation around -6.239 MJ/h.
 
@@ -88,6 +104,8 @@ Inspect the three gain-mismatch points, actuator saturation and model-reduction 
 
 ## Column A — 3.10
 
+Original article name: **Continuously operated binary distillation column**, section **3.10**. [Detailed TikZ plate](../figures/tikz/10-column-a.pdf) · [Editable source](../tikz/10-column-a.tex) · [Original-name index](../DIAGRAMS.md).
+
 Observe **top composition (mole fraction)** while exciting **reflux (kmol/min)**; time is **min**. 82-state LV model; separate end-vessel P level loops, gain 10/min; boilup held fixed.
 
 For this case, the held-out ARX one-step RMSE is **0.013855** training standard deviations, versus **6.8907** in free run. The fitted output scale is **2.3974e-05 mole fraction**.
@@ -97,6 +115,8 @@ Inspect the three gain-mismatch points, actuator saturation and model-reduction 
 [Nine-stage case sheet](cases/column_a.md) · [Full numerical record](../results/learning/column_a.json)
 
 ## Reduced wind turbine — 3.12 and 4.2
+
+Original article name: **Wind turbine**, section **3.12**. [Detailed TikZ plate](../figures/tikz/12-wind-turbine.pdf) · [Editable source](../tikz/12-wind-turbine.tex) · [Original-name index](../DIAGRAMS.md).
 
 Observe **rotor speed (rad/s)** while exciting **generator torque (N m)**; time is **s**. Eight regulation coordinates of the nine-state plant, constant wind 14 m/s, later ROSCO map; no historical Table 12 claim.
 
@@ -110,11 +130,15 @@ Inspect the three gain-mismatch points, actuator saturation and model-reduction 
 
 ### ALSTOM gasifier
 
+Original article name: **ALSTOM Gasifier Control Benchmark II**, section **3.11**. [Detailed TikZ plate](../figures/tikz/11-gasifier.pdf) · [Editable source](../tikz/11-gasifier.tex) · [Original-name index](../DIAGRAMS.md).
+
 The preserved native trace provides **600** selected samples of `temperature_K`. Output-only held-out prediction RMSE is **0.0046843 K**. [Illustrated trace audit](cases/gasifier.md).
 
 Units 1/6 use this as an output-prediction and provenance exercise, unit 8 reviews the preserved validation limits, and unit 9 adds a separate synthetic sensor layer. Units 2–5/7 specify a controller-design protocol but are **not newly executed** on this external plant: archived trajectories cannot be replayed as counterfactual responses to different inputs. Restore the pinned simulator, operating modes, actuator channels and disturbance protocol before redesigning control.
 
 ### High-order OpenFAST
+
+Original article name: **Wind turbine**, section **3.12**. [Detailed TikZ plate](../figures/tikz/12-wind-turbine.pdf) · [Editable source](../tikz/12-wind-turbine.tex) · [Original-name index](../DIAGRAMS.md).
 
 The preserved native trace provides **600** selected samples of `RotSpeed`. Output-only held-out prediction RMSE is **0.0091856 rpm**. [Illustrated trace audit](cases/wind_fast.md).
 
@@ -122,11 +146,17 @@ Units 1/6 use this as an output-prediction and provenance exercise, unit 8 revie
 
 ### Tennessee Eastman
 
+Original article name: **Tennessee Eastman process control problem**, section **3.13**. [Detailed TikZ plate](../figures/tikz/13-tennessee-eastman.pdf) · [Editable source](../tikz/13-tennessee-eastman.tex) · [Original-name index](../DIAGRAMS.md).
+
 The preserved native trace provides **21** selected samples of `xmeas_09`. Output-only held-out prediction RMSE is **0.00074461 deg C**. [Illustrated trace audit](cases/tennessee_eastman.md).
 
 Units 1/6 use this as an output-prediction and provenance exercise, unit 8 reviews the preserved validation limits, and unit 9 adds a separate synthetic sensor layer. Units 2–5/7 specify a controller-design protocol but are **not newly executed** on this external plant: archived trajectories cannot be replayed as counterfactual responses to different inputs. Restore the pinned simulator, operating modes, actuator channels and disturbance protocol before redesigning control.
 
 ### Throttle and identification repositories
+
+Original article name: **Electro-mechanical throttle**, section **3.4**. [Detailed TikZ plate](../figures/tikz/04-throttle.pdf) · [Editable source](../tikz/04-throttle.tex) · [Original-name index](../DIAGRAMS.md).
+
+Original article name: **Data repositories for system identification and regression**, section **3.2**. [Detailed TikZ plate](../figures/tikz/02-datasets.pdf) · [Editable source](../tikz/02-datasets.tex) · [Original-name index](../DIAGRAMS.md).
 
 Original throttle measurements remain unavailable. The strict 10,000/2,500-row importer and synthetic fixture tests are documented in [the recovery record](../THROTTLE_RECOVERY.md); no new figure is labeled as measured throttle performance. For section 3.2, first choose and license a specific dataset from [the register](../DATASETS.md), preserve its original split and units, and record its hash. Model fitting, controller design and fault calibration stay pending until those inputs exist.
 

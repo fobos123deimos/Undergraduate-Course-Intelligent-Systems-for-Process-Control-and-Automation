@@ -1,10 +1,12 @@
 # Bioreactor: nine-stage worked study
 
+Original article name: **Continuously operated bio-chemical reactor**, section **3.8**. [Detailed TikZ plate](../../figures/tikz/08-bioreactor.pdf) · [Editable source](../../tikz/08-bioreactor.tex) · [Original-name index](../../DIAGRAMS.md).
+
 Article section **3.8 / Eq. 37**. Paper sampled model: 50 Euler substeps of 0.01 per 0.5 hold.
 
 The selected channel is **dilution (dimensionless) → biomass (dimensionless)**, with time in **dimensionless**. All generated records are synthetic. A first-order predictor omits other states and possible channel interactions; its control exercise must not be mistaken for full-plant validation.
 
-![Equipment and physical channels](../../figures/08-bioreactor.png)
+![Detailed benchmark equipment and physical channels](../../figures/tikz/08-bioreactor.png)
 
 ![Computed nine-stage results](../figures/bioreactor.png)
 

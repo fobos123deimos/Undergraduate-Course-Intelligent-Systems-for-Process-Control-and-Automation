@@ -21,7 +21,7 @@
       "url": "https://depts.washington.edu/control/LARRY/TE/temexd_mod.zip",
       "filename": "temexd_mod.zip",
       "sha256": "e43227aaded739cfeba1ec281c54ac8a549f60753e064305a669b906c4b16b0d",
-      "version": "2015-01-23 revised C/Simulink distribution; 52 states",
+      "version": "2015-01-23 revised C/Simulink distribution; 50 plant states from executable NX declaration",
       "extract": true,
       "note": "Compiled and executed in MATLAB R2025b/Simulink: mode1 nominal, IDV1 and IDV4; evidence results/te-native/validation.json. Redistribution license unspecified."
     },

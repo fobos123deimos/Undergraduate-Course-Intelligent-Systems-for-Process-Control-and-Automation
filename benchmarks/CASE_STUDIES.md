@@ -32,7 +32,7 @@ Each case links a modeling decision to an identification or control experiment. 
 
 ## 3. Cart and inverted pendulum (3.3)
 
-[Equipment schematic](figures/03-pendulum.png) · [Editable SVG](figures/03-pendulum.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/03-pendulum.png) · [Vector PDF](figures/tikz/03-pendulum.pdf) · [Editable TikZ](tikz/03-pendulum.tex) · [Diagram gallery](DIAGRAMS.md)
 
 **Task A.** Linearize Eq. (32) at the upright equilibrium with zero friction and identify the unstable direction.
 
@@ -57,7 +57,7 @@ The positive gravitational coefficient accelerates a positive angular perturbati
 
 ## 4. Electromechanical throttle and local models (3.4, 4.1)
 
-[Equipment schematic](figures/04-throttle.png) · [Editable SVG](figures/04-throttle.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/04-throttle.png) · [Vector PDF](figures/tikz/04-throttle.pdf) · [Editable TikZ](tikz/04-throttle.tex) · [Diagram gallery](DIAGRAMS.md)
 
 **Task A.** Set up the eight-rule autoregressive predictor.
 
@@ -73,7 +73,7 @@ The positive gravitational coefficient accelerates a positive angular perturbati
 
 ## 5. Servo-pneumatic actuator (3.5)
 
-[Equipment schematic](figures/05-pneumatic.png) · [Editable SVG](figures/05-pneumatic.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/05-pneumatic.png) · [Vector PDF](figures/tikz/05-pneumatic.pdf) · [Editable TikZ](tikz/05-pneumatic.tex) · [Diagram gallery](DIAGRAMS.md)
 
 **Task A.** Derive pressure dynamics from chamber volume changes.
 
@@ -89,7 +89,7 @@ The positive gravitational coefficient accelerates a positive angular perturbati
 
 ## 6. Hydrostatic transmission (3.6)
 
-[Equipment schematic](figures/06-hydrostatic.png) · [Editable SVG](figures/06-hydrostatic.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/06-hydrostatic.png) · [Vector PDF](figures/tikz/06-hydrostatic.pdf) · [Editable TikZ](tikz/06-hydrostatic.tex) · [Diagram gallery](DIAGRAMS.md)
 
 **Task A.** Describe the four-state coupling and why two independent SISO designs can interact.
 
@@ -107,7 +107,7 @@ The [source review](HYDROSTATIC_SOURCE_REVIEW.md) now explains bar/mm³ conversi
 
 ## 7. Three interacting tanks (3.7)
 
-[Equipment schematic](figures/07-three-tanks.png) · [Editable SVG](figures/07-three-tanks.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/07-three-tanks.png) · [Vector PDF](figures/tikz/07-three-tanks.pdf) · [Editable TikZ](tikz/07-three-tanks.tex) · [Diagram gallery](DIAGRAMS.md)
 
 **Task A.** Prove total-volume conservation.
 
@@ -123,7 +123,7 @@ The [source review](HYDROSTATIC_SOURCE_REVIEW.md) now explains bar/mm³ conversi
 
 ## 8. Biochemical reactor (3.8)
 
-[Equipment schematic](figures/08-bioreactor.png) · [Editable SVG](figures/08-bioreactor.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/08-bioreactor.png) · [Vector PDF](figures/tikz/08-bioreactor.pdf) · [Editable TikZ](tikz/08-bioreactor.tex) · [Diagram gallery](DIAGRAMS.md)
 
 **Task A.** Find nonwashout equilibria.
 
@@ -139,7 +139,7 @@ The [source review](HYDROSTATIC_SOURCE_REVIEW.md) now explains bar/mm³ conversi
 
 ## 9. Klatt–Engell chemical reactor (3.9)
 
-[Equipment schematic](figures/09-cstr.png) · [Editable SVG](figures/09-cstr.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/09-cstr.png) · [Vector PDF](figures/tikz/09-cstr.pdf) · [Editable TikZ](tikz/09-cstr.tex) · [Diagram gallery](DIAGRAMS.md)
 
 **Task A.** Reconcile the energy units.
 
@@ -155,7 +155,7 @@ The [source review](HYDROSTATIC_SOURCE_REVIEW.md) now explains bar/mm³ conversi
 
 ## 10. Binary distillation Column A (3.10)
 
-[Equipment schematic](figures/10-column-a.png) · [Editable SVG](figures/10-column-a.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/10-column-a.png) · [Vector PDF](figures/tikz/10-column-a.pdf) · [Editable TikZ](tikz/10-column-a.tex) · [Diagram gallery](DIAGRAMS.md)
 
 **Task A.** Explain why there are 82 states.
 
@@ -171,7 +171,7 @@ The [source review](HYDROSTATIC_SOURCE_REVIEW.md) now explains bar/mm³ conversi
 
 ## 11. ALSTOM Gasifier II (3.11)
 
-[Equipment schematic](figures/11-gasifier.png) · [Editable SVG](figures/11-gasifier.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/11-gasifier.png) · [Vector PDF](figures/tikz/11-gasifier.pdf) · [Editable TikZ](tikz/11-gasifier.tex) · [Diagram gallery](DIAGRAMS.md)
 
 **Task A.** Count independent manipulated variables.
 
@@ -187,7 +187,7 @@ The [source review](HYDROSTATIC_SOURCE_REVIEW.md) now explains bar/mm³ conversi
 
 ## 12. Reduced and aeroelastic wind turbines (3.12)
 
-[Equipment schematic](figures/12-wind-turbine.png) · [Editable SVG](figures/12-wind-turbine.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/12-wind-turbine.png) · [Vector PDF](figures/tikz/12-wind-turbine.pdf) · [Editable TikZ](tikz/12-wind-turbine.tex) · [Diagram gallery](DIAGRAMS.md)
 
 **Task A.** Construct the state and mechanical energy.
 
@@ -209,7 +209,7 @@ A local LQR gain stabilizing each linearization does not by itself prove stabili
 
 ## 13. Tennessee Eastman (3.13)
 
-[Equipment schematic](figures/13-tennessee-eastman.png) · [Editable SVG](figures/13-tennessee-eastman.svg) · [Diagram gallery](DIAGRAMS.md)
+[Detailed TikZ schematic](figures/tikz/13-tennessee-eastman.png) · [Vector PDF](figures/tikz/13-tennessee-eastman.pdf) · [Editable TikZ](tikz/13-tennessee-eastman.tex) · [Diagram gallery](DIAGRAMS.md) · [Signal reference](figures/tikz/13b-tennessee-eastman-signals.pdf)
 
 **Task A.** Explain why a simple CSTR is not an equivalent benchmark.
 
@@ -217,7 +217,7 @@ A local LQR gain stabilizing each linearization does not by itself prove stabili
 
 **Task B.** Select and document a simulator version.
 
-**Worked reasoning.** The official original Fortran and the 2015 revised C/Simulink archives are available through the pinned downloader. The revised version has 52 continuous states and changed random/disturbance handling. Its additional optional outputs must be recorded. The original noise generator is sensitive to the solver-call sequence, so solver and step settings are part of the experimental definition.
+**Worked reasoning.** The official original Fortran and the 2015 revised C/Simulink archives are available through the pinned downloader. Both the original model and the archived revised plant have 50 continuous states. The revised C source declares `NX=50`; an inconsistent parameter comment says 52. The [source audit](TE_STATE_COUNT_AUDIT.md) corrects earlier repository metadata without rerunning or changing the preserved trajectories. The revised version changes random/disturbance handling, and its additional optional outputs must be recorded. The original noise generator is sensitive to the solver-call sequence, so solver and step settings are part of the experimental definition.
 
 **Task C.** Evaluate control and diagnosis without survivor bias.
 

@@ -1,0 +1,105 @@
+\documentclass[tikz,border=6pt]{standalone}
+\input{common.tex}
+\tikzset{pipe/.style={draw=flow,line width=1.2pt},tag/.style={circle,draw=flow,fill=white,inner sep=2pt,font=\sffamily\scriptsize},smallnote/.style={annotation,font=\sffamily\scriptsize}}
+\newcommand{\valve}[3]{\begin{scope}[shift={(#1,#2)}]\path[draw=ink,fill=white,line width=.8pt](-.23,-.18)--(.23,.18)--(.23,-.18)--(-.23,.18)--cycle;\draw[ink](0,0)--(0,.4);\draw[ink](-.14,.4)arc(180:0:.14);\node[font=\sffamily\scriptsize,anchor=south]at(0,.65){#3};\end{scope}}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\atlasheader{Tennessee Eastman: process, utilities and instruments}{3.13}{Tennessee Eastman process control problem}
+% Recycle first, with a compressor bypass rather than a fictitious feed valve.
+\draw[process](17,-4.2)--(17,-2.6)--(13.0,-2.6);
+\draw[pipe](11.5,-2.6)--(4.7,-2.6)--(4.7,-7.0);
+\draw[process](4.7,-5.2)--(4.7,-6.2);
+\draw[process](4.7,-7.0)--(4.7,-6.5);
+\path[equipment](13.0,-2.1)--(13.0,-3.1)--(11.5,-3.35)--(11.5,-1.85)--cycle;
+\node[smallnote,align=center]at(12.3,-2.6){Compressor};
+\node[anchor=north,smallnote,align=center]at(12.3,-3.15){$y_{20}$: power [kW]};
+\draw[pipe](11.1,-2.6)--(11.1,-1.65)--(13.5,-1.65)--(13.5,-2.6);
+\draw[process](12.9,-1.65)--(13.5,-1.65);
+\path[draw=ink,fill=white,line width=.8pt](11.97,-1.83)--(12.43,-1.47)--(12.43,-1.83)--(11.97,-1.47)--cycle;
+\node[smallnote,anchor=west]at(13.7,-1.7){Bypass $u_5$};
+\node[tag]at(9,-2.6){8};\node[labelbox,anchor=south]at(8.7,-2.35){Recycle gas; $y_5$};
+\draw[process](17,-2.6)--(25.5,-2.6);
+\valve{21.8}{-2.6}{$u_6$}
+\node[tag]at(20,-2.6){9};\node[labelbox,anchor=north]at(24,-2.9){Purge; $y_{10}$\\analyzer $y_{29:36}$};
+\fill[flow](17,-2.6)circle(2pt);
+% Major vessels and internal details.
+\draw[equipment](5.9,-5.0)..controls(5.9,-4.1)and(8.1,-4.1)..(8.1,-5.0)--(8.1,-7.1)..controls(8.1,-8.0)and(5.9,-8.0)..(5.9,-7.1)--cycle;
+\fill[flow!14](6.0,-6.1)rectangle(8.0,-7.1);\draw[flow!60](6.0,-6.1)--(8.0,-6.1);
+\draw[ink,line width=1.2pt](7,-4.55)--(7,-7.1);
+\foreach \yy in {-5.6,-6.5}{\draw[ink,line width=1pt](6.55,\yy-.12)--(7.45,\yy+.12);}
+\node[equipment,minimum width=.65cm,minimum height=.45cm]at(7,-4.0){\scriptsize M};
+\node[labelbox,anchor=east]at(6.5,-3.9){Agitator $u_{12}$};
+\draw[utility,line width=1.2pt,rounded corners=3pt](6.55,-6.3)--(6.15,-6.3)--(6.15,-6.7)--(6.55,-6.7)--(6.55,-7.1)--(6.15,-7.1);
+\node[font=\sffamily\bfseries]at(7,-8.25){Reactor};
+\node[smallnote,align=center]at(7,-8.75){$y_7$: pressure; $y_8$: level\\$y_9$: temperature};
+\draw[process](7.8,-4.7)--(9.2,-4.7)--(9.2,-6.0)--(10.7,-6.0);
+\node[tag]at(9.2,-5.35){7};\node[labelbox,anchor=south]at(9.6,-4.65){Reactor effluent};
+\draw[equipment](10.7,-5.4)rectangle(13.3,-6.6);
+\draw[ink](11.0,-5.4)--(11.0,-6.6)(13.0,-5.4)--(13.0,-6.6);
+\foreach \yy in {-5.7,-6.0,-6.3}{\draw[ink!60](11,\yy)--(13,\yy);}
+\node[font=\sffamily\bfseries,anchor=south]at(12,-5.25){Condenser};
+\draw[process](13.3,-6)--(15.8,-6);
+\draw[equipment](15.8,-4.9)..controls(15.8,-4.0)and(18.2,-4.0)..(18.2,-4.9)--(18.2,-7.0)..controls(18.2,-7.9)and(15.8,-7.9)..(15.8,-7.0)--cycle;
+\fill[flow!14](15.9,-6.4)rectangle(18.1,-7.0);\draw[flow!60](15.9,-6.4)--(18.1,-6.4);
+\node[font=\sffamily\bfseries,align=center]at(17,-5.5){Vapor--liquid\\separator};
+\node[smallnote,align=center]at(17,-8.15){$y_{11}$: temperature; $y_{12}$: level\\$y_{13}$: pressure};
+% Stripper overhead returns to reactor header. White bridge = crossing, no junction.
+\draw[process](22,-7.7)--(22,-4.0)--(18,-4.0);
+\draw[pipe](18,-4)--(17.3,-4);
+\draw[pipe,preaction={draw=white,line width=4pt}](17.3,-4)to[out=160,in=20](16.7,-4);
+\draw[process](16.7,-4)--(14.5,-4)--(14.5,-3.65)--(9.6,-3.65)--(9.6,-3.25)--(4.7,-3.25);
+\node[tag]at(20.5,-4){5};\node[labelbox,anchor=north]at(20,-4.25){Stripper overhead};
+\fill[flow](4.7,-3.25)circle(2pt);
+% Fresh feeds A,D,E join recycle and stripper overhead at the reactor header.
+\foreach \yy/\sp/\st/\uv/\ym in {-5.0/A/1/3/1,-6.0/D/2/1/2,-7.0/E/3/2/3}{
+  \node[equipment,minimum width=.7cm,minimum height=.5cm]at(.5,\yy){\sp};
+  \draw[process](.9,\yy)--(4.7,\yy);
+  \valve{2.1}{\yy}{}
+  \node[smallnote,anchor=south]at(2.9,\yy+.15){$u_{\uv}$};
+  \node[tag]at(3.65,\yy){\st};
+  \node[smallnote,anchor=south]at(1.2,\yy+.12){$y_{\ym}$};
+  \fill[flow](4.7,\yy)circle(2pt);
+}
+\draw[pipe](4.7,-6.4)--(4.7,-7.0);\draw[process](4.7,-6.4)--(5.9,-6.4);
+\node[tag]at(5.3,-6.4){6};
+\node[smallnote,anchor=north west,text width=4.5cm]at(.2,-7.7){Header: fresh A, D, E + recycle + stripper overhead.\\$y_6$: total reactor feed.\\$y_{23:28}$: A--F feed composition.};
+% Separator liquid and stripper with a heating circuit.
+\draw[process](17,-7.65)--(19.4,-7.65)--(19.4,-8.5)--(20.9,-8.5);
+\valve{18.8}{-7.65}{$u_7$}
+\node[tag]at(20,-8.5){10};\node[labelbox,anchor=south]at(20,-8.25){Liquid; $y_{14}$};
+\draw[equipment](20.9,-8.5)..controls(20.9,-7.4)and(23.1,-7.4)..(23.1,-8.5)--(23.1,-10.7)..controls(23.1,-11.8)and(20.9,-11.8)..(20.9,-10.7)--cycle;
+\foreach \yy in {-8.7,-9.1,-9.5,-9.9}{\draw[ink!70](21.05,\yy)--(22.95,\yy);}
+\node[labelbox,font=\sffamily\bfseries]at(22,-9.35){Stripper};
+\node[smallnote,anchor=north,align=center]at(22,-12.25){$y_{15}$: level; $y_{16}$: pressure\\$y_{18}$: temperature};
+\node[equipment,minimum width=1.5cm,minimum height=.55cm]at(1,-11.0){A/C + B};
+\draw[process](1.8,-11)--(20.9,-11);
+\valve{3.3}{-11}{$u_4$}
+\node[tag]at(5.2,-11){4};\node[labelbox,anchor=south]at(9,-10.9){Fresh mixed feed; $y_4$; IDV(1): A/C ratio};
+\draw[process](22,-11.5)--(22,-11.85)--(25.7,-11.85);
+\valve{24}{-11.85}{$u_8$}
+\node[tag]at(23,-11.85){11};
+\node[smallnote,anchor=north,align=center]at(24.8,-12.05){Liquid product; $y_{17}$\\analyzer $y_{37:41}$};
+% Utilities: separate colored lines and explicit inlet/outlet directions.
+\draw[util](5.0,-9.5)--(5.5,-9.5)--(5.5,-7.3)--(6.15,-7.3)--(6.15,-7.1);
+\node[smallnote,anchor=east]at(4.95,-9.5){CW supply};
+\draw[util](6.55,-6.3)--(8.45,-6.3)--(8.45,-9.5)--(10.5,-9.5);
+\valve{9.4}{-9.5}{$u_{10}$}
+\node[smallnote,anchor=north,align=center]at(9.2,-9.75){CW return (12); $y_{21}$\\IDV(4): inlet temperature};
+\draw[util](11,-8.0)--(11.5,-8.0)--(11.5,-6.6);
+\node[smallnote,anchor=east]at(11,-8){CW};
+\draw[util](12.5,-6.6)--(12.5,-8)--(15,-8);
+\valve{13.6}{-8}{$u_{11}$}
+\node[smallnote,anchor=north]at(13.5,-8.35){CW return (13); $y_{22}$};
+\draw[util](25.7,-8.5)--(24.5,-8.5)--(24.5,-9.25)--(23.1,-9.25);
+\valve{25.1}{-8.5}{$u_9$}
+\node[smallnote,anchor=south]at(25,-7.6){Steam; $y_{19}$};
+\draw[utility,line width=1pt](23.1,-9.25)--(22.8,-9.25)--(22.8,-10.35)--(23.1,-10.35);
+\draw[util](23.1,-10.35)--(24.5,-10.35)--(25.7,-10.35);
+\node[smallnote,anchor=south]at(25,-10.25){Condensate};
+% Readable explanatory panels, not a claim of industrial P&ID completeness.
+\node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(0,-13.15){\textbf{Chemistry and objective}\\A, C, D, E react; B is inert; G and H are products; F is a byproduct. Reject disturbances while preserving inventories, product rate and quality.};
+\node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(8.8,-13.15){\textbf{Model boundary}\\50 states, 12 commands, 41 measurements, six operating modes. The archived native C revision also defines \texttt{NX=50}. Downstream G/H separation is outside the benchmark.};
+\node[panel,anchor=north west,text width=7.7cm,minimum height=1.7cm,align=left]at(17.6,-13.15){\textbf{Reading the drawing}\\Blue: process streams 1--11. Green: utilities. Dots: junctions. White bridge: crossing. $u_i=\mathrm{XMV}(i)$; $y_i=\mathrm{XMEAS}(i)$. See the companion signal sheet.};
+\atlasfooter{Topology checked against Fig. 13 and the Ricker archive; signal indices checked against \texttt{temexd\_mod.c}. Original explanatory flowsheet, not a construction P\&ID. Instrument labels identify measurements, not a prescribed controller.}
+\end{tikzpicture}
+\end{document}

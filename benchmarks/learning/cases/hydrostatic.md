@@ -1,10 +1,12 @@
 # Hydrostatic drive: nine-stage worked study
 
+Original article name: **Hydrostatic transmission in mobile working machines**, section **3.6**. [Detailed TikZ plate](../../figures/tikz/06-hydrostatic.pdf) · [Editable source](../../tikz/06-hydrostatic.tex) · [Original-name index](../../DIAGRAMS.md).
+
 Article section **3.6**. Separate SI model: displacement per revolution and effective capacitance; no electrical calibration.
 
 The selected channel is **pump command (normalized) → motor speed (rad/s)**, with time in **s**. All generated records are synthetic. A first-order predictor omits other states and possible channel interactions; its control exercise must not be mistaken for full-plant validation.
 
-![Equipment and physical channels](../../figures/06-hydrostatic.png)
+![Detailed benchmark equipment and physical channels](../../figures/tikz/06-hydrostatic.png)
 
 ![Computed nine-stage results](../figures/hydrostatic.png)
 
