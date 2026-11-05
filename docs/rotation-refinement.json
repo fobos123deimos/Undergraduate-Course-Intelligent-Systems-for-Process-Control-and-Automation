@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-05",
+  "scope": "Diagram geometry and explanatory labels only; equations, model implementations and numerical validation records are unchanged.",
+  "corrections": {
+    "06-hydrostatic": "Center input-shaft and wheel rotation markers on their actual axes; use the mechanical color and keep angular-speed labels next to the markers.",
+    "08-bioreactor": "Replace isolated circulation strokes with a single schematic mixing loop centered on the impeller, and keep decorative cells clear of the loop.",
+    "12-wind-turbine": "Center the collective-pitch marker on a blade span section and distinguish its solid arc from dashed control signals."
+  },
+  "inspected_without_changes": [
+    "03-pendulum",
+    "04-throttle",
+    "09-cstr"
+  ],
+  "verification": {
+    "changed_plates_compiled": 3,
+    "png_long_edge": 2600,
+    "changed_plates_visually_reviewed": 3,
+    "tex_layout_warnings": 0,
+    "atlas_check": "passed",
+    "atlas_plates": 14,
+    "atlas_artifacts_checked": 29,
+    "pdoc_check": "passed",
+    "html_pages": 12,
+    "public_modules": 11,
+    "public_definitions": 130,
+    "local_links_checked": 8036,
+    "diff_whitespace_check": "passed",
+    "preservation_base_commit": "25d2a99ac57325d71574c28adb826f46ab9dd511",
+    "protected_numerical_source_and_result_files_unchanged": 295,
+    "notebooks_with_unchanged_code_outputs_and_execution_counts": 11
+  },
+  "atlas_sha256": "6db6ca6a7f644f6712aaeed2353b628dc2560111ec4c604c528bb769f4693486",
+  "artifact_records": [
+    "benchmarks/figures/tikz/build.json",
+    "docs/api/build.json"
+  ]
+}

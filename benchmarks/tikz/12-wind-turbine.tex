@@ -25,8 +25,14 @@
 \node[anchor=west,labelbox] at (6.15,-2.5) {$y_B$ (relative)};
 \draw[dimension] (6.5,-6.9)--node[above,labelbox]{$y_T$}(7.1,-6.9);
 \draw[util] (5.6,-7.6)--node[below,labelbox]{$F_T$ aerodynamic thrust}(8.7,-7.6);
-\draw[signal] (5.7,-3.7) arc[start angle=50,end angle=-50,radius=.7cm];
-\node[anchor=west,labelbox] at (6.3,-3.5) {Collective pitch $\beta$};
+% Pitch turns the blade about its spanwise axis; the local elliptical marker
+% is centered on the upper blade section rather than on the rotor hub.
+\begin{scope}[shift={(5.45,-3.45)}]
+\draw[control,line width=.9pt,-{Latex[length=2mm]}] (25:.53 and .19)
+ arc[start angle=25,end angle=305,x radius=.53,y radius=.19];
+\fill[control] (0,0) circle (.035);
+\end{scope}
+\node[anchor=west,labelbox] at (6.15,-3.45) {Collective pitch $\beta$};
 \node[annotation,text width=4.4cm,align=left,anchor=north west] at (.3,-8.45)
  {Tower fore-aft motion and blade flapwise bending become two translational coordinates. Blade deflection is relative to the tower top. Geometry is not to scale.};
 
@@ -68,6 +74,6 @@
 \node[panel,anchor=north west,text width=7.5cm,minimum height=2.7cm,align=left] at (17.6,-12.4)
  {\textbf{High-order verification family}\\[5pt]
  The article also names NREL FAST. The repository executes a later OpenFAST 5.0.0 NREL 5 MW case; it is distinct from this nine-state model.};
-\atlasfooter{Blue: rotational/mechanical propagation or incident wind. Green: aerodynamic force/torque. Orange dashed: model signals and commands. The reduced plant has two commands ($T_g,\beta_d$), wind disturbance $v$, and nine states. FAST/OpenFAST is a separate high-order verification model family.}
+\atlasfooter{Blue: mechanical propagation or incident wind. Green: aerodynamic force/torque. Solid orange arc: blade-axis pitch. Orange dashed: model signals and commands. The reduced plant has two commands ($T_g,\beta_d$), wind disturbance $v$, and nine states. FAST/OpenFAST is a separate high-order verification model family.}
 \end{tikzpicture}
 \end{document}

@@ -10,7 +10,12 @@
 \foreach \x in {1.1,1.75,2.4}{\draw[ink,line width=.8pt] (\x,-6.45)--(\x,-7.4);}
 \node[labelbox,anchor=north] at (1.65,-8.35) {combustion engine\\prescribed $\omega_P$ [rad/s]};
 \draw[ink,line width=3pt] (3,-6.95)--(5.2,-6.95);
-\draw[ink,-{Latex[length=2mm]}] (3.5,-6.1) arc[start angle=40,end angle=310,x radius=.33,y radius=.55];
+% Local shaft coordinates keep the rotation marker centered on the shaft.
+\begin{scope}[shift={(3.65,-6.95)}]
+\draw[ink,line width=.9pt,-{Latex[length=2mm]}] (50:.28 and .55)
+ arc[start angle=50,end angle=330,x radius=.28,y radius=.55];
+\end{scope}
+\node[labelbox,anchor=south] at (3.65,-6.25) {$\omega_P$};
 % Pump and motor machine cross-section symbols.
 \filldraw[draw=ink,fill=pale,line width=1.2pt] (6.5,-6.95) circle (1.3);
 \filldraw[draw=ink,fill=flow] (6.15,-6.1)--(6.85,-6.1)--(6.5,-5.75)--cycle;
@@ -45,8 +50,13 @@
 \foreach \a in {0,60,...,300}{\draw[ink] (23.4,-6.95)--($(23.4,-6.95)+(\a:.55)$);}
 \node[labelbox,anchor=north] at (19.2,-8.2) {gear box and axle\\total ratio $g=i_gi_a$};
 \node[labelbox,anchor=north] at (23.4,-8.2) {wheel load\\$T_{Lw}$ [N m]};
-\draw[process] (24.75,-7.85) arc[start angle=-45,end angle=120,radius=1.1];
-\node[labelbox,anchor=west] at (23.9,-5.2) {$\omega_w$};
+% Rotation is concentric with the wheel, not a displaced material-flow arc.
+\fill[ink] (23.4,-6.95) circle (.06);
+\begin{scope}[shift={(23.4,-6.95)}]
+\draw[ink,line width=1pt,-{Latex[length=2mm]}] (-40:1.22)
+ arc[start angle=-40,end angle=140,radius=1.22];
+\end{scope}
+\node[labelbox,anchor=south] at (23.4,-5.6) {$\omega_w$};
 \node[instrument] (speed) at (17.4,-9.75) {$\omega_M$};
 \draw[signal] (17.4,-6.95)--(speed.north);
 % Displacement control and feedback.
@@ -58,7 +68,7 @@
 \draw[signal] (pa.west)--(7.8,-5.2)--(7.8,-3.6)--(5.35,-3.6);
 \draw[signal] (pb.west)--(8.1,-9)--(8.1,-11.6);
 \node[labelbox] at (9,-11.6) {speed / pressure measurements support control};
-\node[annotation,anchor=west,text width=4.6cm] at (20.8,-10.1) {Dark lines: shafts.\\Blue arrows: nominal oil flow.\\Dashed lines: signals.\\Reverse operation reverses flow.};
+\node[annotation,anchor=west,text width=4.6cm] at (20.8,-10.1) {Dark lines: shafts.\\Dark arcs: shaft / wheel rotation.\\Blue arrows: nominal oil flow.\\Dashed lines: signals.\\Reverse operation reverses flow.};
 \node[panel,anchor=north west,text width=8cm,minimum height=2.5cm,align=left] at (.2,-12.7) {\textbf{SI variant state and storage}\\$[a_P,a_M,p,\omega_M]^{\mathsf T}$, $p=p_A-p_B$.\\$C_\Delta\dot p=D_Pa_P\omega_P-D_Ma_M\omega_M-Lp$.\\$C_\Delta$ [m$^3$/Pa]: effective capacitance.};
 \node[panel,anchor=north west,text width=8cm,minimum height=2.5cm,align=left] at (9,-12.7) {\textbf{Mechanical balance}\\$J\dot\omega_M=\eta D_Ma_Mp-b\omega_M-T_{Lw}/g$.\\Motor torque uses motor displacement.\\Displacement per revolution is converted through $D=V/(2\pi)$.};
 \node[panel,anchor=north west,text width=6.7cm,minimum height=2.5cm,align=left] at (18,-12.7) {\textbf{Declared interpretation}\\Eq. (35) remains a separate transcription. The SI variant requires explicit displacement and capacitance conventions. No electrical actuator calibration is inferred.};

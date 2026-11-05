@@ -21,11 +21,15 @@
 \node[font=\sffamily\scriptsize] at (11.5,-2.98) {MIXER};
 \draw[ink,line width=1.2pt] (11.5,-3.35)--(11.5,-8.65);
 \draw[ink,line width=1.1pt,fill=white] (10.3,-8.3)--(12.7,-8.7)--(12.7,-8.3)--(10.3,-8.7)--cycle;
-\draw[flow!70,-{Latex[length=2mm]}] (9.5,-7.2) to[out=90,in=160] (10.3,-6.5);
-\draw[flow!70,-{Latex[length=2mm]}] (13.4,-6.7) to[out=-20,in=90] (14,-7.5);
-\draw[flow!70,-{Latex[length=2mm]}] (13.7,-9.25) to[out=190,in=-30] (12.6,-9.55);
+% One circulation path is centered on the impeller; it is a mixing symbol,
+% not a calibrated flow field or three unrelated rotation marks.
+\begin{scope}[shift={(11.5,-8.5)}]
+\draw[flow!80,line width=.8pt,-{Latex[length=2mm]}] (20:2.55 and .65)
+ arc[start angle=20,end angle=345,x radius=2.55,y radius=.65];
+\end{scope}
+\node[annotation,font=\sffamily\scriptsize,text=flow,anchor=north] at (11.5,-9.55) {schematic mixing circulation};
 % Cell motifs are symbolic biomass, not gas injection.
-\foreach \xx/\yy/\ang in {8.2/-6.6/20,9.2/-8.4/50,8.3/-9.5/-30,13.3/-7.6/15,14.4/-8.8/65,10.5/-9.3/10,14.6/-6.7/-35} {
+\foreach \xx/\yy/\ang in {8.2/-6.6/20,9.2/-7.4/50,8.3/-9.5/-30,13.3/-7.6/15,14.4/-9.35/65,10.5/-9.3/10,14.6/-6.7/-35} {
   \draw[utility,fill=utility!35,rotate around={\ang:(\xx,\yy)}] (\xx,\yy) ellipse[x radius=.22,y radius=.09];
 }
 \node[labelbox,fill=white!90!utility,align=left] at (11.5,-7.35) {$C_1$: cell mass\\$C_2$: nutrient conversion};
