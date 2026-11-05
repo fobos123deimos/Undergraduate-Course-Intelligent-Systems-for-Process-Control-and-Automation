@@ -6,6 +6,8 @@ The Python docstrings are the documentation source. The course notes, worked pro
 
 The first publication was verified on 4 November 2026: [build and deployment](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41906120177) passed for source `dc41bf882a448d4d4da85a115cc338d6dd4d4b71`. All ten modules, 124 public definitions and 7,437 local links were checked. The public site was opened in a browser; searching for `viterbi` returned five results, its function link navigated to the correct anchor, source expansion worked and the introductory equation rendered. See the [publication validation record](api-validation.json) for checks and scope.
 
+The illustrated revision was published from `14c13f4c06f9352c7d90e630e1666a96510dcf7d`: [build and deployment](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41923367042) passed with eleven modules, 130 public definitions, 27 bundled PNGs and 8,005 local link/anchor checks. Public images, the narrow-screen menu and search were verified; `sensor_diagnosis` returned 17 results. The [illustrated review record](illustrated-review.json) also records the live Colab inspection of the MPC and Markov/HMM notebooks.
+
 ## Build and inspect
 
 From the repository root, with Python 3.12:

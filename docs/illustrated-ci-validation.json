@@ -1,0 +1,123 @@
+{
+  "source_commit": "14c13f4c06f9352c7d90e630e1666a96510dcf7d",
+  "workflow": ".github/workflows/validate.yml",
+  "run_id": 41923367053,
+  "run_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41923367053",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at_utc": "2026-11-04T22:13:33Z",
+  "updated_at_utc": "2026-11-04T22:22:24Z",
+  "evidence": "Completed GitHub Actions jobs and their terminal logs; artifact IDs and archive digests verified through the workflow-artifacts API.",
+  "jobs": {
+    "python": {
+      "id": 126901292858,
+      "conclusion": "success",
+      "runtime": "CPython 3.12.15",
+      "os": "Ubuntu 26.04.1",
+      "tests_passed": 180,
+      "notebooks_executed": 11,
+      "native_numerical_cases_regenerated": 10,
+      "learning_stages_per_case": 9,
+      "learning_stage_records_validated": 90,
+      "markdown_files_checked": 89,
+      "notebook_markdown_cells_checked": 73,
+      "display_math_expressions_checked": 28,
+      "inline_math_expressions_checked": 581,
+      "notebook_images_checked": 22
+    },
+    "octave": {
+      "id": 126902804870,
+      "conclusion": "success",
+      "runtime": "GNU Octave 11.1.0",
+      "package_version": "11.1.0-3",
+      "os": "Ubuntu 26.04.1",
+      "course_units_passed": 9,
+      "article_equation_cores_checked": 10,
+      "benchmark_learning_cases_passed": 10,
+      "benchmark_learning_stages_passed": 90,
+      "records_source": "The freshly regenerated Python-job artifact from this same run."
+    },
+    "matlab_simulink": {
+      "id": 126902804908,
+      "conclusion": "success",
+      "runtime_release": "MATLAB R2025b",
+      "release_evidence": "matlab-actions/setup-matlab@v3 completed with release R2025b; full update number is not inferred from the setup destination.",
+      "os": "Ubuntu 22.04",
+      "course_units_passed": 9,
+      "benchmark_learning_cases_passed": 10,
+      "benchmark_learning_stages_passed": 90,
+      "records_source": "The freshly regenerated Python-job artifact from this same run.",
+      "local_simulink_models_passed": 27,
+      "base_suite_models": 25,
+      "markov_hmm_models_in_base_suite": 6,
+      "additional_pneumatic_models": 1,
+      "pneumatic_payload_cases": 3,
+      "additional_hydrostatic_models": 1
+    }
+  },
+  "native_learning_case_names": [
+    "artificial_siso",
+    "artificial_mimo",
+    "pendulum",
+    "pneumatic",
+    "hydrostatic",
+    "three_tank",
+    "bioreactor",
+    "cstr",
+    "column_a",
+    "wind_reduced"
+  ],
+  "external_execution_scope": {
+    "tennessee_eastman_revised": {
+      "rerun_in_this_workflow": true,
+      "compiled_native_c_source": true,
+      "mode": 1,
+      "cases_passed": ["nominal", "IDV1", "IDV4"],
+      "duration_hours_per_case": 0.2,
+      "saved_rows_per_case": 21,
+      "included_in_27_local_simulink_count": false
+    },
+    "alstom": {
+      "rerun_in_this_workflow": false,
+      "scope": "Python reused preserved native traces for an output-only forecast and additional synthetic sensor analysis. The earlier native ALSTOM execution and its performance violations retain their separate provenance."
+    },
+    "openfast": {
+      "rerun_in_this_workflow": false,
+      "scope": "Preserved native traces were analyzed offline; no new high-order turbine simulator execution is claimed."
+    },
+    "throttle": {
+      "original_measurements_recovered": false,
+      "synthetic_train_rows": 10000,
+      "synthetic_test_rows": 2500,
+      "scope": "Existing synthetic import-and-model pipeline checks passed in MATLAB and Octave."
+    }
+  },
+  "artifacts": [
+    {
+      "id": 13367478840,
+      "name": "benchmark-learning-records",
+      "archive_sha256": "7c41d237a2e8ddb914d202f20d09d3f4f27b3673f6bc874496034a724a69c5b7",
+      "size_bytes": 1329586
+    },
+    {
+      "id": 13368322552,
+      "name": "octave-benchmark-learning-validation",
+      "archive_sha256": "1cf8c6cac9c35c6970b5ee2cfc8cc62bc32f5457348bb973d822eef8763ab2cc",
+      "size_bytes": 363
+    },
+    {
+      "id": 13368023530,
+      "name": "matlab-simulink-validation",
+      "archive_sha256": "f10fa426d5222eb3e91e5d84028b3ef46841f24c40cac895d81b5e21cc010325",
+      "size_bytes": 2378231
+    }
+  ],
+  "retained_limits": [
+    "Successful numerical checks do not establish experimental calibration, nonlinear-plant closed-loop stability or historical benchmark reproduction.",
+    "Later learning-stage controller traces use explicitly identified scalar predictors; the native replay does not integrate the original nonlinear apparatus.",
+    "MLP/RBF, genetic optimization and HMM calibration use native random streams; numerical equality of learned weights or selected parameters across runtimes is not claimed.",
+    "Large free-run prediction errors remain visible for pneumatic, CSTR and Column A cases.",
+    "The initial-volume error printed during Blending Tank validation is the expected caught negative test; the domain-check group subsequently passed.",
+    "Legacy Level-1 S-function and Tennessee Eastman source-format/model-version warnings remain; all listed jobs completed successfully."
+  ]
+}

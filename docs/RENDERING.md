@@ -27,3 +27,5 @@ python -m http.server 8000 --bind 127.0.0.1
 ```
 
 Open the exported notebooks under `http://127.0.0.1:8000/build/notebook-preview/`. Inspect an equation, each new figure, its caption and a navigation link in the intended frontend. After publication, inspect the actual Colab notebook as well. The structural audit detects unbalanced delimiters/groups/environments, multiline inline math, control characters, notebook-relative links and saved error outputs; it exports all eleven notebooks but does not claim to be a MathJax or KaTeX renderer. The [check record](rendering-validation.json) states the verified scope. The ordinary course validation command runs the structural audit automatically.
+
+Live Colab rendering was verified on 4 November 2026 for source `14c13f4c06f9352c7d90e630e1666a96510dcf7d`: the MPC objective and state equation rendered, and the conceptual and benchmark images in units 04 and 09 loaded without running cells. [The review record](illustrated-review.json) separates this browser inspection from local and CI notebook execution. All eleven notebooks also executed successfully in the corresponding course CI run.

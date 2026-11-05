@@ -1,6 +1,8 @@
 {
   "date": "2026-11-04",
   "baseline_commit": "3d50dbdafc609450ba5fb7febc8f1a30203e4aef",
+  "validated_source_commit": "14c13f4c06f9352c7d90e630e1666a96510dcf7d",
+  "status": "passed",
   "scope": "Markdown and notebook rendering repairs, illustrated cross-benchmark learning studies and illustrated pdoc reference.",
   "local_python": {"tests_passed": 180, "elapsed_seconds": 42.25},
   "learning": {
@@ -29,12 +31,40 @@
     "local_execution_record": "notebook-rendering-execution.json"
   },
   "pdoc": {
+    "site": "https://fobos123deimos.github.io/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/",
+    "workflow_run": 41923367042,
+    "build_job": 126901292642,
+    "deployment_job": 126901604954,
+    "conclusion": "success",
     "module_pages": 11,
     "public_definitions": 130,
     "html_files_including_redirect": 12,
     "local_links_and_anchors_checked": 8005,
     "bundled_png_images": 27,
     "build_record": "api/build.json"
+  },
+  "course_ci": {
+    "workflow_run": 41923367053,
+    "conclusion": "success",
+    "python_job": 126901292858,
+    "octave_job": 126902804870,
+    "matlab_simulink_job": 126902804908,
+    "python_tests_passed": 180,
+    "notebooks_executed": 11,
+    "detail_record": "illustrated-ci-validation.json"
+  },
+  "browser_checks": {
+    "pdoc_live": true,
+    "mathjax_intro_equation": "rendered",
+    "benchmark_learning_images": "Column A and ALSTOM loaded; Column A layout visually inspected",
+    "narrow_layout_menu": "passed",
+    "search_query": "sensor_diagnosis",
+    "search_results": 17,
+    "colab_source": "14c13f4c06f9352c7d90e630e1666a96510dcf7d",
+    "colab_mpc": "Display objective and inline state equation rendered; conceptual and benchmark images loaded and visually inspected",
+    "colab_markov_hmm": "Conceptual diagram and benchmark panel loaded and visually inspected; navigation uses absolute repository links",
+    "colab_runtime_execution": false,
+    "colab_note": "Read-only public notebook rendering was checked without signing in or connecting a compute runtime. A transient network error was resolved by reopening the version-pinned notebook."
   },
   "boundaries": [
     "Native nonlinear records are synthetic; controller panels run fitted scalar predictors, not full nonlinear plants.",

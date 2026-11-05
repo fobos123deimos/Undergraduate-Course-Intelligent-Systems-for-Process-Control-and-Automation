@@ -72,7 +72,9 @@ These are fitted scalar-predictor control exercises, not new full-order controll
 
 Markdown math delimiters, multiline equations, absolute notebook links and persistent notebook images were repaired. All eleven notebooks exported to HTML without errors; all 43 executable cells remained byte-identical to the preceding source. Units 04 and 09 were also executed locally after repair. [Rendering evidence](rendering-validation.json) and [notebook execution evidence](notebook-rendering-execution.json) distinguish these checks from a live Colab session. The existing PDF sources and compiled editions were not changed by this rendering repair.
 
-The illustrated pdoc build now contains eleven module pages and 130 public definitions, with captioned local images and image-hash stale-build detection. Current publication and browser results are recorded separately after deployment.
+The illustrated pdoc build contains eleven module pages and 130 public definitions, with 27 captioned local images and image-hash stale-build detection. [Publication](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41923367042) and [all three course CI jobs](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/41923367053) passed on source `14c13f4c06f9352c7d90e630e1666a96510dcf7d`. Python executed all eleven notebooks and passed 180 tests. The [CI record](illustrated-ci-validation.json) identifies native MATLAB/Simulink and Octave checks.
+
+Live Colab inspection of this version confirmed the MPC display objective and inline equation, both new unit-04 images, and the Markov/HMM diagram and benchmark panel. These were public read-only rendering checks; no Colab compute runtime was connected. The live pdoc site also passed image, responsive-navigation and search checks. See [the illustrated review](illustrated-review.json) for scope. Historical records above remain pinned to their original source commits.
 
 ## Reproduction commands
 
