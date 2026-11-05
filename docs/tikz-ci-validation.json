@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-05",
+  "status": "passed",
+  "source_commit": "fc0970305899ce488e11baab5328663c7ccd1c18",
+  "publication": {
+    "id": 42007542646,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "fc0970305899ce488e11baab5328663c7ccd1c18",
+    "html_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/42007542646",
+    "updated_at": "2026-11-05T10:04:42Z"
+  },
+  "course_validation": {
+    "id": 42007542658,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "fc0970305899ce488e11baab5328663c7ccd1c18",
+    "html_url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/42007542658",
+    "updated_at": "2026-11-05T10:11:35Z",
+    "jobs": [
+      {
+        "id": 127177999318,
+        "name": "python",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127179000860,
+        "name": "matlab-simulink",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127179000954,
+        "name": "octave",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "checks_from_completed_job_logs": {
+    "python": {
+      "tests_passed": 180,
+      "notebooks": 11,
+      "notebook_images": 32,
+      "regenerated_cases": 10,
+      "learning_stages": 90
+    },
+    "octave": {
+      "units": 9,
+      "learning_cases": 10,
+      "learning_stages": 90,
+      "status": "passed"
+    },
+    "matlab_simulink": {
+      "release": "R2025b",
+      "base_generated_models": 25,
+      "additional_variants": [
+        "pneumatic: three payload checks",
+        "hydrostatic"
+      ],
+      "learning_cases": 10,
+      "learning_stages": 90,
+      "tennessee_eastman_native_cases": [
+        "nominal",
+        "IDV1",
+        "IDV4"
+      ],
+      "status": "passed",
+      "remaining_warnings": "Legacy S-function and TElib notices are non-fatal."
+    }
+  },
+  "public_site": {
+    "url": "https://fobos123deimos.github.io/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/",
+    "original_names_present": 13,
+    "tikz_images_http_200": 14,
+    "atlas_sha256": "cc61b2c18ab9e2138a0234d8ab6fe72443a27cc5c3e2b8841f20fb76428518d6",
+    "atlas_bytes_match_local": true,
+    "api_local_links_checked": 8036,
+    "scope": "Public HTML, all detailed image URLs and exact atlas PDF bytes. No new interactive browser or live Colab inspection claimed."
+  },
+  "scope": "The complete course CI and native Tennessee Eastman checks were rerun on the source commit. ALSTOM and OpenFAST native simulators were not rerun; original throttle measurements and previously recorded model limitations remain external dependencies.",
+  "local_review": "tikz-atlas-review.json"
+}

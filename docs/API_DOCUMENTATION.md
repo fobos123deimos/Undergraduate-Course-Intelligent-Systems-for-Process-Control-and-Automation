@@ -12,6 +12,8 @@ The detailed TikZ atlas adds fourteen vector plates for all thirteen original ar
 
 ## Build and inspect
 
+The TikZ revision was published on 5 November 2026 from `fc0970305899ce488e11baab5328663c7ccd1c18`. [API build and deployment](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/42007542646) and [complete course validation](https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/42007542658) passed. All thirteen original names and fourteen diagram URLs were checked publicly; the downloaded atlas matches the verified local PDF byte for byte. The API passes 8,036 local link checks. See the [publication and CI record](tikz-ci-validation.json) for exact scope and job references.
+
 From the repository root, with Python 3.12:
 
 ```bash
