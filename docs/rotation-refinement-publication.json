@@ -1,0 +1,69 @@
+{
+  "checked_at_utc": "2026-11-05T15:27:27.5763645Z",
+  "source_commit": "725b4d421892b2bb84ce1bcc8ed86528a365b8ad",
+  "status": "passed",
+  "site": "https://fobos123deimos.github.io/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/",
+  "public_html_pages_with_atlas_link": [
+    "intelligent_control.html",
+    "intelligent_control/benchmarks.html"
+  ],
+  "public_tikz_images_matching_local_bytes": 14,
+  "atlas_sha256": "6db6ca6a7f644f6712aaeed2353b628dc2560111ec4c604c528bb769f4693486",
+  "atlas_bytes_match_local": true,
+  "artifact_sha256": {
+    "assets/benchmarks/figures/tikz/benchmark-atlas.pdf": "6db6ca6a7f644f6712aaeed2353b628dc2560111ec4c604c528bb769f4693486",
+    "assets/benchmarks/figures/tikz/01-artificial.png": "6e16275aa41e01597dd1d6b1fb57c5ca493b4d97f8604ba62ea963b8cc1dcb78",
+    "assets/benchmarks/figures/tikz/02-datasets.png": "bcaf2d717265d44c13a275b2539d5ad3eee4fbc0850bb8f1408a3acf4eeeabf8",
+    "assets/benchmarks/figures/tikz/03-pendulum.png": "5f36d152cf850e1e4b7eee4658933de77729af04b6a6330e3c3ef00d2dd361d8",
+    "assets/benchmarks/figures/tikz/04-throttle.png": "684c5830079f0009acccd59d39518adf2c3ff9b4ec224df292cfc9280047f069",
+    "assets/benchmarks/figures/tikz/05-pneumatic.png": "fa548baaa69dac417dd70ee000d44847c3524318f8285e8c626129bf6890c966",
+    "assets/benchmarks/figures/tikz/06-hydrostatic.png": "123383da436cec5f26bd688da7b942bc92c065fd84eedcc2033516990522ab2a",
+    "assets/benchmarks/figures/tikz/07-three-tanks.png": "9543dcb7ee5b172be044b7e1ba1cde8facfee32ff18d7c895488f33e50cb3089",
+    "assets/benchmarks/figures/tikz/08-bioreactor.png": "1c05060a05f796ec14f7a4fd6cf6be0d991b870d181534335c59026f845f1223",
+    "assets/benchmarks/figures/tikz/09-cstr.png": "05ef2b3e50dc06ebde5022d2ffdc4fe47b157a15eebe1eea8528c297ee671a54",
+    "assets/benchmarks/figures/tikz/10-column-a.png": "dd9e49bcb2a11e5d7e31f82aa82f7e6599962e491cf78b176e5e429ef14a3ec2",
+    "assets/benchmarks/figures/tikz/11-gasifier.png": "d37f4c9b2ff340087cc66f220e8b038e258f16f7821d1a92c3cab7e4a5cf212d",
+    "assets/benchmarks/figures/tikz/12-wind-turbine.png": "2001bc6454b2f12d1767fd29f46a7358ced7c94ad1d45c2c4959364e1e2ab55e",
+    "assets/benchmarks/figures/tikz/13-tennessee-eastman.png": "ea5f00d91a617fa489345f512017b0c671402e86efce3a33f213bc53f55f31a2",
+    "assets/benchmarks/figures/tikz/13b-tennessee-eastman-signals.png": "26318f299f27305016a6122c60e1362008a18231d705db0a31596b9c75c250e0"
+  },
+  "api_validation": {
+    "html_pages": 12,
+    "modules": 11,
+    "public_definitions": 130,
+    "local_links_checked": 8036,
+    "status": "passed"
+  },
+  "scope": "Published HTML and exact PDF/PNG bytes checked against the local reviewed build. This is not a new browser or Colab execution claim.",
+  "original_article_names_present": 13,
+  "validation_commit": "4fcc367902e8519238bc6ded8c5247a716cdb80e",
+  "workflow_runs": [
+    {
+      "name": "Build and publish Python API",
+      "url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/42054338355",
+      "status": "success"
+    },
+    {
+      "name": "Validate course",
+      "jobs": [
+        "Python",
+        "Octave",
+        "MATLAB/Simulink"
+      ],
+      "url": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/42058763670",
+      "status": "success"
+    }
+  ],
+  "resolved_delivery_issues": [
+    {
+      "issue": "Two Pages deployment attempts exceeded their time limit while the documentation build passed.",
+      "initial_run": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/42049321497",
+      "action": "Updated deploy-pages to v5.0.1; a fresh deployment succeeded and published bytes were verified."
+    },
+    {
+      "issue": "A 17-minute dependency download consumed most of the 20-minute Octave job budget; cancellation occurred before the final report upload.",
+      "initial_run": "https://github.com/fobos123deimos/Undergraduate-Course-Intelligent-Systems-for-Process-Control-and-Automation/actions/runs/42054338219",
+      "action": "Increased the Octave job limit to 30 minutes; the complete new run and report upload passed."
+    }
+  ]
+}
