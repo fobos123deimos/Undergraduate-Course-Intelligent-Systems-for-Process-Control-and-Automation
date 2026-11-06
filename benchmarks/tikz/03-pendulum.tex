@@ -2,9 +2,10 @@
 \input{common.tex}
 \usetikzlibrary{shadings,shadows,decorations.markings}
 % Cart and inverted pendulum (Kroll & Schulte 2014, Sec. 3.3).
-% Outdoor-like environmental context is decorative, never a modeled state.
-% Naturally varied pigments distinguish painted steel, bare metal, rubber,
-% copper, organic groundcover, and instrumentation without changing equations.
+% A contextual mechatronics laboratory replaces the outdoor scenery.
+% The setting is visual only: no new actuator, sensor, state, force or
+% manufacturing specification is introduced.
+% Materials retain the approved paint-blue, copper, green motor and steel palette.
 % Diagram-only refinement: realistic laboratory materials, legible mechanics,
 % carefully anchored forces/sensors, and no change to model semantics.
 % The render is a conceptual engineering cutaway, not a manufacturing drawing.
@@ -26,22 +27,19 @@
 \definecolor{workshopTint}{HTML}{CDE9F0}
 \definecolor{concrete}{HTML}{BCB8A7}
 \definecolor{caution}{HTML}{C79C5E}
-\definecolor{skyBlue}{HTML}{CDE8F8}
-\definecolor{skyLight}{HTML}{F6FAFB}
-\definecolor{skyCool}{HTML}{A9CFDF}
-\definecolor{sunW}{HTML}{FFF4CF}
-\definecolor{sunTan}{HTML}{F0CF9A}
-\definecolor{hillBlue}{HTML}{86B2BD}
-\definecolor{hillSage}{HTML}{9BC0A6}
-\definecolor{hillLeaf}{HTML}{80A891}
-\definecolor{meadowLt}{HTML}{BDD59C}
-\definecolor{meadowMid}{HTML}{829E65}
-\definecolor{meadowDk}{HTML}{4F7651}
-\definecolor{grassLeaf}{HTML}{568F48}
-\definecolor{grassShade}{HTML}{426E47}
-\definecolor{grassGold}{HTML}{B8AD62}
-\definecolor{stone}{HTML}{918B77}
-\definecolor{earth}{HTML}{9A896A}
+% Environmental palette: daylight laboratory, enamel wall, glazing and bench.
+\definecolor{labWallWarm}{HTML}{F5F1E7}
+\definecolor{labWallCool}{HTML}{E8F0F0}
+\definecolor{labWindow}{HTML}{B7D1DC}
+\definecolor{labDaylight}{HTML}{FFF0CA}
+\definecolor{labFrame}{HTML}{71848C}
+\definecolor{labBenchLight}{HTML}{F3F0E8}
+\definecolor{labBenchMid}{HTML}{CBCBC1}
+\definecolor{labBenchShadow}{HTML}{849195}
+\definecolor{labFloor}{HTML}{D8D3C8}
+\definecolor{labGasket}{HTML}{394A53}
+\definecolor{labPanel}{HTML}{BCD0CE}
+\definecolor{labWood}{HTML}{CDB594}
 \definecolor{paintBlue}{HTML}{377DA7}
 \definecolor{paintBright}{HTML}{85BDD1}
 \definecolor{paintDark}{HTML}{2D5D79}
@@ -69,91 +67,67 @@
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \atlasheader{Cart and inverted pendulum}{3.3}{Cart with inverted pendulum}
-% Naturalistic painted/sculpted context in the turbine atlas visual language.
-% Everything here is behind the mechanical schematic and purely illustrative.
-% Use cloudy daylight, low-saturation distant hills and an irregular meadow
-% rather than a flat cartoon sky or a uniform block of green.
+% Appropriate context: a precision mechatronics laboratory rather than
+% an outdoor landscape. All scenery stays behind the engineering notation.
+% The frosted glazing on the left suggests a bright laboratory, while the
+% neutral wall/bench gives the mechanical assembly a plausible installation.
 \begin{scope}
   \clip (0.03,-2.17) rectangle (18.18,-11.83);
-  % Large feathered washes eliminate a rectangular backdrop boundary.
-  \shade[inner color=skyBlue!84!white,outer color=white,opacity=.86]
-    (8.72,-6.65) ellipse (9.4cm and 5.35cm);
-  \shade[inner color=sunW,outer color=white,opacity=.64]
-    (2.52,-3.56) ellipse (4.42cm and 2.87cm);
-  \shade[inner color=skyCool!35!white,outer color=white,opacity=.43]
-    (13.85,-5.3) ellipse (3.65cm and 3.0cm);
-  % Wispy clouds have overlapping, feathered edges; never text-bearing shapes.
-  \foreach \xx/\yy/\ww/\hh in {
-    2.80/-3.15/1.42/.31,3.50/-3.08/1.58/.26,4.25/-3.22/1.30/.28,
-    11.85/-3.45/1.15/.20,12.42/-3.36/1.20/.24,13.10/-3.49/1.04/.19,
-    16.30/-3.10/.82/.17,16.75/-3.17/.83/.18}{
-    \shade[inner color=white,outer color=skyLight,opacity=.42]
-       (\xx,\yy) ellipse (\ww cm and \hh cm);
+  % Warm/cool architectural color temperature creates depth without a panel edge.
+  \shade[top color=labWallWarm!84!white,bottom color=labWallCool!82!white,
+         opacity=.75] (0.00,-2.18) rectangle (18.23,-10.15);
+  % Diffuse daylight falloff is subtle, with no visible ellipse rim.
+  \shade[inner color=labDaylight!50!white,
+         outer color=labWallWarm!72!white,opacity=.20]
+    (3.30,-4.02) ellipse (4.15cm and 3.10cm);
+  \shade[inner color=labWindow!38!white,
+         outer color=labWallCool!85!white,opacity=.14]
+    (14.05,-5.68) ellipse (4.20cm and 3.35cm);
+  % Left-side high frosted window: framing is low contrast and deliberately
+  % separate from the datum, controller arrows and moving-body outline.
+  \shade[draw=labFrame!40,line width=.58pt,
+         top color=labDaylight!55!white,bottom color=labWindow!72!white,
+         opacity=.52] (.74,-2.73) rectangle (4.14,-6.19);
+  \draw[labFrame!58,line width=.65pt,opacity=.43]
+    (.76,-2.74)--(4.12,-2.74)--(4.12,-6.19)--(.76,-6.19)--cycle;
+  \draw[labFrame!45,line width=.64pt,opacity=.39]
+    (2.45,-2.74)--(2.45,-6.19);
+  \draw[labFrame!40,line width=.53pt,opacity=.33]
+    (.76,-4.43)--(4.12,-4.43);
+  % Reflections suggest glazing but avoid strong diagonal fake vectors.
+  \path[fill=white,fill opacity=.16]
+    (1.06,-2.75)--(1.52,-2.75)--(2.30,-6.17)--(1.88,-6.17)--cycle;
+  \path[fill=labDaylight!72!white,fill opacity=.14]
+    (2.91,-2.76)--(3.14,-2.76)--(3.94,-6.16)--(3.74,-6.16)--cycle;
+  % Small recessed HVAC grille in the far wall: architectural context,
+  % not a controller cabinet or an additional measured process element.
+  \shade[draw=labFrame!36,line width=.47pt,
+    top color=labBenchLight,bottom color=labWallCool!78!white,opacity=.31]
+    (16.26,-3.04) rectangle (17.88,-4.81);
+  \foreach \yy in {-3.39,-3.63,-3.87,-4.11,-4.35,-4.59}{
+    \draw[labFrame!48,line width=.45pt,opacity=.28]
+      (16.43,\yy)--(17.71,\yy);
+    \draw[white,line width=.25pt,opacity=.35]
+      (16.43,\yy+.028)--(17.71,\yy+.028);
   }
-  % Stacked valley contours read as distant terrain without hard borders.
-  \path[fill=hillBlue,opacity=.12]
-    (0,-9.73)..controls(1.0,-9.48)and(1.9,-9.18)..(3.25,-9.39)
-    ..controls(4.7,-9.70)and(5.45,-8.81)..(6.92,-9.17)
-    ..controls(8.3,-9.51)and(9.5,-8.82)..(10.96,-9.24)
-    ..controls(12.0,-9.49)and(14.1,-8.89)..(15.3,-9.18)
-    ..controls(16.2,-9.37)and(17.2,-9.08)..(18.25,-9.34)
-    --(18.25,-11.83)--(0,-11.83)--cycle;
-  \path[fill=hillSage,opacity=.23]
-    (0,-10.06)..controls(1.4,-9.56)and(2.05,-9.66)..(3.50,-9.83)
-    ..controls(5.6,-10.12)and(6.60,-9.58)..(7.74,-9.80)
-    ..controls(9.2,-10.09)and(10.4,-9.72)..(12.25,-9.83)
-    ..controls(13.6,-10.04)and(15.35,-9.52)..(16.72,-9.90)
-    ..controls(17.4,-10.01)and(17.75,-9.85)..(18.25,-9.78)
-    --(18.25,-11.83)--(0,-11.83)--cycle;
-  \path[fill=hillLeaf,opacity=.23]
-    (0,-10.71)..controls(1.12,-10.36)and(2.70,-10.41)..(4.05,-10.67)
-    ..controls(5.4,-10.98)and(7.2,-10.53)..(8.55,-10.74)
-    ..controls(10.2,-11.08)and(12.3,-10.42)..(14.3,-10.71)
-    ..controls(16.15,-11.00)and(17.2,-10.49)..(18.3,-10.72)
-    --(18.3,-11.83)--(0,-11.83)--cycle;
-  \shade[inner color=meadowLt!40!white,outer color=white,opacity=.50]
-    (8.9,-11.35) ellipse (9.2cm and .72cm);
-  \shade[top color=meadowLt!63!white,bottom color=meadowMid!66!earth,opacity=.38]
-    (0,-11.35) rectangle (18.2,-11.83);
-  \shade[inner color=earth!32!white,outer color=white,opacity=.35]
-    (9.1,-11.65) ellipse (8.0cm and .30cm);
-  % Low moss/grass tufts with soft, irregular blades and earth-colored tips.
-  \foreach \xc/\ht in {
-    .34/.11,.63/.19,.91/.14,1.24/.13,1.61/.18,1.92/.12,
-    3.08/.15,3.42/.18,3.73/.10,4.07/.17,4.41/.13,
-    5.07/.18,5.48/.13,5.79/.17,6.15/.12,6.51/.19,
-    7.02/.13,7.39/.10,7.78/.15,8.18/.12,8.55/.20,8.97/.10,
-    9.40/.15,9.86/.12,10.31/.17,10.78/.13,11.18/.14,
-    11.69/.18,12.16/.12,12.52/.19,12.89/.12,13.24/.11,
-    13.66/.17,14.06/.14,14.48/.12,14.81/.18,15.20/.13,
-    15.66/.14,16.10/.11,16.47/.18,16.88/.12,17.24/.17,17.69/.14}{
-    \foreach \dx/\sf/\tip/\tone in {
-       -.060/.68/-.09/grassShade,.010/1.0/-.025/grassLeaf,
-        .060/.83/.085/meadowDk,.115/.62/.14/grassGold}{
-      \pgfmathsetmacro{\rootx}{\xc+\dx}
-      \pgfmathsetmacro{\toX}{\rootx+\tip}
-      \pgfmathsetmacro{\toY}{-11.74+\ht*\sf}
-      \path[fill=\tone,fill opacity=.72]
-        (\rootx-.018,-11.81)
-        ..controls (\rootx-.038,-11.71) and (\toX-.020,\toY-.020)
-        .. (\toX,\toY)
-        ..controls (\toX+.016,\toY-.042) and (\rootx+.030,-11.74)
-        .. (\rootx+.020,-11.81)--cycle;
-    }
-  }
-  % Minimal warm pebbles and a few seed heads vary the ground texture.
-  \foreach \xx/\yy/\rr in {
-    1.65/-11.69/.017,2.12/-11.75/.015,4.43/-11.67/.022,
-    6.28/-11.73/.014,7.44/-11.71/.019,9.86/-11.72/.014,
-    11.34/-11.76/.020,13.02/-11.70/.013,14.52/-11.73/.024,
-    16.68/-11.74/.019,17.47/-11.73/.015}{
-       \fill[stone,opacity=.67] (\xx,\yy) circle (\rr);
-  }
-  \foreach \xx/\yy in {1.05/-11.53,4.82/-11.51,13.9/-11.53,17.2/-11.54}{
-    \draw[grassShade,line width=.40pt]
-      (\xx,-11.76)..controls(\xx-.03,-11.69)and(\xx+.02,\yy-.05)..(\xx,\yy);
-    \fill[grassGold!65!white] (\xx,\yy) circle (.025);
-  }
+  % Subtle high-bay architectural rails; horizontal contours are behind all
+  % equipment and carry no implication of actual carriage travel or signals.
+  \draw[labFrame!40,line width=.65pt,opacity=.20]
+    (0,-8.95)--(18.23,-8.95);
+  \draw[labWallCool!40!labFrame,line width=.34pt,opacity=.24]
+    (0,-9.06)--(18.23,-9.06);
+  % A broad, almost invisible service-wall shade adds believable depth.
+  \shade[left color=labWallCool!62!white,right color=white,opacity=.13]
+    (15.78,-2.42) rectangle (18.12,-8.88);
+  % Two barely visible service-wall pilasters anchor the space visually,
+  % without pretending to be model components or sensors.
+  \shade[left color=labFrame!20!white,right color=white,opacity=.22]
+    (16.42,-2.39) rectangle (16.60,-8.85);
+  \shade[left color=labFrame!16!white,right color=white,opacity=.18]
+    (17.70,-2.39) rectangle (17.82,-8.85);
+  % Matte benchtop reflection below the apparatus, not outdoor terrain.
+  \shade[inner color=labBenchMid!48!white,outer color=white,opacity=.52]
+    (9.08,-11.39) ellipse (8.91cm and .37cm);
 \end{scope}
 \node[anchor=west,font=\sffamily\bfseries] at (.3,-1.95)
   {Belt-driven carriage and freely rotating pendulum};
@@ -205,20 +179,38 @@
 \node[anchor=west,specbox] at (15.00,-4.29)
   {$g$ $[\mathrm{m\,s^{-2}}]$};
 
-% Concrete footing and ground-contact shadow give the assembly a physical base.
-% All geometry is demonstrative; no additional floor force is modeled.
-\shade[inner color=earth!50!steelEdge,outer color=white,opacity=.25]
- (9.0,-11.43) ellipse (8.95cm and .32cm);
-\shade[draw=stone!60!steelEdge,line width=.45pt,
-  top color=concrete!42!white,bottom color=earth!47!white]
- (.20,-11.39) rectangle (18.06,-11.54);
-\draw[alloyHi!70!white,line width=.65pt,opacity=.76]
- (.23,-11.41)--(18.03,-11.41);
-% Sparse anchor bolts along the foundation, well below the guide rail.
-\foreach \xx in {1.23,4.15,7.07,10.0,12.93,15.86,17.38}{
-  \fill[steelEdge!55] (\xx,-11.47) circle (.019);
+% Precision test-bench mounting: matte epoxy/aluminum top with a
+% restrained chamfer and fastening points. This replaces the rural footing.
+% Nothing here is a mechanical state, controller channel, or extra force.
+\shade[inner color=labGasket!34!white,outer color=white,opacity=.28]
+ (9.10,-11.51) ellipse (8.85cm and .40cm);
+% Light lab work surface, including a fine front chamfer and shaded lip.
+\shade[draw=labFrame!65,line width=.54pt,
+  top color=labBenchLight,middle color=labWood!35!labBenchMid,
+  bottom color=labBenchShadow]
+ (.16,-11.36) rectangle (18.08,-11.75);
+\draw[white,line width=1.0pt,opacity=.88]
+ (.22,-11.398)--(18.03,-11.398);
+\draw[labFrame!68,line width=.6pt,opacity=.65]
+ (.21,-11.68)--(18.04,-11.68);
+% Very fine, interrupted worktop grain avoids an artificial uniform slab.
+\foreach \xa/\xb in {.65/2.65,4.55/6.15,8.95/10.85,13.30/15.35}{
+  \draw[labWood!52!white,line width=.28pt,opacity=.30]
+    (\xa,-11.59).. controls (\xa+.45,-11.585) and
+      (\xb-.52,-11.61)..(\xb,-11.60);
 }
-
+\shade[draw=labGasket!70,line width=.34pt,
+   top color=labBenchMid,bottom color=labBenchShadow]
+ (.37,-11.31) rectangle (17.90,-11.40);
+\draw[labDaylight!65!white,line width=.55pt,opacity=.73]
+ (.41,-11.33)--(17.86,-11.33);
+% Non-functional bolts, identical to the earlier base attachment points.
+\foreach \xx in {1.23,4.15,7.07,10.0,12.93,15.86,17.38}{
+  \shade[draw=labFrame!70,line width=.23pt,inner color=labBenchLight,
+         outer color=labBenchShadow]
+    (\xx,-11.44) circle (.028);
+  \fill[labFrame!78] (\xx,-11.44) circle (.009);
+}
 % --- Belt drive: shaded continuous upper/lower runs and real pulley hubs ---
 % Top of belt y=-10.49, bottom y=-11.17, pulley centers y=-10.83.
 \shade[inner color=steelShadow!20!white,outer color=white,opacity=.70]
