@@ -177,9 +177,10 @@
 \node[smallnote,anchor=north east,align=right]at(25.7,-12.10){Liquid product; $y_{17}$\\analyzer $y_{37:41}$};
 % Utilities: separate colored lines and explicit inlet/outlet directions.
 % Place the inlet arrow on a straight run, clear of the coil's final elbow.
-\draw[utilpipe](5.0,-9.5)--(5.5,-9.5)--(5.5,-7.8)--(6.15,-7.8)--(6.15,-7.1);
+% Separate the utility caption from the feed header above and valve tag u_4.
+\draw[utilpipe](5.3,-9.9)--(5.5,-9.9)--(5.5,-7.8)--(6.15,-7.8)--(6.15,-7.1);
 \draw[util](6.15,-7.65)--(6.15,-7.25);
-\node[smallnote,anchor=east]at(4.95,-9.5){CW supply};
+\node[smallnote,anchor=east]at(5.25,-9.9){CW supply};
 \draw[util](6.55,-6.3)--(8.45,-6.3)--(8.45,-9.5)--(10.5,-9.5);
 \valve{9.4}{-9.5}{$u_{10}$}
 \node[smallnote,anchor=north,align=center]at(9.2,-9.75){CW return (12); $y_{21}$\\IDV(4): inlet temperature};
@@ -195,9 +196,13 @@
 \draw[steam](23.1,-10.35)--(24.5,-10.35)--(25.7,-10.35);
 \node[smallnote,anchor=south]at(25,-10.25){Condensate};
 % Readable explanatory panels, not a claim of industrial P&ID completeness.
+% TikZ.net spacing reference: reserve a clear band below the process annotations.
+% Shift the panel row and footer together so their mutual spacing stays fixed.
+\begin{scope}[yshift=-4.5mm]
 \node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(0,-13.15){\textbf{Chemistry and objective}\\A, C, D, E react; B is inert; G and H are products; F is a byproduct. Reject disturbances while preserving inventories, product rate and quality.};
 \node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(8.8,-13.15){\textbf{Model boundary}\\50 states, 12 commands, 41 measurements, six operating modes. The archived native C revision also defines \texttt{NX=50}. Downstream G/H separation is outside the benchmark.};
 \node[panel,anchor=north west,text width=7.7cm,minimum height=1.7cm,align=left]at(17.6,-13.15){\textbf{Reading the drawing}\\Gray: process. Teal: CW. Tan: steam/condensate.\\T-junctions connect. White bridge: crossing.\\Finishes and fluid tints are illustrative.\\$u_i=\mathrm{XMV}(i)$; $y_i=\mathrm{XMEAS}(i)$.};
 \atlasfooter{Topology checked against Fig. 13 and the Ricker archive; signal indices checked against \texttt{temexd\_mod.c}. Original explanatory flowsheet, not a construction P\&ID. Instrument labels identify measurements, not a prescribed controller.}
+\end{scope}
 \end{tikzpicture}
 \end{document}
