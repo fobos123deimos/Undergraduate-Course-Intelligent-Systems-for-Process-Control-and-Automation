@@ -45,6 +45,9 @@
 \definecolor{grassDeep}{HTML}{3E793D}
 \definecolor{grassMid}{HTML}{6B9B47}
 \definecolor{grassLight}{HTML}{A8C86D}
+\definecolor{grassOlive}{HTML}{7C9152}
+\definecolor{grassStraw}{HTML}{C4B778}
+\definecolor{grassShadow}{HTML}{345C3F}
 \definecolor{soil}{HTML}{9D896B}
 \definecolor{sunGlow}{HTML}{FFF4D9}
 \definecolor{rotorTint}{HTML}{DDEDF4}
@@ -99,56 +102,89 @@
 % Subtle tower section seams reinforce the impression of fabricated steel.
 \draw[steelrim!33,line width=.44pt] (6.37,-7.30)--(7.33,-7.30);
 \draw[steelrim!30,line width=.44pt] (6.22,-9.11)--(7.48,-9.11);
-% Ground shadow and low meadow halo behind the concrete foundation:
-% vector shapes, no photo textures, sufficiently small not to mask annotations.
-\shade[inner color=soil!35!white,outer color=white,opacity=.90]
-  (6.55,-11.43) ellipse (2.40cm and .28cm);
-\shade[inner color=grassLight!60!white,outer color=white,opacity=.82]
-  (6.55,-11.34) ellipse (2.25cm and .22cm);
-% Back row: fine curved blades of unequal heights, not a continuous lawn wall.
-\foreach \cx/\ht in {4.74/.24,4.96/.30,5.18/.21,5.52/.20,
-  7.60/.19,7.93/.29,8.23/.31,8.47/.21}{
-  \foreach \off/\scale/\lean/\tone in {-.09/.74/-.08/grassDeep,
-    -.035/1.0/-.02/grassMid,.025/.86/.06/grassDeep,.095/.70/.09/grassLight}{
+% Realistic yet fully vector meadow: three distinct depth layers.
+% Land/ground shading and restraint from TikZ.net:
+% https://tikz.net/astronomy_seasons/ and https://tikz.net/dynamics_gravity/
+% Purely illustrative ground cover, not a geographic or wind-model assumption.
+% The foundation/grass remain below y=-10.85, away from state annotation labels.
+\shade[inner color=soil!35!white,outer color=white,opacity=.80]
+  (6.55,-11.43) ellipse (2.52cm and .29cm);
+\shade[inner color=grassOlive!53!white,outer color=soil!5!white,opacity=.75]
+  (6.55,-11.37) ellipse (2.32cm and .18cm);
+% Low soil texture is drawn behind the foreground grass and concrete pier.
+\foreach \x/\y/\r in {4.40/-11.43/.018,4.55/-11.49/.012,
+  4.78/-11.48/.024,4.91/-11.58/.016,5.23/-11.52/.013,
+  5.65/-11.54/.016,6.08/-11.53/.020,6.67/-11.55/.015,
+  7.14/-11.56/.019,7.68/-11.50/.016,7.91/-11.58/.020,
+  8.23/-11.49/.022,8.49/-11.52/.016,8.66/-11.40/.015}{
+  \fill[soil!64!white,opacity=.65] (\x,\y) circle (\r);
+}
+% Rear layer: uneven sedges and fine reeds, shaded individually and following
+% organic curves; no periodic rectangular 'hedge' of identical triangular tips.
+\foreach \cx/\ht in {4.55/.17,4.76/.31,4.95/.19,5.17/.25,
+  5.35/.11,5.61/.12,7.65/.12,7.86/.26,8.05/.17,
+  8.23/.34,8.46/.20,8.63/.15}{
+  \foreach \off/\sf/\lean/\tone in {
+    -.07/.75/-.10/grassOlive,-.02/1.0/-.045/grassDeep,
+    .042/.87/.065/grassMid,.087/.65/.13/grassStraw}{
     \pgfmathsetmacro{\root}{\cx+\off}
     \pgfmathsetmacro{\tipx}{\root+\lean}
-    \pgfmathsetmacro{\tipy}{-11.25+\ht*\scale}
-    \fill[\tone,opacity=.86]
-      (\root-.021,-11.31)
-      .. controls (\root-.034,-11.23) and (\tipx-.025,\tipy-.05)
+    \pgfmathsetmacro{\tipy}{-11.27+\ht*\sf}
+    \path[fill=\tone,fill opacity=.75]
+      (\root-.022,-11.33)
+      .. controls (\root-.045,-11.19) and (\tipx-.03,\tipy-.045)
       .. (\tipx,\tipy)
-      .. controls (\tipx+.014,\tipy-.09) and (\root+.027,-11.23)
-      .. (\root+.022,-11.31)--cycle;
+      .. controls (\tipx+.012,\tipy-.06) and (\root+.027,-11.22)
+      .. (\root+.024,-11.33)--cycle;
   }
 }
-% Beveled concrete pedestal and flush mounting collar; tower remains vertical.
-\shade[draw=steelrim!80,line width=.9pt,
+% Textured concrete mounting foot with warm top and shaded vertical face.
+\shade[draw=steelrim!75,line width=.88pt,
        top color=concreteHi,bottom color=concreteShade]
-  (5.02,-11.04) rectangle (8.03,-11.37);
-\draw[white,line width=.7pt,opacity=.75] (5.04,-11.08)--(8.01,-11.08);
+ (5.02,-11.04) rectangle (8.03,-11.37);
+\draw[white,line width=.8pt,opacity=.78] (5.05,-11.085)--(8.00,-11.085);
+\draw[steelrim!35,line width=.42pt] (5.05,-11.33)--(8.0,-11.33);
 \shade[draw=steelrim,line width=.7pt,
        top color=concreteHi,bottom color=concreteShade]
-  (6.05,-10.87) rectangle (7.66,-11.05);
-\draw[steelrim!65,line width=.4pt] (6.09,-10.93)--(7.61,-10.93);
+ (6.05,-10.87) rectangle (7.66,-11.05);
+\draw[steelrim!60,line width=.45pt] (6.10,-10.92)--(7.62,-10.92);
 \foreach \xx in {6.20,6.58,6.96,7.34,7.57}{
-  \fill[steelrim!65] (\xx,-10.99) circle (.018);
+  \fill[steelrim!70] (\xx,-10.99) circle (.018);
 }
-% Front row: scattered low grass tufts leave most concrete visible.
-\foreach \cx/\ht in {4.75/.15,4.94/.21,5.19/.17,5.47/.21,5.86/.14,
-  6.36/.13,6.99/.13,7.51/.15,7.95/.25,8.28/.23,8.55/.17}{
-  \foreach \off/\scale/\lean/\tone in {-.09/.74/-.10/grassMid,
-    -.025/1.0/-.015/grassDeep,.055/.88/.07/grassLight,.10/.69/.105/grassMid}{
+% Fine foreground turf: a varied low carpet plus individual sharp accents,
+% including some dry straw tips, rather than a row of uniform grass spikes.
+\foreach \cx/\ht in {4.47/.10,4.64/.13,4.77/.21,4.96/.27,
+  5.16/.18,5.37/.11,5.58/.13,5.84/.12,6.16/.10,
+  6.44/.09,6.80/.07,7.21/.09,7.55/.13,7.78/.19,
+  7.96/.28,8.15/.18,8.37/.22,8.57/.15,8.73/.10}{
+  \foreach \off/\sf/\lean/\tone in {
+    -.068/.78/-.075/grassShadow,-.01/1.0/-.04/grassMid,
+    .04/.88/.07/grassLight,.085/.62/.105/grassOlive}{
     \pgfmathsetmacro{\root}{\cx+\off}
     \pgfmathsetmacro{\tipx}{\root+\lean}
-    \pgfmathsetmacro{\tipy}{-11.40+\ht*\scale}
-    \fill[\tone,opacity=.90]
-      (\root-.020,-11.45)
-      .. controls (\root-.042,-11.36) and (\tipx-.03,\tipy-.03)
+    \pgfmathsetmacro{\tipy}{-11.42+\ht*\sf}
+    \path[fill=\tone,fill opacity=.90]
+      (\root-.015,-11.49)
+      .. controls (\root-.036,-11.36) and (\tipx-.015,\tipy-.024)
       .. (\tipx,\tipy)
-      .. controls (\tipx+.012,\tipy-.07) and (\root+.030,-11.37)
-      .. (\root+.022,-11.45)--cycle;
+      .. controls (\tipx+.014,\tipy-.064) and (\root+.032,-11.38)
+      .. (\root+.022,-11.49)--cycle;
   }
 }
+% Sparse pale flower/seed heads and minute stones add natural hue variation.
+% Their scale is intentionally sub-symbolic so the engineering schematic
+% remains legible; no individual plants are part of the physical benchmark.
+\foreach \x/\y in {4.76/-11.25,5.14/-11.34,7.92/-11.23,8.34/-11.30}{
+  \draw[grassOlive!85!black,line width=.40pt,line cap=round]
+    (\x,-11.44)..controls(\x+.02,-11.36)and(\x-.04,\y-.05)..(\x,\y);
+  \fill[grassStraw!80!white] (\x,\y) circle (.024);
+  \fill[soil!65!grassStraw] (\x+.010,\y+.01) circle (.010);
+}
+% A restrained horizon fringe integrates the planting with the ground shadow.
+\draw[grassDeep!55!soil,line width=.35pt,opacity=.60]
+  (4.46,-11.46) .. controls (5.3,-11.43) and (6.1,-11.47) ..
+  (6.82,-11.46) .. controls (7.5,-11.49) and (8.2,-11.44) ..
+  (8.7,-11.47);
 % Enclosed nacelle / illustrative machine internals, not vendor-specific hardware.
 % Nacelle shell: warm pearl composite top, cool shaded underside, darker lip.
 % Geometry is unchanged, only the illuminated surface treatment differs.
