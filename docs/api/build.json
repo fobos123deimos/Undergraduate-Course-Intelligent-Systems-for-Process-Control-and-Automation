@@ -25,7 +25,7 @@
     "tools/build_api_docs.py": "452804b84ac18194e720bb4d5a719640385c4a779f5e379874e31b4883b489bf",
     "requirements-docs.txt": "e1258a3d2b6020a71e43acd49976c1bd47ab1a1b8da5a360906afc8240ccd0c0",
     "benchmarks/tikz/catalog.json": "adc81905df6c53b55904528bdd6aa44f3967b523fd222f7fa1f915de0bf1ab4e",
-    "benchmarks/figures/tikz/13-tennessee-eastman.png": "27785c2505c4a2ac905b11273c798c8e3314d4db935dd9120a38a838f202f268",
+    "benchmarks/figures/tikz/13-tennessee-eastman.png": "9e424ab12e5913b86a2e85eeda84ad542cfec9829f66128d5cfb3fc6cc46a43e",
     "benchmarks/results/benchmark_overview.png": "551946c79ba5f18b62dc8cf4cd8b0f675396ab06956451ad04b3d6592c4204f5",
     "course/figures/learning/unit-08.png": "2cf0ff1a9ef950852e879ae646348e33f6afd6d9bdafc4df91609069635fcd13",
     "benchmarks/learning/figures/column_a.png": "da95c05d1703a3f78e148ad72bcbe55d8fbf2f9219d78db64df57b597f3e1b79",
@@ -58,7 +58,7 @@
     "benchmarks/results/pneumatic_physical.png": "23efc86ad47b8d7f715aa46212956c3f9da233ad24feed6b9c51c09331ada9ed",
     "benchmarks/results/hydrostatic-si/simulation.png": "7f368b1255635475318bfe34d1dfff7ba013c0067e098227214fa8a58c69da34",
     "benchmarks/results/wind_control.png": "5ebd29a6b5f1d550383ac47093cda06c23622be3e9e7957f446fe833efa1a7c9",
-    "benchmarks/figures/tikz/benchmark-atlas.pdf": "558528b24b5b2ea126e317dece351b9786b754ca85ec0e4868c0b26e9395dd78"
+    "benchmarks/figures/tikz/benchmark-atlas.pdf": "08522a2562a9f7a29b063825583aa5b3d017721b43e28d8407985816f9d6cf02"
   },
   "artifact_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -74,9 +74,9 @@
     "assets/benchmarks/figures/tikz/10-column-a.png": "dd9e49bcb2a11e5d7e31f82aa82f7e6599962e491cf78b176e5e429ef14a3ec2",
     "assets/benchmarks/figures/tikz/11-gasifier.png": "d37f4c9b2ff340087cc66f220e8b038e258f16f7821d1a92c3cab7e4a5cf212d",
     "assets/benchmarks/figures/tikz/12-wind-turbine.png": "2001bc6454b2f12d1767fd29f46a7358ced7c94ad1d45c2c4959364e1e2ab55e",
-    "assets/benchmarks/figures/tikz/13-tennessee-eastman.png": "27785c2505c4a2ac905b11273c798c8e3314d4db935dd9120a38a838f202f268",
+    "assets/benchmarks/figures/tikz/13-tennessee-eastman.png": "9e424ab12e5913b86a2e85eeda84ad542cfec9829f66128d5cfb3fc6cc46a43e",
     "assets/benchmarks/figures/tikz/13b-tennessee-eastman-signals.png": "26318f299f27305016a6122c60e1362008a18231d705db0a31596b9c75c250e0",
-    "assets/benchmarks/figures/tikz/benchmark-atlas.pdf": "558528b24b5b2ea126e317dece351b9786b754ca85ec0e4868c0b26e9395dd78",
+    "assets/benchmarks/figures/tikz/benchmark-atlas.pdf": "08522a2562a9f7a29b063825583aa5b3d017721b43e28d8407985816f9d6cf02",
     "assets/benchmarks/learning/figures/column_a.png": "da95c05d1703a3f78e148ad72bcbe55d8fbf2f9219d78db64df57b597f3e1b79",
     "assets/benchmarks/learning/figures/gasifier.png": "51cb4e1b0be2ffae6bbd54a096299020c5e28fe33d46e97088fd6dac0561ee3b",
     "assets/benchmarks/learning/figures/unit-09.png": "fcc60b306fd5d954f3d9a85a4094e04b8a65d2662df38788845ee2282f77f118",
