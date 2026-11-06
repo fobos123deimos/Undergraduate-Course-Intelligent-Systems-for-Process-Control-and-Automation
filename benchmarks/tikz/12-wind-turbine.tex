@@ -80,14 +80,10 @@
     (5.25,-5.08) ellipse (4.28cm and 5.25cm);
   \shade[inner color=sunGlow,outer color=white,opacity=.34]
     (8.25,-3.35) ellipse (2.45cm and 2.0cm);
-  % Gentle green-blue atmospheric perspective is confined to the ground strip.
-  % These background hills provide depth, not a wind-speed or deflection contour.
-  \shade[top color=skyWash!56!white,bottom color=grassOlive!16!white,opacity=.27]
-    (4.05,-9.85) rectangle (9.32,-11.77);
-  \path[fill=steelblue!22!grassMid,fill opacity=.17]
-    (4.08,-11.37) .. controls (4.72,-11.12) and (5.36,-11.31)
-      .. (6.18,-11.13) .. controls (7.05,-10.98) and (8.10,-11.31)
-      .. (9.32,-11.07) -- (9.32,-11.80)--(4.08,-11.80)--cycle;
+  % Atmosphere is diffuse and elliptical, not a straight-edged panel.
+  % Foundation and meadow acquire volume from their local organic layers.
+  \shade[inner color=grassOlive!13!white,outer color=white,opacity=.15]
+    (6.68,-11.23) ellipse (2.22cm and .43cm);
 \end{scope}
 \atlasheader{Wind turbine: structure, drivetrain and aerodynamic coupling}{3.12}{Wind turbine}
 \node[anchor=west,font=\sffamily\bfseries] at (0,-1.9) {Physical coordinates --- schematic side view};
