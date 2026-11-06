@@ -1,34 +1,46 @@
 \documentclass[tikz,border=6pt]{standalone}
 \input{common.tex}
-% Neutral industrial materials with local vector shading and cutaway views.
-% Appearance is illustrative: no actual alloy or A--H fluid colour is specified.
-\definecolor{ink}{HTML}{303A40}
-\definecolor{flow}{HTML}{59636B}
-\definecolor{utility}{HTML}{697B82}
-\definecolor{liquid}{HTML}{D3DBDF}
-\definecolor{liquidlight}{HTML}{EEF1F2}
-\definecolor{level}{HTML}{84959D}
-\definecolor{pale}{HTML}{F3F4F4}
-\definecolor{muted}{HTML}{52616B}
-\definecolor{steel}{HTML}{C7CDD1}
-\definecolor{steelshadow}{HTML}{8C969E}
-\definecolor{steelhighlight}{HTML}{F3F5F6}
-\definecolor{steeledge}{HTML}{59656E}
+% Natural industrial finishes: painted machinery, reflective steel and clear cutaways.
+% Blue machinery is inspired by real industrial motor/compressor finishes; this is
+% not a specified vendor, alloy, piping standard or measured A--H chemical colour.
+% Finish references: WEG electric-motor colour catalog (W22 Premium, RAL 5009),
+% https://static.weg.net/medias/downloadcenter/h26/h37/WEG-cores-dos-motores-eletricos-weg-50029349-catalogo-portugues-br.pdf
+% https://www.copeland.com/pt-br/products-solutions/compression-technologies-systems/industrial-reciprocating-compressors
+\definecolor{ink}{HTML}{263B43}
+\definecolor{flow}{HTML}{66736F}
+\definecolor{utility}{HTML}{2F7B76}
+\definecolor{steamline}{HTML}{94816B}
+\definecolor{liquid}{HTML}{C6DED7}
+\definecolor{liquidlight}{HTML}{F3FAF3}
+\definecolor{level}{HTML}{79A29B}
+\definecolor{pale}{HTML}{F7F6F0}
+\definecolor{muted}{HTML}{576C70}
+\definecolor{steel}{HTML}{CBD2D3}
+\definecolor{steelshadow}{HTML}{879FA8}
+\definecolor{steelwarm}{HTML}{C7BCAB}
+\definecolor{steelhighlight}{HTML}{F7F4E8}
+\definecolor{steeledge}{HTML}{526A73}
+\definecolor{machineblue}{HTML}{176889}
+\definecolor{machineshadow}{HTML}{123F56}
+\definecolor{machinehighlight}{HTML}{6FA6BA}
+\definecolor{actuator}{HTML}{39738B}
 \tikzset{
   equipment/.style={draw=steeledge,line width=1.05pt,fill=pale,rounded corners=2pt},
-  metal/.style={shade,left color=steelshadow,right color=steel,middle color=steelhighlight},
-  metalcross/.style={shade,top color=steel,bottom color=steelshadow,middle color=steelhighlight},
+  metal/.style={shade,left color=steelshadow,right color=steelwarm,middle color=steelhighlight},
+  metalcross/.style={shade,top color=steelwarm,bottom color=steelshadow,middle color=steelhighlight},
+  machinepaint/.style={shade,left color=machineshadow,right color=machineblue,middle color=machinehighlight},
   shell/.style={draw=steeledge,line width=1.05pt},
-  cutaway/.style={draw=steelshadow!65,line width=.45pt,fill=white,fill opacity=.75,draw opacity=1},
+  cutaway/.style={draw=steelshadow!65,line width=.45pt,fill=pale,fill opacity=.66,draw opacity=1},
   pipe/.style={draw=flow,line width=1.4pt,line cap=round,line join=round},
   process/.style={pipe,-{Triangle[length=2.6mm,width=1.8mm,fill=ink,color=ink]}},
   utilpipe/.style={draw=utility,line width=1.1pt,line cap=round,line join=round},
   util/.style={utilpipe,-{Triangle[length=2.4mm,width=1.7mm,fill=ink,color=ink]}},
+  steam/.style={util,draw=steamline},
   tag/.style={circle,draw=flow,line width=.65pt,fill=white,inner sep=2pt,font=\sffamily\scriptsize},
   smallnote/.style={annotation,font=\sffamily\scriptsize},
   liquidlevel/.style={draw=level,line width=.8pt},
 }
-\newcommand{\valve}[3]{\begin{scope}[shift={(#1,#2)}]\path[draw=ink,fill=steelhighlight,line width=.8pt](-.23,-.18)--(.23,.18)--(.23,-.18)--(-.23,.18)--cycle;\draw[ink](0,0)--(0,.4);\draw[ink](-.14,.4)arc(180:0:.14);\node[font=\sffamily\scriptsize,anchor=south]at(0,.65){#3};\end{scope}}
+\newcommand{\valve}[3]{\begin{scope}[shift={(#1,#2)}]\path[draw=ink,fill=steelhighlight,line width=.8pt](-.23,-.18)--(.23,.18)--(.23,-.18)--(-.23,.18)--cycle;\draw[ink](0,0)--(0,.4);\draw[actuator,line width=.8pt](-.14,.4)arc(180:0:.14);\node[font=\sffamily\scriptsize,anchor=south]at(0,.65){#3};\end{scope}}
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \atlasheader{Tennessee Eastman: process, utilities and instruments}{3.13}{Tennessee Eastman process control problem}
@@ -37,8 +49,8 @@
 \draw[pipe](11.5,-2.6)--(4.7,-2.6)--(4.7,-7.0);
 \draw[process](4.7,-5.2)--(4.7,-5.65);
 \draw[process](4.7,-7.0)--(4.7,-6.5);
-\path[equipment,metal](13.0,-2.1)--(13.0,-3.1)--(11.5,-3.35)--(11.5,-1.85)--cycle;
-\node[smallnote,align=center]at(12.3,-2.6){Compressor};
+\path[equipment,machinepaint](13.0,-2.1)--(13.0,-3.1)--(11.5,-3.35)--(11.5,-1.85)--cycle;
+\node[smallnote,text=ink,fill=pale,fill opacity=.9,text opacity=1,rounded corners=1pt,inner sep=1.2pt,align=center]at(12.3,-2.6){Compressor};
 % A dedicated label band separates power measurement, casing and return pipe.
 \node[smallnote,align=center,inner sep=2pt]at(12.3,-3.64){$y_{20}$: power [kW]};
 \draw[pipe](11.1,-2.6)--(11.1,-1.65)--(13.5,-1.65)--(13.5,-2.6);
@@ -63,7 +75,7 @@
 \draw[shell]\reactoroutline;
 \draw[ink,line width=1.2pt](7,-4.55)--(7,-7.1);
 \foreach \yy in {-5.6,-6.5}{\draw[ink,line width=1pt](6.55,\yy-.12)--(7.45,\yy+.12);}
-\node[equipment,metal,minimum width=.65cm,minimum height=.45cm]at(7,-4.0){\scriptsize M};
+\node[equipment,fill=machineblue,text=white,minimum width=.65cm,minimum height=.45cm]at(7,-4.0){\scriptsize\bfseries M};
 \node[labelbox,anchor=east]at(6.5,-3.9){Agitator $u_{12}$};
 \draw[utility,line width=1.2pt,rounded corners=3pt](6.55,-6.3)--(6.15,-6.3)--(6.15,-6.7)--(6.55,-6.7)--(6.55,-7.1)--(6.15,-7.1);
 \node[font=\sffamily\bfseries]at(7,-8.25){Reactor};
@@ -71,6 +83,9 @@
 \draw[process](7.8,-4.7)--(9.2,-4.7)--(9.2,-6.0)--(10.7,-6.0);
 \node[tag]at(9.2,-5.35){7};\node[labelbox,anchor=south]at(9.6,-4.65){Reactor effluent};
 \draw[equipment,metalcross](10.7,-5.4)rectangle(13.3,-6.6);
+\path[machinepaint](10.7,-5.4)rectangle(11.0,-6.6);
+\path[machinepaint](13.0,-5.4)rectangle(13.3,-6.6);
+\draw[shell,rounded corners=2pt](10.7,-5.4)rectangle(13.3,-6.6);
 \draw[ink](11.0,-5.4)--(11.0,-6.6)(13.0,-5.4)--(13.0,-6.6);
 \foreach \yy in {-5.7,-6.0,-6.3}{\draw[ink!60](11,\yy)--(13,\yy);}
 \node[font=\sffamily\bfseries,anchor=south]at(12,-5.25){Condenser};
@@ -140,16 +155,16 @@
 \draw[util](12.5,-6.6)--(12.5,-8)--(15,-8);
 \valve{13.6}{-8}{$u_{11}$}
 \node[smallnote,anchor=north]at(13.5,-8.35){CW return (13); $y_{22}$};
-\draw[util](25.7,-8.5)--(24.5,-8.5)--(24.5,-9.25)--(23.1,-9.25);
+\draw[steam](25.7,-8.5)--(24.5,-8.5)--(24.5,-9.25)--(23.1,-9.25);
 \valve{25.1}{-8.5}{$u_9$}
 \node[smallnote,anchor=south]at(25,-7.6){Steam; $y_{19}$};
-\draw[utility,line width=1pt](23.1,-9.25)--(22.8,-9.25)--(22.8,-10.35)--(23.1,-10.35);
-\draw[util](23.1,-10.35)--(24.5,-10.35)--(25.7,-10.35);
+\draw[steamline,line width=1pt](23.1,-9.25)--(22.8,-9.25)--(22.8,-10.35)--(23.1,-10.35);
+\draw[steam](23.1,-10.35)--(24.5,-10.35)--(25.7,-10.35);
 \node[smallnote,anchor=south]at(25,-10.25){Condensate};
 % Readable explanatory panels, not a claim of industrial P&ID completeness.
 \node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(0,-13.15){\textbf{Chemistry and objective}\\A, C, D, E react; B is inert; G and H are products; F is a byproduct. Reject disturbances while preserving inventories, product rate and quality.};
 \node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(8.8,-13.15){\textbf{Model boundary}\\50 states, 12 commands, 41 measurements, six operating modes. The archived native C revision also defines \texttt{NX=50}. Downstream G/H separation is outside the benchmark.};
-\node[panel,anchor=north west,text width=7.7cm,minimum height=1.7cm,align=left]at(17.6,-13.15){\textbf{Reading the drawing}\\Process: gray. Utilities: blue-gray.\\Dots: junctions. White bridge: crossing.\\Cutaways and material shading are illustrative.\\$u_i=\mathrm{XMV}(i)$; $y_i=\mathrm{XMEAS}(i)$.};
+\node[panel,anchor=north west,text width=7.7cm,minimum height=1.7cm,align=left]at(17.6,-13.15){\textbf{Reading the drawing}\\Gray: process. Teal: CW. Tan: steam/condensate.\\Dots: junctions. White bridge: crossing.\\Finishes and fluid tints are illustrative.\\$u_i=\mathrm{XMV}(i)$; $y_i=\mathrm{XMEAS}(i)$.};
 \atlasfooter{Topology checked against Fig. 13 and the Ricker archive; signal indices checked against \texttt{temexd\_mod.c}. Original explanatory flowsheet, not a construction P\&ID. Instrument labels identify measurements, not a prescribed controller.}
 \end{tikzpicture}
 \end{document}
