@@ -1,24 +1,34 @@
 \documentclass[tikz,border=6pt]{standalone}
 \input{common.tex}
-% Local palette follows the two-tank reference; other atlas plates keep their style.
-\definecolor{ink}{HTML}{13344D}
-\definecolor{flow}{HTML}{0000A0}
-\definecolor{utility}{HTML}{005151}
-\definecolor{liquid}{HTML}{BFEAFB}
-\definecolor{level}{HTML}{8C8CFF}
-\definecolor{pale}{HTML}{EFF7FC}
-\definecolor{muted}{HTML}{526878}
+% Neutral industrial materials with local vector shading and cutaway views.
+% Appearance is illustrative: no actual alloy or A--H fluid colour is specified.
+\definecolor{ink}{HTML}{303A40}
+\definecolor{flow}{HTML}{59636B}
+\definecolor{utility}{HTML}{697B82}
+\definecolor{liquid}{HTML}{D3DBDF}
+\definecolor{liquidlight}{HTML}{EEF1F2}
+\definecolor{level}{HTML}{84959D}
+\definecolor{pale}{HTML}{F3F4F4}
+\definecolor{muted}{HTML}{52616B}
+\definecolor{steel}{HTML}{C7CDD1}
+\definecolor{steelshadow}{HTML}{8C969E}
+\definecolor{steelhighlight}{HTML}{F3F5F6}
+\definecolor{steeledge}{HTML}{59656E}
 \tikzset{
-  equipment/.style={draw=ink,line width=1.15pt,fill=pale,rounded corners=2pt},
-  pipe/.style={draw=flow,line width=1.3pt,line cap=round,line join=round},
-  process/.style={pipe,-{Triangle[length=2.6mm,width=1.8mm]}},
+  equipment/.style={draw=steeledge,line width=1.05pt,fill=pale,rounded corners=2pt},
+  metal/.style={shade,left color=steelshadow,right color=steel,middle color=steelhighlight},
+  metalcross/.style={shade,top color=steel,bottom color=steelshadow,middle color=steelhighlight},
+  shell/.style={draw=steeledge,line width=1.05pt},
+  cutaway/.style={draw=steelshadow!65,line width=.45pt,fill=white,fill opacity=.75,draw opacity=1},
+  pipe/.style={draw=flow,line width=1.4pt,line cap=round,line join=round},
+  process/.style={pipe,-{Triangle[length=2.6mm,width=1.8mm,fill=ink,color=ink]}},
   utilpipe/.style={draw=utility,line width=1.1pt,line cap=round,line join=round},
-  util/.style={utilpipe,-{Triangle[length=2.4mm,width=1.7mm]}},
+  util/.style={utilpipe,-{Triangle[length=2.4mm,width=1.7mm,fill=ink,color=ink]}},
   tag/.style={circle,draw=flow,line width=.65pt,fill=white,inner sep=2pt,font=\sffamily\scriptsize},
   smallnote/.style={annotation,font=\sffamily\scriptsize},
   liquidlevel/.style={draw=level,line width=.8pt},
 }
-\newcommand{\valve}[3]{\begin{scope}[shift={(#1,#2)}]\path[draw=ink,fill=white,line width=.8pt](-.23,-.18)--(.23,.18)--(.23,-.18)--(-.23,.18)--cycle;\draw[ink](0,0)--(0,.4);\draw[ink](-.14,.4)arc(180:0:.14);\node[font=\sffamily\scriptsize,anchor=south]at(0,.65){#3};\end{scope}}
+\newcommand{\valve}[3]{\begin{scope}[shift={(#1,#2)}]\path[draw=ink,fill=steelhighlight,line width=.8pt](-.23,-.18)--(.23,.18)--(.23,-.18)--(-.23,.18)--cycle;\draw[ink](0,0)--(0,.4);\draw[ink](-.14,.4)arc(180:0:.14);\node[font=\sffamily\scriptsize,anchor=south]at(0,.65){#3};\end{scope}}
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \atlasheader{Tennessee Eastman: process, utilities and instruments}{3.13}{Tennessee Eastman process control problem}
@@ -27,13 +37,13 @@
 \draw[pipe](11.5,-2.6)--(4.7,-2.6)--(4.7,-7.0);
 \draw[process](4.7,-5.2)--(4.7,-5.65);
 \draw[process](4.7,-7.0)--(4.7,-6.5);
-\path[equipment](13.0,-2.1)--(13.0,-3.1)--(11.5,-3.35)--(11.5,-1.85)--cycle;
+\path[equipment,metal](13.0,-2.1)--(13.0,-3.1)--(11.5,-3.35)--(11.5,-1.85)--cycle;
 \node[smallnote,align=center]at(12.3,-2.6){Compressor};
 % A dedicated label band separates power measurement, casing and return pipe.
 \node[smallnote,align=center,inner sep=2pt]at(12.3,-3.64){$y_{20}$: power [kW]};
 \draw[pipe](11.1,-2.6)--(11.1,-1.65)--(13.5,-1.65)--(13.5,-2.6);
 \draw[process](12.9,-1.65)--(13.5,-1.65);
-\path[draw=ink,fill=white,line width=.8pt](11.97,-1.83)--(12.43,-1.47)--(12.43,-1.83)--(11.97,-1.47)--cycle;
+\path[draw=ink,fill=steelhighlight,line width=.8pt](11.97,-1.83)--(12.43,-1.47)--(12.43,-1.83)--(11.97,-1.47)--cycle;
 \node[smallnote,anchor=west]at(13.7,-1.7){Bypass $u_5$};
 \node[tag]at(9,-2.6){8};\node[labelbox,anchor=south]at(8.7,-2.35){Recycle gas; $y_5$};
 \draw[process](17,-2.6)--(25.5,-2.6);
@@ -42,35 +52,39 @@
 \fill[flow](17,-2.6)circle(2pt);
 % Major vessels and internal details.
 \def\reactoroutline{(5.9,-5.0)..controls(5.9,-4.1)and(8.1,-4.1)..(8.1,-5.0)--(8.1,-7.1)..controls(8.1,-8.0)and(5.9,-8.0)..(5.9,-7.1)--cycle}
-\path[fill=white]\reactoroutline;
+\def\reactorcutaway{(6.10,-5.03)..controls(6.10,-4.45)and(7.90,-4.45)..(7.90,-5.03)--(7.90,-7.05)..controls(7.90,-7.67)and(6.10,-7.67)..(6.10,-7.05)--cycle}
+\path[metal]\reactoroutline;
+\path[cutaway]\reactorcutaway;
 \begin{scope}
-  \clip\reactoroutline;
-  \fill[liquid](5.9,-6.1)rectangle(8.1,-8.0);
-  \draw[liquidlevel](5.9,-6.1)--(8.1,-6.1);
+  \clip\reactorcutaway;
+  \shade[top color=liquidlight,bottom color=liquid](6.10,-6.1)rectangle(7.90,-7.7);
+  \draw[liquidlevel](6.10,-6.1)--(7.90,-6.1);
 \end{scope}
-\draw[equipment,fill=none]\reactoroutline;
+\draw[shell]\reactoroutline;
 \draw[ink,line width=1.2pt](7,-4.55)--(7,-7.1);
 \foreach \yy in {-5.6,-6.5}{\draw[ink,line width=1pt](6.55,\yy-.12)--(7.45,\yy+.12);}
-\node[equipment,minimum width=.65cm,minimum height=.45cm]at(7,-4.0){\scriptsize M};
+\node[equipment,metal,minimum width=.65cm,minimum height=.45cm]at(7,-4.0){\scriptsize M};
 \node[labelbox,anchor=east]at(6.5,-3.9){Agitator $u_{12}$};
 \draw[utility,line width=1.2pt,rounded corners=3pt](6.55,-6.3)--(6.15,-6.3)--(6.15,-6.7)--(6.55,-6.7)--(6.55,-7.1)--(6.15,-7.1);
 \node[font=\sffamily\bfseries]at(7,-8.25){Reactor};
 \node[smallnote,align=center]at(7,-8.75){$y_7$: pressure; $y_8$: level\\$y_9$: temperature};
 \draw[process](7.8,-4.7)--(9.2,-4.7)--(9.2,-6.0)--(10.7,-6.0);
 \node[tag]at(9.2,-5.35){7};\node[labelbox,anchor=south]at(9.6,-4.65){Reactor effluent};
-\draw[equipment](10.7,-5.4)rectangle(13.3,-6.6);
+\draw[equipment,metalcross](10.7,-5.4)rectangle(13.3,-6.6);
 \draw[ink](11.0,-5.4)--(11.0,-6.6)(13.0,-5.4)--(13.0,-6.6);
 \foreach \yy in {-5.7,-6.0,-6.3}{\draw[ink!60](11,\yy)--(13,\yy);}
 \node[font=\sffamily\bfseries,anchor=south]at(12,-5.25){Condenser};
 \draw[process](13.3,-6)--(15.8,-6);
 \def\separatoroutline{(15.8,-4.9)..controls(15.8,-4.0)and(18.2,-4.0)..(18.2,-4.9)--(18.2,-7.0)..controls(18.2,-7.9)and(15.8,-7.9)..(15.8,-7.0)--cycle}
-\path[fill=white]\separatoroutline;
+\def\separatorcutaway{(16.00,-4.93)..controls(16.00,-4.35)and(18.00,-4.35)..(18.00,-4.93)--(18.00,-6.95)..controls(18.00,-7.57)and(16.00,-7.57)..(16.00,-6.95)--cycle}
+\path[metal]\separatoroutline;
+\path[cutaway]\separatorcutaway;
 \begin{scope}
-  \clip\separatoroutline;
-  \fill[liquid](15.8,-6.4)rectangle(18.2,-7.9);
-  \draw[liquidlevel](15.8,-6.4)--(18.2,-6.4);
+  \clip\separatorcutaway;
+  \shade[top color=liquidlight,bottom color=liquid](16.00,-6.4)rectangle(18.00,-7.6);
+  \draw[liquidlevel](16.00,-6.4)--(18.00,-6.4);
 \end{scope}
-\draw[equipment,fill=none]\separatoroutline;
+\draw[shell]\separatoroutline;
 \node[font=\sffamily\bfseries,align=center]at(17,-5.5){Vapor--liquid\\separator};
 \node[smallnote,align=center]at(17,-8.15){$y_{11}$: temperature; $y_{12}$: level\\$y_{13}$: pressure};
 % Stripper overhead returns to reactor header. White bridge = crossing, no junction.
@@ -97,9 +111,13 @@
 \draw[process](17,-7.65)--(19.4,-7.65)--(19.4,-8.5)--(20.9,-8.5);
 \valve{18.8}{-7.65}{$u_7$}
 \node[tag]at(20,-8.5){10};\node[labelbox,anchor=south]at(20,-8.25){Liquid; $y_{14}$};
-\draw[equipment](20.9,-8.5)..controls(20.9,-7.4)and(23.1,-7.4)..(23.1,-8.5)--(23.1,-10.7)..controls(23.1,-11.8)and(20.9,-11.8)..(20.9,-10.7)--cycle;
-\foreach \yy in {-8.7,-9.1,-9.5,-9.9}{\draw[ink!70](21.05,\yy)--(22.95,\yy);}
-\node[labelbox,font=\sffamily\bfseries]at(22,-9.35){Stripper};
+\def\stripperoutline{(20.9,-8.5)..controls(20.9,-7.4)and(23.1,-7.4)..(23.1,-8.5)--(23.1,-10.7)..controls(23.1,-11.8)and(20.9,-11.8)..(20.9,-10.7)--cycle}
+\def\strippercutaway{(21.10,-8.53)..controls(21.10,-7.77)and(22.90,-7.77)..(22.90,-8.53)--(22.90,-10.65)..controls(22.90,-11.47)and(21.10,-11.47)..(21.10,-10.65)--cycle}
+\path[metal]\stripperoutline;
+\path[cutaway]\strippercutaway;
+\draw[shell]\stripperoutline;
+\foreach \yy in {-8.7,-9.1,-9.5,-9.9}{\draw[steeledge!75,line width=.65pt](21.14,\yy)--(22.86,\yy);}
+\node[labelbox,fill=white,fill opacity=.82,text opacity=1,font=\sffamily\bfseries]at(22,-9.35){Stripper};
 \node[smallnote,anchor=north,align=center]at(22,-12.25){$y_{15}$: level; $y_{16}$: pressure\\$y_{18}$: temperature};
 \node[equipment,minimum width=1.5cm,minimum height=.55cm]at(1,-11.0){A/C + B};
 \draw[process](1.8,-11)--(20.9,-11);
@@ -131,7 +149,7 @@
 % Readable explanatory panels, not a claim of industrial P&ID completeness.
 \node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(0,-13.15){\textbf{Chemistry and objective}\\A, C, D, E react; B is inert; G and H are products; F is a byproduct. Reject disturbances while preserving inventories, product rate and quality.};
 \node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(8.8,-13.15){\textbf{Model boundary}\\50 states, 12 commands, 41 measurements, six operating modes. The archived native C revision also defines \texttt{NX=50}. Downstream G/H separation is outside the benchmark.};
-\node[panel,anchor=north west,text width=7.7cm,minimum height=1.7cm,align=left]at(17.6,-13.15){\textbf{Reading the drawing}\\Blue: process streams 1--11. Teal: utilities. Cyan: vessel liquid. Dots: junctions. White bridge: crossing. $u_i=\mathrm{XMV}(i)$; $y_i=\mathrm{XMEAS}(i)$. See the companion signal sheet.};
+\node[panel,anchor=north west,text width=7.7cm,minimum height=1.7cm,align=left]at(17.6,-13.15){\textbf{Reading the drawing}\\Process: gray. Utilities: blue-gray.\\Dots: junctions. White bridge: crossing.\\Cutaways and material shading are illustrative.\\$u_i=\mathrm{XMV}(i)$; $y_i=\mathrm{XMEAS}(i)$.};
 \atlasfooter{Topology checked against Fig. 13 and the Ricker archive; signal indices checked against \texttt{temexd\_mod.c}. Original explanatory flowsheet, not a construction P\&ID. Instrument labels identify measurements, not a prescribed controller.}
 \end{tikzpicture}
 \end{document}
