@@ -18,7 +18,7 @@
     "benchmarks/tikz/09-cstr.tex": "7579bae48a0d0969061ca547a43eb277b019767c7042b65f56b63ffed3f83bc2",
     "benchmarks/tikz/10-column-a.tex": "b2dddcaee7cc25462bc7068bcffda018cbbd39fad8a9cde089432d682886be80",
     "benchmarks/tikz/11-gasifier.tex": "1eccd083242ecaf9e0c82959691f2c6668b2cc83da3c68b32c7aa14a0d861cb4",
-    "benchmarks/tikz/12-wind-turbine.tex": "8aa4c08c9dddf45bf6f99d4e7307501ab6d019970835a21edf69c0aba2b5f59d",
+    "benchmarks/tikz/12-wind-turbine.tex": "6f62531c97bae0dbd86939f85b0dda4d9d001fb54353d4375c5bd3748709f7dd",
     "benchmarks/tikz/13-tennessee-eastman.tex": "8d3c89b2052e3c2fd95e5a14258fdf8acdae72bbfa6a9eaf85d93346c62e9813",
     "benchmarks/tikz/13b-tennessee-eastman-signals.tex": "0feeaae2b05f3168314787da89e3a3489fe1c3c8667c6c89dbff21b7610601d6"
   },
@@ -45,13 +45,13 @@
     "10-column-a.png": "dd9e49bcb2a11e5d7e31f82aa82f7e6599962e491cf78b176e5e429ef14a3ec2",
     "11-gasifier.pdf": "bdd28731b77890c9e75539c7e8b6a61df74ab8387ce3c14ba9ca3e5a45d8b025",
     "11-gasifier.png": "d37f4c9b2ff340087cc66f220e8b038e258f16f7821d1a92c3cab7e4a5cf212d",
-    "12-wind-turbine.pdf": "a4673f4eb02455fa76a33bcf986afc1531444935f9723b1cfbc2756295a3b143",
-    "12-wind-turbine.png": "852ba5c62337f9f6ce1131dfb9c57e2d26429d09bad7fa3017cb9aee089c3ebb",
+    "12-wind-turbine.pdf": "f4768663cf6372a6f8f97b306d262b0e008b05c06f4d35494d1ed8f66346902d",
+    "12-wind-turbine.png": "88477fbea1a87cf63f0834fc4e71550b14016b9be1293a248481e6ce09833ca1",
     "13-tennessee-eastman.pdf": "22390e482fbc04f558f0d3c42dda342c4d85501c32c648845dfeaafbfe8a14fd",
     "13-tennessee-eastman.png": "6c4f487c25da0da33c19aa7911f16fb64837e61f87b12677d4cc1a72d6c9a34f",
     "13b-tennessee-eastman-signals.pdf": "3b77aae7426eae9167f782160dc7e18e7cbb86c8da0881354669963a2f7912fb",
     "13b-tennessee-eastman-signals.png": "26318f299f27305016a6122c60e1362008a18231d705db0a31596b9c75c250e0",
-    "benchmark-atlas.pdf": "450f26a3f02635360c0ccfbcf00d977c061f5e72e544170e9285b853fb31607b"
+    "benchmark-atlas.pdf": "189b44ebc89c3559deb15d5e27306ead02542948320853965c914b3cf4a2ef4f"
   },
   "scope": "Original explanatory diagrams; numerical validation status is unchanged.",
   "incremental_build": {
