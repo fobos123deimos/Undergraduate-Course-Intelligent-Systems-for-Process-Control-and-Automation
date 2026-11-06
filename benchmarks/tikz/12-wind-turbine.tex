@@ -7,21 +7,46 @@
 % https://tikz.net/mechanics/
 % Component organization cross-check (shaft -> gearbox -> generator):
 % https://www.mdpi.com/1996-1944/15/3/1232 (nacelle schematic; not a construction detail)
-\definecolor{ink}{HTML}{233B46}
-\definecolor{flow}{HTML}{277BA1}
-\definecolor{utility}{HTML}{237B73}
-\definecolor{control}{HTML}{B46C3D}
-\definecolor{muted}{HTML}{536875}
-\definecolor{pale}{HTML}{EDF4F6}
-\definecolor{steelrim}{HTML}{385664}
-% Neutral metallic finish with light specular faces and subdued blue-grey shade.
-\definecolor{steelshade}{HTML}{BCCCD1}
-\definecolor{steelmid}{HTML}{D8E4E9}
-\definecolor{steelhi}{HTML}{FBFEFF}
-\definecolor{steelblue}{HTML}{93AAB4}
+% Real-world material cues (matte pale blades, coated steel towers and nacelle shells):
+% https://www.energy.gov/sites/prod/files/2017/08/f35/EA-2045_Draft%20Environmental%20Assessment.pdf
+% https://docs.nrel.gov/docs/fy25osti/87970.pdf
+% Exact tints, highlights, cast shadows, and equipment internals are illustrative,
+% NOT a material specification or a photorealistic model of a particular turbine.
+\usetikzlibrary{shadows}
+\definecolor{ink}{HTML}{263A45}
+\definecolor{flow}{HTML}{2885AE}
+\definecolor{utility}{HTML}{168373}
+\definecolor{control}{HTML}{BD682F}
+\definecolor{muted}{HTML}{586B74}
+\definecolor{pale}{HTML}{F3F5F2}
+\definecolor{steelrim}{HTML}{485E66}
+\definecolor{steelshade}{HTML}{93A9B4}
+\definecolor{steelmid}{HTML}{CFDFE1}
+\definecolor{steelhi}{HTML}{FFFEF8}
+\definecolor{steelblue}{HTML}{6E8798}
+\definecolor{compositeLit}{HTML}{FEFCF3}
+\definecolor{compositeMid}{HTML}{E9E7DC}
+\definecolor{compositeShade}{HTML}{A4B9BF}
+\definecolor{towerLit}{HTML}{FBF9F0}
+\definecolor{towerMid}{HTML}{D8DBD6}
+\definecolor{towerShade}{HTML}{8E9FA8}
+\definecolor{nacelleShade}{HTML}{9FB2BB}
+\definecolor{metalDark}{HTML}{344853}
+\definecolor{metalSilver}{HTML}{C3D2D9}
+\definecolor{bronze}{HTML}{B38358}
+\definecolor{bronzeDark}{HTML}{795A47}
+\definecolor{ground}{HTML}{CEC5B6}
+\definecolor{skyWash}{HTML}{ECF6FA}
+\definecolor{warmLight}{HTML}{FFFFF2}
+\definecolor{rotorTint}{HTML}{E7F1F5}
+\definecolor{shaftTint}{HTML}{F1ECE4}
+\definecolor{generatorTint}{HTML}{E6EDF0}
+\definecolor{aeroTint}{HTML}{E6F3EC}
+\definecolor{pitchTint}{HTML}{FAEFE5}
+
 \tikzset{
   every node/.style={font=\sffamily\small,text=ink},
-  equipment/.style={draw=steelrim,line width=1.05pt,fill=pale,rounded corners=2pt},
+  equipment/.style={draw=steelrim,line width=1.0pt,fill=pale,rounded corners=2pt},
   process/.style={draw=flow,line width=1.25pt,line cap=round,-{Triangle[length=2.4mm,width=1.7mm]}},
   signal/.style={draw=control,line width=.9pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.1mm,width=1.5mm]}},
   util/.style={draw=utility,line width=1.2pt,line cap=round,-{Triangle[length=2.3mm,width=1.7mm]}},
@@ -29,53 +54,88 @@
   labelbox/.style={fill=white,inner xsep=3pt,inner ysep=2pt,font=\sffamily\footnotesize,align=center},
   annotation/.style={font=\sffamily\footnotesize,text=muted,align=left},
   panel/.style={draw=ink!18,fill=ink!2,rounded corners=3pt,inner sep=6pt},
-  box/.style={equipment,minimum width=3cm,minimum height=1cm,align=center},
+  box/.style={equipment,minimum width=3cm,minimum height=1cm,align=center,
+    drop shadow={opacity=.10,shadow xshift=1pt,shadow yshift=-1pt}},
 }
 
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
+% A pale ambient field belongs BEHIND all labels and lines, never above them.
+\shade[inner color=skyWash,outer color=white] (5.65,-5.5) ellipse (4.55cm and 5.35cm);
 \atlasheader{Wind turbine: structure, drivetrain and aerodynamic coupling}{3.12}{Wind turbine}
 \node[anchor=west,font=\sffamily\bfseries] at (0,-1.9) {Physical coordinates --- schematic side view};
 % Straight-sided, vertical tapered tower: both edges are linear, not curved.
 % The tower centreline x=6.85 is vertical; cross-section widens toward foundation.
 \draw[ink!28,densely dashed,line width=.7pt] (6.85,-10.9)--(6.85,-5.05);
-\shade[draw=steelrim,line width=1.2pt,left color=steelshade,middle color=steelhi,right color=steelblue]
+% Painted-steel tapered tower: warm sunlit face / cool blue-gray shadow.
+% Real wind-turbine towers are predominantly light gray/white, not polished chrome.
+\shade[draw=steelrim,line width=1.15pt,
+       left color=towerShade,middle color=towerLit,right color=towerMid]
  (6.55,-5.0)--(7.15,-5.0)--(7.62,-10.9)--(6.08,-10.9)--cycle;
-% Specular glint follows the same straight tapered edge without extra kinks.
-\draw[white,line width=.85pt,opacity=.8] (6.615,-5.04)--(6.19,-10.86);
-\draw[steelrim!50,line width=.55pt] (7.08,-5.04)--(7.535,-10.87);
+% Lit painted face occupies a broad zone, not just a hairline highlight;
+% softly darker starboard side keeps the shell cylindrical at diagram scale.
+\path[fill=warmLight,opacity=.44]
+ (6.66,-5.025)--(6.97,-5.025)--(7.20,-10.87)--(6.27,-10.87)--cycle;
+\path[fill=towerShade,opacity=.23]
+ (7.02,-5.025)--(7.15,-5.025)--(7.62,-10.88)--(7.35,-10.88)--cycle;
+\draw[towerLit,line width=1.5pt,opacity=.96] (6.63,-5.05)--(6.20,-10.86);
+\draw[steelrim!40,line width=.55pt] (7.08,-5.05)--(7.53,-10.87);
+% Neutral foundation is distinct from the painted tower.
+\fill[ground!32] (5,-11.05) rectangle (8,-11.45);
+\fill[pattern=north east lines,pattern color=ink!32] (5,-11.05) rectangle (8,-11.45);
 \draw[steelrim,line width=1.5pt] (5,-11)--(8,-11);
-\fill[pattern=north east lines,pattern color=ink!33] (5,-11.05) rectangle (8,-11.45);
 % Enclosed nacelle / illustrative machine internals, not vendor-specific hardware.
-\shade[draw=steelrim,line width=1.15pt,top color=steelhi,middle color=steelmid,bottom color=steelshade]
+% Nacelle shell: warm pearl composite top, cool shaded underside, darker lip.
+% Geometry is unchanged, only the illuminated surface treatment differs.
+\shade[draw=steelrim,line width=1.2pt,
+       top color=compositeLit,middle color=compositeMid,bottom color=nacelleShade]
  (6.06,-4.19)--(9.18,-4.19)
  ..controls (9.57,-4.19) and (9.78,-4.38)..(9.78,-4.60)
  ..controls (9.78,-4.83) and (9.57,-5.00)..(9.18,-5.00)
  --(6.06,-5.00)--cycle;
-% A subtle upper highlight and lower lip suggest rounded painted-steel volume.
-\draw[white,line width=.6pt,opacity=.8] (6.12,-4.29)--(9.17,-4.29);
-\draw[steelrim!50,line width=.6pt] (6.13,-4.93)--(9.17,-4.93);
+% Light catching its upper edge and form-following shadow under the rounded cap.
+\draw[compositeLit,line width=1.0pt,opacity=.96] (6.13,-4.285)--(9.15,-4.285);
+\draw[steelrim!42,line width=.8pt] (6.13,-4.925)--(9.15,-4.925)
+ ..controls(9.43,-4.925)and(9.65,-4.80)..(9.70,-4.64);
 % The rotor shaft passes continuously into a compact stylized drivetrain.
-\draw[steelrim,line width=2.1pt,line cap=round] (5.35,-4.6)--(7.98,-4.6);
-\shade[draw=steelrim,line width=.6pt,left color=steelblue,right color=steelmid]
+% Steel drivetrain: raised edge, recessed graphite shaft and copper-tone hub collar.
+\draw[metalDark,line width=3.2pt,line cap=round] (5.35,-4.6)--(7.98,-4.6);
+\draw[metalSilver,line width=1.10pt,line cap=round] (5.35,-4.562)--(7.98,-4.562);
+% Compact gearbox housing: brushed blue-gray sides with restrained copper collar.
+\shade[draw=steelrim,line width=.65pt,left color=metalDark,
+       middle color=metalSilver,right color=steelblue]
  (7.20,-4.85) rectangle (7.72,-4.35);
 \foreach \xx in {7.30,7.42,7.54,7.66}{
-  \draw[steelrim!80,line width=.5pt](\xx,-4.84)--(\xx,-4.36);
+  \draw[steelrim!75,line width=.55pt](\xx,-4.84)--(\xx,-4.36);
 }
-\draw[steelrim,line width=.7pt,fill=steelhi] (7.87,-4.60) circle (.13);
-\node[font=\sffamily\footnotesize,fill=steelhi,fill opacity=.85,text opacity=1,inner sep=1.3pt]
+\shade[draw=bronzeDark,line width=.55pt,left color=bronzeDark,right color=bronze!55!white]
+ (7.68,-4.81) rectangle (7.75,-4.39);
+\shade[draw=steelrim,line width=.65pt,inner color=steelhi,outer color=steelblue]
+ (7.87,-4.60) circle (.13);
+\node[font=\sffamily\footnotesize,fill=compositeLit,fill opacity=.92,
+      text opacity=1,inner xsep=1.5pt,inner ysep=1.1pt,rounded corners=1pt]
  at (8.87,-4.59) {Nacelle};
-% Projected upper and lower blades of the side-view rotor, with metal-edge shading.
-\draw[ink!25,densely dashed,line width=.7pt] (5.4,-2.1)--(5.4,-7.2);
-\shade[draw=steelrim,line width=1.05pt,left color=steelhi,middle color=steelmid,right color=steelshade]
+% Fiberglass-composite airfoils: pale matte faces, shaded far edges, not metal.
+\draw[ink!23,densely dashed,line width=.7pt] (5.4,-2.1)--(5.4,-7.2);
+\shade[draw=steelrim,line width=1.05pt,
+       left color=compositeShade,middle color=compositeLit,right color=compositeMid]
  (5.3,-4.6)..controls(5.05,-3.3)and(5.2,-2.6)..(5.7,-2.1)
  ..controls(5.65,-3.2)and(5.65,-4)..(5.55,-4.6)--cycle;
-\shade[draw=steelrim,line width=1.05pt,left color=steelhi,middle color=steelmid,right color=steelshade]
+\draw[compositeLit,line width=.70pt,opacity=.88]
+ (5.325,-4.53)..controls(5.15,-3.45)and(5.31,-2.79)..(5.64,-2.22);
+\shade[draw=steelrim,line width=1.05pt,
+       left color=compositeShade,middle color=compositeLit,right color=compositeMid]
  (5.4,-4.6)..controls(5.25,-5.7)and(5.5,-6.7)..(5.9,-7.2)
  ..controls(5.8,-6)and(5.8,-5)..(5.55,-4.6)--cycle;
-\shade[draw=steelrim,line width=1.2pt,outer color=steelmid,inner color=steelhi]
- (5.45,-4.6) circle (.24);
-\draw[steelrim!50,line width=.5pt] (5.45,-4.6) circle (.135);
+\draw[compositeLit,line width=.70pt,opacity=.84]
+ (5.415,-4.67)..controls(5.37,-5.78)and(5.62,-6.68)..(5.84,-7.07);
+% Metallic rotor hub reads separately from pale composite blades.
+\shade[draw=metalDark,line width=1.35pt,outer color=metalDark,inner color=steelmid]
+ (5.45,-4.6) circle (.27);
+\shade[draw=steelrim,line width=.6pt,outer color=steelblue,inner color=compositeLit]
+ (5.45,-4.6) circle (.17);
+\fill[compositeLit] (5.395,-4.545) circle (.032);
+\draw[steelrim!58,line width=.48pt] (5.45,-4.6) circle (.105);
 % Wind glyphs are intentionally kept outside the rotor swept envelope.
 \foreach \yy in {-3.3,-4.6,-5.9}{
   \draw[process] (.4,\yy)--(4.30,\yy);
@@ -91,24 +151,27 @@
 \node[anchor=north west,labelbox,inner xsep=2pt] at (7.55,-5.69) {$F_T$ aerodynamic thrust};
 % Pitch turns the blade about its spanwise axis; the local elliptical marker
 % is centered on the upper blade section rather than on the rotor hub.
-% Pitch rotates around the blade's own spanwise axis; a shaded rear arc
-% and a prominent orange arrowhead make the intended 3D rotation legible.
+% Pitch: copper-orange foreground arc, lighter rear arc, a single clear tip.
 \begin{scope}[shift={(5.45,-3.45)}]
-  \draw[control!50,line width=1.25pt,line cap=round]
+  \draw[control!48!white,line width=1.15pt,line cap=round]
     (30:.58 and .22) arc[start angle=30,end angle=170,x radius=.58,y radius=.22];
-  \draw[control,line width=1.35pt,line cap=round,
+  \draw[control,line width=1.40pt,line cap=round,
         -{Triangle[length=2.5mm,width=1.9mm]}]
     (170:.58 and .22) arc[start angle=170,end angle=327,x radius=.58,y radius=.22];
-  \fill[control!65!steelrim] (0,0) circle (.028);
+  \fill[control!85!bronzeDark] (0,0) circle (.03);
 \end{scope}
 \node[anchor=west,labelbox] at (6.15,-3.45) {Collective pitch $\beta$};
 \node[annotation,text width=4.4cm,align=left,anchor=north west] at (.3,-8.45)
  {Tower fore-aft motion and blade flapwise bending become two translational coordinates. Blade deflection is relative to the tower top. Geometry is not to scale.};
 
 \node[anchor=west,font=\sffamily\bfseries] at (10.5,-1.9) {Drive-train coordinates and actuator};
-\node[box,minimum width=3cm,minimum height=1.45cm] (rotor) at (12.2,-3.4) {Rotor\\$J_r,\ \theta_r,\ \omega_r$};
-\node[box,minimum width=3.2cm,minimum height=1.45cm] (shaft) at (16.8,-3.4) {Flexible shaft\\$k_S,\ d_S$};
-\node[box,minimum width=4.4cm,minimum height=1.45cm] (gen) at (23,-3.4) {Generator / gearbox\\$J_g,\ \theta_g,\ \omega_g$};
+% Very light role-based fills identify physical subsystems without a toy palette.
+\node[box,fill=rotorTint,draw=steelblue,minimum width=3cm,minimum height=1.45cm]
+ (rotor) at (12.2,-3.4) {Rotor\\$J_r,\ \theta_r,\ \omega_r$};
+\node[box,fill=shaftTint,draw=bronze!65!steelrim,minimum width=3.2cm,minimum height=1.45cm]
+ (shaft) at (16.8,-3.4) {Flexible shaft\\$k_S,\ d_S$};
+\node[box,fill=generatorTint,draw=steelblue,minimum width=4.4cm,minimum height=1.45cm]
+ (gen) at (23,-3.4) {Generator / gearbox\\$J_g,\ \theta_g,\ \omega_g$};
 \draw[process] (rotor.east)--(shaft.west);
 \draw[process] (shaft.east)--node[above,labelbox]{torsion}(gen.west);
 % Aerodynamic torque is already delivered by the traced green map-to-rotor link;
@@ -118,9 +181,9 @@
   (torque-command) at (23,-1.96) {Command $T_g$};
 \draw[signal] (torque-command.south)--(gen.north);
 
-\node[box,minimum width=5.5cm,minimum height=1.5cm] (aero) at (13.4,-6.6)
+\node[box,fill=aeroTint,draw=utility!70!steelrim,minimum width=5.5cm,minimum height=1.5cm] (aero) at (13.4,-6.6)
  {\textbf{Aerodynamic maps}\\$C_T(\lambda,\beta),\ C_Q(\lambda,\beta)$};
-\node[box,minimum width=6.6cm,minimum height=1.5cm] (pitch) at (22,-6.6)
+\node[box,fill=pitchTint,draw=control!75!steelrim,minimum width=6.6cm,minimum height=1.5cm] (pitch) at (22,-6.6)
  {\textbf{Pitch actuator --- Eq. (58)}\\$\dot\beta=(\beta_d-\beta)/\tau,\quad\tau=0.1\;\mathrm{s}$};
 \draw[signal] (pitch.west)--node[above,labelbox]{$\beta$}(aero.east);
 \draw[signal] (9.2,-6.6)--node[above,labelbox]{$v$}(aero.west);
