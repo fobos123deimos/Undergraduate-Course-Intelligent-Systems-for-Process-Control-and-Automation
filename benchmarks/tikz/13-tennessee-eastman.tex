@@ -136,7 +136,7 @@
 \draw[pipe,preaction={draw=white,line width=4pt}](17.3,-4)to[out=160,in=20](16.7,-4);
 \draw[pipe](16.7,-4)--(9.6,-4)--(9.6,-3.25)--(4.7,-3.25);
 \draw[process](6.1,-3.25)--(5.3,-3.25);
-\node[tag]at(20.5,-4){5};\node[labelbox,anchor=north]at(20,-4.25){Stripper overhead};
+\node[tag]at(20.5,-4){5};\node[labelbox,anchor=north]at(20,-4.48){Stripper overhead};
 % Fresh feeds A,D,E join recycle and stripper overhead at the reactor header.
 \foreach \yy/\sp/\st/\uv/\ym in {-5.0/A/1/3/1,-6.0/D/2/1/2,-7.0/E/3/2/3}{
   \node[equipment,minimum width=.7cm,minimum height=.5cm]at(.5,\yy){\sp};
@@ -166,15 +166,15 @@
 \draw[shell]\stripperoutline;
 \foreach \yy in {-8.7,-9.1,-9.5,-9.9}{\draw[steeledge!75,line width=.65pt](21.14,\yy)--(22.86,\yy);}
 \node[labelbox,equipmenttitle,fill=white,fill opacity=.82,text opacity=1]at(22,-9.35){Stripper};
-\node[smallnote,anchor=north,align=center]at(21.9,-11.95){$y_{15}$: level\\$y_{16}$: pressure\\$y_{18}$: temperature};
+\node[smallnote,anchor=north east,align=right]at(21.45,-11.98){$y_{15}$: level\\$y_{16}$: pressure\\$y_{18}$: temperature};
 \node[equipment,minimum width=1.5cm,minimum height=.55cm]at(1,-11.0){A/C + B};
 \draw[process](1.8,-11)--(20.9,-11);
 \valve{3.3}{-11}{$u_4$}
-\node[tag]at(5.2,-11){4};\node[labelbox,anchor=south]at(9,-10.9){Fresh mixed feed; $y_4$; IDV(1): A/C ratio};
+\node[tag]at(5.2,-11){4};\node[labelbox,anchor=south]at(12.0,-10.88){Fresh mixed feed; $y_4$\\IDV(1): A/C ratio};
 \draw[process](stripper-bottom)--(22,-11.85)--(25.7,-11.85);
 \valve{24}{-11.85}{$u_8$}
 \node[tag]at(23,-11.85){11};
-\node[smallnote,anchor=north east,align=right]at(25.7,-12.10){Liquid product; $y_{17}$\\analyzer $y_{37:41}$};
+\node[smallnote,anchor=north east,align=right]at(25.75,-12.24){Liquid product; $y_{17}$\\analyzer $y_{37:41}$};
 % Utilities: separate colored lines and explicit inlet/outlet directions.
 % Place the inlet arrow on a straight run, clear of the coil's final elbow.
 % Separate the utility caption from the feed header above and valve tag u_4.
@@ -183,7 +183,7 @@
 \node[smallnote,anchor=east]at(5.25,-9.9){CW supply};
 \draw[util](6.55,-6.3)--(8.45,-6.3)--(8.45,-9.5)--(10.5,-9.5);
 \valve{9.4}{-9.5}{$u_{10}$}
-\node[smallnote,anchor=north,align=center]at(9.2,-9.75){CW return (12); $y_{21}$\\IDV(4): inlet temperature};
+\node[smallnote,anchor=north west,align=left]at(9.78,-9.72){CW return (12); $y_{21}$\\IDV(4): inlet temperature};
 \draw[util](11,-8.0)--(11.5,-8.0)--(11.5,-6.6);
 \node[smallnote,anchor=east]at(11,-8){CW};
 \draw[util](12.5,-6.6)--(12.5,-8)--(15,-8);
