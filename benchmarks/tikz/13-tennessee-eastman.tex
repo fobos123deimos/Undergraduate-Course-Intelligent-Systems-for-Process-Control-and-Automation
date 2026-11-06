@@ -71,16 +71,17 @@
 % Recycle first, with a compressor bypass rather than a fictitious feed valve.
 % Split true tees into straight segments: rounded elbows must not open a junction.
 \draw[pipe](separator-top)--(17,-2.6);
-\draw[process](17,-2.6)--(13.0,-2.6);
-\draw[pipe](11.5,-2.6)--(4.7,-2.6)--(4.7,-6.4);
-\path[equipment,machinepaint](13.0,-2.1)--(13.0,-3.1)--(11.5,-3.35)--(11.5,-1.85)--cycle;
-\node[smallnote,font=\sffamily\fontsize{7.5}{9}\selectfont,text=ink,fill=pale,fill opacity=.9,text opacity=1,rounded corners=1pt,inner sep=1.2pt,align=center]at(12.25,-2.6){Compressor};
+\draw[process](17,-2.6)--(13.2,-2.6);
+\draw[pipe](11.3,-2.6)--(4.7,-2.6)--(4.7,-6.4);
+% TikZ.net node padding: keep the nameplate inset from the compressor shell.
+\path[equipment,machinepaint](13.2,-2.1)--(13.2,-3.1)--(11.3,-3.35)--(11.3,-1.85)--cycle;
+\node[smallnote,font=\sffamily\fontsize{7.5}{9}\selectfont,text=ink,fill=pale,fill opacity=.9,text opacity=1,rounded corners=1pt,inner xsep=1pt,inner ysep=1.2pt,align=center]at(12.25,-2.6){Compressor};
 % A dedicated label band separates power measurement, casing and return pipe.
 \node[smallnote,align=center,inner sep=2pt]at(12.25,-3.64){$y_{20}$: power [kW]};
-\draw[pipe](11.1,-2.6)--(11.1,-1.65)--(13.5,-1.65)--(13.5,-2.6);
-\draw[process](12.65,-1.65)--(13.25,-1.65);
+\draw[pipe](10.9,-2.6)--(10.9,-1.65)--(13.6,-1.65)--(13.6,-2.6);
+\draw[process](12.75,-1.65)--(13.35,-1.65);
 \path[draw=ink,fill=steelhighlight,line width=.8pt](11.97,-1.83)--(12.43,-1.47)--(12.43,-1.83)--(11.97,-1.47)--cycle;
-\node[smallnote,anchor=west]at(13.7,-1.7){Bypass $u_5$};
+\node[smallnote,anchor=west]at(13.9,-1.7){Bypass $u_5$};
 \node[tag]at(9,-2.6){8};\node[labelbox,anchor=south]at(8.7,-2.35){Recycle gas; $y_5$};
 \draw[process](17,-2.6)--(25.5,-2.6);
 \valve{21.8}{-2.6}{$u_6$}
