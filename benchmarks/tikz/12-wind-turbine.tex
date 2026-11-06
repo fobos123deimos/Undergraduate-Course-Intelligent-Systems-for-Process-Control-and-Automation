@@ -14,9 +14,9 @@
 % NOT a material specification or a photorealistic model of a particular turbine.
 \usetikzlibrary{shadows}
 \definecolor{ink}{HTML}{263A45}
-\definecolor{flow}{HTML}{2885AE}
-\definecolor{utility}{HTML}{168373}
-\definecolor{control}{HTML}{BD682F}
+\definecolor{flow}{HTML}{158DB5}
+\definecolor{utility}{HTML}{158873}
+\definecolor{control}{HTML}{D37431}
 \definecolor{muted}{HTML}{586B74}
 \definecolor{pale}{HTML}{F3F5F2}
 \definecolor{steelrim}{HTML}{485E66}
@@ -36,13 +36,22 @@
 \definecolor{bronze}{HTML}{B38358}
 \definecolor{bronzeDark}{HTML}{795A47}
 \definecolor{ground}{HTML}{CEC5B6}
-\definecolor{skyWash}{HTML}{ECF6FA}
+\definecolor{skyWash}{HTML}{DFEFF6}
 \definecolor{warmLight}{HTML}{FFFFF2}
-\definecolor{rotorTint}{HTML}{E7F1F5}
-\definecolor{shaftTint}{HTML}{F1ECE4}
-\definecolor{generatorTint}{HTML}{E6EDF0}
-\definecolor{aeroTint}{HTML}{E6F3EC}
-\definecolor{pitchTint}{HTML}{FAEFE5}
+% Ground and vegetation are decorative context only, not an extra state
+% or a representation of terrain, displacement, or process instrumentation.
+\definecolor{concreteHi}{HTML}{E3E2DB}
+\definecolor{concreteShade}{HTML}{AFAFA8}
+\definecolor{grassDeep}{HTML}{3E793D}
+\definecolor{grassMid}{HTML}{6B9B47}
+\definecolor{grassLight}{HTML}{A8C86D}
+\definecolor{soil}{HTML}{9D896B}
+\definecolor{sunGlow}{HTML}{FFF4D9}
+\definecolor{rotorTint}{HTML}{DDEDF4}
+\definecolor{shaftTint}{HTML}{F4E7D3}
+\definecolor{generatorTint}{HTML}{DEEAF1}
+\definecolor{aeroTint}{HTML}{DBEDE2}
+\definecolor{pitchTint}{HTML}{FAE6DA}
 
 \tikzset{
   every node/.style={font=\sffamily\small,text=ink},
@@ -60,8 +69,15 @@
 
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
-% A pale ambient field belongs BEHIND all labels and lines, never above them.
-\shade[inner color=skyWash,outer color=white] (5.65,-5.5) ellipse (4.55cm and 5.35cm);
+% A very subtle sky wash stays behind the physical sketch and out of the headings.
+% It is illustrative atmosphere, not a wind-field measurement.
+\begin{scope}
+  \clip (0.0,-2.03) rectangle (10.15,-11.84);
+  \shade[inner color=skyWash,outer color=white,opacity=.82]
+    (5.25,-5.08) ellipse (4.28cm and 5.25cm);
+  \shade[inner color=sunGlow,outer color=white,opacity=.24]
+    (8.25,-3.35) ellipse (2.45cm and 2.0cm);
+\end{scope}
 \atlasheader{Wind turbine: structure, drivetrain and aerodynamic coupling}{3.12}{Wind turbine}
 \node[anchor=west,font=\sffamily\bfseries] at (0,-1.9) {Physical coordinates --- schematic side view};
 % Straight-sided, vertical tapered tower: both edges are linear, not curved.
@@ -80,10 +96,59 @@
  (7.02,-5.025)--(7.15,-5.025)--(7.62,-10.88)--(7.35,-10.88)--cycle;
 \draw[towerLit,line width=1.5pt,opacity=.96] (6.63,-5.05)--(6.20,-10.86);
 \draw[steelrim!40,line width=.55pt] (7.08,-5.05)--(7.53,-10.87);
-% Neutral foundation is distinct from the painted tower.
-\fill[ground!32] (5,-11.05) rectangle (8,-11.45);
-\fill[pattern=north east lines,pattern color=ink!32] (5,-11.05) rectangle (8,-11.45);
-\draw[steelrim,line width=1.5pt] (5,-11)--(8,-11);
+% Subtle tower section seams reinforce the impression of fabricated steel.
+\draw[steelrim!33,line width=.44pt] (6.37,-7.30)--(7.33,-7.30);
+\draw[steelrim!30,line width=.44pt] (6.22,-9.11)--(7.48,-9.11);
+% Ground shadow and low meadow halo behind the concrete foundation:
+% vector shapes, no photo textures, sufficiently small not to mask annotations.
+\shade[inner color=soil!35!white,outer color=white,opacity=.90]
+  (6.55,-11.43) ellipse (2.40cm and .28cm);
+\shade[inner color=grassLight!60!white,outer color=white,opacity=.82]
+  (6.55,-11.34) ellipse (2.25cm and .22cm);
+% Back row: fine curved blades of unequal heights, not a continuous lawn wall.
+\foreach \cx/\ht in {4.74/.24,4.96/.30,5.18/.21,5.52/.20,
+  7.60/.19,7.93/.29,8.23/.31,8.47/.21}{
+  \foreach \off/\scale/\lean/\tone in {-.09/.74/-.08/grassDeep,
+    -.035/1.0/-.02/grassMid,.025/.86/.06/grassDeep,.095/.70/.09/grassLight}{
+    \pgfmathsetmacro{\root}{\cx+\off}
+    \pgfmathsetmacro{\tipx}{\root+\lean}
+    \pgfmathsetmacro{\tipy}{-11.25+\ht*\scale}
+    \fill[\tone,opacity=.86]
+      (\root-.021,-11.31)
+      .. controls (\root-.034,-11.23) and (\tipx-.025,\tipy-.05)
+      .. (\tipx,\tipy)
+      .. controls (\tipx+.014,\tipy-.09) and (\root+.027,-11.23)
+      .. (\root+.022,-11.31)--cycle;
+  }
+}
+% Beveled concrete pedestal and flush mounting collar; tower remains vertical.
+\shade[draw=steelrim!80,line width=.9pt,
+       top color=concreteHi,bottom color=concreteShade]
+  (5.02,-11.04) rectangle (8.03,-11.37);
+\draw[white,line width=.7pt,opacity=.75] (5.04,-11.08)--(8.01,-11.08);
+\shade[draw=steelrim,line width=.7pt,
+       top color=concreteHi,bottom color=concreteShade]
+  (6.05,-10.87) rectangle (7.66,-11.05);
+\draw[steelrim!65,line width=.4pt] (6.09,-10.93)--(7.61,-10.93);
+\foreach \xx in {6.20,6.58,6.96,7.34,7.57}{
+  \fill[steelrim!65] (\xx,-10.99) circle (.018);
+}
+% Front row: scattered low grass tufts leave most concrete visible.
+\foreach \cx/\ht in {4.75/.15,4.94/.21,5.19/.17,5.47/.21,5.86/.14,
+  6.36/.13,6.99/.13,7.51/.15,7.95/.25,8.28/.23,8.55/.17}{
+  \foreach \off/\scale/\lean/\tone in {-.09/.74/-.10/grassMid,
+    -.025/1.0/-.015/grassDeep,.055/.88/.07/grassLight,.10/.69/.105/grassMid}{
+    \pgfmathsetmacro{\root}{\cx+\off}
+    \pgfmathsetmacro{\tipx}{\root+\lean}
+    \pgfmathsetmacro{\tipy}{-11.40+\ht*\scale}
+    \fill[\tone,opacity=.90]
+      (\root-.020,-11.45)
+      .. controls (\root-.042,-11.36) and (\tipx-.03,\tipy-.03)
+      .. (\tipx,\tipy)
+      .. controls (\tipx+.012,\tipy-.07) and (\root+.030,-11.37)
+      .. (\root+.022,-11.45)--cycle;
+  }
+}
 % Enclosed nacelle / illustrative machine internals, not vendor-specific hardware.
 % Nacelle shell: warm pearl composite top, cool shaded underside, darker lip.
 % Geometry is unchanged, only the illuminated surface treatment differs.
@@ -115,6 +180,12 @@
 \node[font=\sffamily\footnotesize,fill=compositeLit,fill opacity=.92,
       text opacity=1,inner xsep=1.5pt,inner ysep=1.1pt,rounded corners=1pt]
  at (8.87,-4.59) {Nacelle};
+% Small nacelle maintenance indicator: subdued amber, not an instrument
+% measurement or an extra signal of the reduced wind-turbine model.
+\shade[draw=metalDark,line width=.45pt,
+       inner color=sunGlow,outer color=bronze]
+  (8.24,-4.59) circle (.059);
+\fill[sunGlow] (8.225,-4.565) circle (.018);
 % Fiberglass-composite airfoils: pale matte faces, shaded far edges, not metal.
 \draw[ink!23,densely dashed,line width=.7pt] (5.4,-2.1)--(5.4,-7.2);
 \shade[draw=steelrim,line width=1.05pt,
