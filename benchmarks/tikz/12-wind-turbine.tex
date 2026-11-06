@@ -14,17 +14,18 @@
 \definecolor{muted}{HTML}{536875}
 \definecolor{pale}{HTML}{EDF4F6}
 \definecolor{steelrim}{HTML}{385664}
-\definecolor{steelshade}{HTML}{AFC2C9}
-\definecolor{steelmid}{HTML}{D5E1E4}
-\definecolor{steelhi}{HTML}{F6FAFB}
-\definecolor{steelblue}{HTML}{5E8999}
+% Neutral metallic finish with light specular faces and subdued blue-grey shade.
+\definecolor{steelshade}{HTML}{BCCCD1}
+\definecolor{steelmid}{HTML}{D8E4E9}
+\definecolor{steelhi}{HTML}{FBFEFF}
+\definecolor{steelblue}{HTML}{93AAB4}
 \tikzset{
   every node/.style={font=\sffamily\small,text=ink},
   equipment/.style={draw=steelrim,line width=1.05pt,fill=pale,rounded corners=2pt},
   process/.style={draw=flow,line width=1.25pt,line cap=round,-{Triangle[length=2.4mm,width=1.7mm]}},
   signal/.style={draw=control,line width=.9pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.1mm,width=1.5mm]}},
   util/.style={draw=utility,line width=1.2pt,line cap=round,-{Triangle[length=2.3mm,width=1.7mm]}},
-  dimension/.style={draw=muted,line width=.7pt,{Latex[length=1.5mm]}-{Latex[length=1.5mm]}},
+  dimension/.style={draw=muted,line width=.85pt,{Stealth[length=1.9mm,width=1.5mm]}-{Stealth[length=1.9mm,width=1.5mm]}},
   labelbox/.style={fill=white,inner xsep=3pt,inner ysep=2pt,font=\sffamily\footnotesize,align=center},
   annotation/.style={font=\sffamily\footnotesize,text=muted,align=left},
   panel/.style={draw=ink!18,fill=ink!2,rounded corners=3pt,inner sep=6pt},
@@ -35,20 +36,25 @@
 \begin{tikzpicture}[x=1cm,y=1cm]
 \atlasheader{Wind turbine: structure, drivetrain and aerodynamic coupling}{3.12}{Wind turbine}
 \node[anchor=west,font=\sffamily\bfseries] at (0,-1.9) {Physical coordinates --- schematic side view};
-% Tower reference, deflected envelope and foundation.
-\draw[ink!30,densely dashed,line width=.8pt] (6.5,-10.9)--(6.5,-4.9);
-% Tapered tower and clean base: continuous, closed load-bearing silhouette.
-\shade[draw=steelrim,line width=1.15pt,top color=steelhi,bottom color=steelmid]
- (5.8,-10.9)..controls(6,-8)and(6.5,-6.6)..(6.75,-5)
- --(7.35,-5)..controls(7.1,-6.6)and(6.9,-8)..(6.8,-10.9)--cycle;
+% Straight-sided, vertical tapered tower: both edges are linear, not curved.
+% The tower centreline x=6.85 is vertical; cross-section widens toward foundation.
+\draw[ink!28,densely dashed,line width=.7pt] (6.85,-10.9)--(6.85,-5.05);
+\shade[draw=steelrim,line width=1.2pt,left color=steelshade,middle color=steelhi,right color=steelblue]
+ (6.55,-5.0)--(7.15,-5.0)--(7.62,-10.9)--(6.08,-10.9)--cycle;
+% Specular glint follows the same straight tapered edge without extra kinks.
+\draw[white,line width=.85pt,opacity=.8] (6.615,-5.04)--(6.19,-10.86);
+\draw[steelrim!50,line width=.55pt] (7.08,-5.04)--(7.535,-10.87);
 \draw[steelrim,line width=1.5pt] (5,-11)--(8,-11);
 \fill[pattern=north east lines,pattern color=ink!33] (5,-11.05) rectangle (8,-11.45);
 % Enclosed nacelle / illustrative machine internals, not vendor-specific hardware.
-\shade[draw=steelrim,line width=1.05pt,top color=steelhi,bottom color=steelshade]
+\shade[draw=steelrim,line width=1.15pt,top color=steelhi,middle color=steelmid,bottom color=steelshade]
  (6.06,-4.19)--(9.18,-4.19)
  ..controls (9.57,-4.19) and (9.78,-4.38)..(9.78,-4.60)
  ..controls (9.78,-4.83) and (9.57,-5.00)..(9.18,-5.00)
  --(6.06,-5.00)--cycle;
+% A subtle upper highlight and lower lip suggest rounded painted-steel volume.
+\draw[white,line width=.6pt,opacity=.8] (6.12,-4.29)--(9.17,-4.29);
+\draw[steelrim!50,line width=.6pt] (6.13,-4.93)--(9.17,-4.93);
 % The rotor shaft passes continuously into a compact stylized drivetrain.
 \draw[steelrim,line width=2.1pt,line cap=round] (5.35,-4.6)--(7.98,-4.6);
 \shade[draw=steelrim,line width=.6pt,left color=steelblue,right color=steelmid]
@@ -61,10 +67,10 @@
  at (8.87,-4.59) {Nacelle};
 % Projected upper and lower blades of the side-view rotor, with metal-edge shading.
 \draw[ink!25,densely dashed,line width=.7pt] (5.4,-2.1)--(5.4,-7.2);
-\shade[draw=steelrim,line width=1pt,left color=steelhi,right color=steelshade]
+\shade[draw=steelrim,line width=1.05pt,left color=steelhi,middle color=steelmid,right color=steelshade]
  (5.3,-4.6)..controls(5.05,-3.3)and(5.2,-2.6)..(5.7,-2.1)
  ..controls(5.65,-3.2)and(5.65,-4)..(5.55,-4.6)--cycle;
-\shade[draw=steelrim,line width=1pt,left color=steelhi,right color=steelshade]
+\shade[draw=steelrim,line width=1.05pt,left color=steelhi,middle color=steelmid,right color=steelshade]
  (5.4,-4.6)..controls(5.25,-5.7)and(5.5,-6.7)..(5.9,-7.2)
  ..controls(5.8,-6)and(5.8,-5)..(5.55,-4.6)--cycle;
 \shade[draw=steelrim,line width=1.2pt,outer color=steelmid,inner color=steelhi]
@@ -75,18 +81,25 @@
   \draw[process] (.4,\yy)--(4.30,\yy);
 }
 \node[anchor=west] at (.4,-2.7) {Wind $v$ [m/s]};
-\draw[dimension] (5.4,-2.5)--(5.9,-2.5);
-\node[anchor=west,labelbox] at (6.15,-2.5) {$y_B$ (relative)};
+% Wide, readable two-headed displacement glyph near the blade-tip reference.
+% Keep the symbolic y_B measurement in the same horizontal flapwise direction.
+\draw[dimension] (5.83,-2.48)--(6.53,-2.48);
+\node[anchor=west,labelbox,inner xsep=2pt] at (6.74,-2.48) {$y_B$ (relative)};
 \draw[dimension] (6.50,-6.75)--node[above,labelbox,inner sep=1pt]{$y_T$}(7.14,-6.75);
 % Thrust is depicted near the rotor/tower-head region, not halfway down the tower.
 \draw[util] (5.78,-5.50)--(8.77,-5.50);
 \node[anchor=north west,labelbox,inner xsep=2pt] at (7.55,-5.69) {$F_T$ aerodynamic thrust};
 % Pitch turns the blade about its spanwise axis; the local elliptical marker
 % is centered on the upper blade section rather than on the rotor hub.
+% Pitch rotates around the blade's own spanwise axis; a shaded rear arc
+% and a prominent orange arrowhead make the intended 3D rotation legible.
 \begin{scope}[shift={(5.45,-3.45)}]
-\draw[control,line width=.9pt,-{Latex[length=2mm]}] (25:.53 and .19)
- arc[start angle=25,end angle=305,x radius=.53,y radius=.19];
-\fill[control] (0,0) circle (.035);
+  \draw[control!50,line width=1.25pt,line cap=round]
+    (30:.58 and .22) arc[start angle=30,end angle=170,x radius=.58,y radius=.22];
+  \draw[control,line width=1.35pt,line cap=round,
+        -{Triangle[length=2.5mm,width=1.9mm]}]
+    (170:.58 and .22) arc[start angle=170,end angle=327,x radius=.58,y radius=.22];
+  \fill[control!65!steelrim] (0,0) circle (.028);
 \end{scope}
 \node[anchor=west,labelbox] at (6.15,-3.45) {Collective pitch $\beta$};
 \node[annotation,text width=4.4cm,align=left,anchor=north west] at (.3,-8.45)
