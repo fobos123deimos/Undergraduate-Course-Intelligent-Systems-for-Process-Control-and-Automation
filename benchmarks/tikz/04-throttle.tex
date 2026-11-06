@@ -3,6 +3,9 @@
 \usetikzlibrary{shadings,shadows,decorations.markings}
 % Independent educational automotive throttle interpretation, section 3.4.
 % Atmospheric engine-test-cell elements are decorative, not benchmark hardware.
+% Article's Figure 3 is the technical reference for R, L, i, M_A, M_F,
+% motor, potentiometer, spring, gears and butterfly-plate relationships.
+% These are qualitative variables, not identified numeric parameters.
 % All models, units and signal directions retain the established atlas convention.
 \definecolor{charcoal}{HTML}{34424A}
 \definecolor{graphite}{HTML}{26343C}
@@ -48,40 +51,84 @@
 \node[anchor=west,font=\sffamily\bfseries] at (.2,-2.0)
  {Physical chain: PWM drive, DC motor, gear box, spring and throttle plate};
 
-% ENGINE-TEST-CELL AMBIENCE. Soft defocused body panels, overhead light and
-% shaded instrument plinth give physical context without imitating a landscape.
-% Intentional no extraneous measured variables, badges or instrument icons.
+% ENGINE-TEST-CELL AMBIENCE, tailored to an automotive engine-actuator rig.
+% Architectural fixtures and the tinted workspace are BACKGROUND context only,
+% not added hardware, signals, sensors, model states or certified fixtures.
+% Stronger visible environmental depth; subdued contrast around measurements.
 \begin{scope}
  \clip (.13,-2.28) rectangle (19.76,-11.94);
- \shade[inner color=coolWall,outer color=white,opacity=.52]
-   (12.0,-6.15) ellipse (9.1cm and 5.4cm);
- \shade[inner color=workLight,outer color=white,opacity=.66]
-   (7.6,-3.30) ellipse (5.6cm and 2.3cm);
- % Engine test-cell housing, distant curved duct line (not a process connection).
- \draw[graphite!17,line width=5.5pt,opacity=.16,rounded corners=12pt]
-  (1.6,-3.25)--(3.5,-3.25)..controls(5.2,-2.7)and(7.3,-3.05)..(9.8,-2.9)
-  ..controls(11.2,-2.8)and(12.3,-3.28)..(14.0,-3.06);
- \draw[steelShade!65,line width=1.2pt,opacity=.18]
-  (.7,-10.68)..controls(3,-10.57)and(4.1,-10.69)..(5.7,-10.62);
- % Faint industrial vent ribs, pushed behind the actuator.
- \foreach \xx in {11.70,12.04,12.38,12.72,13.06,13.40,13.74,14.08,14.42,14.76,15.10,15.44,15.78,16.12,16.46,16.80,17.14,17.48,17.82,18.16}{
-   \draw[charcoal!18,line width=.68pt,opacity=.35] (\xx,-3.02)--(\xx+.1,-3.37);
+ % Neutral industrial wall, colored by a cool exterior light and amber luminaire.
+ \shade[top color=warmWall!74!white,bottom color=coolWall!70!white,opacity=.58]
+  (.16,-2.55) rectangle (19.72,-11.03);
+ \shade[inner color=workLight,outer color=white,opacity=.72]
+  (7.5,-3.48) ellipse (7.8cm and 3.4cm);
+ \shade[inner color=airLight!30!white,outer color=white,opacity=.28]
+  (16.0,-6.55) ellipse (4.8cm and 4.9cm);
+ % Laboratory wall tiles with carefully restrained seams and joiners.
+ \foreach \xx in {1.55,4.80,8.05,11.30,14.55,17.80}{
+   \draw[steelEdge!33,line width=.55pt,opacity=.33]
+     (\xx,-3.54)--(\xx,-10.88);
  }
- \shade[inner color=benchHi!38!white,outer color=white,opacity=.36]
-   (10.2,-10.98) ellipse (9.3cm and .63cm);
+ \draw[steelEdge!35,line width=.48pt,opacity=.36]
+   (.4,-3.54)--(19.55,-3.54);
+ % An overhead elongated fixture creates the strong top-down illumination.
+ \shade[draw=steelEdge!40,line width=.50pt,rounded corners=2pt,
+   top color=steelMid,bottom color=steelShade!70!white,opacity=.74]
+  (6.18,-2.70) rectangle (15.60,-2.92);
+ \draw[steelHi,line width=1.4pt,opacity=.89]
+   (6.34,-2.785)--(15.44,-2.785);
+ \shade[inner color=workLight,outer color=white,opacity=.35]
+   (10.85,-3.17) ellipse (6.2cm and 1.0cm);
+ % A partially visible sound-damped inspection panel on the far wall.
+ \shade[draw=steelEdge!35,line width=.65pt,rounded corners=3pt,
+        left color=coolWall!60!white,right color=steelShade!26!white,opacity=.67]
+   (.52,-6.08) rectangle (3.26,-8.38);
+ \foreach \xx in {.86,1.20,1.54,1.88,2.22,2.56,2.90}{
+   \foreach \yy in {-6.43,-6.77,-7.11,-7.45,-7.79,-8.13}{
+     \fill[steelEdge!47,opacity=.29] (\xx,\yy) circle (.033);
+   }
+ }
+ % Deep automotive hose-like silhouette on the rear wall -- decorative,
+ % visibly unattached to the benchmark mechanical power path.
+ \draw[graphite!32,line width=10pt,opacity=.25,line cap=round]
+   (1.6,-9.01)..controls (3.05,-9.06) and (3.38,-8.45)..(4.10,-8.48);
+ \draw[steelShade!66,line width=2.0pt,opacity=.44]
+   (1.55,-8.92)..controls (3.10,-8.98) and (3.45,-8.37)..(4.11,-8.41);
+ % Muted hazard tape at a distant, fixed wall edge, not a control arrow.
+ \path[fill=amber!65!warmWall,opacity=.25]
+  (19.23,-8.50) rectangle (19.52,-10.96);
+ \foreach \yy in {-8.57,-8.91,-9.25,-9.59,-9.93,-10.27,-10.61}{
+    \draw[graphite!70,line width=1.35pt,opacity=.25]
+      (19.23,\yy-.20)--(19.52,\yy+.06);
+ }
+ % Warm floor bounce and a broad machine shadow above the platform.
+ \shade[inner color=steelShade!30!white,outer color=white,opacity=.59]
+  (10.0,-10.98) ellipse (9.5cm and .60cm);
 \end{scope}
-% Underlying machined aluminum test platen, left deliberately low-contrast.
-\shade[draw=steelEdge!58,line width=.7pt,
+% Surface plate is a distinct machined automotive-test fixture.
+\shade[draw=steelEdge!72,line width=.75pt,
   top color=benchHi!78!white,middle color=benchHi,bottom color=bench]
-  (.45,-11.21) rectangle (19.15,-11.47);
-\draw[white,line width=.85pt,opacity=.72] (.48,-11.245)--(19.11,-11.245);
-\draw[graphite!45,line width=.65pt] (.47,-11.45)--(19.10,-11.45);
+  (.45,-11.14) rectangle (19.15,-11.50);
+\draw[steelHi,line width=.95pt,opacity=.81] (.48,-11.194)--(19.11,-11.194);
+\draw[graphite!59,line width=.72pt] (.47,-11.468)--(19.10,-11.468);
 \foreach \xx in {1.05,2.72,4.39,6.06,7.73,9.40,11.07,12.74,14.41,16.08,17.75,18.69}{
-  \fill[graphite!70] (\xx,-11.33) circle (.031);
-  \fill[steelHi!92!white] (\xx-.008,-11.32) circle (.010);
+ \fill[graphite!70] (\xx,-11.34) circle (.031);
+ \fill[steelHi!92!white] (\xx-.008,-11.33) circle (.010);
 }
-\node[anchor=north,annotation,text=muted!78!ink] at (10.2,-11.55)
- {Automotive actuator / test-cell context (illustrative cutaway; not to scale)};
+% Two light-gauge fixture uprights behind the actual actuator (no new states).
+\begin{scope}[opacity=.58]
+ \shade[draw=steelEdge!70,line width=.58pt,left color=steelShade,
+  middle color=steelHi,right color=steelEdge]
+  (10.89,-7.29) rectangle (11.20,-11.13);
+ \shade[draw=steelEdge!60,line width=.56pt,left color=steelShade,
+  middle color=steelHi,right color=steelEdge]
+  (18.86,-7.87) rectangle (19.16,-11.13);
+ \foreach \xx in {11.05,19.01}{
+   \fill[graphite!70] (\xx,-10.81) circle (.055);
+ }
+\end{scope}
+\node[anchor=north,annotation,text=muted!85!ink] at (10.2,-11.55)
+ {Automotive engine-test-cell rig (illustrative equipment and lighting; not to scale)};
 
 % POWER STAGE: a distinct electronic module with translucent green cover,
 % connector, miniature board and identified benchmark input u(k).
@@ -94,13 +141,17 @@
 \foreach \xx in {1.08,1.36,1.64,1.92,2.20,2.48,2.76,3.04}{
  \draw[amberLight!87!white,line width=.40pt] (\xx,-4.30)--(\xx,-4.59);
 }
-\node[font=\sffamily\small,align=center] at (2.10,-5.08) {\textbf{PWM power stage}};
-\node[font=\sffamily\footnotesize,align=center] at (2.10,-5.41) {$u(k)$: duty cycle [\%]};
+\node[font=\sffamily\small,align=center] at (2.10,-5.02) {\textbf{PWM power stage}};
+\node[font=\sffamily\footnotesize,align=center] at (2.10,-5.35) {$u(k)$: duty cycle [\%]};
 % Stable incoming command: begins at a clearly marked source marker.
 \node[anchor=west,annotation] at (.46,-2.89) {Benchmark input};
 \fill[amber] (1.18,-3.13) circle (.047);
 \draw[cmdline] (1.18,-3.13)--(2.10,-3.13)--(2.10,-4.00);
-\draw[powerline] (3.69,-4.87)--(4.39,-4.87);
+% Paper-style armature supply: direct upper lead, R/L series leg below.
+% This is a qualitative circuit, NOT a measured R/L parameterization.
+\draw[boardDeep,line width=1.35pt,line cap=round] (3.69,-4.87)--(4.39,-4.87);
+\fill[boardDeep] (3.69,-4.87) circle (.037);
+\fill[boardDeep] (4.39,-4.87) circle (.037);
 
 % MOTOR: graphite-blue cylindrical can with copper windings and brushed cap.
 % Three-dimensional shading is explanatory, not a manufacturer cutaway.
@@ -130,7 +181,35 @@
  (7.40,-4.88) ellipse (.105cm and .39cm);
 \draw[graphite,line width=3.0pt,line cap=round] (7.44,-4.88)--(8.81,-4.88);
 \draw[steelHi,line width=.84pt,line cap=round] (7.49,-4.855)--(8.81,-4.855);
-\node[anchor=north,labelglass] at (5.97,-5.77) {DC motor \\ electromagnetic torque};
+\node[anchor=north,labelglass,align=center,text width=3.00cm] at (5.79,-5.78) {DC motor \\ electromagnetic torque};
+% The uploaded article's circuit explicitly includes armature current i,
+% resistance R and inductance L. The second feed is drawn below the motor.
+\draw[boardDeep,line width=1.03pt,line cap=round]
+  (3.67,-5.38)--(3.86,-5.38)--(3.86,-7.24)--(4.30,-7.24);
+\draw[boardDeep,line width=1.03pt,line cap=round] (5.07,-7.24)--(5.30,-7.24);
+% Resistive element, connected end-to-end with the lower power lead.
+\draw[copper!90!bronzeShadow,line width=1.07pt,line join=round]
+ (4.30,-7.24)--(4.39,-7.39)--(4.49,-7.09)--(4.59,-7.39)--
+ (4.69,-7.09)--(4.79,-7.39)--(4.89,-7.09)--(4.99,-7.39)--(5.07,-7.24);
+\node[labelglass,inner xsep=1.6pt,inner ysep=.8pt] at (4.68,-6.88) {$R$};
+% Six copper-winding lobes are electrically continuous between the leads.
+\draw[boardDeep,line width=1.03pt,line cap=round] (5.30,-7.24)--(5.39,-7.24);
+\draw[copper!92!bronzeShadow,line width=1.07pt]
+ (5.39,-7.24)
+ .. controls(5.43,-7.02)and(5.55,-7.02)..(5.59,-7.24)
+ .. controls(5.63,-7.02)and(5.75,-7.02)..(5.79,-7.24)
+ .. controls(5.83,-7.02)and(5.95,-7.02)..(5.99,-7.24)
+ .. controls(6.03,-7.02)and(6.15,-7.02)..(6.19,-7.24)
+ .. controls(6.23,-7.02)and(6.35,-7.02)..(6.39,-7.24);
+\draw[boardDeep,line width=1.03pt,line cap=round]
+  (6.39,-7.24)--(6.90,-7.24)--(6.90,-5.64);
+\fill[boardDeep] (6.90,-5.64) circle (.039);
+\node[labelglass,inner xsep=1.6pt,inner ysep=.8pt] at (5.89,-6.88) {$L$};
+% Arrow for the loop current is local to this wire, not a second torque.
+\draw[boardDeep,line width=1.09pt,line cap=round,
+  -{Triangle[length=1.9mm,width=1.3mm]}] (3.91,-7.24)--(4.19,-7.24);
+\node[anchor=south,labelglass,inner xsep=1.1pt,inner ysep=.65pt]
+ at (4.06,-7.12) {$i$};
 
 % Motor-can retaining brackets meet the gearbox shell; they are not a signal.
 \foreach \yy in {-4.24,-5.50}{
@@ -174,7 +253,14 @@
 \shade[draw=bronzeShadow,line width=.75pt,inner color=amberLight,outer color=bronze]
  (9.82,-6.06) circle (.18);
 \fill[graphite] (9.82,-6.06) circle (.061);
-\node[anchor=north,labelglass,align=center] at (9.29,-7.58) {Reduction gearbox \\ shaft torque conversion};
+\node[anchor=north,labelglass,align=center,text width=3.26cm] at (9.36,-7.59) {Reduction gearbox \\ shaft torque conversion};
+% Article notation M_A: a localized rotation glyph on the DC-motor axle.
+% Drawn in foreground so the torque tip cannot disappear under the gearbox.
+\draw[amber,line width=1.15pt,line cap=round,
+ -{Triangle[length=1.95mm,width=1.40mm]}]
+ (7.40,-4.70)..controls(7.55,-4.48)and(7.75,-4.57)..(7.78,-4.74);
+\node[anchor=south,labelglass,inner xsep=2.0pt,inner ysep=1.3pt] at (7.30,-4.07) {$M_A$};
+
 
 % FLOW BODY: dark outer casting, dimensioned aluminum flange rings,
 % atmospheric intake bore, and a single physically hinged butterfly plate.
@@ -227,7 +313,7 @@
  (16,-6.10) circle (.158);
 \fill[graphite] (16,-6.10) circle (.063);
 \fill[steelHi] (15.943,-6.047) circle (.035);
-\node[anchor=north,annotation,align=center,text width=3.9cm] at (16.48,-8.13)
+\node[anchor=north,labelglass,text=ink,align=center,text width=3.73cm,inner xsep=3pt,inner ysep=2.2pt] at (18.10,-8.15)
  {Butterfly plate and shaft \\ variable opening};
 % Actual reference axis through pivot, and one exact-angle arc (no drift).
 \draw[steelEdge!56,dash pattern=on 3pt off 2pt,line width=.72pt]
@@ -248,20 +334,28 @@
  (12.06,-6.69) rectangle (12.37,-7.09);
 \fill[graphite!65] (12.22,-6.89) circle (.041);
 \draw[bronzeShadow,line width=.71pt] (11.82,-6.37)--(11.82,-8.24);
-\node[anchor=north,labelglass,align=center] at (12.12,-8.37)
+\node[anchor=north,labelglass,align=center,text width=3.4cm] at (12.23,-8.34)
  {Return torsion spring \\ restoring torque};
+
+% Article torque notation M_F at the return-spring side. The figure
+% retains the manuscript's symbol without inferring a calibrated torque law.
+\node[labelglass,inner xsep=1.7pt] at (11.83,-5.26) {$M_F$};
+\draw[bronzeShadow,line width=.76pt,-{Triangle[length=1.7mm,width=1.2mm]}]
+  (11.80,-5.46)--(11.82,-5.77);
 
 % POTENTIOMETER OUTPUT: explicit physical junction, separate from blue airflow.
 \fill[violet] (16.28,-6.13) circle (.042);
 \node[instrument,draw=violet,fill=steelHi,line width=.90pt] (sensor) at (17.77,-9.39) {$\varphi$};
 \draw[sensline] (16.27,-6.20)--(16.27,-9.39)--(sensor.west);
-\node[anchor=north,annotation,text width=4.2cm,align=center] at (17.70,-9.95)
- {Potentiometer \\ angle measurement [deg]};
+\node[anchor=north,labelglass,text=ink,text width=3.78cm,align=center,inner xsep=3pt,inner ysep=2.2pt] at (17.32,-9.93)
+ {Potentiometer \\ output $y(k)=\varphi(k)$ [deg]};
 \draw[sensline] (sensor.east)--(20.02,-9.39)--(20.02,-5.98)--(20.55,-5.98);
 
 % Explanatory signal legend, positioned without touching hardware.
-\node[annotation,anchor=west,text width=8.45cm] at (.32,-9.52)
- {Blue: intake airflow. Green: motor power. Orange dashed: PWM command. \\ Gray: mechanical power transmission. Purple dashed: sampled angle measurement.};
+\node[labelglass,anchor=north west,text=ink,align=left,text width=8.9cm,inner xsep=3pt,inner ysep=2.5pt,fill opacity=.91] at (.35,-9.32)
+ {Blue: intake airflow. Green: armature current $i$.\\
+ Copper: series $R$--$L$ elements. Orange dashed: PWM command.\\
+ Purple dashed: measured angle. Gray: mechanical transmission.};
 
 % Model statements and evaluation commitments carried over from the atlas.
 \hyphenpenalty=10000\exhyphenpenalty=10000\emergencystretch=1em
@@ -290,6 +384,6 @@
  available. Original measured time series have not been recovered;
  fixtures are synthetic.};
 \hyphenpenalty=50\exhyphenpenalty=50\emergencystretch=0pt
-\atlasfooter{Technology diagram, not a calibrated physical throttle model or an engineering assembly drawing. Gear ratio, electrical constants, spring law and friction map are intentionally unspecified. See THROTTLE\_RECOVERY.md for the data-access record.}
+\atlasfooter{Technology illustration, not a calibrated throttle model or a production assembly drawing. Gear ratio, motor constants, spring law and friction are not inferred. See \texttt{THROTTLE\_RECOVERY.md} for data access status.}
 \end{tikzpicture}
 \end{document}

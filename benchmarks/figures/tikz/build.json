@@ -10,7 +10,7 @@
     "benchmarks/tikz/01-artificial.tex": "512200522ee3e821f303e7c1ded03762d733830bcb64c1bbfde29e36a76aa008",
     "benchmarks/tikz/02-datasets.tex": "a372f65ceba344eb13bd7f9c9ed8fadeb8a0f6d6d951c5263655c1caa9a6b9f7",
     "benchmarks/tikz/03-pendulum.tex": "75ab4380c26cd8cee641234fc418e219e941a10d4a9ec1c5a14f4df65b67bd9f",
-    "benchmarks/tikz/04-throttle.tex": "a6698bdb3336ca5a2260528a9cc6402d30baf361e238c938f939c6667f45ca8f",
+    "benchmarks/tikz/04-throttle.tex": "854e657b7a08a0207a1acd70cdc5c126de7cef01b99c98a9ce9cdb8ce55bf765",
     "benchmarks/tikz/05-pneumatic.tex": "aa8f17bf304ea36ef2b7c4f6783f333c79b5d239258b7a74c3f19ee648969216",
     "benchmarks/tikz/06-hydrostatic.tex": "f351d3998557649c888da02f7f6ee05f0f87bf07e3522bd746222ab74528ab52",
     "benchmarks/tikz/07-three-tanks.tex": "1558d8b2bdc8f7cdd9a60d29b312e7af88252dfa37bf19abaf8c1df71bf0cfcb",
@@ -29,8 +29,8 @@
     "02-datasets.png": "bcaf2d717265d44c13a275b2539d5ad3eee4fbc0850bb8f1408a3acf4eeeabf8",
     "03-pendulum.pdf": "aef1a22901603d2e7559ee4e6333a7996da6e5661ec3be60aa0c65c50e6203d5",
     "03-pendulum.png": "7e811d9811fae4514b45a7e6187533b2db7c8f715b4427ade3c4597e8b8118d6",
-    "04-throttle.pdf": "abe5691881657dcf6b278518031ad00c8f5acee0b5e87aa1e0a2133839518a3e",
-    "04-throttle.png": "655f986a59b21fd34dfb73efcd44e0e1da49b95349bd55301b0dce007cf3957e",
+    "04-throttle.pdf": "a6b551d3fc8bf48c3c0785f512e09d93114ae7418278a1e4fc75876a49337d7c",
+    "04-throttle.png": "21d7d5fc5c654391065fde6eb44f6be3f376162ca3b604c773211997ede860ee",
     "05-pneumatic.pdf": "a365ce4f7b6ba3d455ca16a9172817399af68c70db4da962f67af97e667530d2",
     "05-pneumatic.png": "fa548baaa69dac417dd70ee000d44847c3524318f8285e8c626129bf6890c966",
     "06-hydrostatic.pdf": "eac223d85456ffb1c263ad7f38fc50b9f40ff06abe9cda1b1f1dbb27f41341cc",
@@ -51,13 +51,13 @@
     "13-tennessee-eastman.png": "6c4f487c25da0da33c19aa7911f16fb64837e61f87b12677d4cc1a72d6c9a34f",
     "13b-tennessee-eastman-signals.pdf": "3b77aae7426eae9167f782160dc7e18e7cbb86c8da0881354669963a2f7912fb",
     "13b-tennessee-eastman-signals.png": "26318f299f27305016a6122c60e1362008a18231d705db0a31596b9c75c250e0",
-    "benchmark-atlas.pdf": "e62ce402d8037513632a8cc5c6468002bcb6421d832f8f6673d1065891c5702a"
+    "benchmark-atlas.pdf": "a280fbf41b39483a9be00074404ba356f08d792517f140288a03ab7f1533220a"
   },
   "scope": "Original explanatory diagrams; numerical validation status is unchanged.",
   "incremental_build": {
     "plate": "04-throttle",
     "compiler": "pdfLaTeX (GitHub Actions)",
     "reused_plates": 13,
-    "scope": "Engine-test-cell ambiance, metal/copper materials, anchored actuation and angular sensing; benchmark model and data constraints unchanged."
+    "scope": "Stronger automotive test-cell setting; source-aligned armature R/L/i, motor and friction/return torque labels; model/data unchanged."
   }
 }
