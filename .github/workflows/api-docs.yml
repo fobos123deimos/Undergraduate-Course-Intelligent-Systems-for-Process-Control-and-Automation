@@ -1,5 +1,10 @@
 name: Build and publish Python API
+# Rendered Tennessee Eastman files are committed by another workflow.
+# On successful completion, rebuild docs from the synchronized atlas.
 on:
+  workflow_run:
+    workflows: ['Rebuild Tennessee Eastman figures']
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -9,6 +14,7 @@ on:
       - 'benchmarks/learning/**'
       - 'benchmarks/figures/**'
       - 'benchmarks/tikz/**'
+      - '!benchmarks/tikz/13-tennessee-eastman.tex'
       - 'tools/build_benchmark_atlas.py'
       - 'benchmarks/results/**'
       - 'laboratories/**/results/*.png'
@@ -25,6 +31,7 @@ on:
       - 'benchmarks/learning/**'
       - 'benchmarks/figures/**'
       - 'benchmarks/tikz/**'
+      - '!benchmarks/tikz/13-tennessee-eastman.tex'
       - 'tools/build_benchmark_atlas.py'
       - 'benchmarks/results/**'
       - 'laboratories/**/results/*.png'
@@ -41,6 +48,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
