@@ -19,7 +19,7 @@
     "benchmarks/tikz/10-column-a.tex": "b2dddcaee7cc25462bc7068bcffda018cbbd39fad8a9cde089432d682886be80",
     "benchmarks/tikz/11-gasifier.tex": "1eccd083242ecaf9e0c82959691f2c6668b2cc83da3c68b32c7aa14a0d861cb4",
     "benchmarks/tikz/12-wind-turbine.tex": "5c5557a70be6e5f6456f4b965ea33c1a47dce9b4de427bdb018a038e454c7f68",
-    "benchmarks/tikz/13-tennessee-eastman.tex": "0ce5b500d9abf4156a752e2b454c49720dc261686e014f6278a7441959945f3b",
+    "benchmarks/tikz/13-tennessee-eastman.tex": "0435fd63347a361832980c7815b82d6bd46f1ec2a8ac22b13040f7d410aa3b25",
     "benchmarks/tikz/13b-tennessee-eastman-signals.tex": "0feeaae2b05f3168314787da89e3a3489fe1c3c8667c6c89dbff21b7610601d6"
   },
   "artifact_sha256": {
@@ -47,11 +47,11 @@
     "11-gasifier.png": "d37f4c9b2ff340087cc66f220e8b038e258f16f7821d1a92c3cab7e4a5cf212d",
     "12-wind-turbine.pdf": "f372fcc8bb57a69d21c8d96a39391572a501aabf44bb9b1462064a75fcfcc637",
     "12-wind-turbine.png": "2001bc6454b2f12d1767fd29f46a7358ced7c94ad1d45c2c4959364e1e2ab55e",
-    "13-tennessee-eastman.pdf": "fdf1b7e46458ace6d17b14ba8c57f12b263e28f7a5eb65b6b83a96ed7572deb9",
-    "13-tennessee-eastman.png": "029999640cf1f26b6c23ac8b7cf874be2a0e39d84b058bcb323dcf3812ea4084",
+    "13-tennessee-eastman.pdf": "939d1cbb45fee916999e3d53ac72473d128e049397ddf395ee333c211f3ee166",
+    "13-tennessee-eastman.png": "69b210f937fc262f70434fc0ff75c542b466c6e9383a834e3b97e481a2a2b7c0",
     "13b-tennessee-eastman-signals.pdf": "3b77aae7426eae9167f782160dc7e18e7cbb86c8da0881354669963a2f7912fb",
     "13b-tennessee-eastman-signals.png": "26318f299f27305016a6122c60e1362008a18231d705db0a31596b9c75c250e0",
-    "benchmark-atlas.pdf": "ae8ff8e7c6ad075ee093bd782195329b8d1b1088781f0a3facba481bafada9fe"
+    "benchmark-atlas.pdf": "5051a0c7277d85983b44675013473611b9717acae810990afccbeac0ee9cac61"
   },
   "scope": "Original explanatory diagrams; numerical validation status is unchanged.",
   "incremental_build": {
