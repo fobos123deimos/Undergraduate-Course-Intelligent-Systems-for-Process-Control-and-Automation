@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - benchmarks/tikz/04-throttle.tex.gz.b64
+      - benchmarks/tikz/04-throttle.tex
   workflow_dispatch:
 permissions:
   contents: write
@@ -24,16 +24,6 @@ jobs:
           sudo apt-get update -qq
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
           python -m pip install pypdf pymupdf
-      - name: Restore reviewed TikZ source with checksum
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import base64, gzip, hashlib
-          src = Path('benchmarks/tikz/04-throttle.tex.gz.b64')
-          data = gzip.decompress(base64.b64decode(src.read_text().strip()))
-          assert hashlib.sha256(data).hexdigest() == 'a6698bdb3336ca5a2260528a9cc6402d30baf361e238c938f939c6667f45ca8f'
-          Path('benchmarks/tikz/04-throttle.tex').write_bytes(data)
-          PY
       - name: Compile and render reviewed throttle plate
         run: |
           cd benchmarks/tikz
