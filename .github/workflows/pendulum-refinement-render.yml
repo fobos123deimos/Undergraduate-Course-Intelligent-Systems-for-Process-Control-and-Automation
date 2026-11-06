@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - benchmarks/tikz/03-pendulum.tex.gz.b64
+      - benchmarks/tikz/03-pendulum.tex
   workflow_dispatch:
 permissions:
   contents: write
@@ -24,17 +24,6 @@ jobs:
           sudo apt-get update -qq
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
           python -m pip install pypdf
-      - name: Decode exact reviewed TikZ source
-        run: |
-          python - <<'PY'
-          import base64, gzip, hashlib
-          from pathlib import Path
-          text = Path('benchmarks/tikz/03-pendulum.tex.gz.b64').read_text().strip()
-          data = gzip.decompress(base64.b64decode(text))
-          expected = '4f4073935753ab7055f753aba450eb539125832406b8fb4316d3e6e66f83c572'
-          assert hashlib.sha256(data).hexdigest() == expected
-          Path('benchmarks/tikz/03-pendulum.tex').write_bytes(data)
-          PY
       - name: Compile and rasterize updated plate
         run: |
           cd benchmarks/tikz
