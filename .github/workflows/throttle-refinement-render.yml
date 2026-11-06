@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - benchmarks/tikz/04-throttle.patch.gz.b64
+      - benchmarks/tikz/04-throttle-layout.patch.gz.b64
   workflow_dispatch:
 permissions:
   contents: write
@@ -24,24 +24,30 @@ jobs:
           sudo apt-get update -qq
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
           python -m pip install pypdf pymupdf
-      - name: Apply paper-aligned patch with source hash validation
+      - name: Apply reviewed layout patch after reconciling article notation
         run: |
           python - <<'PY'
-          import base64, gzip, hashlib
           from pathlib import Path
-          source=Path('benchmarks/tikz/04-throttle.tex')
-          assert hashlib.sha256(source.read_bytes()).hexdigest() == 'a6698bdb3336ca5a2260528a9cc6402d30baf361e238c938f939c6667f45ca8f'
-          raw=gzip.decompress(base64.b64decode(Path('benchmarks/tikz/04-throttle.patch.gz.b64').read_text().strip()))
-          assert hashlib.sha256(raw).hexdigest() == '05fc8e73ee55fa7468f1a1469c2233011f6d6ad62d5390781b0cebd870cef963'
-          Path('benchmarks/tikz/04-throttle.patch').write_bytes(raw)
-          PY
-          cd benchmarks/tikz
-          patch --batch --forward -p0 < 04-throttle.patch
-          python - <<'PY'
-          from pathlib import Path
-          import hashlib
-          data=Path('04-throttle.tex').read_bytes()
-          assert hashlib.sha256(data).hexdigest() == '8a4207005bb59d3400aece58bcdac1ba4b6c7345e317f19ccd4030259cef9599'
+          import base64, gzip, hashlib, subprocess
+          folder=Path('benchmarks/tikz')
+          source=folder/'04-throttle.tex'
+          def sha(data): return hashlib.sha256(data).hexdigest()
+          start=sha(source.read_bytes())
+          initial='a6698bdb3336ca5a2260528a9cc6402d30baf361e238c938f939c6667f45ca8f'
+          intermediate='8a4207005bb59d3400aece58bcdac1ba4b6c7345e317f19ccd4030259cef9599'
+          final='854e657b7a08a0207a1acd70cdc5c126de7cef01b99c98a9ce9cdb8ce55bf765'
+          if start==initial:
+              data=gzip.decompress(base64.b64decode((folder/'04-throttle.patch.gz.b64').read_text().strip()))
+              assert sha(data)=='05fc8e73ee55fa7468f1a1469c2233011f6d6ad62d5390781b0cebd870cef963'
+              subprocess.run(['patch','--batch','--forward','-p0'],cwd=folder,input=data,check=True)
+          elif start not in (intermediate,final):
+              raise RuntimeError('Unknown or concurrent throttle source: '+start)
+          if sha(source.read_bytes())!=final:
+              assert sha(source.read_bytes())==intermediate
+              data=gzip.decompress(base64.b64decode((folder/'04-throttle-layout.patch.gz.b64').read_text().strip()))
+              assert sha(data)=='3d6b0565effc7fdd13d29ead14964ca841873758abd651881a9ffabeb5d9793f'
+              subprocess.run(['patch','--batch','--forward','-p0'],cwd=folder,input=data,check=True)
+          assert sha(source.read_bytes())==final
           PY
       - name: Compile and render reviewed throttle plate
         run: |
