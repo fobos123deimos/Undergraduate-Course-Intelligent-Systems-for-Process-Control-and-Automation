@@ -97,9 +97,11 @@
   \draw[liquidlevel](6.10,-6.1)--(7.90,-6.1);
 \end{scope}
 \draw[shell]\reactoroutline;
-\draw[ink,line width=1.2pt](7,-4.55)--(7,-7.1);
+% The M unit is the agitator drive; its shaft meets the motor housing exactly.
+\node[equipment,fill=machineblue,text=white,minimum width=.65cm,minimum height=.45cm]
+  (agitator-motor) at (7,-4.0){\scriptsize\bfseries M};
+\draw[ink,line width=1.2pt](agitator-motor.south)--(7,-7.1);
 \foreach \yy in {-5.6,-6.5}{\draw[ink,line width=1pt](6.55,\yy-.12)--(7.45,\yy+.12);}
-\node[equipment,fill=machineblue,text=white,minimum width=.65cm,minimum height=.45cm]at(7,-4.0){\scriptsize\bfseries M};
 \node[labelbox,anchor=east]at(6.5,-3.9){Agitator $u_{12}$};
 \draw[utility,line width=1.2pt,rounded corners=3pt](6.55,-6.3)--(6.15,-6.3)--(6.15,-6.7)--(6.55,-6.7)--(6.55,-7.1)--(6.15,-7.1);
 \node[equipmenttitle](reactor-title)at(7,-8.25){Reactor};
@@ -110,7 +112,17 @@
   {$y_7$: pressure\\$y_8$: level\\$y_9$: temperature};
 % Reserve the narrow corridor between overhead (y=-4) and effluent (y=-4.88).
 % Centre the reactor label between the two lines rather than anchoring its lower edge.
-\draw[process](7.8,-4.88)--(9.2,-4.88)--(9.2,-6.0)--(10.7,-6.0);
+% Tangential outlet stub and quarter-turn elbows keep the effluent transition smooth.
+% Keep the arrow on the long, straight final run into the condenser.
+\coordinate (reactor-effluent-port) at (8.03,-4.92);
+\draw[pipe] (reactor-effluent-port)
+  to[out=0,in=180] (8.31,-4.88)
+  -- (8.95,-4.88)
+  to[out=0,in=90] (9.2,-5.13)
+  -- (9.2,-5.75)
+  to[out=-90,in=180] (9.45,-6.0)
+  -- (9.6,-6.0);
+\draw[process] (9.6,-6.0)--(10.7,-6.0);
 \node[tag]at(9.2,-5.53){7};
 \node[labelbox,anchor=center,inner xsep=3pt,inner ysep=1.5pt]at(9.10,-4.47){Reactor effluent};
 \draw[equipment,metalcross](10.7,-5.4)rectangle(13.3,-6.6);
@@ -119,7 +131,7 @@
 \draw[shell,rounded corners=2pt](10.7,-5.4)rectangle(13.3,-6.6);
 \draw[ink](11.0,-5.4)--(11.0,-6.6)(13.0,-5.4)--(13.0,-6.6);
 \foreach \yy in {-5.7,-6.0,-6.3}{\draw[ink!60](11,\yy)--(13,\yy);}
-\node[equipmenttitle,anchor=south]at(12,-5.25){Condenser};
+\node[equipmenttitle,anchor=south]at(12,-5.10){Condenser};
 \draw[process](13.3,-6)--(15.8,-6);
 \def\separatoroutline{(15.8,-4.9)..controls(15.8,-4.0)and(18.2,-4.0)..(18.2,-4.9)--(18.2,-7.0)..controls(18.2,-7.9)and(15.8,-7.9)..(15.8,-7.0)--cycle}
 \def\separatorcutaway{(16.00,-4.93)..controls(16.00,-4.35)and(18.00,-4.35)..(18.00,-4.93)--(18.00,-6.95)..controls(18.00,-7.57)and(16.00,-7.57)..(16.00,-6.95)--cycle}
@@ -164,7 +176,7 @@
 \node[smallnote,anchor=north west,align=left,text width=4.7cm,
       font=\sffamily\fontsize{8}{11.2}\selectfont,
       inner xsep=3pt,inner ysep=3pt]
-  at(.2,-7.83){\textbf{Reactor feed header}\\[1.5pt]
+  at(.2,-7.50){\textbf{Reactor feed header}\\[1.5pt]
     Fresh A, D, E + recycle + stripper overhead\\[2pt]
     $y_6$: total reactor feed\\[1.5pt]
     $y_{23:28}$: A--F feed composition};
@@ -200,8 +212,10 @@
 % Utilities: separate colored lines and explicit inlet/outlet directions.
 % Place the inlet arrow on a straight run, clear of the coil's final elbow.
 % Separate the utility caption from the feed header above and valve tag u_4.
-\draw[utilpipe](5.3,-9.9)--(5.5,-9.9)--(5.5,-7.8)--(6.15,-7.8)--(6.15,-7.1);
-\draw[util](6.15,-7.65)--(6.15,-7.25);
+% A single contiguous inlet replaces the detached-looking overlay arrow.
+\draw[utilpipe] (5.3,-9.9)--(5.5,-9.9)--(5.5,-7.8)--(5.9,-7.8)
+  to[out=0,in=-90] (6.15,-7.55);
+\draw[util] (6.15,-7.55)--(6.15,-7.1);
 \node[smallnote,anchor=west]at(5.85,-9.95){CW supply};
 \draw[util](6.55,-6.3)--(8.45,-6.3)--(8.45,-9.5)--(10.5,-9.5);
 \valve{9.4}{-9.5}{$u_{10}$}
