@@ -112,15 +112,16 @@
   {$y_7$: pressure\\$y_8$: level\\$y_9$: temperature};
 % Reserve the narrow corridor between overhead (y=-4) and effluent (y=-4.88).
 % Centre the reactor label between the two lines rather than anchoring its lower edge.
-% Tangential outlet stub and quarter-turn elbows keep the effluent transition smooth.
-% Keep the arrow on the long, straight final run into the condenser.
-\coordinate (reactor-effluent-port) at (8.03,-4.92);
+% https://tikz.net/fluid_dynamics_barometer/ -- continuous pipe exits and smooth elbows.
+% Start squarely on the reactor's straight sidewall (x=8.1), not within its domed head.
+% The first section is level and normal to the wall, like the separator's bottom outlet.
+% Curve only at downstream bends; keep the arrow on the straight condenser inlet.
+\coordinate (reactor-effluent-port) at (8.1,-5.15);
 \draw[pipe] (reactor-effluent-port)
-  to[out=0,in=180] (8.31,-4.88)
-  -- (8.95,-4.88)
-  to[out=0,in=90] (9.2,-5.13)
-  -- (9.2,-5.75)
-  to[out=-90,in=180] (9.45,-6.0)
+  -- (8.95,-5.15)
+  to[out=0,in=90] (9.2,-5.40)
+  -- (9.2,-5.74)
+  to[out=-90,in=180] (9.46,-6.0)
   -- (9.6,-6.0);
 \draw[process] (9.6,-6.0)--(10.7,-6.0);
 \node[tag]at(9.2,-5.53){7};
