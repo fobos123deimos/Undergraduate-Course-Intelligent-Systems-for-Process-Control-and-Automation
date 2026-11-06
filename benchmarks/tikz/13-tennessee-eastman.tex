@@ -1,6 +1,23 @@
 \documentclass[tikz,border=6pt]{standalone}
 \input{common.tex}
-\tikzset{pipe/.style={draw=flow,line width=1.2pt},tag/.style={circle,draw=flow,fill=white,inner sep=2pt,font=\sffamily\scriptsize},smallnote/.style={annotation,font=\sffamily\scriptsize}}
+% Local palette follows the two-tank reference; other atlas plates keep their style.
+\definecolor{ink}{HTML}{13344D}
+\definecolor{flow}{HTML}{0000A0}
+\definecolor{utility}{HTML}{005151}
+\definecolor{liquid}{HTML}{BFEAFB}
+\definecolor{level}{HTML}{8C8CFF}
+\definecolor{pale}{HTML}{EFF7FC}
+\definecolor{muted}{HTML}{526878}
+\tikzset{
+  equipment/.style={draw=ink,line width=1.15pt,fill=pale,rounded corners=2pt},
+  pipe/.style={draw=flow,line width=1.3pt,line cap=round,line join=round},
+  process/.style={pipe,-{Triangle[length=2.6mm,width=1.8mm]}},
+  utilpipe/.style={draw=utility,line width=1.1pt,line cap=round,line join=round},
+  util/.style={utilpipe,-{Triangle[length=2.4mm,width=1.7mm]}},
+  tag/.style={circle,draw=flow,line width=.65pt,fill=white,inner sep=2pt,font=\sffamily\scriptsize},
+  smallnote/.style={annotation,font=\sffamily\scriptsize},
+  liquidlevel/.style={draw=level,line width=.8pt},
+}
 \newcommand{\valve}[3]{\begin{scope}[shift={(#1,#2)}]\path[draw=ink,fill=white,line width=.8pt](-.23,-.18)--(.23,.18)--(.23,-.18)--(-.23,.18)--cycle;\draw[ink](0,0)--(0,.4);\draw[ink](-.14,.4)arc(180:0:.14);\node[font=\sffamily\scriptsize,anchor=south]at(0,.65){#3};\end{scope}}
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
@@ -8,11 +25,12 @@
 % Recycle first, with a compressor bypass rather than a fictitious feed valve.
 \draw[process](17,-4.2)--(17,-2.6)--(13.0,-2.6);
 \draw[pipe](11.5,-2.6)--(4.7,-2.6)--(4.7,-7.0);
-\draw[process](4.7,-5.2)--(4.7,-6.2);
+\draw[process](4.7,-5.2)--(4.7,-5.65);
 \draw[process](4.7,-7.0)--(4.7,-6.5);
 \path[equipment](13.0,-2.1)--(13.0,-3.1)--(11.5,-3.35)--(11.5,-1.85)--cycle;
 \node[smallnote,align=center]at(12.3,-2.6){Compressor};
-\node[anchor=north,smallnote,align=center]at(12.3,-3.15){$y_{20}$: power [kW]};
+% A dedicated label band separates power measurement, casing and return pipe.
+\node[smallnote,align=center,inner sep=2pt]at(12.3,-3.64){$y_{20}$: power [kW]};
 \draw[pipe](11.1,-2.6)--(11.1,-1.65)--(13.5,-1.65)--(13.5,-2.6);
 \draw[process](12.9,-1.65)--(13.5,-1.65);
 \path[draw=ink,fill=white,line width=.8pt](11.97,-1.83)--(12.43,-1.47)--(12.43,-1.83)--(11.97,-1.47)--cycle;
@@ -23,8 +41,14 @@
 \node[tag]at(20,-2.6){9};\node[labelbox,anchor=north]at(24,-2.9){Purge; $y_{10}$\\analyzer $y_{29:36}$};
 \fill[flow](17,-2.6)circle(2pt);
 % Major vessels and internal details.
-\draw[equipment](5.9,-5.0)..controls(5.9,-4.1)and(8.1,-4.1)..(8.1,-5.0)--(8.1,-7.1)..controls(8.1,-8.0)and(5.9,-8.0)..(5.9,-7.1)--cycle;
-\fill[flow!14](6.0,-6.1)rectangle(8.0,-7.1);\draw[flow!60](6.0,-6.1)--(8.0,-6.1);
+\def\reactoroutline{(5.9,-5.0)..controls(5.9,-4.1)and(8.1,-4.1)..(8.1,-5.0)--(8.1,-7.1)..controls(8.1,-8.0)and(5.9,-8.0)..(5.9,-7.1)--cycle}
+\path[fill=white]\reactoroutline;
+\begin{scope}
+  \clip\reactoroutline;
+  \fill[liquid](5.9,-6.1)rectangle(8.1,-8.0);
+  \draw[liquidlevel](5.9,-6.1)--(8.1,-6.1);
+\end{scope}
+\draw[equipment,fill=none]\reactoroutline;
 \draw[ink,line width=1.2pt](7,-4.55)--(7,-7.1);
 \foreach \yy in {-5.6,-6.5}{\draw[ink,line width=1pt](6.55,\yy-.12)--(7.45,\yy+.12);}
 \node[equipment,minimum width=.65cm,minimum height=.45cm]at(7,-4.0){\scriptsize M};
@@ -39,15 +63,21 @@
 \foreach \yy in {-5.7,-6.0,-6.3}{\draw[ink!60](11,\yy)--(13,\yy);}
 \node[font=\sffamily\bfseries,anchor=south]at(12,-5.25){Condenser};
 \draw[process](13.3,-6)--(15.8,-6);
-\draw[equipment](15.8,-4.9)..controls(15.8,-4.0)and(18.2,-4.0)..(18.2,-4.9)--(18.2,-7.0)..controls(18.2,-7.9)and(15.8,-7.9)..(15.8,-7.0)--cycle;
-\fill[flow!14](15.9,-6.4)rectangle(18.1,-7.0);\draw[flow!60](15.9,-6.4)--(18.1,-6.4);
+\def\separatoroutline{(15.8,-4.9)..controls(15.8,-4.0)and(18.2,-4.0)..(18.2,-4.9)--(18.2,-7.0)..controls(18.2,-7.9)and(15.8,-7.9)..(15.8,-7.0)--cycle}
+\path[fill=white]\separatoroutline;
+\begin{scope}
+  \clip\separatoroutline;
+  \fill[liquid](15.8,-6.4)rectangle(18.2,-7.9);
+  \draw[liquidlevel](15.8,-6.4)--(18.2,-6.4);
+\end{scope}
+\draw[equipment,fill=none]\separatoroutline;
 \node[font=\sffamily\bfseries,align=center]at(17,-5.5){Vapor--liquid\\separator};
 \node[smallnote,align=center]at(17,-8.15){$y_{11}$: temperature; $y_{12}$: level\\$y_{13}$: pressure};
 % Stripper overhead returns to reactor header. White bridge = crossing, no junction.
 \draw[process](22,-7.7)--(22,-4.0)--(18,-4.0);
 \draw[pipe](18,-4)--(17.3,-4);
 \draw[pipe,preaction={draw=white,line width=4pt}](17.3,-4)to[out=160,in=20](16.7,-4);
-\draw[process](16.7,-4)--(14.5,-4)--(14.5,-3.65)--(9.6,-3.65)--(9.6,-3.25)--(4.7,-3.25);
+\draw[process](16.7,-4)--(9.6,-4)--(9.6,-3.25)--(4.7,-3.25);
 \node[tag]at(20.5,-4){5};\node[labelbox,anchor=north]at(20,-4.25){Stripper overhead};
 \fill[flow](4.7,-3.25)circle(2pt);
 % Fresh feeds A,D,E join recycle and stripper overhead at the reactor header.
@@ -80,7 +110,9 @@
 \node[tag]at(23,-11.85){11};
 \node[smallnote,anchor=north,align=center]at(24.8,-12.05){Liquid product; $y_{17}$\\analyzer $y_{37:41}$};
 % Utilities: separate colored lines and explicit inlet/outlet directions.
-\draw[util](5.0,-9.5)--(5.5,-9.5)--(5.5,-7.3)--(6.15,-7.3)--(6.15,-7.1);
+% Place the inlet arrow on a straight run, clear of the coil's final elbow.
+\draw[utilpipe](5.0,-9.5)--(5.5,-9.5)--(5.5,-7.8)--(6.15,-7.8)--(6.15,-7.1);
+\draw[util](6.15,-7.8)--(6.15,-7.25);
 \node[smallnote,anchor=east]at(4.95,-9.5){CW supply};
 \draw[util](6.55,-6.3)--(8.45,-6.3)--(8.45,-9.5)--(10.5,-9.5);
 \valve{9.4}{-9.5}{$u_{10}$}
@@ -99,7 +131,7 @@
 % Readable explanatory panels, not a claim of industrial P&ID completeness.
 \node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(0,-13.15){\textbf{Chemistry and objective}\\A, C, D, E react; B is inert; G and H are products; F is a byproduct. Reject disturbances while preserving inventories, product rate and quality.};
 \node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(8.8,-13.15){\textbf{Model boundary}\\50 states, 12 commands, 41 measurements, six operating modes. The archived native C revision also defines \texttt{NX=50}. Downstream G/H separation is outside the benchmark.};
-\node[panel,anchor=north west,text width=7.7cm,minimum height=1.7cm,align=left]at(17.6,-13.15){\textbf{Reading the drawing}\\Blue: process streams 1--11. Green: utilities. Dots: junctions. White bridge: crossing. $u_i=\mathrm{XMV}(i)$; $y_i=\mathrm{XMEAS}(i)$. See the companion signal sheet.};
+\node[panel,anchor=north west,text width=7.7cm,minimum height=1.7cm,align=left]at(17.6,-13.15){\textbf{Reading the drawing}\\Blue: process streams 1--11. Teal: utilities. Cyan: vessel liquid. Dots: junctions. White bridge: crossing. $u_i=\mathrm{XMV}(i)$; $y_i=\mathrm{XMEAS}(i)$. See the companion signal sheet.};
 \atlasfooter{Topology checked against Fig. 13 and the Ricker archive; signal indices checked against \texttt{temexd\_mod.c}. Original explanatory flowsheet, not a construction P\&ID. Instrument labels identify measurements, not a prescribed controller.}
 \end{tikzpicture}
 \end{document}
