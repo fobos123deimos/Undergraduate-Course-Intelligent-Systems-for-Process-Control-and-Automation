@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - benchmarks/tikz/04-throttle.tex
+      - benchmarks/tikz/04-throttle.patch.gz.b64
   workflow_dispatch:
 permissions:
   contents: write
@@ -24,6 +24,25 @@ jobs:
           sudo apt-get update -qq
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
           python -m pip install pypdf pymupdf
+      - name: Apply paper-aligned patch with source hash validation
+        run: |
+          python - <<'PY'
+          import base64, gzip, hashlib
+          from pathlib import Path
+          source=Path('benchmarks/tikz/04-throttle.tex')
+          assert hashlib.sha256(source.read_bytes()).hexdigest() == 'a6698bdb3336ca5a2260528a9cc6402d30baf361e238c938f939c6667f45ca8f'
+          raw=gzip.decompress(base64.b64decode(Path('benchmarks/tikz/04-throttle.patch.gz.b64').read_text().strip()))
+          assert hashlib.sha256(raw).hexdigest() == '05fc8e73ee55fa7468f1a1469c2233011f6d6ad62d5390781b0cebd870cef963'
+          Path('benchmarks/tikz/04-throttle.patch').write_bytes(raw)
+          PY
+          cd benchmarks/tikz
+          patch --batch --forward -p0 < 04-throttle.patch
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          data=Path('04-throttle.tex').read_bytes()
+          assert hashlib.sha256(data).hexdigest() == '8a4207005bb59d3400aece58bcdac1ba4b6c7345e317f19ccd4030259cef9599'
+          PY
       - name: Compile and render reviewed throttle plate
         run: |
           cd benchmarks/tikz
@@ -79,7 +98,7 @@ jobs:
           for n in ('04-throttle.pdf','04-throttle.png','benchmark-atlas.pdf'):
               record['artifact_sha256'][n]=sha(out/n)
           record['generator']='Tectonic/pdfLaTeX (unchanged plates); pdfLaTeX (automotive throttle); Poppler, PyMuPDF and pypdf'
-          record['incremental_build']={'plate':'04-throttle','compiler':'pdfLaTeX (GitHub Actions)','reused_plates':13,'scope':'Engine-test-cell ambiance, metal/copper materials, anchored actuation and angular sensing; benchmark model and data constraints unchanged.'}
+          record['incremental_build']={'plate':'04-throttle','compiler':'pdfLaTeX (GitHub Actions)','reused_plates':13,'scope':'Stronger automotive test-cell setting; source-aligned armature R/L/i, motor and friction/return torque labels; model/data unchanged.'}
           record_path.write_text(json.dumps(record,indent=2,ensure_ascii=False)+'\n')
           docs.mkdir(parents=True,exist_ok=True)
           for n in ('04-throttle.png','benchmark-atlas.pdf'):
