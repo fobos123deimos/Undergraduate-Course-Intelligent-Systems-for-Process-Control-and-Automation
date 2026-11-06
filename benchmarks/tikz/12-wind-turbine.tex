@@ -1,30 +1,86 @@
 \documentclass[tikz,border=6pt]{standalone}
 \input{common.tex}
+% Wind-turbine-only finish; keep the remainder of the benchmark atlas unchanged.
+% TikZ.net methods: material shading and directional flow layers:
+% https://tikz.net/fluid_dynamics_laminar/
+% TikZ.net methods: named model nodes and coordinated input/output routes:
+% https://tikz.net/mechanics/
+% Component organization cross-check (shaft -> gearbox -> generator):
+% https://www.mdpi.com/1996-1944/15/3/1232 (nacelle schematic; not a construction detail)
+\definecolor{ink}{HTML}{233B46}
+\definecolor{flow}{HTML}{277BA1}
+\definecolor{utility}{HTML}{237B73}
+\definecolor{control}{HTML}{B46C3D}
+\definecolor{muted}{HTML}{536875}
+\definecolor{pale}{HTML}{EDF4F6}
+\definecolor{steelrim}{HTML}{385664}
+\definecolor{steelshade}{HTML}{AFC2C9}
+\definecolor{steelmid}{HTML}{D5E1E4}
+\definecolor{steelhi}{HTML}{F6FAFB}
+\definecolor{steelblue}{HTML}{5E8999}
+\tikzset{
+  every node/.style={font=\sffamily\small,text=ink},
+  equipment/.style={draw=steelrim,line width=1.05pt,fill=pale,rounded corners=2pt},
+  process/.style={draw=flow,line width=1.25pt,line cap=round,-{Triangle[length=2.4mm,width=1.7mm]}},
+  signal/.style={draw=control,line width=.9pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.1mm,width=1.5mm]}},
+  util/.style={draw=utility,line width=1.2pt,line cap=round,-{Triangle[length=2.3mm,width=1.7mm]}},
+  dimension/.style={draw=muted,line width=.7pt,{Latex[length=1.5mm]}-{Latex[length=1.5mm]}},
+  labelbox/.style={fill=white,inner xsep=3pt,inner ysep=2pt,font=\sffamily\footnotesize,align=center},
+  annotation/.style={font=\sffamily\footnotesize,text=muted,align=left},
+  panel/.style={draw=ink!18,fill=ink!2,rounded corners=3pt,inner sep=6pt},
+  box/.style={equipment,minimum width=3cm,minimum height=1cm,align=center},
+}
+
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \atlasheader{Wind turbine: structure, drivetrain and aerodynamic coupling}{3.12}{Wind turbine}
 \node[anchor=west,font=\sffamily\bfseries] at (0,-1.9) {Physical coordinates --- schematic side view};
 % Tower reference, deflected envelope and foundation.
 \draw[ink!30,densely dashed,line width=.8pt] (6.5,-10.9)--(6.5,-4.9);
-\path[equipment] (5.8,-10.9).. controls(6,-8)and(6.5,-6.6)..(6.75,-5)
- --(7.35,-5).. controls(7.1,-6.6)and(6.9,-8)..(6.8,-10.9)--cycle;
-\draw[ink,line width=1.5pt] (5,-11)--(8,-11);
-\fill[pattern=north east lines,pattern color=ink!40] (5,-11.05) rectangle (8,-11.45);
-\path[equipment] (6.05,-4.2) rectangle (9.7,-5.0);
-\node[font=\sffamily\footnotesize] at (8.55,-4.6) {Nacelle};
-\draw[ink,line width=2pt] (5.35,-4.6)--(7.15,-4.6);
-\draw[ink!25,densely dashed] (5.4,-2.1)--(5.4,-7.2);
-\path[draw=ink,fill=flow!15,line width=1pt] (5.3,-4.6)..controls(5.05,-3.3)and(5.2,-2.6)..(5.7,-2.1)
+% Tapered tower and clean base: continuous, closed load-bearing silhouette.
+\shade[draw=steelrim,line width=1.15pt,top color=steelhi,bottom color=steelmid]
+ (5.8,-10.9)..controls(6,-8)and(6.5,-6.6)..(6.75,-5)
+ --(7.35,-5)..controls(7.1,-6.6)and(6.9,-8)..(6.8,-10.9)--cycle;
+\draw[steelrim,line width=1.5pt] (5,-11)--(8,-11);
+\fill[pattern=north east lines,pattern color=ink!33] (5,-11.05) rectangle (8,-11.45);
+% Enclosed nacelle / illustrative machine internals, not vendor-specific hardware.
+\shade[draw=steelrim,line width=1.05pt,top color=steelhi,bottom color=steelshade]
+ (6.06,-4.19)--(9.18,-4.19)
+ ..controls (9.57,-4.19) and (9.78,-4.38)..(9.78,-4.60)
+ ..controls (9.78,-4.83) and (9.57,-5.00)..(9.18,-5.00)
+ --(6.06,-5.00)--cycle;
+% The rotor shaft passes continuously into a compact stylized drivetrain.
+\draw[steelrim,line width=2.1pt,line cap=round] (5.35,-4.6)--(7.98,-4.6);
+\shade[draw=steelrim,line width=.6pt,left color=steelblue,right color=steelmid]
+ (7.20,-4.85) rectangle (7.72,-4.35);
+\foreach \xx in {7.30,7.42,7.54,7.66}{
+  \draw[steelrim!80,line width=.5pt](\xx,-4.84)--(\xx,-4.36);
+}
+\draw[steelrim,line width=.7pt,fill=steelhi] (7.87,-4.60) circle (.13);
+\node[font=\sffamily\footnotesize,fill=steelhi,fill opacity=.85,text opacity=1,inner sep=1.3pt]
+ at (8.87,-4.59) {Nacelle};
+% Projected upper and lower blades of the side-view rotor, with metal-edge shading.
+\draw[ink!25,densely dashed,line width=.7pt] (5.4,-2.1)--(5.4,-7.2);
+\shade[draw=steelrim,line width=1pt,left color=steelhi,right color=steelshade]
+ (5.3,-4.6)..controls(5.05,-3.3)and(5.2,-2.6)..(5.7,-2.1)
  ..controls(5.65,-3.2)and(5.65,-4)..(5.55,-4.6)--cycle;
-\path[draw=ink,fill=flow!15,line width=1pt] (5.4,-4.6)..controls(5.25,-5.7)and(5.5,-6.7)..(5.9,-7.2)
+\shade[draw=steelrim,line width=1pt,left color=steelhi,right color=steelshade]
+ (5.4,-4.6)..controls(5.25,-5.7)and(5.5,-6.7)..(5.9,-7.2)
  ..controls(5.8,-6)and(5.8,-5)..(5.55,-4.6)--cycle;
-\draw[ink,fill=pale,line width=1pt] (5.45,-4.6) circle (.24);
-\foreach \yy in {-3.3,-4.6,-5.9} \draw[process] (.4,\yy)--(3.7,\yy);
+\shade[draw=steelrim,line width=1.2pt,outer color=steelmid,inner color=steelhi]
+ (5.45,-4.6) circle (.24);
+\draw[steelrim!50,line width=.5pt] (5.45,-4.6) circle (.135);
+% Wind glyphs are intentionally kept outside the rotor swept envelope.
+\foreach \yy in {-3.3,-4.6,-5.9}{
+  \draw[process] (.4,\yy)--(4.30,\yy);
+}
 \node[anchor=west] at (.4,-2.7) {Wind $v$ [m/s]};
 \draw[dimension] (5.4,-2.5)--(5.9,-2.5);
 \node[anchor=west,labelbox] at (6.15,-2.5) {$y_B$ (relative)};
-\draw[dimension] (6.5,-6.9)--node[above,labelbox]{$y_T$}(7.1,-6.9);
-\draw[util] (5.6,-7.6)--node[below,labelbox]{$F_T$ aerodynamic thrust}(8.7,-7.6);
+\draw[dimension] (6.50,-6.75)--node[above,labelbox,inner sep=1pt]{$y_T$}(7.14,-6.75);
+% Thrust is depicted near the rotor/tower-head region, not halfway down the tower.
+\draw[util] (5.78,-5.50)--(8.77,-5.50);
+\node[anchor=north west,labelbox,inner xsep=2pt] at (7.55,-5.69) {$F_T$ aerodynamic thrust};
 % Pitch turns the blade about its spanwise axis; the local elliptical marker
 % is centered on the upper blade section rather than on the rotor hub.
 \begin{scope}[shift={(5.45,-3.45)}]
@@ -42,8 +98,12 @@
 \node[box,minimum width=4.4cm,minimum height=1.45cm] (gen) at (23,-3.4) {Generator / gearbox\\$J_g,\ \theta_g,\ \omega_g$};
 \draw[process] (rotor.east)--(shaft.west);
 \draw[process] (shaft.east)--node[above,labelbox]{torsion}(gen.west);
-\draw[util] (12.2,-2.15)--node[right,labelbox]{$T_r$}(rotor.north);
-\draw[signal] (23,-2.15)--node[right,labelbox]{$T_g$}(gen.north);
+% Aerodynamic torque is already delivered by the traced green map-to-rotor link;
+% do not draw a second floating T_r arrow above the rotor.
+% Generator torque is an explicit external command, with a defined input terminal.
+\node[font=\sffamily\footnotesize,anchor=south,inner sep=1.5pt]
+  (torque-command) at (23,-1.96) {Command $T_g$};
+\draw[signal] (torque-command.south)--(gen.north);
 
 \node[box,minimum width=5.5cm,minimum height=1.5cm] (aero) at (13.4,-6.6)
  {\textbf{Aerodynamic maps}\\$C_T(\lambda,\beta),\ C_Q(\lambda,\beta)$};
@@ -51,11 +111,24 @@
  {\textbf{Pitch actuator --- Eq. (58)}\\$\dot\beta=(\beta_d-\beta)/\tau,\quad\tau=0.1\;\mathrm{s}$};
 \draw[signal] (pitch.west)--node[above,labelbox]{$\beta$}(aero.east);
 \draw[signal] (9.2,-6.6)--node[above,labelbox]{$v$}(aero.west);
-\draw[signal] (22,-5.25)--node[right,labelbox]{$\beta_d$}(pitch.north);
+% Pitch reference enters from a labeled external command terminal.
+\node[font=\sffamily\footnotesize,anchor=south,inner sep=1.5pt]
+  (pitch-command) at (22,-5.12) {Command $\beta_d$};
+\draw[signal] (pitch-command.south)--(pitch.north);
+% Aerodynamic maps feed the rotor through a single continuous route; do not
+% imply a second disconnected actuator or thrust-force input at the rotor.
 \draw[util] (aero.north)--(13.4,-5.3)--(10,-5.3)--(10,-3.4)--(rotor.west);
-\node[labelbox] at (10,-4.2) {$F_T,T_r$};
+\node[anchor=south,labelbox,inner xsep=4pt] at (11.6,-5.30) {$F_T,\ T_r$};
+% State feedback runs below the maps. Keep its label entirely below the path,
+% without covering the dashed line or touching the equation panel beneath.
 \draw[signal] (16.8,-4.15)--(16.8,-7.9)--(13.4,-7.9)--(aero.south);
-\node[labelbox] at (16.8,-7.9) {$\omega_r,\dot y_T,\dot y_B$};
+\node[anchor=north,labelbox,inner ysep=1.5pt] at (15.25,-8.06)
+ {$\omega_r,\ \dot y_T,\ \dot y_B$};
+% The pitch-output line crosses the model-state feedback without a connection.
+% A small white-backed bridge prevents an ambiguous four-way signal junction.
+\draw[white,line width=4.2pt,line cap=round] (16.63,-6.6)--(16.97,-6.6);
+\draw[control,line width=.85pt,line cap=round]
+ (16.63,-6.6) to[out=18,in=162] (16.97,-6.6);
 \node[panel,align=left,text width=14.6cm,anchor=north west] at (10.6,-8.65)
  {$\displaystyle v_{\mathrm{eff}}=v-\dot y_T-\dot y_B,\qquad\lambda=\frac{\omega_rR}{v_{\mathrm{eff}}},\quad R=63\;\mathrm m$\\[7pt]
  $\displaystyle F_T=\tfrac12\rho\pi R^2C_Tv_{\mathrm{eff}}^2,\qquad
