@@ -213,18 +213,13 @@
 % Utilities: separate colored lines and explicit inlet/outlet directions.
 % Place the inlet arrow on a straight run, clear of the coil's final elbow.
 % Separate the utility caption from the feed header above and valve tag u_4.
-% The cooling-water inlet originates at a labeled utility connection.
-% An explicit CW source box removes the former open-ended (5.3,-9.9) stub.
-% Keep the utility physically independent of the A/C+B process feed below.
-\node[draw=utility,fill=white,rounded corners=1.5pt,
-      minimum width=.78cm,minimum height=.42cm,
-      inner sep=1.5pt,font=\diagramlabel,text=ink]
-      (cw-supply-source) at (4.82,-9.9) {CW};
-\draw[utilpipe] (cw-supply-source.east)--(5.5,-9.9)--(5.5,-7.8)--(5.9,-7.8)
+% Use the same unboxed CW inlet notation as the condenser utility line.
+% The CW label marks the external cooling-water boundary (not a vessel).
+% Keep the utility line separate from the A/C+B process feed below.
+\draw[utilpipe] (5.3,-9.9)--(5.5,-9.9)--(5.5,-7.8)--(5.9,-7.8)
   to[out=0,in=-90] (6.15,-7.55);
 \draw[util] (6.15,-7.55)--(6.15,-7.1);
-% Label below the horizontal feed pipe, with clearance from the CW source box and u_4.
-\node[smallnote,anchor=north,inner sep=1pt]at(5.66,-10.37){CW supply};
+\node[smallnote,anchor=east]at(5.3,-9.9){CW};
 \draw[util](6.55,-6.3)--(8.45,-6.3)--(8.45,-9.5)--(10.5,-9.5);
 \valve{9.4}{-9.5}{$u_{10}$}
 \node[smallnote,anchor=north west,align=left,fill=white,inner xsep=3pt,inner ysep=3pt]at(8.78,-9.87){CW return (12); $y_{21}$\\IDV(4): inlet temperature};
