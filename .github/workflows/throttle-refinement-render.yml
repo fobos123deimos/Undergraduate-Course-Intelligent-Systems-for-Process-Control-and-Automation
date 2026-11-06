@@ -1,0 +1,121 @@
+name: Render refined automotive throttle
+on:
+  push:
+    branches: [main]
+    paths:
+      - benchmarks/tikz/04-throttle.tex.gz.b64
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: throttle-refinement-graphics
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install TikZ and vector-graphics tooling
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
+          python -m pip install pypdf pymupdf
+      - name: Restore reviewed TikZ source with checksum
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64, gzip, hashlib
+          src = Path('benchmarks/tikz/04-throttle.tex.gz.b64')
+          data = gzip.decompress(base64.b64decode(src.read_text().strip()))
+          assert hashlib.sha256(data).hexdigest() == 'a6698bdb3336ca5a2260528a9cc6402d30baf361e238c938f939c6667f45ca8f'
+          Path('benchmarks/tikz/04-throttle.tex').write_bytes(data)
+          PY
+      - name: Compile and render reviewed throttle plate
+        run: |
+          cd benchmarks/tikz
+          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory=../figures/tikz 04-throttle.tex
+          cd ../..
+          pdftoppm -singlefile -scale-to 2600 -png benchmarks/figures/tikz/04-throttle.pdf benchmarks/figures/tikz/04-throttle
+          python - <<'PY'
+          from pathlib import Path
+          import fitz, shutil, struct
+          from xml.etree import ElementTree as ET
+          root = Path('.')
+          out = root/'benchmarks/figures/tikz'
+          legacy = root/'benchmarks/figures'
+          log = (out/'04-throttle.log').read_text(errors='replace')
+          for warning in ('Overfull \\hbox','Underfull \\hbox','Missing character:','! LaTeX Error'):
+              assert warning not in log, warning
+          reader = fitz.open(str(out/'04-throttle.pdf'))
+          assert len(reader)==1
+          svg = reader[0].get_svg_image(text_as_path=True)
+          (legacy/'04-throttle.svg').write_text(svg,encoding='utf-8')
+          ET.fromstring(svg)
+          shutil.copyfile(out/'04-throttle.png',legacy/'04-throttle.png')
+          b = (out/'04-throttle.png').read_bytes()
+          assert b[:8] == b'\x89PNG\r\n\x1a\n'
+          assert max(struct.unpack('>II',b[16:24])) >= 2600
+          PY
+      - name: Rebuild benchmark atlas and synchronize API figures
+        run: |
+          python - <<'PY'
+          import hashlib,json,shutil
+          from pathlib import Path
+          from pypdf import PdfReader,PdfWriter
+          root=Path('.')
+          out=root/'benchmarks/figures/tikz'
+          docs=root/'docs/api/assets/benchmarks/figures/tikz'
+          catalog=json.loads((root/'benchmarks/tikz/catalog.json').read_text())
+          def sha(path,text=False):
+              data=path.read_bytes()
+              return hashlib.sha256(data.replace(b'\r\n',b'\n') if text else data).hexdigest()
+          writer=PdfWriter()
+          for case in catalog['cases']:
+              stems=[case['stem']]+([case['companion']] if case.get('companion') else [])
+              for stem in stems:
+                  doc=PdfReader(out/(stem+'.pdf'))
+                  assert len(doc.pages)==1,stem
+                  writer.add_page(doc.pages[0])
+                  writer.add_outline_item(case['section']+' '+case['original_name']+(' — signal reference' if stem!=case['stem'] else ''),len(writer.pages)-1)
+          writer.add_metadata({'/Title':'Benchmark atlas — original names, equipment and signal interfaces','/Author':'Intelligent Systems for Process Control and Automation','/Subject':'Kroll and Schulte (2014), sections 3.1–3.13'})
+          writer.write(out/'benchmark-atlas.pdf')
+          record_path=out/'build.json'
+          record=json.loads(record_path.read_text())
+          record['source_sha256_lf']['benchmarks/tikz/04-throttle.tex']=sha(root/'benchmarks/tikz/04-throttle.tex',True)
+          for n in ('04-throttle.pdf','04-throttle.png','benchmark-atlas.pdf'):
+              record['artifact_sha256'][n]=sha(out/n)
+          record['generator']='Tectonic/pdfLaTeX (unchanged plates); pdfLaTeX (automotive throttle); Poppler, PyMuPDF and pypdf'
+          record['incremental_build']={'plate':'04-throttle','compiler':'pdfLaTeX (GitHub Actions)','reused_plates':13,'scope':'Engine-test-cell ambiance, metal/copper materials, anchored actuation and angular sensing; benchmark model and data constraints unchanged.'}
+          record_path.write_text(json.dumps(record,indent=2,ensure_ascii=False)+'\n')
+          docs.mkdir(parents=True,exist_ok=True)
+          for n in ('04-throttle.png','benchmark-atlas.pdf'):
+              shutil.copyfile(out/n,docs/n)
+          api_file=root/'docs/api/build.json'
+          api=json.loads(api_file.read_text())
+          for n in ('04-throttle.png','benchmark-atlas.pdf'):
+              api['source_sha256_lf'][f'benchmarks/figures/tikz/{n}']=sha(out/n)
+              api['artifact_sha256'][f'assets/benchmarks/figures/tikz/{n}']=sha(docs/n)
+          api_file.write_text(json.dumps(api,indent=2,ensure_ascii=False)+'\n')
+          PY
+      - name: Check atlas reproducibility and touched artifacts
+        run: |
+          python tools/build_benchmark_atlas.py --check
+          python - <<'PY'
+          from pathlib import Path
+          assert (Path('benchmarks/figures/04-throttle.png').read_bytes() == Path('benchmarks/figures/tikz/04-throttle.png').read_bytes())
+          assert (Path('benchmarks/figures/04-throttle.svg').stat().st_size > 20000)
+          PY
+          git diff --check
+      - name: Commit refined plate and linked image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add benchmarks/tikz/04-throttle.tex benchmarks/figures/04-throttle.png benchmarks/figures/04-throttle.svg benchmarks/figures/tikz/04-throttle.pdf benchmarks/figures/tikz/04-throttle.png benchmarks/figures/tikz/benchmark-atlas.pdf benchmarks/figures/tikz/build.json docs/api/assets/benchmarks/figures/tikz/04-throttle.png docs/api/assets/benchmarks/figures/tikz/benchmark-atlas.pdf docs/api/build.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Refine automotive throttle and synchronize benchmark visuals"
+            git push origin HEAD:main
+          fi
