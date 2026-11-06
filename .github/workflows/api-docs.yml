@@ -55,10 +55,10 @@ jobs:
             requirements.txt
             requirements-docs.txt
       - run: python -m pip install -r requirements-docs.txt
-      - name: Check committed API documentation
-        run: |
-          python tools/build_benchmark_atlas.py --check
-          python tools/build_api_docs.py --check
+      - name: Verify committed figure atlas
+        run: python tools/build_benchmark_atlas.py --check
+      - name: Verify committed API documentation
+        run: python tools/build_api_docs.py --check
       - run: python tools/build_api_docs.py --output build/api
       - run: python tools/build_api_docs.py --output build/api --check
       - uses: actions/upload-pages-artifact@v4
