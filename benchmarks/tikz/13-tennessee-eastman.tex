@@ -108,8 +108,10 @@
 \node[smallnote,align=center,anchor=north,inner sep=1.5pt]
   at([yshift=-2mm]reactor-title.south)
   {$y_7$: pressure\\$y_8$: level\\$y_9$: temperature};
-\draw[process](7.8,-4.7)--(9.2,-4.7)--(9.2,-6.0)--(10.7,-6.0);
-\node[tag]at(9.2,-5.35){7};\node[labelbox,anchor=south]at(9.6,-4.65){Reactor effluent};
+% Allow a distinct corridor between the overhead return and reactor effluent.
+\draw[process](7.8,-4.88)--(9.2,-4.88)--(9.2,-6.0)--(10.7,-6.0);
+\node[tag]at(9.2,-5.53){7};
+\node[labelbox,anchor=south,inner sep=1.4pt]at(9.65,-4.55){Reactor effluent};
 \draw[equipment,metalcross](10.7,-5.4)rectangle(13.3,-6.6);
 \path[machinepaint](10.7,-5.4)rectangle(11.0,-6.6);
 \path[machinepaint](13.0,-5.4)rectangle(13.3,-6.6);
@@ -136,7 +138,9 @@
 \draw[pipe,preaction={draw=white,line width=4pt}](17.3,-4)to[out=160,in=20](16.7,-4);
 \draw[pipe](16.7,-4)--(9.6,-4)--(9.6,-3.25)--(4.7,-3.25);
 \draw[process](6.1,-3.25)--(5.3,-3.25);
-\node[tag]at(20.5,-4){5};\node[labelbox,anchor=north]at(20,-4.48){Stripper overhead};
+\node[tag]at(20.5,-4){5};
+% Keep the overhead caption below (not against) the horizontal return line.
+\node[labelbox,anchor=north,inner sep=2pt]at(20.1,-4.67){Stripper overhead};
 % Fresh feeds A,D,E join recycle and stripper overhead at the reactor header.
 \foreach \yy/\sp/\st/\uv/\ym in {-5.0/A/1/3/1,-6.0/D/2/1/2,-7.0/E/3/2/3}{
   \node[equipment,minimum width=.7cm,minimum height=.5cm]at(.5,\yy){\sp};
@@ -154,7 +158,15 @@
 }
 \draw[process](4.7,-6.4)--(5.9,-6.4);
 \node[tag]at(5.3,-6.4){6};
-\node[smallnote,anchor=north west,text width=4.5cm]at(.2,-7.7){Header: fresh A, D, E + recycle + stripper overhead.\\$y_6$: total reactor feed.\\$y_{23:28}$: A--F feed composition.};
+% Increase line leading and separate heading/composition from the dense feed pipes.
+% TikZ.net mechanics: keep a separate, padded and explicitly anchored label node.
+\node[smallnote,anchor=north west,align=left,text width=4.7cm,
+      font=\sffamily\fontsize{8}{11.2}\selectfont,
+      inner xsep=3pt,inner ysep=3pt]
+  at(.2,-7.83){\textbf{Reactor feed header}\\[1.5pt]
+    Fresh A, D, E + recycle + stripper overhead\\[2pt]
+    $y_6$: total reactor feed\\[1.5pt]
+    $y_{23:28}$: A--F feed composition};
 % Separator liquid and stripper with a heating circuit.
 \draw[process](separator-bottom)--(separator-outlet)--(19.4,-8.0)--(19.4,-8.5)--(20.9,-8.5);
 \valve{18.8}{-8.0}{$u_7$}
@@ -166,7 +178,12 @@
 \draw[shell]\stripperoutline;
 \foreach \yy in {-8.7,-9.1,-9.5,-9.9}{\draw[steeledge!75,line width=.65pt](21.14,\yy)--(22.86,\yy);}
 \node[labelbox,equipmenttitle,fill=white,fill opacity=.82,text opacity=1]at(22,-9.35){Stripper};
-\node[smallnote,anchor=north east,align=right]at(21.45,-11.98){$y_{15}$: level\\$y_{16}$: pressure\\$y_{18}$: temperature};
+% Keep the stripper measurements in their own left-aligned spatial zone.
+\node[smallnote,anchor=north east,align=right,
+      font=\sffamily\fontsize{8}{11.8}\selectfont,inner sep=1.5pt]
+  at(20.55,-11.98){$y_{15}$: level\\[1.5pt]
+    $y_{16}$: pressure\\[1.5pt]
+    $y_{18}$: temperature};
 \node[equipment,minimum width=1.5cm,minimum height=.55cm]at(1,-11.0){A/C + B};
 \draw[process](1.8,-11)--(20.9,-11);
 \valve{3.3}{-11}{$u_4$}
@@ -174,7 +191,11 @@
 \draw[process](stripper-bottom)--(22,-11.85)--(25.7,-11.85);
 \valve{24}{-11.85}{$u_8$}
 \node[tag]at(23,-11.85){11};
-\node[smallnote,anchor=north east,align=right]at(25.75,-12.24){Liquid product; $y_{17}$\\analyzer $y_{37:41}$};
+% Product quality is centered under the outlet, not in the measurement column.
+\node[smallnote,anchor=north,align=center,text width=3.0cm,
+      font=\sffamily\fontsize{8}{11.5}\selectfont,inner sep=1.5pt]
+  at(24.25,-12.32){Liquid product; $y_{17}$\\[1pt]
+    analyzer $y_{37:41}$};
 % Utilities: separate colored lines and explicit inlet/outlet directions.
 % Place the inlet arrow on a straight run, clear of the coil's final elbow.
 % Separate the utility caption from the feed header above and valve tag u_4.
@@ -198,7 +219,7 @@
 % Readable explanatory panels, not a claim of industrial P&ID completeness.
 % TikZ.net spacing reference: reserve a clear band below the process annotations.
 % Shift the panel row and footer together so their mutual spacing stays fixed.
-\begin{scope}[yshift=-4.5mm]
+\begin{scope}[yshift=-6.5mm]
 \node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(0,-13.15){\textbf{Chemistry and objective}\\A, C, D, E react; B is inert; G and H are products; F is a byproduct. Reject disturbances while preserving inventories, product rate and quality.};
 \node[panel,anchor=north west,text width=8cm,minimum height=1.7cm,align=left]at(8.8,-13.15){\textbf{Model boundary}\\50 states, 12 commands, 41 measurements, six operating modes. The archived native C revision also defines \texttt{NX=50}. Downstream G/H separation is outside the benchmark.};
 \node[panel,anchor=north west,text width=7.7cm,minimum height=1.7cm,align=left]at(17.6,-13.15){\textbf{Reading the drawing}\\Gray: process. Teal: CW. Tan: steam/condensate.\\T-junctions connect. White bridge: crossing.\\Finishes and fluid tints are illustrative.\\$u_i=\mathrm{XMV}(i)$; $y_i=\mathrm{XMEAS}(i)$.};
