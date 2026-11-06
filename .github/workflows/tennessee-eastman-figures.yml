@@ -106,6 +106,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add benchmarks/figures/tikz/13-tennessee-eastman.pdf benchmarks/figures/tikz/13-tennessee-eastman.png benchmarks/figures/tikz/benchmark-atlas.pdf benchmarks/figures/tikz/build.json docs/api/assets/benchmarks/figures/tikz/13-tennessee-eastman.png docs/api/assets/benchmarks/figures/tikz/benchmark-atlas.pdf docs/api/build.json
           if ! git diff --cached --quiet; then
-            git commit -m "Render Tennessee Eastman layout refinements [skip ci]"
+            git commit -m "Render Tennessee Eastman layout refinements"
             git push origin HEAD:main
           fi
