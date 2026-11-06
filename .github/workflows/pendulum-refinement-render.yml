@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - benchmarks/tikz/03-pendulum-natural-colors.tex.gz.b64
+      - benchmarks/tikz/03-pendulum.tex
   workflow_dispatch:
 permissions:
   contents: write
@@ -24,16 +24,6 @@ jobs:
           sudo apt-get update -qq
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
           python -m pip install pypdf
-      - name: Restore reviewed natural-color TikZ source
-        run: |
-          python - <<'PY'
-          import base64, gzip, hashlib
-          from pathlib import Path
-          p=Path('benchmarks/tikz/03-pendulum-natural-colors.tex.gz.b64')
-          b=gzip.decompress(base64.b64decode(p.read_text().strip()))
-          assert hashlib.sha256(b).hexdigest() == 'f6f89552806f3851b42605bf875c24c05526aa53297aeb7b1fd22f1033a75a64'
-          Path('benchmarks/tikz/03-pendulum.tex').write_bytes(b)
-          PY
       - name: Compile and rasterize updated plate
         run: |
           cd benchmarks/tikz
