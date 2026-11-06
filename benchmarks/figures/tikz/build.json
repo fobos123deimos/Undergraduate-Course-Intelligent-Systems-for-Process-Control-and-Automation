@@ -9,7 +9,7 @@
     "tools/build_benchmark_atlas.py": "b7c91269a6784a60295d7ca4e546748573fa1bda07f1ffd5fc2725c78e31d9a3",
     "benchmarks/tikz/01-artificial.tex": "512200522ee3e821f303e7c1ded03762d733830bcb64c1bbfde29e36a76aa008",
     "benchmarks/tikz/02-datasets.tex": "a372f65ceba344eb13bd7f9c9ed8fadeb8a0f6d6d951c5263655c1caa9a6b9f7",
-    "benchmarks/tikz/03-pendulum.tex": "4f4073935753ab7055f753aba450eb539125832406b8fb4316d3e6e66f83c572",
+    "benchmarks/tikz/03-pendulum.tex": "f6f89552806f3851b42605bf875c24c05526aa53297aeb7b1fd22f1033a75a64",
     "benchmarks/tikz/04-throttle.tex": "6196c83359a3cd4c9c912b5bbcccb8a3341f0ac9e4c29d3cd500205e370f0259",
     "benchmarks/tikz/05-pneumatic.tex": "aa8f17bf304ea36ef2b7c4f6783f333c79b5d239258b7a74c3f19ee648969216",
     "benchmarks/tikz/06-hydrostatic.tex": "f351d3998557649c888da02f7f6ee05f0f87bf07e3522bd746222ab74528ab52",
@@ -27,8 +27,8 @@
     "01-artificial.png": "6e16275aa41e01597dd1d6b1fb57c5ca493b4d97f8604ba62ea963b8cc1dcb78",
     "02-datasets.pdf": "21ac22354924d0bedda4d1a69f104982050b155421f060d3b939d2a288de3af0",
     "02-datasets.png": "bcaf2d717265d44c13a275b2539d5ad3eee4fbc0850bb8f1408a3acf4eeeabf8",
-    "03-pendulum.pdf": "e5b64daaed1b2b832def08351dd94a4494de2acc0bcda2189af3c6042bd8f8dc",
-    "03-pendulum.png": "b9dc9fdc8d74714a2e2207e62ca3fdda9559207ec4a9845d36f5c8c2f34cdf7d",
+    "03-pendulum.pdf": "740171287c6f1140b9593cc81f5b7c66e175ba326b33f94d61dcf326a37be26a",
+    "03-pendulum.png": "0b309d70bf97954167bc2503c3ab6022ebb23c53b3b3ea2d899fe591f3903712",
     "04-throttle.pdf": "e369e59f6da7811b1a9faf296849779f8355e5bc1ca41708215927f7159fe894",
     "04-throttle.png": "684c5830079f0009acccd59d39518adf2c3ff9b4ec224df292cfc9280047f069",
     "05-pneumatic.pdf": "a365ce4f7b6ba3d455ca16a9172817399af68c70db4da962f67af97e667530d2",
@@ -51,13 +51,13 @@
     "13-tennessee-eastman.png": "6c4f487c25da0da33c19aa7911f16fb64837e61f87b12677d4cc1a72d6c9a34f",
     "13b-tennessee-eastman-signals.pdf": "3b77aae7426eae9167f782160dc7e18e7cbb86c8da0881354669963a2f7912fb",
     "13b-tennessee-eastman-signals.png": "26318f299f27305016a6122c60e1362008a18231d705db0a31596b9c75c250e0",
-    "benchmark-atlas.pdf": "d267fddb198e5613af40353d5f520cd5a8b29e4aa35be42ec28783d4e1ae7f2b"
+    "benchmark-atlas.pdf": "b84804aece0d55186510a1ad71e19a58a757c85a25036473d814aa13c6159a7d"
   },
   "scope": "Original explanatory diagrams; numerical validation status is unchanged.",
   "incremental_build": {
     "plate": "03-pendulum",
     "compiler": "pdfLaTeX (GitHub Actions)",
     "reused_plates": 13,
-    "scope": "Material shading, attached forces, measurement route and label clarity; physical model unchanged."
+    "scope": "Natural daylight, environmental depth, varied materials and color-coded mechanics; physical model unchanged."
   }
 }

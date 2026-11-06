@@ -2,6 +2,9 @@
 \input{common.tex}
 \usetikzlibrary{shadings,shadows,decorations.markings}
 % Cart and inverted pendulum (Kroll & Schulte 2014, Sec. 3.3).
+% Outdoor-like environmental context is decorative, never a modeled state.
+% Naturally varied pigments distinguish painted steel, bare metal, rubber,
+% copper, organic groundcover, and instrumentation without changing equations.
 % Diagram-only refinement: realistic laboratory materials, legible mechanics,
 % carefully anchored forces/sensors, and no change to model semantics.
 % The render is a conceptual engineering cutaway, not a manufacturing drawing.
@@ -12,37 +15,145 @@
 \definecolor{alloyHi}{HTML}{FFFDF2}
 \definecolor{alloyMid}{HTML}{CBD9DA}
 \definecolor{alloyDark}{HTML}{78909D}
-\definecolor{tealBody}{HTML}{4B8795}
-\definecolor{tealShadow}{HTML}{2D6678}
+\definecolor{tealBody}{HTML}{3F8EB1}
+\definecolor{tealShadow}{HTML}{22556C}
 \definecolor{shaftDark}{HTML}{304650}
 \definecolor{tyre}{HTML}{2D3D45}
 \definecolor{tyreRim}{HTML}{697F8B}
-\definecolor{copper}{HTML}{C58E59}
+\definecolor{copper}{HTML}{C58F4E}
 \definecolor{copperDark}{HTML}{79523F}
-\definecolor{signalGold}{HTML}{BD6F30}
-\definecolor{workshopTint}{HTML}{DFEDF0}
-\definecolor{concrete}{HTML}{BBC7C6}
+\definecolor{signalGold}{HTML}{CA7227}
+\definecolor{workshopTint}{HTML}{CDE9F0}
+\definecolor{concrete}{HTML}{BCB8A7}
 \definecolor{caution}{HTML}{C79C5E}
+\definecolor{skyBlue}{HTML}{CDE8F8}
+\definecolor{skyLight}{HTML}{F6FAFB}
+\definecolor{skyCool}{HTML}{A9CFDF}
+\definecolor{sunW}{HTML}{FFF4CF}
+\definecolor{sunTan}{HTML}{F0CF9A}
+\definecolor{hillBlue}{HTML}{86B2BD}
+\definecolor{hillSage}{HTML}{9BC0A6}
+\definecolor{hillLeaf}{HTML}{80A891}
+\definecolor{meadowLt}{HTML}{BDD59C}
+\definecolor{meadowMid}{HTML}{829E65}
+\definecolor{meadowDk}{HTML}{4F7651}
+\definecolor{grassLeaf}{HTML}{568F48}
+\definecolor{grassShade}{HTML}{426E47}
+\definecolor{grassGold}{HTML}{B8AD62}
+\definecolor{stone}{HTML}{918B77}
+\definecolor{earth}{HTML}{9A896A}
+\definecolor{paintBlue}{HTML}{377DA7}
+\definecolor{paintBright}{HTML}{85BDD1}
+\definecolor{paintDark}{HTML}{2D5D79}
+\definecolor{motorGreen}{HTML}{54887A}
+\definecolor{motorLit}{HTML}{BED6BF}
+\definecolor{motorShade}{HTML}{34635D}
+\definecolor{brassHi}{HTML}{F6D39B}
+\definecolor{brassMid}{HTML}{BC8550}
+\definecolor{panelBlue}{HTML}{EDF6FA}
+\definecolor{panelGreen}{HTML}{EFF6EB}
+\definecolor{panelWarm}{HTML}{FBF5EC}
+\definecolor{panelPurple}{HTML}{F4F1F8}
+
 \tikzset{
   every node/.style={font=\sffamily\small,text=ink},
   % All functional arrows use the original figure's semantics.
   force/.style={draw=flow,line width=1.45pt,line cap=round,-{Triangle[length=2.8mm,width=2.0mm]}},
   friction/.style={draw=steelEdge,line width=1.25pt,line cap=round,-{Triangle[length=2.5mm,width=1.8mm]}},
-  gravity/.style={draw=flow!90!steelEdge,line width=1.35pt,line cap=round,-{Triangle[length=2.8mm,width=2mm]}},
+  gravity/.style={draw=utility!95!steelEdge,line width=1.35pt,line cap=round,-{Triangle[length=2.8mm,width=2mm]}},
   measured/.style={draw=signalGold,line width=1.0pt,dash pattern=on 3.2pt off 2.2pt,line cap=round,-{Triangle[length=2.1mm,width=1.5mm]}},
   specbox/.style={fill=white,fill opacity=.96,text opacity=1,rounded corners=1pt,inner xsep=3pt,inner ysep=2pt,font=\sffamily\footnotesize},
-  technical-panel/.style={panel,draw=steelEdge!22,fill=workshopTint!26!white},
+  technical-panel/.style={panel,draw=steelEdge!24,fill=panelBlue,
+    drop shadow={opacity=.045,shadow xshift=.6pt,shadow yshift=-.8pt}},
 }
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \atlasheader{Cart and inverted pendulum}{3.3}{Cart with inverted pendulum}
-% Behind-equipment atmosphere: only diffuse lab-light, not a physical state.
+% Naturalistic painted/sculpted context in the turbine atlas visual language.
+% Everything here is behind the mechanical schematic and purely illustrative.
+% Use cloudy daylight, low-saturation distant hills and an irregular meadow
+% rather than a flat cartoon sky or a uniform block of green.
 \begin{scope}
-  \clip (0,-2.18) rectangle (18.20,-11.82);
-  \shade[inner color=workshopTint,outer color=white,opacity=.67]
-    (8.75,-6.65) ellipse (8.15cm and 4.55cm);
-  \shade[inner color=alloyHi,outer color=white,opacity=.70]
-    (13.2,-3.42) ellipse (4.15cm and 1.72cm);
+  \clip (0.03,-2.17) rectangle (18.18,-11.83);
+  % Large feathered washes eliminate a rectangular backdrop boundary.
+  \shade[inner color=skyBlue!84!white,outer color=white,opacity=.86]
+    (8.72,-6.65) ellipse (9.4cm and 5.35cm);
+  \shade[inner color=sunW,outer color=white,opacity=.64]
+    (2.52,-3.56) ellipse (4.42cm and 2.87cm);
+  \shade[inner color=skyCool!35!white,outer color=white,opacity=.43]
+    (13.85,-5.3) ellipse (3.65cm and 3.0cm);
+  % Wispy clouds have overlapping, feathered edges; never text-bearing shapes.
+  \foreach \xx/\yy/\ww/\hh in {
+    2.80/-3.15/1.42/.31,3.50/-3.08/1.58/.26,4.25/-3.22/1.30/.28,
+    11.85/-3.45/1.15/.20,12.42/-3.36/1.20/.24,13.10/-3.49/1.04/.19,
+    16.30/-3.10/.82/.17,16.75/-3.17/.83/.18}{
+    \shade[inner color=white,outer color=skyLight,opacity=.42]
+       (\xx,\yy) ellipse (\ww cm and \hh cm);
+  }
+  % Stacked valley contours read as distant terrain without hard borders.
+  \path[fill=hillBlue,opacity=.12]
+    (0,-9.73)..controls(1.0,-9.48)and(1.9,-9.18)..(3.25,-9.39)
+    ..controls(4.7,-9.70)and(5.45,-8.81)..(6.92,-9.17)
+    ..controls(8.3,-9.51)and(9.5,-8.82)..(10.96,-9.24)
+    ..controls(12.0,-9.49)and(14.1,-8.89)..(15.3,-9.18)
+    ..controls(16.2,-9.37)and(17.2,-9.08)..(18.25,-9.34)
+    --(18.25,-11.83)--(0,-11.83)--cycle;
+  \path[fill=hillSage,opacity=.23]
+    (0,-10.06)..controls(1.4,-9.56)and(2.05,-9.66)..(3.50,-9.83)
+    ..controls(5.6,-10.12)and(6.60,-9.58)..(7.74,-9.80)
+    ..controls(9.2,-10.09)and(10.4,-9.72)..(12.25,-9.83)
+    ..controls(13.6,-10.04)and(15.35,-9.52)..(16.72,-9.90)
+    ..controls(17.4,-10.01)and(17.75,-9.85)..(18.25,-9.78)
+    --(18.25,-11.83)--(0,-11.83)--cycle;
+  \path[fill=hillLeaf,opacity=.23]
+    (0,-10.71)..controls(1.12,-10.36)and(2.70,-10.41)..(4.05,-10.67)
+    ..controls(5.4,-10.98)and(7.2,-10.53)..(8.55,-10.74)
+    ..controls(10.2,-11.08)and(12.3,-10.42)..(14.3,-10.71)
+    ..controls(16.15,-11.00)and(17.2,-10.49)..(18.3,-10.72)
+    --(18.3,-11.83)--(0,-11.83)--cycle;
+  \shade[inner color=meadowLt!40!white,outer color=white,opacity=.50]
+    (8.9,-11.35) ellipse (9.2cm and .72cm);
+  \shade[top color=meadowLt!63!white,bottom color=meadowMid!66!earth,opacity=.38]
+    (0,-11.35) rectangle (18.2,-11.83);
+  \shade[inner color=earth!32!white,outer color=white,opacity=.35]
+    (9.1,-11.65) ellipse (8.0cm and .30cm);
+  % Low moss/grass tufts with soft, irregular blades and earth-colored tips.
+  \foreach \xc/\ht in {
+    .34/.11,.63/.19,.91/.14,1.24/.13,1.61/.18,1.92/.12,
+    3.08/.15,3.42/.18,3.73/.10,4.07/.17,4.41/.13,
+    5.07/.18,5.48/.13,5.79/.17,6.15/.12,6.51/.19,
+    7.02/.13,7.39/.10,7.78/.15,8.18/.12,8.55/.20,8.97/.10,
+    9.40/.15,9.86/.12,10.31/.17,10.78/.13,11.18/.14,
+    11.69/.18,12.16/.12,12.52/.19,12.89/.12,13.24/.11,
+    13.66/.17,14.06/.14,14.48/.12,14.81/.18,15.20/.13,
+    15.66/.14,16.10/.11,16.47/.18,16.88/.12,17.24/.17,17.69/.14}{
+    \foreach \dx/\sf/\tip/\tone in {
+       -.060/.68/-.09/grassShade,.010/1.0/-.025/grassLeaf,
+        .060/.83/.085/meadowDk,.115/.62/.14/grassGold}{
+      \pgfmathsetmacro{\rootx}{\xc+\dx}
+      \pgfmathsetmacro{\toX}{\rootx+\tip}
+      \pgfmathsetmacro{\toY}{-11.74+\ht*\sf}
+      \path[fill=\tone,fill opacity=.72]
+        (\rootx-.018,-11.81)
+        ..controls (\rootx-.038,-11.71) and (\toX-.020,\toY-.020)
+        .. (\toX,\toY)
+        ..controls (\toX+.016,\toY-.042) and (\rootx+.030,-11.74)
+        .. (\rootx+.020,-11.81)--cycle;
+    }
+  }
+  % Minimal warm pebbles and a few seed heads vary the ground texture.
+  \foreach \xx/\yy/\rr in {
+    1.65/-11.69/.017,2.12/-11.75/.015,4.43/-11.67/.022,
+    6.28/-11.73/.014,7.44/-11.71/.019,9.86/-11.72/.014,
+    11.34/-11.76/.020,13.02/-11.70/.013,14.52/-11.73/.024,
+    16.68/-11.74/.019,17.47/-11.73/.015}{
+       \fill[stone,opacity=.67] (\xx,\yy) circle (\rr);
+  }
+  \foreach \xx/\yy in {1.05/-11.53,4.82/-11.51,13.9/-11.53,17.2/-11.54}{
+    \draw[grassShade,line width=.40pt]
+      (\xx,-11.76)..controls(\xx-.03,-11.69)and(\xx+.02,\yy-.05)..(\xx,\yy);
+    \fill[grassGold!65!white] (\xx,\yy) circle (.025);
+  }
 \end{scope}
 \node[anchor=west,font=\sffamily\bfseries] at (.3,-1.95)
   {Belt-driven carriage and freely rotating pendulum};
@@ -50,7 +161,7 @@
 % --- Stationary reference and correct inclination convention ---
 % Vertical x=8 through pivot P=(8,-7.9); drawn shaft B=(10.8,-3.2).
 % atan2(2.8,4.7)=30.78 deg clockwise from the upward vertical.
-\draw[steelEdge!36,dash pattern=on 3pt off 2.4pt,line width=.82pt]
+\draw[steelEdge!64,dash pattern=on 3pt off 2.4pt,line width=.82pt]
   (8,-7.90)--(8,-2.65);
 \node[anchor=east,specbox,align=right,text=muted] at (7.81,-2.98)
   {Upright equilibrium\\$\theta=0$};
@@ -74,9 +185,9 @@
 \draw[steelShadow!80!shaftDark,line width=.55pt,opacity=.68]
   (8.09,-7.88)--(10.87,-3.19);
 % Low-profile end cap, not a separate point mass.
-\shade[draw=shaftDark,line width=.95pt,inner color=alloyHi,outer color=alloyDark]
+\shade[draw=shaftDark,line width=.95pt,inner color=alloyHi,outer color=brassMid!68!steelShadow]
  (10.80,-3.20) circle (.245);
-\fill[alloyHi,opacity=.90] (10.745,-3.13) circle (.045);
+\fill[brassHi,opacity=.85] (10.745,-3.13) circle (.045);
 \draw[steelShadow!80!shaftDark,line width=.50pt] (10.80,-3.20) circle (.147);
 \draw[steelEdge!70,line width=.65pt] (11.01,-3.24)--(11.42,-3.24);
 \node[anchor=west,annotation,text width=3.10cm] at (11.52,-3.26)
@@ -93,6 +204,20 @@
 \draw[gravity] (14.8,-3.22)--(14.8,-5.25);
 \node[anchor=west,specbox] at (15.00,-4.29)
   {$g$ $[\mathrm{m\,s^{-2}}]$};
+
+% Concrete footing and ground-contact shadow give the assembly a physical base.
+% All geometry is demonstrative; no additional floor force is modeled.
+\shade[inner color=earth!50!steelEdge,outer color=white,opacity=.25]
+ (9.0,-11.43) ellipse (8.95cm and .32cm);
+\shade[draw=stone!60!steelEdge,line width=.45pt,
+  top color=concrete!42!white,bottom color=earth!47!white]
+ (.20,-11.39) rectangle (18.06,-11.54);
+\draw[alloyHi!70!white,line width=.65pt,opacity=.76]
+ (.23,-11.41)--(18.03,-11.41);
+% Sparse anchor bolts along the foundation, well below the guide rail.
+\foreach \xx in {1.23,4.15,7.07,10.0,12.93,15.86,17.38}{
+  \fill[steelEdge!55] (\xx,-11.47) circle (.019);
+}
 
 % --- Belt drive: shaded continuous upper/lower runs and real pulley hubs ---
 % Top of belt y=-10.49, bottom y=-11.17, pulley centers y=-10.83.
@@ -116,20 +241,20 @@
   \fill[shaftDark] (\cx,-10.83) circle (.052);
   \fill[alloyHi] (\cx-.035,-10.78) circle (.020);
 }
-\node[annotation,anchor=north,text=muted] at (11.25,-11.31)
+\node[specbox,anchor=north,text=steelEdge,fill opacity=.90] at (11.25,-11.31)
   {Reversible belt transmission (schematic)};
 % Electric drive housing and aligned shaft; no torque signal is invented.
-\shade[draw=steelEdge,line width=.92pt,
-  top color=alloyHi,middle color=alloyMid,bottom color=alloyDark,
+\shade[draw=motorShade!90!shaftDark,line width=.92pt,
+  top color=motorLit,middle color=motorGreen,bottom color=motorShade,
   rounded corners=2pt]
   (.40,-10.43) rectangle (1.77,-11.20);
 \shade[draw=copperDark,line width=.60pt,left color=copperDark,right color=copper!45!alloyHi]
   (1.62,-10.46) rectangle (1.77,-11.17);
 \foreach \xx in {.54,.67,.80,.93}{
-  \draw[steelShadow!85!shaftDark,line width=.46pt]
+  \draw[motorShade!80!shaftDark,line width=.65pt]
     (\xx,-10.52)--(\xx,-11.10);
 }
-\node[font=\sffamily\footnotesize,fill=alloyHi,fill opacity=.94,
+\node[font=\sffamily\footnotesize,fill=alloyHi,fill opacity=.92,
   text opacity=1,inner sep=1.2pt] at (1.25,-10.81) {motor};
 \draw[shaftDark,line width=2.8pt,line cap=round] (1.78,-10.83)--(2.21,-10.83);
 \draw[steelMid,line width=.9pt] (1.79,-10.805)--(2.22,-10.805);
@@ -168,22 +293,27 @@
  (8.05,-9.28) ellipse (2.83cm and .27cm);
 % Top plane, front face and right bevel form the 3D carriage.
 \shade[draw=steelEdge,line width=.78pt,
-  left color=steelMid,middle color=alloyHi,right color=alloyMid]
+  left color=paintBlue,middle color=paintBright!66!alloyHi,right color=paintBlue!72!steelMid]
  (5.32,-7.90)--(5.60,-7.71)--(10.94,-7.71)--(10.67,-7.90)--cycle;
 \shade[draw=steelEdge,line width=.80pt,
-  left color=steelShadow,middle color=steelMid,right color=steelEdge]
+  left color=paintDark,middle color=paintBlue,right color=shaftDark]
  (10.67,-7.90)--(10.94,-7.71)--(10.94,-8.96)--(10.67,-9.13)--cycle;
 \shade[draw=steelEdge,line width=1.05pt,
-  top color=alloyHi,middle color=alloyMid,bottom color=steelShadow,
+  top color=paintBright!64!white,middle color=paintBlue!86!paintBright,bottom color=paintDark,
   rounded corners=1pt]
  (5.32,-7.90) rectangle (10.67,-9.13);
 % Broad brushed metal reflection (not a flat uniform fill).
-\path[fill=alloyHi,opacity=.52]
- (5.49,-7.96)--(5.92,-7.96)--(5.70,-9.06)--(5.42,-9.06)--cycle;
-\path[fill=tealBody,opacity=.19]
+\path[fill=alloyHi,opacity=.42]
+ (5.49,-7.96)--(5.92,-7.96)--(5.76,-9.06)--(5.43,-9.06)--cycle;
+\path[fill=paintDark,opacity=.24]
  (9.93,-7.97)--(10.56,-7.97)--(10.56,-9.06)--(10.08,-9.06)--cycle;
-\draw[alloyHi,line width=1.15pt,opacity=.95]
+\draw[alloyHi,line width=1.15pt,opacity=.85]
  (5.42,-7.97)--(10.56,-7.97);
+% Small brass end trims reflect the mechanism's realistic mixed materials.
+\shade[left color=brassMid,right color=brassHi,draw=copperDark!70,line width=.28pt]
+  (5.39,-8.13) rectangle (5.46,-8.92);
+\shade[left color=brassHi,right color=brassMid,draw=copperDark!70,line width=.28pt]
+  (10.54,-8.13) rectangle (10.61,-8.92);
 \draw[steelEdge!46,line width=.58pt]
  (5.45,-9.055)--(10.54,-9.055);
 \foreach \xx in {5.59,10.35}{
@@ -196,7 +326,7 @@
   \fill[alloyHi] (\xx-.006,-8.036) circle (.008);
 }
 % Carriage badge and mass identification, intentionally not a controller port.
-\node[font=\sffamily\small,fill=alloyHi,fill opacity=.89,
+\node[font=\sffamily\small,fill=alloyHi,draw=steelEdge!45,very thin,fill opacity=.93,
   text opacity=1,rounded corners=1pt,inner xsep=4pt,inner ysep=2.1pt]
  at (8.04,-8.58) {Carriage mass $M$ [kg]};
 % Mounting cleat connects cart to the upper belt run (no implied new state).
@@ -209,7 +339,7 @@
 \fill[shaftDark] (8.08,-10.48) circle (.038);
 
 % --- Pivot bearing covers the shaft-cart junction explicitly ---
-\shade[draw=shaftDark,line width=1.00pt,outer color=steelShadow,inner color=alloyHi]
+\shade[draw=shaftDark,line width=1.00pt,outer color=brassMid!55!steelShadow,inner color=alloyHi]
   (8,-7.90) circle (.30);
 \shade[draw=steelEdge,line width=.62pt,outer color=alloyDark,inner color=steelMid]
   (8,-7.90) circle (.189);
@@ -237,27 +367,27 @@
  {Angular measurement};
 
 % --- Control context; original state, model and friction language retained ---
-\node[technical-panel,anchor=north west,text width=6.1cm,
+\node[technical-panel,fill=panelBlue,draw=flow!35!steelEdge,anchor=north west,text width=6.1cm,
  minimum height=5.4cm,align=left] at (19,-2.2)
  {\textbf{Control problem}\\[5pt]
  Swing up from the hanging position, balance near the unstable upright state, then position the cart.\\[8pt]
  \textbf{Published measurement}\\Angular position $y=\theta$.\\[8pt]
  \textbf{Simulation state order}\\$[\theta,\ \dot\theta,\ x,\ \dot x]^{\mathsf T}$\\Units: rad, rad/s, m, m/s.};
-\node[technical-panel,anchor=north west,text width=6.1cm,
+\node[technical-panel,fill=panelGreen,draw=utility!40!steelEdge,anchor=north west,text width=6.1cm,
  align=left] at (19,-8.5)
  {\textbf{Nonlinear couplings}\\Gravity $\sin\theta$, inertial terms
  $\dot\theta^2$, trigonometric coupling and Coulomb friction.\\[6pt]
  Angular joint loss: $d_{Mf}\dot\theta$ [N m].};
-\node[technical-panel,anchor=north west,text width=8cm,minimum height=2.5cm,
+\node[technical-panel,fill=panelWarm,draw=signalGold!35!steelEdge,anchor=north west,text width=8cm,minimum height=2.5cm,
  align=left] at (.2,-12.7)
  {\textbf{Input and actuator limit}\\$u=F$ [N], $|F|\leq F_{\max}$.\\
  The source uses a motor and belt; Eq. (32) takes the resulting force as its input.};
-\node[technical-panel,anchor=north west,text width=8cm,minimum height=2.5cm,
+\node[technical-panel,fill=panelBlue,draw=flow!30!steelEdge,anchor=north west,text width=8cm,minimum height=2.5cm,
  align=left] at (9,-12.7)
  {\textbf{Length convention}\\$l$ [m] is the characteristic length used
  in Eq. (32). The drawing does not infer a separate rod length, inertia or
  centre of mass from $l$.};
-\node[technical-panel,anchor=north west,text width=6.7cm,minimum height=2.5cm,
+\node[technical-panel,fill=panelPurple,draw=measure!34!steelEdge,anchor=north west,text width=6.7cm,minimum height=2.5cm,
  align=left] at (18,-12.7)
  {\textbf{Reading the drawing}\\Solid arrows: forces / motion.\\
  Dashed arrows: measurement signals.\\Geometry is not to scale.};
