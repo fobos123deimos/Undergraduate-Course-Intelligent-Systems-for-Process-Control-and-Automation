@@ -260,13 +260,13 @@
 \fill[graphite] (9.82,-6.06) circle (.061);
 % Centered, unboxed label below the reducer, without crossing hardware.
 \draw[steelEdge!57,line width=.61pt] (9.12,-7.40)--(9.12,-7.62);
-\node[anchor=north,equipmentlabel,text width=3.40cm] at (9.12,-7.68)
+\node[anchor=north,equipmentlabel,text width=3.40cm] at (8.99,-7.69)
  {Reduction gearbox\\shaft torque conversion};
 % M_A label raised by 0.75 cm. Its fine leader ends at the rotation
 % glyph, not at an unlabeled feature of the gear shell.
-\node[anchor=south,notation,text=graphite] at (7.70,-3.46) {$M_A$};
+\node[anchor=south,notation,text=graphite] at (7.70,-3.30) {$M_A$};
 \draw[amber!78!bronzeShadow,line width=.62pt,line cap=round]
- (7.70,-3.51)--(7.70,-4.60);
+ (7.70,-3.43)--(7.70,-4.56);
 % One continuous, well-defined curved arrow around the exposed motor shaft.
 \begin{scope}[shift={(7.70,-4.88)}]
  \draw[amber!45!white,line width=.90pt,line cap=round]
@@ -315,10 +315,10 @@
 \draw[steelEdge!70,dash pattern=on 2.5pt off 2.2pt,line width=.79pt]
  (12.80,-6.10)--(15.73,-6.10);
 % Text is below the blue upper airflow, fully outside its arrowhead.
-\node[anchor=north,equipmentlabel] at (13.89,-5.42) {Projected shaft};
+\node[anchor=north,equipmentlabel] at (13.81,-5.38) {Projected shaft};
 \draw[steelEdge!78,line width=.66pt,line cap=round,
  -{Stealth[length=1.60mm,width=1.12mm]}]
- (13.89,-5.78)--(13.89,-6.02);
+ (13.81,-5.75)--(13.81,-5.99);
 % Butterfly plate is rendered as a slim, continuous swept metal surface.
 \path[fill=graphite!24,opacity=.50]
  (15.02,-7.45)--(15.17,-7.55)--(17.12,-4.77)--(16.91,-4.68)--cycle;
@@ -333,7 +333,7 @@
 \fill[graphite] (16,-6.10) circle (.063);
 \fill[steelHi] (15.943,-6.047) circle (.035);
 % Label positioned to the RIGHT of the purple sensor path x=16.27.
-\node[anchor=north,equipmentlabel,text width=2.94cm] at (18.00,-8.21)
+\node[anchor=north,equipmentlabel,text width=2.94cm] at (18.13,-8.20)
  {Butterfly plate\\variable opening};
 % Actual reference axis through pivot, and one exact-angle arc (no drift).
 \draw[steelEdge!56,dash pattern=on 3pt off 2pt,line width=.72pt]
@@ -357,21 +357,21 @@
 % No opaque text panels obscure the spring or the mechanical shaft.
 \fill[bronzeShadow] (11.82,-6.36) circle (.028);
 \draw[bronzeShadow,line width=.71pt,line cap=round]
- (11.82,-6.40)--(11.82,-8.57)--(12.28,-8.57);
-\node[anchor=north,equipmentlabel,text width=2.67cm] at (12.67,-8.77)
+ (11.82,-6.40)--(11.82,-8.55)--(12.18,-8.55);
+\node[anchor=north,equipmentlabel,text width=2.67cm] at (12.95,-8.86)
  {Return torsion spring\\restoring torque};
 
 % M_F points to the TOP of the actual concentric return coil.
-\node[anchor=south,notation,text=graphite] at (11.87,-5.10) {$M_F$};
+\node[anchor=south,notation,text=graphite] at (11.72,-4.99) {$M_F$};
 \draw[amber,line width=1.10pt,line cap=round,
  -{Stealth[length=2.05mm,width=1.47mm]}]
- (11.87,-5.28)--(11.87,-5.64)--(11.82,-5.83);
+ (11.72,-5.16)--(11.72,-5.57)--(11.82,-5.83);
 
 % POTENTIOMETER OUTPUT: explicit physical junction, separate from blue airflow.
 \fill[violet] (16.28,-6.13) circle (.042);
 \node[instrument,draw=violet,fill=steelHi,line width=.90pt] (sensor) at (17.77,-9.39) {$\varphi$};
 \draw[sensline] (16.27,-6.20)--(16.27,-9.39)--(sensor.west);
-\node[anchor=north,equipmentlabel,text width=3.25cm] at (17.29,-9.91)
+\node[anchor=north,equipmentlabel,text width=3.25cm] at (17.42,-9.92)
  {Potentiometer\\$y(k)=\varphi(k)$ [deg]};
 \draw[sensline] (sensor.east)--(20.02,-9.39)--(20.02,-5.98)--(20.55,-5.98);
 
