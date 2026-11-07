@@ -42,7 +42,11 @@
   powerline/.style={draw=boardDeep,line width=1.35pt,line cap=round,-{Triangle[length=2.6mm,width=1.8mm]}},
   cmdline/.style={draw=amber,line width=.97pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.2mm,width=1.5mm]}},
   sensline/.style={draw=violet,line width=.97pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.2mm,width=1.5mm]}},
-  labelglass/.style={font=\sffamily\footnotesize,fill=white,fill opacity=.94,text opacity=1,rounded corners=1.0pt,inner xsep=3pt,inner ysep=2pt,align=center},
+  % Quiet type labels have no white plaque: all mechanism details remain visible.
+  equipmentlabel/.style={font=\sffamily\footnotesize,text=ink,inner sep=0pt,align=center},
+  notation/.style={font=\sffamily\footnotesize,text=ink,inner sep=0pt},
+  % Only the input/output summary panels retain their self-contained frames.
+  labelglass/.style={font=\sffamily\footnotesize,fill=white,fill opacity=.82,text opacity=1,rounded corners=.6pt,inner xsep=1.5pt,inner ysep=1pt,align=center},
   technical/.style={panel,draw=steelEdge!23,fill=panelBlue},
 }
 \begin{document}
@@ -181,7 +185,9 @@
  (7.40,-4.88) ellipse (.105cm and .39cm);
 \draw[graphite,line width=3.0pt,line cap=round] (7.44,-4.88)--(8.98,-4.88);
 \draw[steelHi,line width=.84pt,line cap=round] (7.49,-4.855)--(8.98,-4.855);
-\node[anchor=north,labelglass,align=center,text width=2.90cm,inner ysep=2.4pt] at (5.63,-5.83) {DC motor \\ electromagnetic torque};
+% Unboxed motor caption kept below the case and above the R-L circuit.
+\draw[steelEdge!55,line width=.55pt] (5.83,-5.68)--(5.83,-5.84);
+\node[anchor=north,equipmentlabel] at (5.82,-5.85) {DC motor};
 % The uploaded article's circuit explicitly includes armature current i,
 % resistance R and inductance L. The second feed is drawn below the motor.
 \draw[boardDeep,line width=1.03pt,line cap=round]
@@ -191,7 +197,7 @@
 \draw[copper!90!bronzeShadow,line width=1.07pt,line join=round]
  (4.30,-7.24)--(4.39,-7.39)--(4.49,-7.09)--(4.59,-7.39)--
  (4.69,-7.09)--(4.79,-7.39)--(4.89,-7.09)--(4.99,-7.39)--(5.07,-7.24);
-\node[labelglass,inner xsep=1.6pt,inner ysep=.8pt] at (4.68,-6.88) {$R$};
+\node[notation,text=bronzeShadow] at (4.68,-6.88) {$R$};
 % Six copper-winding lobes are electrically continuous between the leads.
 \draw[boardDeep,line width=1.03pt,line cap=round] (5.30,-7.24)--(5.39,-7.24);
 \draw[copper!92!bronzeShadow,line width=1.07pt]
@@ -204,12 +210,11 @@
 \draw[boardDeep,line width=1.03pt,line cap=round]
   (6.39,-7.24)--(6.90,-7.24)--(6.90,-5.64);
 \fill[boardDeep] (6.90,-5.64) circle (.039);
-\node[labelglass,inner xsep=1.6pt,inner ysep=.8pt] at (5.89,-6.88) {$L$};
+\node[notation,text=bronzeShadow] at (5.89,-6.88) {$L$};
 % Arrow for the loop current is local to this wire, not a second torque.
 \draw[boardDeep,line width=1.09pt,line cap=round,
   -{Triangle[length=1.9mm,width=1.3mm]}] (3.91,-7.24)--(4.19,-7.24);
-\node[anchor=south,labelglass,inner xsep=1.1pt,inner ysep=.65pt]
- at (4.06,-7.12) {$i$};
+\node[anchor=south,notation,text=boardDeep] at (4.06,-7.09) {$i$};
 
 % Motor-can retaining brackets meet the gearbox shell; they are not a signal.
 \foreach \yy in {-4.24,-5.50}{
@@ -253,20 +258,23 @@
 \shade[draw=bronzeShadow,line width=.75pt,inner color=amberLight,outer color=bronze]
  (9.82,-6.06) circle (.18);
 \fill[graphite] (9.82,-6.06) circle (.061);
-\node[anchor=north,labelglass,align=center,text width=3.16cm,inner ysep=2.9pt] at (9.25,-7.63) {Reduction gearbox \\ shaft torque conversion};
-% Applied motor torque M_A: high-contrast two-layer rotation glyph centered
-% over the exposed shaft, with the arrowhead fully clear of the reducer shell.
-\begin{scope}[shift={(7.70,-4.87)}]
- \draw[amber!47!white,line width=1.0pt,line cap=round]
-  (27:.245 and .292) arc[start angle=27,end angle=170,x radius=.245,y radius=.292];
- \draw[amber,line width=1.38pt,line cap=round,
-  -{Triangle[length=2.30mm,width=1.65mm]}]
-  (170:.245 and .292) arc[start angle=170,end angle=325,x radius=.245,y radius=.292];
+% Centered, unboxed label below the reducer, without crossing hardware.
+\draw[steelEdge!57,line width=.61pt] (9.12,-7.40)--(9.12,-7.62);
+\node[anchor=north,equipmentlabel,text width=3.40cm] at (9.12,-7.68)
+ {Reduction gearbox\\shaft torque conversion};
+% M_A label raised by 0.75 cm. Its fine leader ends at the rotation
+% glyph, not at an unlabeled feature of the gear shell.
+\node[anchor=south,notation,text=graphite] at (7.70,-3.46) {$M_A$};
+\draw[amber!78!bronzeShadow,line width=.62pt,line cap=round]
+ (7.70,-3.51)--(7.70,-4.60);
+% One continuous, well-defined curved arrow around the exposed motor shaft.
+\begin{scope}[shift={(7.70,-4.88)}]
+ \draw[amber!45!white,line width=.90pt,line cap=round]
+  (56:.238 and .275) arc[start angle=56,end angle=164,x radius=.238,y radius=.275];
+ \draw[amber,line width=1.52pt,line cap=round,
+  -{Stealth[length=2.15mm,width=1.55mm]}]
+  (164:.238 and .275) arc[start angle=164,end angle=333,x radius=.238,y radius=.275];
 \end{scope}
-\node[anchor=south,labelglass,inner xsep=2.2pt,inner ysep=1.4pt]
- at (7.67,-4.22) {$M_A$};
-\draw[amber!70!bronzeShadow,line width=.57pt,line cap=round]
- (7.69,-4.31)--(7.69,-4.59);
 
 
 % FLOW BODY: dark outer casting, dimensioned aluminum flange rings,
@@ -294,7 +302,7 @@
   \draw[graphite,line width=.32pt] (\xx-.036,\yy-.020)--(\xx+.035,\yy+.020);
  }
 }
-\node[anchor=south,labelglass] at (18.45,-4.19) {Intake air passage};
+\node[anchor=south,equipmentlabel] at (18.40,-4.17) {Intake air passage};
 % Blue streamlines follow the open portion, distinct from motor command.
 \draw[airarrow] (12.94,-5.16)..controls(13.55,-5.10)and(14.12,-5.04)..(14.83,-5.08);
 \draw[airarrow] (17.18,-7.11)..controls(17.73,-7.18)and(18.31,-7.10)..(19.00,-7.10);
@@ -306,9 +314,11 @@
 \draw[steelHi,line width=1.00pt] (10.12,-6.035)--(12.43,-6.035);
 \draw[steelEdge!70,dash pattern=on 2.5pt off 2.2pt,line width=.79pt]
  (12.80,-6.10)--(15.73,-6.10);
-\node[anchor=south,labelglass,inner ysep=2.2pt] at (13.87,-5.62) {Projected shaft};
-\draw[steelEdge!83,line width=.65pt,line cap=round,
- -{Triangle[length=1.5mm,width=1.07mm]}] (13.88,-5.66)--(13.88,-6.03);
+% Text is below the blue upper airflow, fully outside its arrowhead.
+\node[anchor=north,equipmentlabel] at (13.89,-5.42) {Projected shaft};
+\draw[steelEdge!78,line width=.66pt,line cap=round,
+ -{Stealth[length=1.60mm,width=1.12mm]}]
+ (13.89,-5.78)--(13.89,-6.02);
 % Butterfly plate is rendered as a slim, continuous swept metal surface.
 \path[fill=graphite!24,opacity=.50]
  (15.02,-7.45)--(15.17,-7.55)--(17.12,-4.77)--(16.91,-4.68)--cycle;
@@ -322,16 +332,16 @@
  (16,-6.10) circle (.158);
 \fill[graphite] (16,-6.10) circle (.063);
 \fill[steelHi] (15.943,-6.047) circle (.035);
-\node[anchor=north,labelglass,text=ink,align=center,text width=3.35cm,
- inner xsep=3pt,inner ysep=2.6pt] at (18.23,-8.14)
- {Butterfly plate and shaft \\ variable opening};
+% Label positioned to the RIGHT of the purple sensor path x=16.27.
+\node[anchor=north,equipmentlabel,text width=2.94cm] at (18.00,-8.21)
+ {Butterfly plate\\variable opening};
 % Actual reference axis through pivot, and one exact-angle arc (no drift).
 \draw[steelEdge!56,dash pattern=on 3pt off 2pt,line width=.72pt]
  (16,-6.12)--(16,-4.56);
 \draw[amber,line width=1.35pt,line cap=round,
  -{Triangle[length=2.4mm,width=1.7mm]}]
  (16,-4.98) arc[start angle=90,end angle=55.8,radius=1.12];
-\node[labelglass,text=amber!80!graphite] at (16.83,-4.14) {$\varphi(k)$};
+\node[notation,text=amber!90!graphite] at (16.66,-4.05) {$\varphi(k)$};
 
 % TORSIONAL RETURN SPRING: concentric around the output shaft; unlike an
 % arbitrary extension spring this depicts restoring torque at the same axis.
@@ -343,32 +353,32 @@
 \shade[draw=steelEdge,line width=.68pt,left color=steelShade,right color=steelHi]
  (12.06,-6.69) rectangle (12.37,-7.09);
 \fill[graphite!65] (12.22,-6.89) circle (.041);
-% Copper leader connects the spring assembly to its caption without crossing
-% or sharing the reduction-gearbox label's footprint.
-\fill[bronzeShadow] (11.82,-6.36) circle (.031);
+% A slim copper callout follows the empty inter-housing channel.
+% No opaque text panels obscure the spring or the mechanical shaft.
+\fill[bronzeShadow] (11.82,-6.36) circle (.028);
 \draw[bronzeShadow,line width=.71pt,line cap=round]
- (11.82,-6.38)--(11.82,-8.71)--(12.70,-8.71);
-\node[anchor=north,labelglass,align=center,text width=3.05cm,inner ysep=3pt]
- at (12.72,-8.89) {Return torsion spring \\ restoring torque};
+ (11.82,-6.40)--(11.82,-8.57)--(12.28,-8.57);
+\node[anchor=north,equipmentlabel,text width=2.67cm] at (12.67,-8.77)
+ {Return torsion spring\\restoring torque};
 
-% Article torque notation M_F at the return-spring side. The figure
-% retains the manuscript's symbol without inferring a calibrated torque law.
-\node[anchor=south,labelglass,inner xsep=2.2pt,inner ysep=1.5pt]
- at (11.84,-5.22) {$M_F$};
-\draw[amber,line width=1.01pt,line cap=round,
- -{Triangle[length=2.1mm,width=1.50mm]}]
- (11.84,-5.28)--(11.82,-5.82);
+% M_F points to the TOP of the actual concentric return coil.
+\node[anchor=south,notation,text=graphite] at (11.87,-5.10) {$M_F$};
+\draw[amber,line width=1.10pt,line cap=round,
+ -{Stealth[length=2.05mm,width=1.47mm]}]
+ (11.87,-5.28)--(11.87,-5.64)--(11.82,-5.83);
 
 % POTENTIOMETER OUTPUT: explicit physical junction, separate from blue airflow.
 \fill[violet] (16.28,-6.13) circle (.042);
 \node[instrument,draw=violet,fill=steelHi,line width=.90pt] (sensor) at (17.77,-9.39) {$\varphi$};
 \draw[sensline] (16.27,-6.20)--(16.27,-9.39)--(sensor.west);
-\node[anchor=north,labelglass,text=ink,text width=3.64cm,align=center,inner xsep=3pt,inner ysep=2.3pt] at (17.14,-9.93)
- {Potentiometer \\ output $y(k)=\varphi(k)$ [deg]};
+\node[anchor=north,equipmentlabel,text width=3.25cm] at (17.29,-9.91)
+ {Potentiometer\\$y(k)=\varphi(k)$ [deg]};
 \draw[sensline] (sensor.east)--(20.02,-9.39)--(20.02,-5.98)--(20.55,-5.98);
 
 % Explanatory signal legend, positioned without touching hardware.
-\node[labelglass,anchor=north west,text=ink,align=left,text width=8.9cm,inner xsep=3pt,inner ysep=2.5pt,fill opacity=.91] at (.35,-9.32)
+% A plain-text legend in a reserved empty corner (no white background).
+\node[anchor=north west,font=\sffamily\footnotesize,text=ink,align=left,
+ text width=8.9cm,inner sep=0pt] at (.46,-9.31)
  {Blue: intake airflow. Green: armature current $i$.\\
  Copper: series $R$--$L$ elements. Orange dashed: PWM command.\\
  Purple dashed: measured angle. Gray: mechanical transmission.};
