@@ -5,6 +5,8 @@
 % Atmospheric engine-test-cell elements are decorative, not benchmark hardware.
 % Article's Figure 3 is the technical reference for R, L, i, M_A, M_F,
 % motor, potentiometer, spring, gears and butterfly-plate relationships.
+% Owner-approved visual reference (08 Nov 2026): external right-side butterfly
+% label, wider white gap, clear intake arrows, and aligned sensor/caption.
 % These are qualitative variables, not identified numeric parameters.
 % All models, units and signal directions retain the established atlas convention.
 \definecolor{charcoal}{HTML}{34424A}
@@ -281,7 +283,7 @@
 
 \end{scope}
 
-\begin{scope}[xshift=.72cm]
+\begin{scope}[xscale=.96,xshift=1.218cm]
 % FLOW BODY: dark outer casting, dimensioned aluminum flange rings,
 % atmospheric intake bore, and a single physically hinged butterfly plate.
 % The split long-section is schematic; no unmeasured flow rate is asserted.
@@ -307,7 +309,7 @@
   \draw[graphite,line width=.32pt] (\xx-.036,\yy-.020)--(\xx+.035,\yy+.020);
  }
 }
-\node[anchor=south,equipmentlabel,text=ink] at (17.65,-4.13) {Intake air passage};
+\node[anchor=south,equipmentlabel,text=ink] at (17.86,-4.13) {Intake air passage};
 % Emphasize the two intake flow directions with high-contrast saturated
 % blue cores, legible triangular heads, and pale-cyan atmospheric edge glows.
 % Qualitative streamlines only: no measured velocity or additional channel.
@@ -359,7 +361,7 @@
 \draw[amber,line width=1.35pt,line cap=round,
  -{Triangle[length=2.4mm,width=1.7mm]}]
  (16,-4.98) arc[start angle=90,end angle=55.8,radius=1.12];
-\node[notation,text=amber!90!graphite] at (15.18,-4.05) {$\varphi(k)$};
+\node[notation,text=amber!90!graphite] at (15.38,-4.05) {$\varphi(k)$};
 
 \end{scope}
 
@@ -396,7 +398,7 @@
 
 \end{scope}
 
-\begin{scope}[xshift=.72cm]
+\begin{scope}[xshift=.38cm]
 % POTENTIOMETER OUTPUT: explicit physical junction, separate from blue airflow.
 \fill[violet] (16.28,-6.13) circle (.042);
 \node[instrument,draw=violet,fill=steelHi,line width=.90pt] (sensor) at (17.77,-9.39) {$\varphi$};
@@ -411,7 +413,7 @@
 \draw[white,line width=3.20pt,line cap=round] (20.41,-6.91)--(20.41,-6.77);
 \draw[violet!83!graphite,line width=.92pt,line cap=round,
  -{Stealth[length=2.05mm,width=1.42mm]}]
- (20.55,-6.84)--(20.29,-6.84);
+ (20.55,-6.84)--(20.01,-6.84);
 \node[anchor=west,equipmentlabel,align=left,text width=2.55cm]
  at (20.68,-6.84) {Butterfly plate\\variable opening};
 
