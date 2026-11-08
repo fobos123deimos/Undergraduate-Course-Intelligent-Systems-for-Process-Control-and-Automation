@@ -40,7 +40,7 @@
 \definecolor{panelBlue}{HTML}{ECF3F4}
 \tikzset{
   every node/.style={font=\sffamily\small,text=ink},
-  airarrow/.style={draw=airDeep,line width=2.04pt,line cap=round,line join=round,-{Triangle[length=3.70mm,width=2.72mm]}},
+  airarrow/.style={draw=airDeep,line width=1.82pt,line cap=round,line join=round,-{Triangle[length=3.25mm,width=2.30mm]}},
   powerline/.style={draw=boardDeep,line width=1.35pt,line cap=round,-{Triangle[length=2.6mm,width=1.8mm]}},
   cmdline/.style={draw=amber,line width=.97pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.2mm,width=1.5mm]}},
   sensline/.style={draw=violet,line width=.97pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.2mm,width=1.5mm]}},
@@ -310,24 +310,19 @@
  }
 }
 \node[anchor=south,equipmentlabel,text=ink] at (17.86,-4.13) {Intake air passage};
-% Emphasize the two intake flow directions with high-contrast saturated
-% blue cores, legible triangular heads, and pale-cyan atmospheric edge glows.
-% Qualitative streamlines only: no measured velocity or additional channel.
-\draw[airLight!55!white,line width=4.65pt,line cap=round,opacity=.41]
- (12.94,-5.16)..controls(13.55,-5.10)and(14.12,-5.04)..(14.83,-5.08);
-\draw[airLight!55!white,line width=4.65pt,line cap=round,opacity=.41]
- (17.18,-7.11)..controls(17.73,-7.18)and(18.31,-7.10)..(19.00,-7.10);
+% Approved reference: simple medium-weight airflow vectors, not heavy glows.
+% Both arrowheads remain visible and are kept away from the butterfly plate.
+\draw[airLight!63!white,line width=2.8pt,line cap=round,opacity=.12]
+ (13.03,-5.19)..controls(13.75,-5.10)and(14.46,-5.04)..(15.14,-5.10);
+\draw[airLight!63!white,line width=2.8pt,line cap=round,opacity=.12]
+ (17.00,-7.10)..controls(17.64,-7.17)and(18.32,-7.12)..(19.07,-7.08);
 \draw[airarrow]
- (12.94,-5.16)..controls(13.55,-5.10)and(14.12,-5.04)..(14.83,-5.08);
+ (13.03,-5.19)..controls(13.75,-5.10)and(14.46,-5.04)..(15.14,-5.10);
 \draw[airarrow]
- (17.18,-7.11)..controls(17.73,-7.18)and(18.31,-7.10)..(19.00,-7.10);
-% A slim reflective highlight follows each shaft without obscuring the tips.
-\draw[airLight!55!white,line width=.92pt,line cap=round,opacity=.87]
- (13.06,-5.115)..controls(13.53,-5.06)and(14.02,-5.025)..(14.45,-5.06);
-\draw[airLight!55!white,line width=.92pt,line cap=round,opacity=.87]
- (17.30,-7.065)..controls(17.77,-7.13)and(18.25,-7.075)..(18.63,-7.06);
-\draw[airLight,line width=1.02pt,opacity=.78,line cap=round]
- (12.94,-5.32)..controls(13.57,-5.26)and(14.00,-5.27)..(14.38,-5.34);
+ (17.00,-7.10)..controls(17.64,-7.17)and(18.32,-7.12)..(19.07,-7.08);
+% The one small secondary cyan streamline remains subtle and unheaded.
+\draw[airLight,line width=.57pt,opacity=.56,line cap=round]
+ (13.04,-5.32)..controls(13.56,-5.26)and(14.06,-5.25)..(14.39,-5.34);
 % Continuity between gear output and throttle shaft; inside the bore the
 % axial projection is dashed to avoid claiming a visible free-running bar.
 \draw[graphite,line width=3.7pt,line cap=round] (10.12,-6.06)--(12.44,-6.06);
@@ -335,10 +330,10 @@
 \draw[steelEdge!70,dash pattern=on 2.5pt off 2.2pt,line width=.79pt]
  (12.80,-6.10)--(15.73,-6.10);
 % Text is below the blue upper airflow, fully outside its arrowhead.
-\node[anchor=north,equipmentlabel] at (13.81,-5.38) {Projected shaft};
+\node[anchor=north,equipmentlabel] at (13.97,-5.42) {Projected shaft};
 \draw[steelEdge!78,line width=.66pt,line cap=round,
  -{Stealth[length=1.60mm,width=1.12mm]}]
- (13.81,-5.75)--(13.81,-5.99);
+ (13.97,-5.78)--(13.97,-6.02);
 % Butterfly plate is rendered as a slim, continuous swept metal surface.
 \path[fill=graphite!24,opacity=.50]
  (15.02,-7.45)--(15.17,-7.55)--(17.12,-4.77)--(16.91,-4.68)--cycle;
@@ -358,10 +353,10 @@
 % Actual reference axis through pivot, and one exact-angle arc (no drift).
 \draw[steelEdge!56,dash pattern=on 3pt off 2pt,line width=.72pt]
  (16,-6.12)--(16,-4.56);
-\draw[amber,line width=1.35pt,line cap=round,
+\draw[orange!82!amber,line width=1.34pt,line cap=round,
  -{Triangle[length=2.4mm,width=1.7mm]}]
- (16,-4.98) arc[start angle=90,end angle=55.8,radius=1.12];
-\node[notation,text=amber!90!graphite] at (15.38,-4.05) {$\varphi(k)$};
+ (15.44,-5.13) arc[start angle=120,end angle=55.8,radius=1.12];
+\node[notation,text=amber!90!graphite] at (15.42,-4.05) {$\varphi(k)$};
 
 \end{scope}
 
@@ -404,18 +399,15 @@
 \node[instrument,draw=violet,fill=steelHi,line width=.90pt] (sensor) at (17.77,-9.39) {$\varphi$};
 \draw[sensline] (16.27,-6.20)--(16.27,-9.39)--(sensor.west);
 \node[anchor=north,equipmentlabel,text width=2.70cm] at (17.24,-10.02)
- {Potentiometer\\$y(k)=\varphi(k)$ [deg]};
+ {{\bfseries Potentiometer}\\$y(k)=\varphi(k)$ [deg]};
 \end{scope}
-\draw[sensline] (sensor.east)--(20.41,-9.39)--(20.41,-5.98)--(20.55,-5.98);
-% Approved right-hand annotation: between Acquisition and Identification panels.
-% The short white crossing bridge separates the solid label pointer from the
-% dashed feedback path. It does not indicate an extra sensor or input signal.
-\draw[white,line width=3.20pt,line cap=round] (20.41,-6.91)--(20.41,-6.77);
+% The output y(k) is identified by the potentiometer label; no extra signal branch.
+% Approved separate plate annotation, without a fabricated four-way signal junction.
 \draw[violet!83!graphite,line width=.92pt,line cap=round,
  -{Stealth[length=2.05mm,width=1.42mm]}]
  (20.55,-6.84)--(20.01,-6.84);
 \node[anchor=west,equipmentlabel,align=left,text width=2.55cm]
- at (20.68,-6.84) {Butterfly plate\\variable opening};
+ at (20.68,-6.84) {{\bfseries Butterfly plate}\\variable opening};
 
 % Explanatory signal legend: move its FIRST line 0.63 cm farther down from
 % the decorative gray conduit above. The third line stays above the bench.
@@ -427,12 +419,12 @@
 
 % Model statements and evaluation commitments carried over from the atlas.
 \hyphenpenalty=10000\exhyphenpenalty=10000\emergencystretch=1em
-\node[technical,anchor=north west,text width=5cm,align=left] (acq) at (20.55,-3.17)
+\node[technical,anchor=north west,text width=4.62cm,align=left] (acq) at (20.93,-3.17)
  {\textbf{Acquisition}\\Sample interval: $T_0=10$ ms.\\[7pt]
  Input: PWM duty [\%].\\Output: angle [deg].\\[7pt]
  Published plate range:\\$10^\circ$ closed to $90^\circ$ open.};
 \node[panel,draw=bronze!50!steelEdge,fill=panelWarm,
- anchor=north west,text width=5cm,align=left] at (20.55,-7.7)
+ anchor=north west,text width=4.85cm,align=left] at (20.70,-7.7)
  {\textbf{Identification challenge}\\Friction, nonlinear spring and
  mechanical compliance can change the input--output response.\\[5pt]
  No calibrated internal parameters are inferred here.};
