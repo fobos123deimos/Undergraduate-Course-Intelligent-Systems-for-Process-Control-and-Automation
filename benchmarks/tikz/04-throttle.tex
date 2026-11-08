@@ -38,7 +38,7 @@
 \definecolor{panelBlue}{HTML}{ECF3F4}
 \tikzset{
   every node/.style={font=\sffamily\small,text=ink},
-  airarrow/.style={draw=airDeep,line width=2.26pt,line cap=round,line join=round,-{Triangle[length=3.80mm,width=2.83mm]}},
+  airarrow/.style={draw=airDeep,line width=2.04pt,line cap=round,line join=round,-{Triangle[length=3.70mm,width=2.72mm]}},
   powerline/.style={draw=boardDeep,line width=1.35pt,line cap=round,-{Triangle[length=2.6mm,width=1.8mm]}},
   cmdline/.style={draw=amber,line width=.97pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.2mm,width=1.5mm]}},
   sensline/.style={draw=violet,line width=.97pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.2mm,width=1.5mm]}},
@@ -307,7 +307,7 @@
   \draw[graphite,line width=.32pt] (\xx-.036,\yy-.020)--(\xx+.035,\yy+.020);
  }
 }
-\node[anchor=south,equipmentlabel,font=\sffamily\footnotesize\bfseries,text=airDeep!94!graphite] at (18.40,-4.13) {Intake air passage};
+\node[anchor=south,equipmentlabel,text=ink] at (17.65,-4.13) {Intake air passage};
 % Emphasize the two intake flow directions with high-contrast saturated
 % blue cores, legible triangular heads, and pale-cyan atmospheric edge glows.
 % Qualitative streamlines only: no measured velocity or additional channel.
@@ -350,16 +350,16 @@
  (16,-6.10) circle (.158);
 \fill[graphite] (16,-6.10) circle (.063);
 \fill[steelHi] (15.943,-6.047) circle (.035);
-% Label positioned to the RIGHT of the purple sensor path x=16.27.
-\node[anchor=north,equipmentlabel,text width=2.22cm] at (17.62,-8.20)
- {Butterfly plate\\variable opening};
+% The approved reference puts the butterfly caption outside the RIGHT duct wall.
+% Keep the mechanical plate visible; its solid label leader is added below,
+% after routing the purple dashed sensor feedback to avoid false connections.
 % Actual reference axis through pivot, and one exact-angle arc (no drift).
 \draw[steelEdge!56,dash pattern=on 3pt off 2pt,line width=.72pt]
  (16,-6.12)--(16,-4.56);
 \draw[amber,line width=1.35pt,line cap=round,
  -{Triangle[length=2.4mm,width=1.7mm]}]
  (16,-4.98) arc[start angle=90,end angle=55.8,radius=1.12];
-\node[notation,text=amber!90!graphite] at (16.66,-4.05) {$\varphi(k)$};
+\node[notation,text=amber!90!graphite] at (15.18,-4.05) {$\varphi(k)$};
 
 \end{scope}
 
@@ -401,10 +401,19 @@
 \fill[violet] (16.28,-6.13) circle (.042);
 \node[instrument,draw=violet,fill=steelHi,line width=.90pt] (sensor) at (17.77,-9.39) {$\varphi$};
 \draw[sensline] (16.27,-6.20)--(16.27,-9.39)--(sensor.west);
-\node[anchor=north,equipmentlabel,text width=2.83cm] at (17.28,-9.95)
+\node[anchor=north,equipmentlabel,text width=2.70cm] at (17.24,-10.02)
  {Potentiometer\\$y(k)=\varphi(k)$ [deg]};
 \end{scope}
 \draw[sensline] (sensor.east)--(20.41,-9.39)--(20.41,-5.98)--(20.55,-5.98);
+% Approved right-hand annotation: between Acquisition and Identification panels.
+% The short white crossing bridge separates the solid label pointer from the
+% dashed feedback path. It does not indicate an extra sensor or input signal.
+\draw[white,line width=3.20pt,line cap=round] (20.41,-6.91)--(20.41,-6.77);
+\draw[violet!83!graphite,line width=.92pt,line cap=round,
+ -{Stealth[length=2.05mm,width=1.42mm]}]
+ (20.55,-6.84)--(20.29,-6.84);
+\node[anchor=west,equipmentlabel,align=left,text width=2.55cm]
+ at (20.68,-6.84) {Butterfly plate\\variable opening};
 
 % Explanatory signal legend: move its FIRST line 0.63 cm farther down from
 % the decorative gray conduit above. The third line stays above the bench.
