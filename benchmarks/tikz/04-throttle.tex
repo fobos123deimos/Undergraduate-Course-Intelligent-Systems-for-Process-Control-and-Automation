@@ -349,15 +349,14 @@
  \draw[copper!73!bronzeShadow,line width=.92pt,opacity=.88]
   (11.82,-6.06) ellipse (\rr cm and .23cm);
 }
-% The spring's own tangential anchoring leg runs from the RIGHT side of
-% the winding to the stationary metal bracket. Keep this separate from the
-% vertical annotation arrow, which identifies the coil from below.
+% Copper return-spring tang is a SHORT, free-ended curve at the coil.
+% Stay LEFT of the intake-housing wall and ABOVE the isolated gray bracket:
+% no orange trace touches either gray component.
 \shade[draw=steelEdge,line width=.68pt,left color=steelShade,right color=steelHi]
  (12.06,-6.69) rectangle (12.37,-7.09);
 \fill[graphite!65] (12.22,-6.89) circle (.041);
-\draw[amber!85!bronzeShadow,line width=.94pt,line cap=round,
- rounded corners=1.4pt]
- (12.24,-6.10)--(12.42,-6.10)--(12.42,-6.89)--(12.37,-6.89);
+\draw[amber!85!bronzeShadow,line width=.99pt,line cap=round]
+ (12.24,-6.10) to[out=0,in=86] (12.32,-6.39);
 % Cohesive copper callout: the caption owns the line, routed entirely in
 % the free gap between housings. An upward arrowhead ends on the spring coil;
 % the short orange spring-to-bracket link above remains a mechanical detail.
@@ -369,11 +368,11 @@
  -{Stealth[length=1.95mm,width=1.38mm]}]
  (spring-caption.north)--++(0,.22)-|(11.82,-6.33);
 
-% M_F points to the TOP of the actual concentric return coil.
-\node[anchor=south,notation,text=graphite] at (11.72,-4.99) {$M_F$};
+% M_F: straight vertical leader through the spring center (no kink).
+\node[anchor=south,notation,text=graphite] at (11.82,-4.99) {$M_F$};
 \draw[amber,line width=1.10pt,line cap=round,
  -{Stealth[length=2.05mm,width=1.47mm]}]
- (11.72,-5.16)--(11.72,-5.57)--(11.82,-5.83);
+ (11.82,-5.16)--(11.82,-5.83);
 
 % POTENTIOMETER OUTPUT: explicit physical junction, separate from blue airflow.
 \fill[violet] (16.28,-6.13) circle (.042);
