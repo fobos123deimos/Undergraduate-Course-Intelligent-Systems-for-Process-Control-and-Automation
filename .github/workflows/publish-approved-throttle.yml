@@ -1,0 +1,90 @@
+name: Publish approved throttle image and LaTeX wrapper
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-approved-throttle.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download approved image in original resolution
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import urllib.request, hashlib, struct
+          urls=["https://media.canva.com/v2/image-resize/format:PNG/height:1024/quality:100/uri:ifs%3A%2F%2FM%2F4e22d5a8-4acc-43c8-a5d7-808d26b839a4/watermark:F/width:1536?csig=AAAAAAAAAAAAAAAAAAAAAP_vR5LPjDed5RUoliw-7ZpruGVrbehJ13Q8ejd6_9Fs&exp=1794188873&osig=AAAAAAAAAAAAAAAAAAAAAHSrbXfPHTOgBJupIjdqP2SIEFn3QgPvEjucEww6EwGc&signer=media-rpc&token=AAIAAU0AJDRlMjJkNWE4LTRhY2MtNDNjOC1hNWQ3LTgwOGQyNmI4MzlhNAAAAAABob39jSjdlhBNWjZPgTXqgqZtS6rC6546O1gx8GCQjOIx8xO2Ng&x-canva-quality=thumbnail","https://media.canva.com/v2/image-resize/format:PNG/height:1024/quality:100/uri:ifs%3A%2F%2FM%2F4e22d5a8-4acc-43c8-a5d7-808d26b839a4/watermark:F/width:1536?csig=AAAAAAAAAAAAAAAAAAAAAP_vR5LPjDed5RUoliw-7ZpruGVrbehJ13Q8ejd6_9Fs&exp=1794188873&osig=AAAAAAAAAAAAAAAAAAAAAHSrbXfPHTOgBJupIjdqP2SIEFn3QgPvEjucEww6EwGc&signer=media-rpc&token=AAIAAU0AJDRlMjJkNWE4LTRhY2MtNDNjOC1hNWQ3LTgwOGQyNmI4MzlhNAAAAAABob39jSjdlhBNWjZPgTXqgqZtS6rC6546O1gx8GCQjOIx8xO2Ng","https://media.canva.com/v2/image-resize/format:PNG/height:1024/quality:98/uri:ifs%3A%2F%2FM%2F4e22d5a8-4acc-43c8-a5d7-808d26b839a4/watermark:F/width:1536?csig=AAAAAAAAAAAAAAAAAAAAAP_vR5LPjDed5RUoliw-7ZpruGVrbehJ13Q8ejd6_9Fs&exp=1794188873&osig=AAAAAAAAAAAAAAAAAAAAAHSrbXfPHTOgBJupIjdqP2SIEFn3QgPvEjucEww6EwGc&signer=media-rpc&token=AAIAAU0AJDRlMjJkNWE4LTRhY2MtNDNjOC1hNWQ3LTgwOGQyNmI4MzlhNAAAAAABob39jSjdlhBNWjZPgTXqgqZtS6rC6546O1gx8GCQjOIx8xO2Ng&x-canva-quality=thumbnail"]
+          dest=Path("benchmarks/figures/04-throttle-approved.png")
+          approved=None
+          for idx,url in enumerate(urls,1):
+              try:
+                  req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+                  with urllib.request.urlopen(req,timeout=45) as resp:
+                      data=resp.read()
+                  if data[:8]!=b"\\x89PNG\\r\\n\\x1a\\n":
+                      print("Candidate",idx,"did not return PNG")
+                      continue
+                  w,h=struct.unpack(">II",data[16:24])
+                  if (w,h)!=(1536,1024):
+                      print("Candidate",idx,"has non-original dimensions",w,h)
+                      continue
+                  approved=data
+                  print("Approved full-size image received; pixels",w,h)
+                  break
+              except Exception as e:
+                  print("Candidate",idx,"was unavailable:",type(e).__name__)
+          if approved is None:
+              raise RuntimeError("Could not retrieve original-resolution image; no GitHub image overwritten")
+          dest.write_bytes(approved)
+          Path("benchmarks/figures/04-throttle.png").write_bytes(approved)
+          Path("benchmarks/figures/04-throttle-approved.sha256").write_text(hashlib.sha256(approved).hexdigest()+"  04-throttle-approved.png\\n")
+          PY
+      - name: Add stand-alone LaTeX that reproduces exact approved image
+        run: |
+          cat > benchmarks/figures/04-throttle.tex <<'EOF'
+          % Faithful reproduction of approved raster illustration.
+          % The figure is preserved pixel-for-pixel as a single embedded image.
+          % For editable vector TikZ elements use ../tikz/04-throttle.tex instead.
+          \documentclass[border=0pt]{standalone}
+          \usepackage{graphicx}
+          \begin{document}
+          \includegraphics[width=24cm]{04-throttle-approved.png}
+          \end{document}
+          EOF
+          cat > benchmarks/figures/04-throttle-README.md <<'EOF'
+          # Approved automotive throttle illustration
+          `04-throttle.png` and `04-throttle-approved.png` are the approved
+          1536 x 1024 illustration, retained without composition changes.
+          `04-throttle.tex` is a compilable LaTeX file which embeds this PNG
+          to reproduce it faithfully. Because the approved artwork is raster,
+          labels and shapes inside that file are not individually editable.
+          For individually editable vector graphics, use
+          [the original technical TikZ source](../tikz/04-throttle.tex)
+          and its [vector PDF](tikz/04-throttle.pdf). The TikZ atlas version
+          is a separate scientific reconstruction and is not pixel-identical
+          to the approved raster image.
+          EOF
+      - name: Verify image and commit approved files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import struct,hashlib
+          a=Path("benchmarks/figures/04-throttle.png").read_bytes()
+          b=Path("benchmarks/figures/04-throttle-approved.png").read_bytes()
+          assert a==b and a[:8]==b"\\x89PNG\\r\\n\\x1a\\n"
+          assert struct.unpack(">II",a[16:24])==(1536,1024)
+          assert hashlib.sha256(a).hexdigest() in Path("benchmarks/figures/04-throttle-approved.sha256").read_text()
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add benchmarks/figures/04-throttle.png benchmarks/figures/04-throttle-approved.png benchmarks/figures/04-throttle-approved.sha256 benchmarks/figures/04-throttle.tex benchmarks/figures/04-throttle-README.md
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish approved throttle artwork with reproducible LaTeX wrapper"
+            git push origin HEAD:main
+          fi
