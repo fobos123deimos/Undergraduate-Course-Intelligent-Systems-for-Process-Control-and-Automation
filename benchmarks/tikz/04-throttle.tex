@@ -263,18 +263,19 @@
 \draw[steelEdge!57,line width=.61pt] (9.72,-7.40)--(9.72,-7.62);
 \node[anchor=north,equipmentlabel,text width=3.40cm] at (8.99,-7.69)
  {Reduction gearbox\\shaft torque conversion};
-% M_A label raised by 0.75 cm. Its fine leader ends at the rotation
-% glyph, not at an unlabeled feature of the gear shell.
-\node[anchor=south,notation,text=graphite] at (7.70,-3.30) {$M_A$};
-\draw[amber!78!bronzeShadow,line width=.62pt,line cap=round]
- (7.70,-3.43)--(7.70,-4.56);
-% One continuous, well-defined curved arrow around the exposed motor shaft.
-\begin{scope}[shift={(7.70,-4.88)}]
- \draw[amber!45!white,line width=.90pt,line cap=round]
-  (56:.238 and .275) arc[start angle=56,end angle=164,x radius=.238,y radius=.275];
- \draw[amber,line width=1.52pt,line cap=round,
-  -{Stealth[length=2.15mm,width=1.55mm]}]
-  (164:.238 and .275) arc[start angle=164,end angle=333,x radius=.238,y radius=.275];
+% Motor torque M_A: a single upper rotation arc around the visible motor
+% shaft. This label lives in the gearbox's +0.40 cm scope, so local x=7.50
+% places the center at global x=7.90, midway in the exposed 0.97 cm gap.
+% The short leader joins the semicircle, rather than a detached pale arc.
+\node[anchor=south,notation,text=graphite] at (7.50,-3.30) {$M_A$};
+\draw[amber!66!bronzeShadow,line width=.52pt,line cap=round]
+ (7.50,-3.43)--(7.50,-4.56);
+\begin{scope}[shift={(7.50,-4.88)}]
+ \draw[steelHi,line width=2.0pt,line cap=round]
+  (180:.31 and .32) arc[start angle=180,end angle=0,x radius=.31,y radius=.32];
+ \draw[amber,line width=1.22pt,line cap=round,
+  -{Stealth[length=2.15mm,width=1.52mm]}]
+  (180:.31 and .32) arc[start angle=180,end angle=0,x radius=.31,y radius=.32];
 \end{scope}
 
 
