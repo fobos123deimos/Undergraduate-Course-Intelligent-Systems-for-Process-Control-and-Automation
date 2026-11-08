@@ -1766,13 +1766,13 @@ yggET+b3Nnz0x3HWZkaR8nbuv1gDk9FzxjZ+KLMAAAAASUVORK5CYII="/>
 <use data-text="i" xlink:href="#font_25_60" transform="matrix(7.9701,0,0,-7.9701,303.00035,238.962)" fill="#173948"/>
 <use data-text="o" xlink:href="#font_25_33" transform="matrix(7.9701,0,0,-7.9701,305.02476,238.962)" fill="#173948"/>
 <use data-text="n" xlink:href="#font_25_31" transform="matrix(7.9701,0,0,-7.9701,309.25688,238.962)" fill="#173948"/>
-<use data-text="M" xlink:href="#font_30_3" transform="matrix(7.9701,0,0,-7.9701,228.85501,97.78403)" fill="#26343c"/>
-<use data-text="A" xlink:href="#font_64_1" transform="matrix(5.9776,0,0,-5.9776,236.988,99.12302)" fill="#26343c"/>
-<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width=".61768" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#a97a51" d="M229.60889-97.22934V-129.26137"/>
-<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width=".89664" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#dfc7b1" d="M233.38147-131.87046C231.38349-130.31334 228.81734-130.10614 226.65125-131.32675 224.93297-132.29497 223.65033-134.06107 223.12346-136.18436"/>
-<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width="1.51434" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#b98352" d="M223.12386-136.18415C222.09687-140.32248 224.16785-144.63938 227.74956-145.82596 230.85391-146.85436 234.15439-145.19637 234.13629-145.23741"/>
-<path transform="matrix(.40349,-.91493,-.91493,-.40349,239.48748,153.22686)" d="M4.57813 0 1.70335 1.05258 2.67305 0 1.70335-1.05258Z" fill="#b98352"/>
-<path transform="matrix(.40349,-.91493,-.91493,-.40349,239.48748,153.22686)" stroke-width="1.02846" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#b98352" d="M4.57813 0 1.70335 1.05258 2.67305 0 1.70335-1.05258Z"/>
+<use data-text="M" xlink:href="#font_30_3" transform="matrix(7.9701,0,0,-7.9701,223.186,97.78403)" fill="#26343c"/>
+<use data-text="A" xlink:href="#font_64_1" transform="matrix(5.9776,0,0,-5.9776,231.31801,99.12302)" fill="#26343c"/>
+<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width=".51807" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#a17550" d="M223.9396-97.22934V-129.26137"/>
+<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width="1.99255" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#fcfaf1" d="M215.15218-138.33255C215.15218-133.32262 219.0864-129.26139 223.9396-129.26139 228.79282-129.26139 232.72704-133.32262 232.72704-138.33255"/>
+<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width="1.21545" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#b98352" d="M215.15218-138.33255C215.15218-133.32262 219.0864-129.26139 223.9396-129.26139 228.79282-129.26139 232.72704-133.32262 232.72704-134.66013"/>
+<path transform="matrix(0,1,1,0,239.05304,138.01703)" d="M4.55162 0 1.72516 1.01521 2.67921 0 1.72516-1.01521Z" fill="#b98352"/>
+<path transform="matrix(0,1,1,0,239.05304,138.01703)" stroke-width="1.02846" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#b98352" d="M4.55162 0 1.72516 1.01521 2.67921 0 1.72516-1.01521Z"/>
 <g clip-path="url(#clip_65)">
 <g clip-path="url(#clip_66)">
 <image x="379" y="126" width="202" height="106" xlink:href="data:image/png;base64,
