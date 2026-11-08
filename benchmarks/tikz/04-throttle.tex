@@ -38,7 +38,7 @@
 \definecolor{panelBlue}{HTML}{ECF3F4}
 \tikzset{
   every node/.style={font=\sffamily\small,text=ink},
-  airarrow/.style={draw=airDeep,line width=2.56pt,line cap=round,line join=round,-{Triangle[length=4.15mm,width=3.08mm]}},
+  airarrow/.style={draw=airDeep,line width=2.26pt,line cap=round,line join=round,-{Triangle[length=3.80mm,width=2.83mm]}},
   powerline/.style={draw=boardDeep,line width=1.35pt,line cap=round,-{Triangle[length=2.6mm,width=1.8mm]}},
   cmdline/.style={draw=amber,line width=.97pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.2mm,width=1.5mm]}},
   sensline/.style={draw=violet,line width=.97pt,dash pattern=on 3.5pt off 2.3pt,line cap=round,-{Triangle[length=2.2mm,width=1.5mm]}},
@@ -126,8 +126,8 @@
   (10.89,-7.29) rectangle (11.20,-11.13);
  \shade[draw=steelEdge!60,line width=.56pt,left color=steelShade,
   middle color=steelHi,right color=steelEdge]
-  (18.86,-7.87) rectangle (19.16,-11.13);
- \foreach \xx in {11.05,19.01}{
+  (19.50,-7.87) rectangle (19.73,-11.13);
+ \foreach \xx in {11.05,19.61}{
    \fill[graphite!70] (\xx,-10.81) circle (.055);
  }
 \end{scope}
@@ -307,13 +307,13 @@
   \draw[graphite,line width=.32pt] (\xx-.036,\yy-.020)--(\xx+.035,\yy+.020);
  }
 }
-\node[anchor=south,equipmentlabel,text=airDeep!78!graphite] at (18.40,-4.17) {Intake air passage};
+\node[anchor=south,equipmentlabel,font=\sffamily\footnotesize\bfseries,text=airDeep!94!graphite] at (18.40,-4.13) {Intake air passage};
 % Emphasize the two intake flow directions with high-contrast saturated
 % blue cores, legible triangular heads, and pale-cyan atmospheric edge glows.
 % Qualitative streamlines only: no measured velocity or additional channel.
-\draw[airLight!52!white,line width=5.15pt,line cap=round,opacity=.48]
+\draw[airLight!55!white,line width=4.65pt,line cap=round,opacity=.41]
  (12.94,-5.16)..controls(13.55,-5.10)and(14.12,-5.04)..(14.83,-5.08);
-\draw[airLight!52!white,line width=5.15pt,line cap=round,opacity=.48]
+\draw[airLight!55!white,line width=4.65pt,line cap=round,opacity=.41]
  (17.18,-7.11)..controls(17.73,-7.18)and(18.31,-7.10)..(19.00,-7.10);
 \draw[airarrow]
  (12.94,-5.16)..controls(13.55,-5.10)and(14.12,-5.04)..(14.83,-5.08);
@@ -351,7 +351,7 @@
 \fill[graphite] (16,-6.10) circle (.063);
 \fill[steelHi] (15.943,-6.047) circle (.035);
 % Label positioned to the RIGHT of the purple sensor path x=16.27.
-\node[anchor=north,equipmentlabel,text width=2.94cm] at (18.13,-8.20)
+\node[anchor=north,equipmentlabel,text width=2.22cm] at (17.62,-8.20)
  {Butterfly plate\\variable opening};
 % Actual reference axis through pivot, and one exact-angle arc (no drift).
 \draw[steelEdge!56,dash pattern=on 3pt off 2pt,line width=.72pt]
@@ -401,7 +401,7 @@
 \fill[violet] (16.28,-6.13) circle (.042);
 \node[instrument,draw=violet,fill=steelHi,line width=.90pt] (sensor) at (17.77,-9.39) {$\varphi$};
 \draw[sensline] (16.27,-6.20)--(16.27,-9.39)--(sensor.west);
-\node[anchor=north,equipmentlabel,text width=3.25cm] at (17.42,-9.92)
+\node[anchor=north,equipmentlabel,text width=2.83cm] at (17.28,-9.95)
  {Potentiometer\\$y(k)=\varphi(k)$ [deg]};
 \end{scope}
 \draw[sensline] (sensor.east)--(20.41,-9.39)--(20.41,-5.98)--(20.55,-5.98);
