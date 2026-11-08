@@ -187,14 +187,15 @@
 }
 \shade[draw=steelEdge,line width=.45pt,inner color=steelHi,outer color=steelShade]
  (7.40,-4.88) ellipse (.105cm and .39cm);
-% Rear portion of the M_A rotation orbit is intentionally drawn BEFORE
-% the physical motor shaft: the shaft hides its crossings, creating genuine
-% front/back perspective. Its center is (7.90,-4.88) in global coordinates.
-% This subdued lower half is an annotation, not a separate mechanical ring.
+% Back of motor torque M_A orbit: nearly closed, but with a 60-degree
+% opening below the shaft. The shaft hides the rear arc at its crossings.
+% Center is global (7.90,-4.88), and perspective radii are .305 / .335 cm,
+% about 23% smaller than the preceding oversized .395 / .435 cm loop.
+% Draw the rear 180-degree part BEFORE the shaft to establish occlusion.
 \begin{scope}[shift={(7.90,-4.88)}]
- \draw[amber!42!steelShade,line width=1.00pt,opacity=.62,line cap=round]
-  (-5:.395 and .435)
-    arc[start angle=-5,end angle=-175,x radius=.395,y radius=.435];
+ \draw[amber!64!steelShade,line width=1.05pt,opacity=.88,line cap=round]
+  (250:.305 and .335)
+    arc[start angle=250,end angle=70,x radius=.305,y radius=.335];
 \end{scope}
 \draw[graphite,line width=3.0pt,line cap=round] (7.44,-4.88)--(9.28,-4.88);
 \draw[steelHi,line width=.84pt,line cap=round] (7.49,-4.855)--(9.28,-4.855);
@@ -276,21 +277,21 @@
 \draw[steelEdge!57,line width=.61pt] (9.72,-7.40)--(9.72,-7.62);
 \node[anchor=north,equipmentlabel,text width=3.40cm] at (8.99,-7.69)
  {Reduction gearbox\\shaft torque conversion};
-% M_A in its original typography and position. The front section of the
-% orbital arrow is drawn AFTER the shaft and gear shell, complementing the
-% faint rear arc drawn earlier. The ellipse is nearly circular (radii .395,
-% .435 cm), more spacious than the previous upper-only semicircle.
-% Parent gearbox group has xshift=.40 cm: local center x=7.50 = global 7.90.
-% Front arc retains the previous clockwise sense, and its tip stays clear
-% of the gearbox's left wall.
+% M_A retains its exact label typography, position, and clockwise sense.
+% This final, front-facing 120-degree section is drawn AFTER the gearbox
+% and shaft. It crosses in front of the shaft on the right, with the tip
+% BELOW the metal axis at -50 degrees: an emerging-in-the-foreground effect.
+% Together with the rear segment (250 -> 70), this makes a 300-degree orbit,
+% leaving an intentional 60-degree opening at the bottom (like Intake).
+% The +.40 cm gearbox scope places local x=7.50 at global x=7.90.
 \node[anchor=south,notation,text=graphite] at (7.50,-3.30) {$M_A$};
 \draw[amber!66!bronzeShadow,line width=.52pt,line cap=round]
- (7.50,-3.43)--(7.50,-4.445);
+ (7.50,-3.43)--(7.50,-4.52);
 \begin{scope}[shift={(7.50,-4.88)}]
- \draw[amber!87!bronzeShadow,line width=1.44pt,line cap=round,
-  -{Stealth[length=1.93mm,width=1.37mm]}]
-  (175:.395 and .435)
-    arc[start angle=175,end angle=5,x radius=.395,y radius=.435];
+ \draw[amber!90!bronzeShadow,line width=1.36pt,line cap=round,
+  -{Stealth[length=1.75mm,width=1.22mm]}]
+  (70:.305 and .335)
+    arc[start angle=70,end angle=-50,x radius=.305,y radius=.335];
 \end{scope}
 
 
