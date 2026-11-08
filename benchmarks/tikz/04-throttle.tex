@@ -349,10 +349,15 @@
  \draw[copper!73!bronzeShadow,line width=.92pt,opacity=.88]
   (11.82,-6.06) ellipse (\rr cm and .23cm);
 }
-\draw[amber,line width=.85pt] (11.82,-6.28)--(11.93,-6.68)--(12.15,-6.68);
+% The spring's own tangential anchoring leg runs from the RIGHT side of
+% the winding to the stationary metal bracket. Keep this separate from the
+% vertical annotation arrow, which identifies the coil from below.
 \shade[draw=steelEdge,line width=.68pt,left color=steelShade,right color=steelHi]
  (12.06,-6.69) rectangle (12.37,-7.09);
 \fill[graphite!65] (12.22,-6.89) circle (.041);
+\draw[amber!85!bronzeShadow,line width=.94pt,line cap=round,
+ rounded corners=1.4pt]
+ (12.24,-6.10)--(12.42,-6.10)--(12.42,-6.89)--(12.37,-6.89);
 % Cohesive copper callout: the caption owns the line, routed entirely in
 % the free gap between housings. An upward arrowhead ends on the spring coil;
 % the short orange spring-to-bracket link above remains a mechanical detail.
