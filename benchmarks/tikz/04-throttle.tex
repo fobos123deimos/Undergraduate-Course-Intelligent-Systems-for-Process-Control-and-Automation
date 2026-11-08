@@ -1,6 +1,8 @@
 \documentclass[tikz,border=6pt]{standalone}
 \input{common.tex}
 \usetikzlibrary{shadings,shadows,decorations.markings}
+\usepackage[outline]{contour}
+\contourlength{.85pt}
 % Independent educational automotive throttle interpretation, section 3.4.
 % Atmospheric engine-test-cell elements are decorative, not benchmark hardware.
 % Article's Figure 3 is the technical reference for R, L, i, M_A, M_F,
@@ -310,46 +312,61 @@
  }
 }
 \node[anchor=south,equipmentlabel,text=ink] at (17.86,-4.13) {Intake air passage};
-% Fluid-inspired intake arrows: two physical airflow directions, embellished
-% with low-opacity cyan streaklines. These do not add measured flow channels.
-% Small satin highlights and translucent wisps evoke fluid advection.
+% Softly oscillating intake streamlines: two qualitative airflow vectors.
+% The supporting cyan trails are intentionally translucent and NOT additional
+% sensed channels. Their Bézier undulation conveys advection without clutter.
 \begin{scope}[line cap=round,line join=round]
- % UPSTREAM: glow nested under the primary blue flow vector.
- \draw[airLight!70!white,line width=7.5pt,opacity=.13]
-  (13.01,-5.20)..controls(13.51,-5.13)and(14.20,-5.06)..(15.12,-5.13);
- \draw[airLight!90!white,line width=3.1pt,opacity=.29]
-  (13.02,-5.20)..controls(13.51,-5.13)and(14.20,-5.06)..(15.12,-5.13);
- % Four fine, offset stream filaments separate from the main arrow shaft.
- \draw[airLight!80!white,line width=.95pt,opacity=.83]
-  (12.97,-5.07)..controls(13.62,-5.00)and(14.15,-5.01)..(14.77,-5.08);
- \draw[airLight!94!white,line width=.63pt,opacity=.79]
-  (13.07,-5.12)..controls(13.65,-5.05)and(14.19,-5.06)..(14.77,-5.11);
- \draw[airLight!65!white,line width=.74pt,opacity=.74]
-  (13.00,-5.28)..controls(13.56,-5.23)and(14.13,-5.16)..(14.75,-5.23);
- \draw[airLight!83!white,line width=.51pt,opacity=.65]
-  (13.13,-5.35)..controls(13.62,-5.29)and(14.13,-5.25)..(14.47,-5.31);
- % Primary kinetic direction. Small highlight is deliberately unheaded.
- \draw[airarrow,line width=2.35pt]
-  (13.01,-5.20)..controls(13.51,-5.13)and(14.20,-5.06)..(15.12,-5.13);
- \draw[airLight!90!white,line width=.48pt,opacity=.87]
-  (13.13,-5.176)..controls(13.64,-5.108)and(14.16,-5.045)..(14.82,-5.116);
- % DOWNSTREAM: same color and physics, with staggered cyan filaments.
- \draw[airLight!70!white,line width=7.5pt,opacity=.13]
-  (17.00,-7.06)..controls(17.51,-7.15)and(18.20,-7.13)..(19.06,-7.03);
- \draw[airLight!90!white,line width=3.1pt,opacity=.29]
-  (17.00,-7.06)..controls(17.51,-7.15)and(18.20,-7.13)..(19.06,-7.03);
- \draw[airLight!83!white,line width=.84pt,opacity=.88]
-  (16.99,-6.94)..controls(17.59,-7.03)and(18.18,-7.00)..(18.72,-6.94);
- \draw[airLight!94!white,line width=.61pt,opacity=.76]
-  (17.13,-6.99)..controls(17.70,-7.05)and(18.20,-7.05)..(18.76,-6.99);
- \draw[airLight!67!white,line width=.80pt,opacity=.80]
-  (16.99,-7.19)..controls(17.58,-7.25)and(18.20,-7.22)..(18.74,-7.16);
- \draw[airLight!83!white,line width=.52pt,opacity=.68]
-  (17.08,-7.27)..controls(17.71,-7.31)and(18.19,-7.25)..(18.55,-7.22);
- \draw[airarrow,line width=2.35pt]
-  (17.00,-7.06)..controls(17.51,-7.15)and(18.20,-7.13)..(19.06,-7.03);
- \draw[airLight!90!white,line width=.48pt,opacity=.86]
-  (17.11,-7.039)..controls(17.57,-7.114)and(18.14,-7.098)..(18.74,-7.024);
+ % Upstream S-shaped principal flow: subtle crest, trough and release.
+ \draw[airLight!78!white,line width=6.1pt,opacity=.08]
+  (13.01,-5.20)..controls(13.36,-5.07)and(13.69,-5.07)..(14.02,-5.16)
+    ..controls(14.40,-5.28)and(14.73,-5.26)..(15.12,-5.12);
+ \draw[airLight!88!white,line width=2.8pt,opacity=.16]
+  (13.01,-5.20)..controls(13.36,-5.07)and(13.69,-5.07)..(14.02,-5.16)
+    ..controls(14.40,-5.28)and(14.73,-5.26)..(15.12,-5.12);
+ % Faint cyan wakes, following the same meander at staggered heights.
+ \draw[airLight!82!white,line width=.86pt,opacity=.45]
+  (12.99,-5.07)..controls(13.35,-4.95)and(13.70,-4.96)..(14.01,-5.04)
+    ..controls(14.38,-5.15)and(14.72,-5.13)..(14.86,-5.08);
+ \draw[airLight!96!white,line width=.56pt,opacity=.52]
+  (13.10,-5.13)..controls(13.44,-5.01)and(13.73,-5.02)..(14.03,-5.11)
+    ..controls(14.39,-5.22)and(14.67,-5.20)..(14.83,-5.15);
+ \draw[airLight!74!white,line width=.69pt,opacity=.42]
+  (13.02,-5.32)..controls(13.38,-5.19)and(13.69,-5.18)..(14.03,-5.28)
+    ..controls(14.40,-5.38)and(14.68,-5.37)..(14.87,-5.31);
+ \draw[airLight!84!white,line width=.48pt,opacity=.35]
+  (13.14,-5.39)..controls(13.46,-5.27)and(13.73,-5.25)..(14.01,-5.35)
+    ..controls(14.24,-5.42)and(14.43,-5.43)..(14.58,-5.38);
+ \draw[airarrow,line width=2.24pt]
+  (13.01,-5.20)..controls(13.36,-5.07)and(13.69,-5.07)..(14.02,-5.16)
+    ..controls(14.40,-5.28)and(14.73,-5.26)..(15.12,-5.12);
+ \draw[airLight!89!white,line width=.46pt,opacity=.66]
+  (13.17,-5.161)..controls(13.50,-5.04)and(13.69,-5.045)..(14.02,-5.12)
+    ..controls(14.32,-5.22)and(14.59,-5.22)..(14.80,-5.17);
+ % Downstream vector uses the same visual language with a mirrored sway.
+ \draw[airLight!78!white,line width=6.1pt,opacity=.08]
+  (17.00,-7.08)..controls(17.36,-6.95)and(17.66,-6.94)..(18.02,-7.08)
+    ..controls(18.40,-7.21)and(18.72,-7.15)..(19.06,-7.02);
+ \draw[airLight!88!white,line width=2.8pt,opacity=.16]
+  (17.00,-7.08)..controls(17.36,-6.95)and(17.66,-6.94)..(18.02,-7.08)
+    ..controls(18.40,-7.21)and(18.72,-7.15)..(19.06,-7.02);
+ \draw[airLight!82!white,line width=.82pt,opacity=.46]
+  (17.01,-6.95)..controls(17.37,-6.82)and(17.68,-6.83)..(18.03,-6.94)
+    ..controls(18.40,-7.08)and(18.69,-7.01)..(18.86,-6.97);
+ \draw[airLight!96!white,line width=.56pt,opacity=.50]
+  (17.12,-7.00)..controls(17.46,-6.88)and(17.72,-6.89)..(18.04,-7.00)
+    ..controls(18.39,-7.13)and(18.68,-7.08)..(18.86,-7.03);
+ \draw[airLight!74!white,line width=.70pt,opacity=.42]
+  (17.01,-7.20)..controls(17.36,-7.08)and(17.68,-7.07)..(18.03,-7.20)
+    ..controls(18.39,-7.34)and(18.72,-7.26)..(18.85,-7.18);
+ \draw[airLight!84!white,line width=.47pt,opacity=.34]
+  (17.12,-7.29)..controls(17.43,-7.17)and(17.73,-7.16)..(18.02,-7.27)
+    ..controls(18.26,-7.35)and(18.47,-7.35)..(18.58,-7.30);
+ \draw[airarrow,line width=2.24pt]
+  (17.00,-7.08)..controls(17.36,-6.95)and(17.66,-6.94)..(18.02,-7.08)
+    ..controls(18.40,-7.21)and(18.72,-7.15)..(19.06,-7.02);
+ \draw[airLight!89!white,line width=.46pt,opacity=.66]
+  (17.13,-7.045)..controls(17.47,-6.929)and(17.70,-6.919)..(18.02,-7.05)
+    ..controls(18.32,-7.16)and(18.59,-7.13)..(18.79,-7.075);
 \end{scope}
 % Continuity between gear output and throttle shaft; inside the bore the
 % axial projection is dashed to avoid claiming a visible free-running bar.
@@ -394,8 +411,11 @@
   -{Stealth[length=2.20mm,width=1.48mm]}]
   (84:.6667 and .64) arc[start angle=84,end angle=348,x radius=.6667,y radius=.64];
 \end{scope}
-\node[anchor=west,notation,text=orange!80!amber]
- at (16.78,-5.74) {$\varphi(k)$};
+% The math is made more legible with a thin TRUE WHITE GLYPH OUTLINE,
+% not an opaque box that would cover the bronze butterfly plate.
+\node[anchor=west,notation,text=orange!94!amber,
+ font=\sffamily\small\bfseries]
+ at (16.81,-5.73) {\contour{white}{$\boldsymbol{\varphi}(k)$}};
 
 \end{scope}
 
