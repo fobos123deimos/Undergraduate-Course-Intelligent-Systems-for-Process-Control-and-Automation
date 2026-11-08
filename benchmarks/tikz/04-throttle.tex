@@ -187,6 +187,15 @@
 }
 \shade[draw=steelEdge,line width=.45pt,inner color=steelHi,outer color=steelShade]
  (7.40,-4.88) ellipse (.105cm and .39cm);
+% Rear portion of the M_A rotation orbit is intentionally drawn BEFORE
+% the physical motor shaft: the shaft hides its crossings, creating genuine
+% front/back perspective. Its center is (7.90,-4.88) in global coordinates.
+% This subdued lower half is an annotation, not a separate mechanical ring.
+\begin{scope}[shift={(7.90,-4.88)}]
+ \draw[amber!42!steelShade,line width=1.00pt,opacity=.62,line cap=round]
+  (-5:.395 and .435)
+    arc[start angle=-5,end angle=-175,x radius=.395,y radius=.435];
+\end{scope}
 \draw[graphite,line width=3.0pt,line cap=round] (7.44,-4.88)--(9.28,-4.88);
 \draw[steelHi,line width=.84pt,line cap=round] (7.49,-4.855)--(9.28,-4.855);
 % Unboxed motor caption kept below the case and above the R-L circuit.
@@ -267,19 +276,21 @@
 \draw[steelEdge!57,line width=.61pt] (9.72,-7.40)--(9.72,-7.62);
 \node[anchor=north,equipmentlabel,text width=3.40cm] at (8.99,-7.69)
  {Reduction gearbox\\shaft torque conversion};
-% Motor torque M_A: a single upper rotation arc around the visible motor
-% shaft. This label lives in the gearbox's +0.40 cm scope, so local x=7.50
-% places the center at global x=7.90, midway in the exposed 0.97 cm gap.
-% The short leader joins the semicircle, rather than a detached pale arc.
+% M_A in its original typography and position. The front section of the
+% orbital arrow is drawn AFTER the shaft and gear shell, complementing the
+% faint rear arc drawn earlier. The ellipse is nearly circular (radii .395,
+% .435 cm), more spacious than the previous upper-only semicircle.
+% Parent gearbox group has xshift=.40 cm: local center x=7.50 = global 7.90.
+% Front arc retains the previous clockwise sense, and its tip stays clear
+% of the gearbox's left wall.
 \node[anchor=south,notation,text=graphite] at (7.50,-3.30) {$M_A$};
 \draw[amber!66!bronzeShadow,line width=.52pt,line cap=round]
- (7.50,-3.43)--(7.50,-4.56);
+ (7.50,-3.43)--(7.50,-4.445);
 \begin{scope}[shift={(7.50,-4.88)}]
- \draw[steelHi,line width=2.0pt,line cap=round]
-  (180:.31 and .32) arc[start angle=180,end angle=0,x radius=.31,y radius=.32];
- \draw[amber,line width=1.22pt,line cap=round,
-  -{Stealth[length=2.15mm,width=1.52mm]}]
-  (180:.31 and .32) arc[start angle=180,end angle=0,x radius=.31,y radius=.32];
+ \draw[amber!87!bronzeShadow,line width=1.44pt,line cap=round,
+  -{Stealth[length=1.93mm,width=1.37mm]}]
+  (175:.395 and .435)
+    arc[start angle=175,end angle=5,x radius=.395,y radius=.435];
 \end{scope}
 
 
