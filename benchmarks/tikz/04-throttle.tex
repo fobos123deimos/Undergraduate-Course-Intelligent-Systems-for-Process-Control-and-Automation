@@ -399,18 +399,17 @@
 % with the measured angle output or the colored circular actuation glyph.
 \draw[steelEdge!39,dash pattern=on 2.5pt off 2pt,line width=.48pt,opacity=.58]
  (16,-6.10)--(16,-4.67);
-% Clean semicircular rotation cue below the butterfly pivot (16,-6.10).
-% True rendered radius stays .440 cm, just above the .255 cm hub radius.
-% The enclosing duct scope uses xscale=.96: local x radius .45833 cm
-% compensates that scaling to keep the arc geometrically circular.
-% One uniformly colored path and a proportional arrowhead replace the former
-% 264-degree double-stroked arc, whose halo/overlap distorted the glyph.
-% This diagrammatic cue does not imply a full physical valve revolution.
+% Angular actuation glyph: slightly wider circular arrow centered exactly on
+% the butterfly pivot (16,-6.10). The hub radius remains .255 cm; the
+% new visual radius is .440 cm, giving .185 cm of clearance to the hub.
+% With parent xscale=.96, local x radius .45833 cm renders as a true circle.
+% This annotation does not imply a complete revolution of the real valve.
 \begin{scope}[shift={(16,-6.10)}]
- \draw[orange!90!amber,line width=1.33pt,line cap=round,
-  -{Stealth[length=1.60mm,width=1.17mm]}]
-  (170:.45833 and .440)
-    arc[start angle=170,end angle=346,x radius=.45833,y radius=.440];
+ \draw[steelHi,line width=2.00pt,line cap=round,opacity=.75]
+  (84:.45833 and .440) arc[start angle=84,end angle=348,x radius=.45833,y radius=.440];
+ \draw[orange!84!amber,line width=1.19pt,line cap=round,
+  -{Stealth[length=1.58mm,width=1.08mm]}]
+  (84:.45833 and .440) arc[start angle=84,end angle=348,x radius=.45833,y radius=.440];
 \end{scope}
 % The math is made more legible with a thin TRUE WHITE GLYPH OUTLINE,
 % not an opaque box that would cover the bronze butterfly plate.
