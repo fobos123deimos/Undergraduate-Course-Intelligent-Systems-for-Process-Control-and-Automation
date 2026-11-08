@@ -1479,6 +1479,7 @@ dPaT2QAepfNcRm21UW4arMkTmWe5EneY8QHpyM+mMjSp87wiSkaeyUm2yLHzDcW/
 </g>
 </g>
 <path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width=".44832" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#53676f" d="M212.7425-138.33255C212.7425-132.22686 211.40999-127.27733 209.7662-127.27733 208.12244-127.27733 206.78992-132.22686 206.78992-138.33255 206.78992-144.43827 208.12244-149.38779 209.7662-149.38779 211.40999-149.38779 212.7425-144.43827 212.7425-138.33255ZM209.7662-138.33255"/>
+<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width=".99628" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#a79a89" stroke-opacity=".62" d="M235.09389-139.40697C234.55503-146.19101 229.1239-151.20941 222.9636-150.61598 217.55112-150.09462 213.25855-145.36745 212.78511-139.40697"/>
 <path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width="2.98883" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#26343c" d="M210.90033-138.33255H263.05833"/>
 <path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width=".83687" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#fcfaf1" d="M212.31774-137.62363H263.05833"/>
 <path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width=".54794" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#a0abb0" d="M165.26194-161.00966V-165.54526"/>
@@ -1780,11 +1781,10 @@ yggET+b3Nnz0x3HWZkaR8nbuv1gDk9FzxjZ+KLMAAAAASUVORK5CYII="/>
 <use data-text="n" xlink:href="#font_25_31" transform="matrix(7.9701,0,0,-7.9701,309.25688,238.962)" fill="#173948"/>
 <use data-text="M" xlink:href="#font_30_3" transform="matrix(7.9701,0,0,-7.9701,223.186,97.78403)" fill="#26343c"/>
 <use data-text="A" xlink:href="#font_64_1" transform="matrix(5.9776,0,0,-5.9776,231.31801,99.12302)" fill="#26343c"/>
-<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width=".51807" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#a17550" d="M223.9396-97.22934V-129.26137"/>
-<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width="1.99255" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#fcfaf1" d="M215.15218-138.33255C215.15218-133.32262 219.0864-129.26139 223.9396-129.26139 228.79282-129.26139 232.72704-133.32262 232.72704-138.33255"/>
-<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width="1.21545" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#b98352" d="M215.15218-138.33255C215.15218-133.32262 219.0864-129.26139 223.9396-129.26139 228.79282-129.26139 232.72704-133.32262 232.72704-134.66013"/>
-<path transform="matrix(0,1,1,0,239.05304,138.01703)" d="M4.55162 0 1.72516 1.01521 2.67921 0 1.72516-1.01521Z" fill="#b98352"/>
-<path transform="matrix(0,1,1,0,239.05304,138.01703)" stroke-width="1.02846" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#b98352" d="M4.55162 0 1.72516 1.01521 2.67921 0 1.72516-1.01521Z"/>
+<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width=".51807" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#a17550" d="M223.9396-97.22934V-126.00175"/>
+<path transform="matrix(1,0,0,-1,6.326,5.779022)" stroke-width="1.43463" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#b07e51" d="M212.78533-137.25814C213.32419-130.4741 218.75531-125.4557 224.91562-126.04913 230.3281-126.5705 234.62067-131.29766 234.833-133.97089"/>
+<path transform="matrix(.07918,.9968,.9968,-.07918,240.98694,137.5838)" d="M4.09087 0 1.5444 .91833 2.40387 0 1.5444-.91833Z" fill="#b07e51"/>
+<path transform="matrix(.07918,.9968,.9968,-.07918,240.98694,137.5838)" stroke-width=".9232" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#b07e51" d="M4.09087 0 1.5444 .91833 2.40387 0 1.5444-.91833Z"/>
 <g clip-path="url(#clip_65)">
 <g clip-path="url(#clip_66)">
 <image x="378" y="126" width="194" height="106" xlink:href="data:image/png;base64,
