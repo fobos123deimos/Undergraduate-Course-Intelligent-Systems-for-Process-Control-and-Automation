@@ -353,13 +353,16 @@
 \shade[draw=steelEdge,line width=.68pt,left color=steelShade,right color=steelHi]
  (12.06,-6.69) rectangle (12.37,-7.09);
 \fill[graphite!65] (12.22,-6.89) circle (.041);
-% A slim copper callout follows the empty inter-housing channel.
-% No opaque text panels obscure the spring or the mechanical shaft.
-\fill[bronzeShadow] (11.82,-6.36) circle (.028);
-\draw[bronzeShadow,line width=.71pt,line cap=round]
- (11.82,-6.40)--(11.82,-8.55)--(12.18,-8.55);
-\node[anchor=north,equipmentlabel,text width=2.67cm] at (12.95,-8.86)
+% Cohesive copper callout: the caption owns the line, routed entirely in
+% the free gap between housings. An upward arrowhead ends on the spring coil;
+% the short orange spring-to-bracket link above remains a mechanical detail.
+\node[anchor=north,equipmentlabel,text width=2.67cm]
+ (spring-caption) at (12.95,-8.86)
  {Return torsion spring\\restoring torque};
+\draw[bronzeShadow!80!amber,line width=.89pt,
+ rounded corners=2pt,line cap=round,
+ -{Stealth[length=1.95mm,width=1.38mm]}]
+ (spring-caption.north)--++(0,.22)-|(11.82,-6.33);
 
 % M_F points to the TOP of the actual concentric return coil.
 \node[anchor=south,notation,text=graphite] at (11.72,-4.99) {$M_F$};
@@ -375,10 +378,10 @@
  {Potentiometer\\$y(k)=\varphi(k)$ [deg]};
 \draw[sensline] (sensor.east)--(20.02,-9.39)--(20.02,-5.98)--(20.55,-5.98);
 
-% Explanatory signal legend, positioned without touching hardware.
-% A plain-text legend in a reserved empty corner (no white background).
+% Explanatory signal legend: move its FIRST line 0.63 cm farther down from
+% the decorative gray conduit above. The third line stays above the bench.
 \node[anchor=north west,font=\sffamily\footnotesize,text=ink,align=left,
- text width=8.9cm,inner sep=0pt] at (.46,-9.31)
+ text width=8.9cm,inner sep=0pt] at (.46,-9.94)
  {Blue: intake airflow. Green: armature current $i$.\\
  Copper: series $R$--$L$ elements. Orange dashed: PWM command.\\
  Purple dashed: measured angle. Gray: mechanical transmission.};
