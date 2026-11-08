@@ -19,8 +19,8 @@
 \definecolor{blueMotor}{HTML}{477388}
 \definecolor{blueMotorLight}{HTML}{98B7BD}
 \definecolor{blueMotorDark}{HTML}{33566B}
-\definecolor{airDeep}{HTML}{087EB7}
-\definecolor{airLight}{HTML}{83D4E9}
+\definecolor{airDeep}{HTML}{087DC1}
+\definecolor{airLight}{HTML}{46CCE8}
 \definecolor{amber}{HTML}{B98352}
 \definecolor{amberLight}{HTML}{E9C495}
 \definecolor{bronze}{HTML}{AD9276}
@@ -310,19 +310,47 @@
  }
 }
 \node[anchor=south,equipmentlabel,text=ink] at (17.86,-4.13) {Intake air passage};
-% Approved reference: simple medium-weight airflow vectors, not heavy glows.
-% Both arrowheads remain visible and are kept away from the butterfly plate.
-\draw[airLight!63!white,line width=2.8pt,line cap=round,opacity=.12]
- (13.03,-5.19)..controls(13.75,-5.10)and(14.46,-5.04)..(15.14,-5.10);
-\draw[airLight!63!white,line width=2.8pt,line cap=round,opacity=.12]
- (17.00,-7.10)..controls(17.64,-7.17)and(18.32,-7.12)..(19.07,-7.08);
-\draw[airarrow]
- (13.03,-5.19)..controls(13.75,-5.10)and(14.46,-5.04)..(15.14,-5.10);
-\draw[airarrow]
- (17.00,-7.10)..controls(17.64,-7.17)and(18.32,-7.12)..(19.07,-7.08);
-% The one small secondary cyan streamline remains subtle and unheaded.
-\draw[airLight,line width=.57pt,opacity=.56,line cap=round]
- (13.04,-5.32)..controls(13.56,-5.26)and(14.06,-5.25)..(14.39,-5.34);
+% Fluid-inspired intake arrows: two physical airflow directions, embellished
+% with low-opacity cyan streaklines. These do not add measured flow channels.
+% Small satin highlights and translucent wisps evoke fluid advection.
+\begin{scope}[line cap=round,line join=round]
+ % UPSTREAM: glow nested under the primary blue flow vector.
+ \draw[airLight!70!white,line width=7.5pt,opacity=.13]
+  (13.01,-5.20)..controls(13.51,-5.13)and(14.20,-5.06)..(15.12,-5.13);
+ \draw[airLight!90!white,line width=3.1pt,opacity=.29]
+  (13.02,-5.20)..controls(13.51,-5.13)and(14.20,-5.06)..(15.12,-5.13);
+ % Four fine, offset stream filaments separate from the main arrow shaft.
+ \draw[airLight!80!white,line width=.95pt,opacity=.83]
+  (12.97,-5.07)..controls(13.62,-5.00)and(14.15,-5.01)..(14.77,-5.08);
+ \draw[airLight!94!white,line width=.63pt,opacity=.79]
+  (13.07,-5.12)..controls(13.65,-5.05)and(14.19,-5.06)..(14.77,-5.11);
+ \draw[airLight!65!white,line width=.74pt,opacity=.74]
+  (13.00,-5.28)..controls(13.56,-5.23)and(14.13,-5.16)..(14.75,-5.23);
+ \draw[airLight!83!white,line width=.51pt,opacity=.65]
+  (13.13,-5.35)..controls(13.62,-5.29)and(14.13,-5.25)..(14.47,-5.31);
+ % Primary kinetic direction. Small highlight is deliberately unheaded.
+ \draw[airarrow,line width=2.35pt]
+  (13.01,-5.20)..controls(13.51,-5.13)and(14.20,-5.06)..(15.12,-5.13);
+ \draw[airLight!90!white,line width=.48pt,opacity=.87]
+  (13.13,-5.176)..controls(13.64,-5.108)and(14.16,-5.045)..(14.82,-5.116);
+ % DOWNSTREAM: same color and physics, with staggered cyan filaments.
+ \draw[airLight!70!white,line width=7.5pt,opacity=.13]
+  (17.00,-7.06)..controls(17.51,-7.15)and(18.20,-7.13)..(19.06,-7.03);
+ \draw[airLight!90!white,line width=3.1pt,opacity=.29]
+  (17.00,-7.06)..controls(17.51,-7.15)and(18.20,-7.13)..(19.06,-7.03);
+ \draw[airLight!83!white,line width=.84pt,opacity=.88]
+  (16.99,-6.94)..controls(17.59,-7.03)and(18.18,-7.00)..(18.72,-6.94);
+ \draw[airLight!94!white,line width=.61pt,opacity=.76]
+  (17.13,-6.99)..controls(17.70,-7.05)and(18.20,-7.05)..(18.76,-6.99);
+ \draw[airLight!67!white,line width=.80pt,opacity=.80]
+  (16.99,-7.19)..controls(17.58,-7.25)and(18.20,-7.22)..(18.74,-7.16);
+ \draw[airLight!83!white,line width=.52pt,opacity=.68]
+  (17.08,-7.27)..controls(17.71,-7.31)and(18.19,-7.25)..(18.55,-7.22);
+ \draw[airarrow,line width=2.35pt]
+  (17.00,-7.06)..controls(17.51,-7.15)and(18.20,-7.13)..(19.06,-7.03);
+ \draw[airLight!90!white,line width=.48pt,opacity=.86]
+  (17.11,-7.039)..controls(17.57,-7.114)and(18.14,-7.098)..(18.74,-7.024);
+\end{scope}
 % Continuity between gear output and throttle shaft; inside the bore the
 % axial projection is dashed to avoid claiming a visible free-running bar.
 \draw[graphite,line width=3.7pt,line cap=round] (10.12,-6.06)--(12.44,-6.06);
@@ -350,13 +378,24 @@
 % The approved reference puts the butterfly caption outside the RIGHT duct wall.
 % Keep the mechanical plate visible; its solid label leader is added below,
 % after routing the purple dashed sensor feedback to avoid false connections.
-% Actual reference axis through pivot, and one exact-angle arc (no drift).
-\draw[steelEdge!56,dash pattern=on 3pt off 2pt,line width=.72pt]
- (16,-6.12)--(16,-4.56);
-\draw[orange!82!amber,line width=1.34pt,line cap=round,
- -{Triangle[length=2.4mm,width=1.7mm]}]
- (15.44,-5.13) arc[start angle=120,end angle=55.8,radius=1.12];
-\node[notation,text=amber!90!graphite] at (15.42,-4.05) {$\varphi(k)$};
+% Reference ray for angular position; fine and neutral to avoid confusion
+% with the measured angle output or the colored circular actuation glyph.
+\draw[steelEdge!39,dash pattern=on 2.5pt off 2pt,line width=.48pt,opacity=.58]
+ (16,-6.10)--(16,-4.67);
+% Angular actuation glyph: a near-complete, projected circular arc about the
+% actual butterfly pivot (16,-6.10), not a detached arrow near the plate tip.
+% The parent scope has xscale=.96, hence the compensated local x radius
+% .6667 cm renders as a 0.64 cm radius CIRCLE in the final PDF.
+% This visual cue does not assert 360-degree travel for the real valve.
+\begin{scope}[shift={(16,-6.10)}]
+ \draw[steelHi,line width=2.50pt,line cap=round,opacity=.77]
+  (84:.6667 and .64) arc[start angle=84,end angle=348,x radius=.6667,y radius=.64];
+ \draw[orange!84!amber,line width=1.47pt,line cap=round,
+  -{Stealth[length=2.20mm,width=1.48mm]}]
+  (84:.6667 and .64) arc[start angle=84,end angle=348,x radius=.6667,y radius=.64];
+\end{scope}
+\node[anchor=west,notation,text=orange!80!amber]
+ at (16.78,-5.74) {$\varphi(k)$};
 
 \end{scope}
 
