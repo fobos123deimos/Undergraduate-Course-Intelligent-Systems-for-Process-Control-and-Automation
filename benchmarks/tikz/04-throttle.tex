@@ -371,9 +371,10 @@
   (13.17,-5.161)..controls(13.50,-5.04)and(13.69,-5.045)..(14.02,-5.12)
     ..controls(14.32,-5.22)and(14.59,-5.22)..(14.80,-5.17);
  % Downstream vector uses the same visual language with a mirrored sway.
- % Shift ONLY the lower blue arrow and all its cyan motion filaments 0.22 cm
- % to the left; preserve curvature, opacity, arrowheads and upper airflow.
- \begin{scope}[xshift=-.22cm]
+ % Shift ONLY the lower blue arrow and all cyan motion filaments 0.37 cm
+ % left in total (an extra 0.15 cm), closer to the purple dashed line.
+ % Preserve curvature, transparency, arrowhead, and upper intake airflow.
+ \begin{scope}[xshift=-.37cm]
  \draw[airLight!78!white,line width=6.1pt,opacity=.08]
   (17.00,-7.08)..controls(17.36,-6.95)and(17.66,-6.94)..(18.02,-7.08)
     ..controls(18.40,-7.21)and(18.72,-7.15)..(19.06,-7.02);
@@ -406,11 +407,12 @@
 \draw[steelHi,line width=1.00pt] (10.12,-6.035)--(12.43,-6.035);
 \draw[steelEdge!70,dash pattern=on 2.5pt off 2.2pt,line width=.79pt]
  (12.80,-6.10)--(15.73,-6.10);
-% Text is below the blue upper airflow, fully outside its arrowhead.
-\node[anchor=north,equipmentlabel] at (13.97,-5.42) {Projected shaft};
+% Projected-shaft caption lowered slightly, clear of the upper blue
+% airflow. The short gray leader still ends on the shaft projection line.
+\node[anchor=north,equipmentlabel] at (13.97,-5.54) {Projected shaft};
 \draw[steelEdge!78,line width=.66pt,line cap=round,
  -{Stealth[length=1.60mm,width=1.12mm]}]
- (13.97,-5.78)--(13.97,-6.02);
+ (13.97,-5.85)--(13.97,-6.02);
 % Butterfly plate is rendered as a slim, continuous swept metal surface.
 \path[fill=graphite!24,opacity=.50]
  (15.02,-7.45)--(15.17,-7.55)--(17.12,-4.77)--(16.91,-4.68)--cycle;
