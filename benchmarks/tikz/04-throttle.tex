@@ -79,14 +79,15 @@
  }
  \draw[steelEdge!35,line width=.48pt,opacity=.36]
    (.4,-3.54)--(19.55,-3.54);
- % An overhead elongated fixture creates the strong top-down illumination.
+ % Overhead silver lighting bar lifted 0.13 cm, keeping its highlight
+% and diffuse glow aligned; more air above the unchanged M_A label.
  \shade[draw=steelEdge!40,line width=.50pt,rounded corners=2pt,
    top color=steelMid,bottom color=steelShade!70!white,opacity=.74]
-  (6.18,-2.70) rectangle (15.60,-2.92);
+  (6.18,-2.57) rectangle (15.60,-2.79);
  \draw[steelHi,line width=1.4pt,opacity=.89]
-   (6.34,-2.785)--(15.44,-2.785);
+   (6.34,-2.655)--(15.44,-2.655);
  \shade[inner color=workLight,outer color=white,opacity=.35]
-   (10.85,-3.17) ellipse (6.2cm and 1.0cm);
+   (10.85,-3.04) ellipse (6.2cm and 1.0cm);
  % A partially visible sound-damped inspection panel on the far wall.
  \shade[draw=steelEdge!35,line width=.65pt,rounded corners=3pt,
         left color=coolWall!60!white,right color=steelShade!26!white,opacity=.67]
@@ -155,7 +156,7 @@
 % VERTICAL arrow, with no horizontal branch or circular start marker.
 \node[anchor=south,annotation,align=center] at (2.10,-2.94)
  {Benchmark input};
-\draw[cmdline] (2.10,-3.11)--(2.10,-4.00);
+\draw[cmdline] (2.10,-3.02)--(2.10,-3.91);
 % Paper-style armature supply: direct upper lead, R/L series leg below.
 % This is a qualitative circuit, NOT a measured R/L parameterization.
 \draw[boardDeep,line width=1.35pt,line cap=round] (3.69,-4.87)--(4.39,-4.87);
@@ -204,9 +205,9 @@
 \end{scope}
 \draw[graphite,line width=3.0pt,line cap=round] (7.44,-4.88)--(9.28,-4.88);
 \draw[steelHi,line width=.84pt,line cap=round] (7.49,-4.855)--(9.28,-4.855);
-% Unboxed DC motor caption lowered, with its gray leader extended
-% to retain the visual connection without touching the R-L armature circuit.
-\draw[steelEdge!55,line width=.55pt] (5.83,-5.68)--(5.83,-5.99);
+% Compact gray leader below the motor: shortened 0.10 cm while
+% keeping the approved text position and the R-L circuit untouched.
+\draw[steelEdge!55,line width=.55pt] (5.83,-5.68)--(5.83,-5.89);
 \node[anchor=north,equipmentlabel] at (5.82,-6.04) {DC motor};
 % The uploaded article's circuit explicitly includes armature current i,
 % resistance R and inductance L. The second feed is drawn below the motor.
@@ -280,10 +281,11 @@
 \shade[draw=bronzeShadow,line width=.75pt,inner color=amberLight,outer color=bronze]
  (9.82,-6.06) circle (.18);
 \fill[graphite] (9.82,-6.06) circle (.061);
-% The label center now aligns EXACTLY with its vertical gray leader
-% and with the geometric center of the reducer's lower casing edge.
-\draw[steelEdge!57,line width=.61pt] (9.72,-7.40)--(9.72,-7.78);
-\node[anchor=north,equipmentlabel,text width=3.40cm] at (9.72,-7.95)
+% Shift label and matching leader 0.87 cm left, away from the
+% background support upright. The leader still reaches the gearbox base
+% and is centered above the text instead of crossing either label line.
+\draw[steelEdge!57,line width=.61pt] (8.85,-7.40)--(8.85,-7.78);
+\node[anchor=north,equipmentlabel,text width=3.40cm] at (8.85,-7.95)
  {Reduction gearbox\\shaft torque conversion};
 % M_A retains its exact label typography, position, and clockwise sense.
 % This final, front-facing 120-degree section is drawn AFTER the gearbox
