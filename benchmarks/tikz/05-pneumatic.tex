@@ -6,25 +6,33 @@
 % the reference; metal surfaces and test-cell scenery are illustrative only.
 % The surveyed local deviation model and the distinct physical SI teaching
 % model are not silently equated with an instrumented original apparatus.
-\definecolor{wallWarm}{HTML}{F2EEE5}
-\definecolor{wallCool}{HTML}{D6E5EA}
-\definecolor{dayLight}{HTML}{FFF0CF}
-\definecolor{metalDark}{HTML}{445E6C}
-\definecolor{metalMid}{HTML}{AABFC5}
-\definecolor{metalLight}{HTML}{F4F6F1}
-\definecolor{metalBlue}{HTML}{54869D}
-\definecolor{metalDeep}{HTML}{2D5871}
-\definecolor{warmBrass}{HTML}{C19A6B}
-\definecolor{warmCopper}{HTML}{CA9161}
-\definecolor{copperDeep}{HTML}{9B653F}
-\definecolor{chamberTwo}{HTML}{B7DFED}
-\definecolor{chamberOne}{HTML}{BDE2D1}
-\definecolor{airBlue}{HTML}{087EAF}
-\definecolor{airLight}{HTML}{62CCE5}
-\definecolor{supply}{HTML}{C7843A}
-\definecolor{returnFlow}{HTML}{168CB5}
+\definecolor{wallWarm}{HTML}{F3EBDD}
+\definecolor{wallCool}{HTML}{E5EAE2}
+\definecolor{dayLight}{HTML}{FFE4AD}
+\definecolor{metalDark}{HTML}{536365}
+\definecolor{metalMid}{HTML}{B9C4BF}
+\definecolor{metalLight}{HTML}{F8F7EE}
+\definecolor{metalBlue}{HTML}{708E80}
+\definecolor{metalDeep}{HTML}{3E5B58}
+\definecolor{warmBrass}{HTML}{C6A16C}
+\definecolor{warmCopper}{HTML}{C48C68}
+\definecolor{copperDeep}{HTML}{956242}
+\definecolor{chamberTwo}{HTML}{B5DBEA}
+\definecolor{chamberOne}{HTML}{BDE0B6}
+\definecolor{airBlue}{HTML}{257CA7}
+\definecolor{airLight}{HTML}{8BCADE}
+\definecolor{supply}{HTML}{C58C4A}
+\definecolor{returnFlow}{HTML}{287FA6}
 \definecolor{signalPurple}{HTML}{755B9D}
-\definecolor{guide}{HTML}{71838B}
+\definecolor{guide}{HTML}{72827D}
+% Distinct pneumatic materials: two chamber lines use different jacket colors
+% (not fixed flow directions); plated brass on regulators and couplers.
+\definecolor{hoseUpper}{HTML}{328AAD}
+\definecolor{hoseLower}{HTML}{699C78}
+\definecolor{hoseUpperHi}{HTML}{B3DEEA}
+\definecolor{hoseLowerHi}{HTML}{C5E6BB}
+\definecolor{instrumentGold}{HTML}{BD9966}
+\definecolor{wallOlive}{HTML}{A8B49A}
 \tikzset{
   subtlelabel/.style={font=\sffamily\footnotesize,text=ink,align=center,inner sep=0pt},
   smalllabel/.style={font=\sffamily\scriptsize,text=ink,inner sep=0pt,align=center},
@@ -38,94 +46,76 @@
 \atlasheader{Vertical servo-pneumatic actuator}{3.5}{Servo-pneumatic actuator}
 \node[anchor=west,font=\sffamily\bfseries] at (.2,-1.95)
  {Double-rod cylinder, time-varying payload and servo-valve mass-flow paths};
-% -- LABORATORY CONTEXT -- real-world light/material cues, not model devices.
-% Subdued instrumented test-cell scenery, tailored to pneumatic actuation.
-% All items behind the bench are illustrative; they are NOT recovered sensors,
-% chamber connections, or laboratory geometry from the source figure.
+% -- PNEUMATIC SERVICE WORKSHOP -- atmospheric context only.
+% A warm pneumatic-calibration bay rather than the throttle's automotive rig:
+% a distant pressure-regulator manifold, pipework, sunlight and wall panels.
+% These fixtures are contextual scenery, NOT connected measurement ports or
+% claims about the equipment documented in Schulte--Hahn Figure 4.
+% The exact background bounding rectangle is unchanged from the former plate.
 \begin{scope}
  \clip (.14,-2.23) rectangle (18.85,-12.01);
- \shade[top color=wallWarm!74!white,bottom color=wallCool!70!white,opacity=.82]
+ \shade[top color=wallWarm!84!white,bottom color=wallCool!82!white,opacity=.88]
   (.15,-2.23) rectangle (18.85,-11.96);
- \shade[inner color=dayLight!70!white,outer color=white,opacity=.39]
-  (6.15,-3.52) ellipse (7.1cm and 2.7cm);
- \shade[inner color=airLight!26!white,outer color=white,opacity=.20]
-  (14.0,-6.30) ellipse (5.2cm and 4.05cm);
- % Deep workshop wall panels: restrained seams and vertical framing.
- \foreach \xx in {3.10,5.05,8.9,11.8,16.95}{
-  \draw[metalDark!33,line width=.66pt,opacity=.24]
-   (\xx,-2.50)--(\xx,-10.95);
+ % Large diffuse window glow, warmer and less clinical than the throttle lab.
+ \shade[inner color=dayLight!77!white,outer color=white,opacity=.48]
+  (4.7,-3.7) ellipse (7.8cm and 3.7cm);
+ \shade[inner color=wallOlive!33!white,outer color=white,opacity=.20]
+  (15.7,-7.15) ellipse (4.7cm and 4.1cm);
+ % Sandstone-toned acoustic wall slats and a pale electrical conduit strip.
+ \foreach \xx in {3.55,6.38,9.22,12.06,14.90,17.74}{
+  \draw[wallOlive!48!metalDark,line width=.56pt,opacity=.16]
+   (\xx,-2.48)--(\xx,-10.96);
  }
- \foreach \yy in {-3.58,-10.88}{
-  \draw[metalDark!31,line width=.74pt,opacity=.25]
-    (.25,\yy)--(18.70,\yy);
- }
- % Left aluminum safety truss, behind the real mechanical components.
- \shade[left color=metalDark!49!wallCool,middle color=metalLight,
-   right color=metalDark!47!wallCool,opacity=.40]
-   (.46,-2.26) rectangle (.62,-10.81);
- \shade[left color=metalDark!47!wallCool,middle color=metalLight,
-   right color=metalDark!49!wallCool,opacity=.35]
-   (1.20,-2.26) rectangle (1.34,-10.81);
- \foreach \yy in {-3.0,-4.35,-5.7,-7.05,-8.4,-9.75}{
-  \draw[metalDark!42,line width=2.0pt,opacity=.28]
-   (.59,\yy)--(1.21,\yy-1.09);
-  \draw[white,line width=.66pt,opacity=.52]
-   (.62,\yy+.01)--(1.22,\yy-1.07);
- }
- % Three diffused overhead luminaires create purposeful bench lighting.
- \foreach \xx/\ww in {2.65/2.55,10.23/2.85,16.60/2.45}{
-  \shade[draw=metalDark!37,line width=.38pt,rounded corners=1.2pt,
-    top color=metalMid,bottom color=metalLight,opacity=.64]
-   (\xx-\ww/2,-2.56) rectangle (\xx+\ww/2,-2.69);
-  \draw[white,line width=1.30pt,opacity=.76]
-   (\xx-\ww/2+.12,-2.626)--(\xx+\ww/2-.12,-2.626);
-  \shade[inner color=dayLight!88!white,outer color=white,opacity=.32]
-   (\xx,-3.03) ellipse (\ww*0.62cm and .50cm);
- }
- % A distant electronics console in the background, no quantitative trace.
- \begin{scope}[xscale=.72,xshift=.11cm,opacity=.44]
-  \shade[draw=metalDark!58,line width=.74pt,rounded corners=1.5pt,
-   top color=metalLight,middle color=metalMid,bottom color=metalDark!55!wallCool]
-   (.78,-7.10) rectangle (3.35,-10.62);
-  \shade[draw=metalDark!55,line width=.65pt,rounded corners=1.5pt,
-   top color=metalDeep!81!black,bottom color=metalDeep]
-   (.98,-7.24) rectangle (2.92,-8.20);
-  \foreach \yy in {-7.50,-7.76,-8.02}{
-   \draw[airLight!80!white,line width=.45pt,opacity=.60]
-    (1.12,\yy)--(2.75,\yy);
+ \draw[metalDark!24,line width=.72pt,opacity=.24]
+  (.23,-10.85)--(18.73,-10.85);
+ % Pneumatic service rail: deliberately far LEFT of the benchmark cylinder.
+ \begin{scope}[opacity=.37]
+  \shade[left color=metalDark!60!wallWarm,middle color=metalLight,
+    right color=metalDark!53!wallWarm]
+    (1.11,-3.50) rectangle (1.24,-9.78);
+  \draw[warmCopper!80!metalDark,line width=1.55pt,line cap=round]
+    (1.23,-4.18)--(2.45,-4.18)--(2.45,-7.17);
+  \draw[metalLight,line width=.53pt,opacity=.83]
+    (1.27,-4.16)--(2.42,-4.16);
+  % A pneumatic regulator and two deliberately UNLABELED dial faces.
+  \shade[draw=metalDark!65,line width=.72pt,rounded corners=1.5pt,
+    top color=metalLight,bottom color=metalMid]
+    (.71,-7.03) rectangle (2.74,-9.25);
+  \foreach \yy/\a in {-5.03/28,-6.17/-20}{
+    \shade[draw=metalDark,line width=.61pt,
+      inner color=white,outer color=metalMid]
+      (1.24,\yy) circle (.43);
+    \draw[metalDark!70,line width=.55pt]
+      (1.24,\yy)--++(\a:.28);
+    \fill[metalDark!65] (1.24,\yy) circle (.04);
   }
-  \draw[airLight!68!white,line width=1.18pt]
-   (1.13,-7.85)..controls(1.35,-7.82)and(1.49,-7.39)..(1.66,-7.64)
-    ..controls(1.84,-7.94)and(1.94,-7.53)..(2.14,-7.62)
-    ..controls(2.34,-7.85)and(2.51,-7.52)..(2.74,-7.59);
-  \foreach \yy in {-8.63,-9.23,-9.83}{
-   \shade[draw=metalDark!48,line width=.4pt,
-     top color=metalLight,bottom color=metalMid]
-     (1.05,\yy-.16) rectangle (3.04,\yy+.19);
-   \draw[white,line width=.57pt,opacity=.67]
-    (1.30,\yy+.07)--(2.75,\yy+.07);
+  \foreach \yy in {-7.64,-8.15,-8.66}{
+    \draw[metalDark!50,line width=.75pt] (.93,\yy)--(2.52,\yy);
+    \shade[draw=metalDark!55,line width=.39pt,
+     left color=warmBrass,right color=metalLight]
+     (1.21,\yy-.12) rectangle (1.55,\yy+.12);
   }
  \end{scope}
- % A distant power distribution cabinet, detached from benchmark inputs.
- \begin{scope}[opacity=.43]
-  \shade[draw=metalDark!43,line width=.7pt,rounded corners=1.3pt,
-   top color=metalLight,bottom color=metalMid]
-   (17.68,-4.17) rectangle (18.57,-6.14);
-  \draw[metalDark!55,line width=.48pt] (18.12,-4.17)--(18.12,-3.27);
-  \foreach \xx in {17.87,18.31}{
-   \fill[utility!70!white] (\xx,-4.58) circle (.051);
-   \fill[white,opacity=.62] (\xx-.015,-4.565) circle (.014);
-  }
+ % Low-contrast hose loops on far-right wall, intentionally NOT touching
+ % any working valve connections or supplying extra circuit branches.
+ \begin{scope}[opacity=.25]
+  \draw[metalDark!55,line width=1.45pt]
+    (17.32,-3.69)..controls(18.35,-4.05)and(18.51,-5.08)..(17.74,-5.42)
+      ..controls(17.17,-5.75)and(17.22,-6.16)..(17.88,-6.48);
+  \draw[hoseLower!65!wallOlive,line width=3pt,line cap=round]
+    (17.33,-4.04)..controls(18.03,-4.48)and(18.16,-4.93)..(17.80,-5.30);
+  \shade[draw=metalDark!56,line width=.62pt,rounded corners=2pt,
+   left color=metalMid,middle color=metalLight,right color=wallWarm]
+   (17.31,-6.55) rectangle (18.15,-8.15);
+  \draw[warmCopper!85!metalDark,line width=1.00pt]
+    (17.52,-7.13)--(17.94,-7.13);
+  \fill[instrumentGold] (17.70,-7.55) circle (.09);
  \end{scope}
- % Industrial safety markings belong to the floor, not to gas flow paths.
- \path[fill=warmBrass!55!wallWarm,opacity=.29]
-   (.20,-10.97) rectangle (3.37,-11.16);
- \foreach \xx in {.36,.78,1.20,1.62,2.04,2.46,2.88,3.26}{
-  \draw[metalDark!60,line width=2.55pt,opacity=.23]
-   (\xx,-11.13)--(\xx+.14,-10.98);
- }
- \shade[inner color=metalMid!40!white,outer color=white,opacity=.36]
-  (9.2,-11.15) ellipse (8.7cm and .63cm);
+ % Warm overhead bounce without repeating the throttle's strip lights.
+ \shade[inner color=dayLight!70!white,outer color=white,opacity=.15]
+  (9.45,-2.65) ellipse (8.5cm and 1.0cm);
+ \shade[inner color=metalDark!21!white,outer color=white,opacity=.36]
+  (9.45,-11.18) ellipse (8.70cm and .57cm);
 \end{scope}
 % Satin aluminum testing platform and isolated supports, without physical claims.
 \shade[draw=metalDark!65,line width=.67pt,
@@ -137,12 +127,17 @@
  \fill[metalDark!80] (\xx,-11.59) circle (.026);
  \fill[white] (\xx-.008,-11.58) circle (.008);
 }
+% Only the illustrated physical apparatus and its leader labels shrink by
+% 6% about (10.25,-6.85). Test-cell background, platform, atlas canvas,
+% right-side panels and editorial caption retain their EXACT dimensions.
+\begin{scope}[shift={(10.25,-6.85)},scale=.94,
+ shift={(-10.25,6.85)},transform shape]
 % CYLINDER MOUNT: the reference's left-hand vertical double-ended-rod unit.
 % It is a sectioned actuator, not a claim of measured steel thickness.
 \shade[draw=metalDark,line width=1.18pt,
  left color=metalDark,middle color=metalLight,right color=metalDark]
  (5.55,-4.24) rectangle (7.45,-10.03);
-\shade[draw=metalDark!70,line width=.54pt,left color=airBlue!28!white,
+\shade[draw=metalDark!70,line width=.54pt,left color=hoseUpper!20!white,
  middle color=chamberTwo,right color=chamberTwo!55!white]
  (5.72,-4.43) rectangle (7.28,-6.78);
 \shade[draw=metalDark!70,line width=.54pt,left color=chamberOne!78!white,
@@ -196,35 +191,39 @@
 \draw[guide!70,line width=.57pt] (7.88,-4.15)--(6.62,-4.82);
 \node[anchor=west,subtlelabel] at (7.86,-7.25) {piston};
 \draw[guide!70,line width=.57pt] (7.83,-7.24)--(7.28,-6.95);
-\node[font=\sffamily\bfseries,text=metalDeep] at (6.92,-5.54) {$p_{II}$};
-\node[font=\sffamily\bfseries,text=metalDeep] at (6.92,-8.37) {$p_I$};
+\node[font=\sffamily\bfseries,text=hoseUpper!85!black] at (6.92,-5.54) {$p_{II}$};
+\node[font=\sffamily\bfseries,text=hoseLower!80!black] at (6.92,-8.37) {$p_I$};
 % Two distinct continuous pneumatic lines: upper chamber II and lower I.
 % Their connection order matches Fig. 4; line colors indicate the chamber,
 % not a fixed sign of the reversible servo-valve mass flows.
-\draw[metalDeep!82!airBlue,line width=5.2pt,line cap=round,line join=round,rounded corners=2.2pt]
+\draw[metalDeep!76!hoseUpper,line width=5.2pt,line cap=round,line join=round,rounded corners=2.2pt]
  (7.46,-5.15)--(12.48,-5.15)--(12.48,-6.08)--(13.92,-6.08);
-\draw[airBlue!48!metalLight,line width=3.75pt,line cap=round,line join=round,rounded corners=1.7pt]
+\draw[hoseUpper!66!metalLight,line width=3.75pt,line cap=round,line join=round,rounded corners=1.7pt]
  (7.46,-5.15)--(12.48,-5.15)--(12.48,-6.08)--(13.92,-6.08);
-\draw[airLight!86!white,line width=1.33pt,opacity=.95,line cap=round,line join=round,rounded corners=1.1pt]
+\draw[hoseUpperHi!86!white,line width=1.33pt,opacity=.95,line cap=round,line join=round,rounded corners=1.1pt]
  (7.48,-5.14)--(12.46,-5.14)--(12.46,-6.07)--(13.88,-6.07);
-\draw[metalDeep!82!airBlue,line width=5.2pt,line cap=round,line join=round,rounded corners=2.2pt]
+\draw[metalDeep!69!hoseLower,line width=5.2pt,line cap=round,line join=round,rounded corners=2.2pt]
  (7.46,-8.94)--(12.48,-8.94)--(12.48,-8.17)--(13.92,-8.17);
-\draw[airBlue!48!metalLight,line width=3.75pt,line cap=round,line join=round,rounded corners=1.7pt]
+\draw[hoseLower!65!metalLight,line width=3.75pt,line cap=round,line join=round,rounded corners=1.7pt]
  (7.46,-8.94)--(12.48,-8.94)--(12.48,-8.17)--(13.92,-8.17);
-\draw[airLight!84!white,line width=1.25pt,opacity=.94,line cap=round,line join=round,rounded corners=1.1pt]
+\draw[hoseLowerHi!84!white,line width=1.25pt,opacity=.94,line cap=round,line join=round,rounded corners=1.1pt]
  (7.48,-8.93)--(12.46,-8.93)--(12.46,-8.18)--(13.88,-8.18);
 % Machined cylinder-side fittings and valve couplers.
 \foreach \yy in {-5.15,-8.94}{
- \shade[draw=metalDark,line width=.44pt,top color=metalLight,
- bottom color=metalMid] (7.36,\yy-.19) rectangle (7.63,\yy+.19);
+ \shade[draw=metalDark!83,line width=.44pt,
+   top color=warmBrass!50!metalLight,bottom color=instrumentGold!70!metalMid]
+   (7.36,\yy-.19) rectangle (7.63,\yy+.19);
+ \draw[metalLight!80,line width=.38pt]
+   (7.39,\yy+.12)--(7.60,\yy+.12);
 }
 \foreach \yy in {-6.08,-8.17}{
- \shade[draw=metalDark,line width=.45pt,left color=metalMid,
- middle color=metalLight,right color=metalDark]
+ \shade[draw=metalDark!83,line width=.45pt,left color=instrumentGold,
+ middle color=warmBrass!48!metalLight,right color=metalDark!80!instrumentGold]
  (13.70,\yy-.17) rectangle (13.97,\yy+.17);
 }
 % SERVO VALVE is to the right, with a genuinely vertical spool as in Fig. 4.
-% Brushed deep-blue protective valve casing with a silver center reflection.
+% Oxidized sage/graphite protective valve casing and restrained silver
+% central reflection, deliberately distinct from the automotive throttle.
 \shade[draw=metalDark,line width=.94pt,rounded corners=2.1pt,
  left color=metalDeep,middle color=metalBlue!82!metalLight,right color=metalDeep]
  (13.93,-5.29) rectangle (15.43,-9.11);
@@ -249,7 +248,7 @@
  \shade[draw=metalDark,line width=.58pt,top color=metalLight,
  middle color=metalMid,bottom color=metalDark]
  (14.05,\yy-.14) rectangle (15.30,\yy+.14);
- \draw[warmBrass!80!metalDark,line width=.49pt]
+ \draw[warmCopper!86!metalDark,line width=.63pt]
  (14.12,\yy-.08)--(15.22,\yy-.08);
 }
 % Servo spool variable positive upward; explicitly not the piston position.
@@ -287,10 +286,11 @@
 \draw[draw=copperDeep,line width=1.10pt,-{Stealth[length=2.55mm,width=1.75mm]}]
  (14.67,-11.32)--(14.67,-10.86);
 \node[anchor=west,subtlelabel,text=copperDeep] at (14.86,-11.20) {$u_v$};
-% A small unboxed provenance cue below the physical instrument.
+\end{scope}
+% Color cues identify tubes/chambers only, not gas species or permanent flow direction.
 \node[anchor=west,annotation,text width=18.1cm] at (.42,-12.09)
- {Cutaway after paper Fig.~4 (not to scale). Blue: hoses/return; copper: supply/input.\\
- The $\dot m_i$ arrows show a sign convention; actual pneumatic flow may reverse.};
+ {Cutaway after paper Fig.~4 (not to scale). Azure: chamber II line; sage: chamber I line.\\
+ Blue arrows: return; amber arrows: supply. The $\dot m_i$ signs may reverse.};
 % -- DOMAIN PANELS: distinguish the original schematic, surveyed models,
 % and the separate physical teaching variant without inventing calibration.
 \node[labpanel,anchor=north west,text width=5.62cm,align=left]
@@ -308,7 +308,7 @@
  Figure topology: Schulte--Hahn (2004), cited in Kroll--Schulte (2014).\\[5pt]
  Local identified models use operating-point offsets. The SI conservation model is a separately parameterized teaching variant, not a calibrated replica.};
 % -- MODELING PANELS: these are supplemental interpretation, not paper Fig. 4.
-\node[panel,draw=airBlue!32,fill=chamberTwo!53!white,
+\node[panel,draw=hoseLower!40,fill=chamberOne!50!white,
  anchor=north west,text width=7.85cm,minimum height=2.45cm,align=left]
  at (.20,-12.76)
  {\textbf{Chamber volumes and pressures}\\[3pt]
@@ -322,7 +322,7 @@
  $(M+m)\dot v=A(p_I-p_{II})-f(v)$\\
  $\qquad -(M+m)g-F_{ext}$.\\
  A changing $m_L(t)$ would require an additional momentum convention.};
-\node[panel,draw=metalDark!27,fill=wallCool!47!white,
+\node[panel,draw=metalDark!32,fill=wallCool!52!wallWarm,
  anchor=north west,text width=6.75cm,minimum height=2.45cm,align=left]
  at (17.90,-12.76)
  {\textbf{What is and is not identified}\\[3pt]
