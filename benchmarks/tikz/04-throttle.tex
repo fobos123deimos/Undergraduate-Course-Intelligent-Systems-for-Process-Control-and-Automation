@@ -278,8 +278,9 @@
  (9.82,-6.06) circle (.18);
 \fill[graphite] (9.82,-6.06) circle (.061);
 % Centered, unboxed label below the reducer, without crossing hardware.
-\draw[steelEdge!57,line width=.61pt] (9.72,-7.40)--(9.72,-7.62);
-\node[anchor=north,equipmentlabel,text width=3.40cm] at (8.99,-7.69)
+% Extra clearance below the gear casing; keep a concise centered leader.
+\draw[steelEdge!57,line width=.61pt] (9.72,-7.40)--(9.72,-7.78);
+\node[anchor=north,equipmentlabel,text width=3.40cm] at (8.87,-7.95)
  {Reduction gearbox\\shaft torque conversion};
 % M_A retains its exact label typography, position, and clockwise sense.
 % This final, front-facing 120-degree section is drawn AFTER the gearbox
@@ -332,7 +333,8 @@
   \draw[graphite,line width=.32pt] (\xx-.036,\yy-.020)--(\xx+.035,\yy+.020);
  }
 }
-\node[anchor=south,equipmentlabel,text=ink] at (17.86,-4.13) {Intake air passage};
+% Keep the title above the intake flange with clear vertical breathing room.
+\node[anchor=south,equipmentlabel,text=ink] at (17.86,-3.86) {Intake air passage};
 % Softly oscillating intake streamlines: two qualitative airflow vectors.
 % The supporting cyan trails are intentionally translucent and NOT additional
 % sensed channels. Their Bézier undulation conveys advection without clutter.
@@ -462,7 +464,7 @@
  (12.21,-6.08)--(12.34,-6.08)--(12.34,-6.87)--(12.27,-6.87);
 % An informational leader is separate from the mechanical anchor.
 \node[anchor=north,equipmentlabel,text width=2.67cm]
- (spring-caption) at (12.95,-8.86)
+ (spring-caption) at (12.95,-9.10)
  {Return torsion spring\\restoring torque};
 \draw[bronzeShadow!64!amber,line width=.64pt,
  rounded corners=1.5pt,line cap=round,
@@ -481,16 +483,18 @@
 \fill[violet] (16.28,-6.13) circle (.042);
 \node[instrument,draw=violet,fill=steelHi,line width=.90pt] (sensor) at (17.77,-9.39) {$\varphi$};
 \draw[sensline] (16.27,-6.20)--(16.27,-9.39)--(sensor.west);
-\node[anchor=north,equipmentlabel,text width=2.70cm] at (17.24,-10.02)
+\node[anchor=north,equipmentlabel,text width=2.70cm] at (17.24,-10.18)
  {{\bfseries Potentiometer}\\$y(k)=\varphi(k)$ [deg]};
 \end{scope}
 % The output y(k) is identified by the potentiometer label; no extra signal branch.
 % Approved separate plate annotation, without a fabricated four-way signal junction.
+% Position the plate annotation midway between Acquisition and
+% Identification panels; the short purple arrow points only to the duct.
 \draw[violet!83!graphite,line width=.92pt,line cap=round,
  -{Stealth[length=2.05mm,width=1.42mm]}]
- (20.55,-6.84)--(20.01,-6.84);
+ (20.64,-7.04)--(20.08,-7.04);
 \node[anchor=west,equipmentlabel,align=left,text width=2.55cm]
- at (20.68,-6.84) {{\bfseries Butterfly plate}\\variable opening};
+ at (20.75,-7.04) {{\bfseries Butterfly plate}\\variable opening};
 
 % Explanatory signal legend: move its FIRST line 0.63 cm farther down from
 % the decorative gray conduit above. The third line stays above the bench.
