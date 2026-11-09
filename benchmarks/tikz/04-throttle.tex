@@ -189,13 +189,13 @@
  (7.40,-4.88) ellipse (.105cm and .39cm);
 % Back of motor torque M_A orbit: nearly closed, but with a 60-degree
 % opening below the shaft. The shaft hides the rear arc at its crossings.
-% Center is global (7.90,-4.88), and perspective radii are .305 / .335 cm,
-% about 23% smaller than the preceding oversized .395 / .435 cm loop.
-% Draw the rear 180-degree part BEFORE the shaft to establish occlusion.
+% Center is global (7.90,-4.88), and perspective radii are .280 / .308 cm:
+% slightly smaller than the previous .305 / .335 cm orbit. The rear section
+% stays BEHIND the shaft; its visibility and 60-degree opening are unchanged.
 \begin{scope}[shift={(7.90,-4.88)}]
- \draw[amber!64!steelShade,line width=1.05pt,opacity=.88,line cap=round]
-  (250:.305 and .335)
-    arc[start angle=250,end angle=70,x radius=.305,y radius=.335];
+ \draw[amber!64!steelShade,line width=1.00pt,opacity=.88,line cap=round]
+  (250:.280 and .308)
+    arc[start angle=250,end angle=70,x radius=.280,y radius=.308];
 \end{scope}
 \draw[graphite,line width=3.0pt,line cap=round] (7.44,-4.88)--(9.28,-4.88);
 \draw[steelHi,line width=.84pt,line cap=round] (7.49,-4.855)--(9.28,-4.855);
@@ -286,12 +286,12 @@
 % The +.40 cm gearbox scope places local x=7.50 at global x=7.90.
 \node[anchor=south,notation,text=graphite] at (7.50,-3.30) {$M_A$};
 \draw[amber!66!bronzeShadow,line width=.52pt,line cap=round]
- (7.50,-3.43)--(7.50,-4.52);
+ (7.50,-3.43)--(7.50,-4.55);
 \begin{scope}[shift={(7.50,-4.88)}]
- \draw[amber!90!bronzeShadow,line width=1.36pt,line cap=round,
-  -{Stealth[length=1.75mm,width=1.22mm]}]
-  (70:.305 and .335)
-    arc[start angle=70,end angle=-50,x radius=.305,y radius=.335];
+ \draw[amber!90!bronzeShadow,line width=1.28pt,line cap=round,
+  -{Stealth[length=1.62mm,width=1.13mm]}]
+  (70:.280 and .308)
+    arc[start angle=70,end angle=-50,x radius=.280,y radius=.308];
 \end{scope}
 
 
