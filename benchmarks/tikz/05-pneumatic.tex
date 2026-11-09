@@ -6,17 +6,17 @@
 % the reference; metal surfaces and test-cell scenery are illustrative only.
 % The surveyed local deviation model and the distinct physical SI teaching
 % model are not silently equated with an instrumented original apparatus.
-\definecolor{wallWarm}{HTML}{F3EBDD}
-\definecolor{wallCool}{HTML}{E5EAE2}
-\definecolor{dayLight}{HTML}{FFE4AD}
-\definecolor{metalDark}{HTML}{536365}
-\definecolor{metalMid}{HTML}{B9C4BF}
-\definecolor{metalLight}{HTML}{F8F7EE}
-\definecolor{metalBlue}{HTML}{708E80}
-\definecolor{metalDeep}{HTML}{3E5B58}
-\definecolor{warmBrass}{HTML}{C6A16C}
-\definecolor{warmCopper}{HTML}{C48C68}
-\definecolor{copperDeep}{HTML}{956242}
+\definecolor{wallWarm}{HTML}{F4F1E9}
+\definecolor{wallCool}{HTML}{E7EDF0}
+\definecolor{dayLight}{HTML}{F7E9D1}
+\definecolor{metalDark}{HTML}{505C63}
+\definecolor{metalMid}{HTML}{C1C9CD}
+\definecolor{metalLight}{HTML}{F5F5F0}
+\definecolor{metalBlue}{HTML}{718FA2}
+\definecolor{metalDeep}{HTML}{385A70}
+\definecolor{warmBrass}{HTML}{C6A06D}
+\definecolor{warmCopper}{HTML}{C88D5F}
+\definecolor{copperDeep}{HTML}{8E6042}
 \definecolor{chamberTwo}{HTML}{B5DBEA}
 \definecolor{chamberOne}{HTML}{BDE0B6}
 \definecolor{airBlue}{HTML}{257CA7}
@@ -31,7 +31,7 @@
 \definecolor{hoseLower}{HTML}{699C78}
 \definecolor{hoseUpperHi}{HTML}{B3DEEA}
 \definecolor{hoseLowerHi}{HTML}{C5E6BB}
-\definecolor{instrumentGold}{HTML}{BD9966}
+\definecolor{instrumentGold}{HTML}{C49B63}
 \definecolor{wallOlive}{HTML}{A8B49A}
 \tikzset{
   subtlelabel/.style={font=\sffamily\footnotesize,text=ink,align=center,inner sep=0pt},
@@ -51,25 +51,26 @@
 % a distant pressure-regulator manifold, pipework, sunlight and wall panels.
 % These fixtures are contextual scenery, NOT connected measurement ports or
 % claims about the equipment documented in Schulte--Hahn Figure 4.
-% The exact background bounding rectangle is unchanged from the former plate.
+% The background extent and total page canvas remain exactly unchanged.
+% Opaque, naturally lit workshop wall replaces the previous artificial fog.
 \begin{scope}
  \clip (.14,-2.23) rectangle (18.85,-12.01);
- \shade[top color=wallWarm!84!white,bottom color=wallCool!82!white,opacity=.88]
+ \shade[top color=wallWarm!70!white,bottom color=wallCool!68!white,opacity=1]
   (.15,-2.23) rectangle (18.85,-11.96);
- % Large diffuse window glow, warmer and less clinical than the throttle lab.
- \shade[inner color=dayLight!77!white,outer color=white,opacity=.48]
-  (4.7,-3.7) ellipse (7.8cm and 3.7cm);
- \shade[inner color=wallOlive!33!white,outer color=white,opacity=.20]
-  (15.7,-7.15) ellipse (4.7cm and 4.1cm);
+ % Very restrained reflections: highlights, not a soft-focus haze.
+ \shade[inner color=dayLight!54!white,outer color=white,opacity=.13]
+  (5.15,-3.55) ellipse (5.55cm and 2.25cm);
+ \shade[inner color=wallOlive!18!white,outer color=white,opacity=.07]
+  (15.65,-7.10) ellipse (3.40cm and 2.65cm);
  % Sandstone-toned acoustic wall slats and a pale electrical conduit strip.
  \foreach \xx in {3.55,6.38,9.22,12.06,14.90,17.74}{
-  \draw[wallOlive!48!metalDark,line width=.56pt,opacity=.16]
+  \draw[wallOlive!46!metalDark,line width=.56pt,opacity=.25]
    (\xx,-2.48)--(\xx,-10.96);
  }
- \draw[metalDark!24,line width=.72pt,opacity=.24]
+ \draw[metalDark!28,line width=.72pt,opacity=.33]
   (.23,-10.85)--(18.73,-10.85);
  % Pneumatic service rail: deliberately far LEFT of the benchmark cylinder.
- \begin{scope}[opacity=.37]
+ \begin{scope}[opacity=.51]
   \shade[left color=metalDark!60!wallWarm,middle color=metalLight,
     right color=metalDark!53!wallWarm]
     (1.11,-3.50) rectangle (1.24,-9.78);
@@ -98,7 +99,7 @@
  \end{scope}
  % Low-contrast hose loops on far-right wall, intentionally NOT touching
  % any working valve connections or supplying extra circuit branches.
- \begin{scope}[opacity=.25]
+ \begin{scope}[opacity=.36]
   \draw[metalDark!55,line width=1.45pt]
     (17.32,-3.69)..controls(18.35,-4.05)and(18.51,-5.08)..(17.74,-5.42)
       ..controls(17.17,-5.75)and(17.22,-6.16)..(17.88,-6.48);
@@ -111,11 +112,11 @@
     (17.52,-7.13)--(17.94,-7.13);
   \fill[instrumentGold] (17.70,-7.55) circle (.09);
  \end{scope}
- % Warm overhead bounce without repeating the throttle's strip lights.
- \shade[inner color=dayLight!70!white,outer color=white,opacity=.15]
-  (9.45,-2.65) ellipse (8.5cm and 1.0cm);
- \shade[inner color=metalDark!21!white,outer color=white,opacity=.36]
-  (9.45,-11.18) ellipse (8.70cm and .57cm);
+ % Directional overhead light remains subtle, with a clear floor and no bloom.
+ \shade[inner color=dayLight!52!white,outer color=white,opacity=.07]
+  (9.45,-2.65) ellipse (7.0cm and .76cm);
+ \shade[inner color=metalMid!30!white,outer color=white,opacity=.13]
+  (9.45,-11.18) ellipse (7.65cm and .46cm);
 \end{scope}
 % Satin aluminum testing platform and isolated supports, without physical claims.
 \shade[draw=metalDark!65,line width=.67pt,
@@ -222,10 +223,10 @@
  (13.70,\yy-.17) rectangle (13.97,\yy+.17);
 }
 % SERVO VALVE is to the right, with a genuinely vertical spool as in Fig. 4.
-% Oxidized sage/graphite protective valve casing and restrained silver
-% central reflection, deliberately distinct from the automotive throttle.
+% Satin-blue anodized valve housing contrasts with the neutral steel cylinder;
+% chromatic differences indicate materials, NOT an additional circuit.
 \shade[draw=metalDark,line width=.94pt,rounded corners=2.1pt,
- left color=metalDeep,middle color=metalBlue!82!metalLight,right color=metalDeep]
+ left color=metalDeep!94!metalDark,middle color=metalBlue!75!metalLight,right color=metalDeep]
  (13.93,-5.29) rectangle (15.43,-9.11);
 \draw[metalLight,line width=.63pt,opacity=.82] (14.03,-5.45)--(14.03,-8.93);
 \shade[draw=metalDark,line width=.52pt,left color=chamberTwo,
