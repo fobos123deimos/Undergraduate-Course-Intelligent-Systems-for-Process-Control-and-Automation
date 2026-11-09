@@ -151,10 +151,11 @@
 }
 \node[font=\sffamily\small,align=center] at (2.10,-5.02) {\textbf{PWM power stage}};
 \node[font=\sffamily\footnotesize,align=center] at (2.10,-5.35) {$u(k)$: duty cycle [\%]};
-% Stable incoming command: begins at a clearly marked source marker.
-\node[anchor=west,annotation] at (.46,-2.89) {Benchmark input};
-\fill[amber] (1.18,-3.13) circle (.047);
-\draw[cmdline] (1.18,-3.13)--(2.10,-3.13)--(2.10,-4.00);
+% Benchmark command: centered above the PWM stage. Only a clean
+% VERTICAL arrow, with no horizontal branch or circular start marker.
+\node[anchor=south,annotation,align=center] at (2.10,-2.94)
+ {Benchmark input};
+\draw[cmdline] (2.10,-3.11)--(2.10,-4.00);
 % Paper-style armature supply: direct upper lead, R/L series leg below.
 % This is a qualitative circuit, NOT a measured R/L parameterization.
 \draw[boardDeep,line width=1.35pt,line cap=round] (3.69,-4.87)--(4.39,-4.87);
@@ -203,9 +204,10 @@
 \end{scope}
 \draw[graphite,line width=3.0pt,line cap=round] (7.44,-4.88)--(9.28,-4.88);
 \draw[steelHi,line width=.84pt,line cap=round] (7.49,-4.855)--(9.28,-4.855);
-% Unboxed motor caption kept below the case and above the R-L circuit.
-\draw[steelEdge!55,line width=.55pt] (5.83,-5.68)--(5.83,-5.84);
-\node[anchor=north,equipmentlabel] at (5.82,-5.85) {DC motor};
+% Unboxed DC motor caption lowered, with its gray leader extended
+% to retain the visual connection without touching the R-L armature circuit.
+\draw[steelEdge!55,line width=.55pt] (5.83,-5.68)--(5.83,-5.99);
+\node[anchor=north,equipmentlabel] at (5.82,-6.04) {DC motor};
 % The uploaded article's circuit explicitly includes armature current i,
 % resistance R and inductance L. The second feed is drawn below the motor.
 \draw[boardDeep,line width=1.03pt,line cap=round]
@@ -234,8 +236,9 @@
   -{Triangle[length=1.9mm,width=1.3mm]}] (3.91,-7.24)--(4.19,-7.24);
 \node[anchor=south,notation,text=boardDeep] at (4.06,-7.09) {$i$};
 
-% The motor mounting tabs stop short of the gearbox; the exposed shaft joins both.
-\foreach \yy in {-4.24,-5.50}{
+% The upper small gray motor tab beside M_A rises slightly; the lower
+% tab and the exposed drive shaft keep their previous positions.
+\foreach \yy in {-4.12,-5.50}{
  \shade[draw=steelEdge,line width=.53pt,left color=steelShade,
   middle color=steelHi,right color=steelShade]
   (7.40,\yy-.055) rectangle (7.75,\yy+.055);
@@ -277,10 +280,10 @@
 \shade[draw=bronzeShadow,line width=.75pt,inner color=amberLight,outer color=bronze]
  (9.82,-6.06) circle (.18);
 \fill[graphite] (9.82,-6.06) circle (.061);
-% Centered, unboxed label below the reducer, without crossing hardware.
-% Extra clearance below the gear casing; keep a concise centered leader.
+% The label center now aligns EXACTLY with its vertical gray leader
+% and with the geometric center of the reducer's lower casing edge.
 \draw[steelEdge!57,line width=.61pt] (9.72,-7.40)--(9.72,-7.78);
-\node[anchor=north,equipmentlabel,text width=3.40cm] at (8.87,-7.95)
+\node[anchor=north,equipmentlabel,text width=3.40cm] at (9.72,-7.95)
  {Reduction gearbox\\shaft torque conversion};
 % M_A retains its exact label typography, position, and clockwise sense.
 % This final, front-facing 120-degree section is drawn AFTER the gearbox
