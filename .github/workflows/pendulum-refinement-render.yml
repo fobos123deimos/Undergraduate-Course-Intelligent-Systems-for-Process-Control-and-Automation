@@ -13,13 +13,43 @@ concurrency:
   cancel-in-progress: true
 jobs:
   render:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Check and recover runner DNS
+        timeout-minutes: 3
+        shell: bash
+        run: |
+          set -euo pipefail
+          mirrors_resolve() {
+            timeout 10s getent ahostsv4 security.ubuntu.com >/dev/null &&
+            timeout 10s getent ahostsv4 archive.ubuntu.com >/dev/null
+          }
+          if mirrors_resolve; then
+            exit 0
+          fi
+          echo "::warning::Ubuntu mirror lookup failed; recovering this ephemeral runner's DNS."
+          sudo systemctl restart systemd-resolved
+          sudo resolvectl flush-caches
+          for attempt in 1 2; do
+            if mirrors_resolve; then
+              exit 0
+            fi
+            sleep 3
+          done
+          iface="$(ip -4 route show default | awk '{print $5; exit}')"
+          test -n "$iface"
+          sudo resolvectl dns "$iface" 1.1.1.1 8.8.8.8
+          sudo resolvectl domain "$iface" '~.'
+          sudo resolvectl flush-caches
+          if ! mirrors_resolve; then
+            echo "::error::Ubuntu mirror DNS is unavailable; refusing a stalled package install."
+            exit 1
+          fi
       # Keep installation stages bounded and verbose: a stalled mirror must
       # not silently block rendering or hold the concurrency group indefinitely.
       - name: Refresh package indexes with bounded network retries
