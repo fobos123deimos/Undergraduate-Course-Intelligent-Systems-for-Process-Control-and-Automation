@@ -13,7 +13,7 @@
     "benchmarks/tikz/04-throttle.tex": "dec49b343e2ca064bec32e05fae6c8fb3e77e5918607d4baf69ed833fdb3ade9",
     "benchmarks/tikz/05-pneumatic.tex": "226fe31c4f3c7a7e703251d498ca3c3e3a7c7f67c62f6f39a74eaab8d9dcd5e8",
     "benchmarks/tikz/06-hydrostatic.tex": "f351d3998557649c888da02f7f6ee05f0f87bf07e3522bd746222ab74528ab52",
-    "benchmarks/tikz/07-three-tanks.tex": "22317ff0f3d3362620ddb2291bcfa65d0e55c5c463ba0803af0ccf6d5f92056d",
+    "benchmarks/tikz/07-three-tanks.tex": "70252532fe9385acb20e05dc3c88237f7c3a3b3ed5483fd7aa84dea21d061aae",
     "benchmarks/tikz/08-bioreactor.tex": "e8914289b3689261be62392fce1ff26c71aae2dfea5be8a2ba88a80893a8108a",
     "benchmarks/tikz/09-cstr.tex": "7579bae48a0d0969061ca547a43eb277b019767c7042b65f56b63ffed3f83bc2",
     "benchmarks/tikz/10-column-a.tex": "b2dddcaee7cc25462bc7068bcffda018cbbd39fad8a9cde089432d682886be80",
@@ -35,8 +35,8 @@
     "05-pneumatic.png": "ed2bb06f751493cf34ca2ffe33db1fe73819542ebace22814cd8e43c976cd0b9",
     "06-hydrostatic.pdf": "eac223d85456ffb1c263ad7f38fc50b9f40ff06abe9cda1b1f1dbb27f41341cc",
     "06-hydrostatic.png": "123383da436cec5f26bd688da7b942bc92c065fd84eedcc2033516990522ab2a",
-    "07-three-tanks.pdf": "3d39fa892e8cf1b2fdddf9ece0bea28bb7eb111e8979d670e714e1d6e1d64e8e",
-    "07-three-tanks.png": "0319c1e9223da7e11acec130e00e0680446fbbf3b563a5c0c7020b03dc786a5a",
+    "07-three-tanks.pdf": "81b251e1f285965e7863918b65aa77be4bdb03b0ae0e3ee977e6d5727fc6ae72",
+    "07-three-tanks.png": "83ae3eb6f19946801da26792880ab87255d0d2c52e2ee030ae290bb91c6e064f",
     "08-bioreactor.pdf": "e5e0a65813133031ea9561fb054f9b1f7b962897c5a8cc86919723875a68a9f4",
     "08-bioreactor.png": "1c05060a05f796ec14f7a4fd6cf6be0d991b870d181534335c59026f845f1223",
     "09-cstr.pdf": "83c787f2462bd1f5d4e2a5c2e00f2a330dfbaf5ac01fdc417691f4e08b9bb5bd",
@@ -51,7 +51,7 @@
     "13-tennessee-eastman.png": "6c4f487c25da0da33c19aa7911f16fb64837e61f87b12677d4cc1a72d6c9a34f",
     "13b-tennessee-eastman-signals.pdf": "3b77aae7426eae9167f782160dc7e18e7cbb86c8da0881354669963a2f7912fb",
     "13b-tennessee-eastman-signals.png": "26318f299f27305016a6122c60e1362008a18231d705db0a31596b9c75c250e0",
-    "benchmark-atlas.pdf": "7b83bafa5c06ff0dd519d4ade187521893d9392dc635cd985a441a9d4c8d1f2d"
+    "benchmark-atlas.pdf": "e9aa6c77a77c123ef2f0570874d88e99688c55f23f424086d406856383da44dc"
   },
   "scope": "Original explanatory diagrams; numerical validation status is unchanged.",
   "incremental_build": {
