@@ -247,7 +247,7 @@
     (\xx,-10.52)--(\xx,-11.10);
 }
 \node[font=\sffamily\footnotesize,fill=alloyHi,fill opacity=.92,
-  text opacity=1,inner sep=1.2pt] at (1.25,-10.81) {motor};
+  text opacity=1,inner sep=1.2pt] at (1.08,-10.14) {motor};
 \draw[shaftDark,line width=2.8pt,line cap=round] (1.78,-10.83)--(2.21,-10.83);
 \draw[steelMid,line width=.9pt] (1.79,-10.805)--(2.22,-10.805);
 
@@ -346,7 +346,7 @@
 \node[specbox,anchor=south] at (13.22,-8.32) {$u=F$ [N]};
 \fill[steelEdge] (5.29,-8.43) circle (.040);
 \draw[friction] (5.29,-8.43)--(2.66,-8.43);
-\node[specbox,anchor=south,align=center] at (3.73,-8.32)
+\node[specbox,anchor=south,align=center] at (3.55,-8.24)
   {$f_c=F_c\,\mathrm{sgn}(\dot x)$\\[-1pt]
    {\scriptsize Leftward for $\dot x>0$}};
 
@@ -354,7 +354,7 @@
 % --- Separated electrical angular-measurement signal, no false joining ---
 \node[instrument,fill=alloyHi,draw=signalGold,line width=.9pt] (angle) at (12.38,-6.72) {$\theta$};
 \draw[measured] (8.32,-7.80)--(10.93,-6.72)--(angle.west);
-\draw[measured] (angle.east)--(18.12,-6.72)--(18.12,-3.12)--(19,-3.12);
+\draw[measured] (angle.east)--(17.98,-6.72)--(17.98,-3.12)--(19,-3.12);
 \node[annotation,anchor=west] at (12.95,-6.95)
  {Angular measurement};
 
