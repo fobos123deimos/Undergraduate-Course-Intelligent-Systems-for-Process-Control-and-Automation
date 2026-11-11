@@ -4,12 +4,13 @@ on:
     branches: [main]
     paths:
       - benchmarks/tikz/03-pendulum.tex
+      - .github/workflows/pendulum-refinement-render.yml
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
   group: pendulum-refinement-graphics
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   render:
     runs-on: ubuntu-latest
@@ -19,12 +20,24 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install TikZ and PDF tooling
+      # Keep installation stages bounded and verbose: a stalled mirror must
+      # not silently block rendering or hold the concurrency group indefinitely.
+      - name: Refresh package indexes with bounded network retries
+        timeout-minutes: 3
         run: |
-          sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
-          python -m pip install pypdf
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=60 update
+      - name: Install TikZ and PDF tooling
+        timeout-minutes: 8
+        run: |
+          sudo env DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=60 -o Dpkg::Use-Pty=0 install -y --no-install-recommends texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
+          pdflatex --version
+          pdftoppm -v
+      - name: Install Python PDF dependency
+        timeout-minutes: 2
+        run: |
+          python -m pip install --disable-pip-version-check --timeout 30 --retries 2 pypdf
       - name: Compile and rasterize updated plate
+        timeout-minutes: 3
         run: |
           cd benchmarks/tikz
           pdflatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory=../figures/tikz 03-pendulum.tex
@@ -36,6 +49,7 @@ jobs:
           assert all(s not in log for s in ('Overfull \\hbox', 'Missing character:', '! LaTeX Error')), 'TikZ warning/error; inspect log'
           PY
       - name: Rebuild complete atlas and synchronize documentation
+        timeout-minutes: 3
         run: |
           python - <<'PY'
           import hashlib
@@ -97,10 +111,12 @@ jobs:
           api_file.write_text(json.dumps(api, indent=2, ensure_ascii=False) + '\n')
           PY
       - name: Verify committed figure records
+        timeout-minutes: 3
         run: |
           python tools/build_benchmark_atlas.py --check
           git diff --check
       - name: Commit rendered figure and atlas
+        timeout-minutes: 2
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
