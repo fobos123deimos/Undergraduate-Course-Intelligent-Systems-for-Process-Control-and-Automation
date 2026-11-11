@@ -1,0 +1,145 @@
+name: Render refined three-tank hydraulic bench
+on:
+  push:
+    branches: [main]
+    paths:
+      - benchmarks/tikz/07-three-tanks.tex
+      - .github/workflows/three-tanks-refinement-render.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: three-tanks-refinement-graphics
+  cancel-in-progress: true
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check and recover runner DNS
+        timeout-minutes: 3
+        shell: bash
+        run: |
+          set -euo pipefail
+          mirrors_resolve() {
+            timeout 10s getent ahostsv4 security.ubuntu.com >/dev/null &&
+            timeout 10s getent ahostsv4 archive.ubuntu.com >/dev/null
+          }
+          if mirrors_resolve; then exit 0; fi
+          sudo systemctl restart systemd-resolved
+          sudo resolvectl flush-caches
+          if mirrors_resolve; then exit 0; fi
+          iface="$(ip -4 route show default | awk '{print $5; exit}')"
+          test -n "$iface"
+          sudo resolvectl dns "$iface" 1.1.1.1 8.8.8.8
+          sudo resolvectl domain "$iface" '~.'
+          sudo resolvectl flush-caches
+          mirrors_resolve
+      - name: Refresh package indexes
+        timeout-minutes: 3
+        run: |
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=60 update
+      - name: Install TikZ and graphics tools
+        timeout-minutes: 8
+        run: |
+          sudo env DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=60 -o Dpkg::Use-Pty=0 install -y --no-install-recommends texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
+          python -m pip install --disable-pip-version-check --timeout 30 --retries 2 pypdf pymupdf
+      - name: Compile and render the hydraulic bench
+        timeout-minutes: 3
+        run: |
+          cd benchmarks/tikz
+          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory=../figures/tikz 07-three-tanks.tex
+          cd ../..
+          pdftoppm -singlefile -scale-to 2600 -png benchmarks/figures/tikz/07-three-tanks.pdf benchmarks/figures/tikz/07-three-tanks
+          python - <<'PY'
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          import fitz, shutil, struct
+          out = Path('benchmarks/figures/tikz')
+          gallery = Path('benchmarks/figures')
+          log = (out / '07-three-tanks.log').read_text(errors='replace')
+          for warning in ('Overfull \\hbox', 'Underfull \\hbox', 'Missing character:', '! LaTeX Error'):
+              assert warning not in log, warning
+          pdf = fitz.open(out / '07-three-tanks.pdf')
+          assert len(pdf) == 1
+          page = pdf[0]
+          for block in page.get_text('blocks'):
+              assert (page.rect + (-1,-1,1,1)).contains(fitz.Rect(block[:4])), block
+          svg = page.get_svg_image(text_as_path=True)
+          ET.fromstring(svg)
+          (gallery / '07-three-tanks.svg').write_text(svg, encoding='utf-8')
+          shutil.copyfile(out / '07-three-tanks.png', gallery / '07-three-tanks.png')
+          image = (out / '07-three-tanks.png').read_bytes()
+          assert image[:8] == b'\x89PNG\r\n\x1a\n'
+          assert max(struct.unpack('>II', image[16:24])) == 2600
+          PY
+      - name: Rebuild atlas and synchronize documentation
+        timeout-minutes: 3
+        run: |
+          python - <<'PY'
+          import hashlib, json, shutil
+          from pathlib import Path
+          from pypdf import PdfReader, PdfWriter
+          root = Path('.')
+          out = root / 'benchmarks/figures/tikz'
+          docs = root / 'docs/api/assets/benchmarks/figures/tikz'
+          catalog = json.loads((root / 'benchmarks/tikz/catalog.json').read_text())
+          def digest(path, text=False):
+              data = path.read_bytes()
+              if text:
+                  data = data.replace(b'\r\n', b'\n')
+              return hashlib.sha256(data).hexdigest()
+          writer = PdfWriter()
+          for case in catalog['cases']:
+              stems = [case['stem']] + ([case['companion']] if case.get('companion') else [])
+              for stem in stems:
+                  reader = PdfReader(out / (stem + '.pdf'))
+                  assert len(reader.pages) == 1, stem
+                  writer.add_page(reader.pages[0])
+                  suffix = ' — signal reference' if stem != case['stem'] else ''
+                  writer.add_outline_item(case['section'] + ' ' + case['original_name'] + suffix, len(writer.pages) - 1)
+          writer.add_metadata({'/Title':'Benchmark atlas — original names, equipment and signal interfaces', '/Author':'Intelligent Systems for Process Control and Automation', '/Subject':'Kroll and Schulte (2014), sections 3.1–3.13'})
+          writer.write(out / 'benchmark-atlas.pdf')
+          record_file = out / 'build.json'
+          record = json.loads(record_file.read_text())
+          record['source_sha256_lf']['benchmarks/tikz/07-three-tanks.tex'] = digest(root / 'benchmarks/tikz/07-three-tanks.tex', True)
+          for name in ('07-three-tanks.pdf', '07-three-tanks.png', 'benchmark-atlas.pdf'):
+              record['artifact_sha256'][name] = digest(out / name)
+          record['generator'] = 'Tectonic/pdfLaTeX (existing plates); pdfLaTeX (three-tank bench); Poppler, PyMuPDF and pypdf'
+          record['incremental_build'] = {'plate':'07-three-tanks', 'compiler':'pdfLaTeX (GitHub Actions)', 'reused_plates':13, 'scope':'Hydraulic teaching bench; reference order T1-T3-T2, two pumps, two coupling valves, four selectable outlets and collection basin. Existing closed-outlet nominal balances retained.'}
+          record_file.write_text(json.dumps(record, indent=2, ensure_ascii=False) + '\n')
+          docs.mkdir(parents=True, exist_ok=True)
+          for name in ('07-three-tanks.png', 'benchmark-atlas.pdf'):
+              shutil.copyfile(out / name, docs / name)
+          api_file = root / 'docs/api/build.json'
+          api = json.loads(api_file.read_text())
+          for name in ('07-three-tanks.png', 'benchmark-atlas.pdf'):
+              api['source_sha256_lf'][f'benchmarks/figures/tikz/{name}'] = digest(out / name)
+              api['artifact_sha256'][f'assets/benchmarks/figures/tikz/{name}'] = digest(docs / name)
+          api_file.write_text(json.dumps(api, indent=2, ensure_ascii=False) + '\n')
+          PY
+      - name: Verify source, atlas and documentation records
+        timeout-minutes: 3
+        run: |
+          python tools/build_benchmark_atlas.py --check
+          python tools/build_api_docs.py --check
+          python - <<'PY'
+          from pathlib import Path
+          assert Path('benchmarks/figures/07-three-tanks.png').read_bytes() == Path('benchmarks/figures/tikz/07-three-tanks.png').read_bytes()
+          assert Path('benchmarks/figures/07-three-tanks.svg').stat().st_size > 20000
+          PY
+          git diff --check
+      - name: Commit rendered plate and synchronized assets
+        timeout-minutes: 2
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add benchmarks/figures/07-three-tanks.png benchmarks/figures/07-three-tanks.svg benchmarks/figures/tikz/07-three-tanks.pdf benchmarks/figures/tikz/07-three-tanks.png benchmarks/figures/tikz/benchmark-atlas.pdf benchmarks/figures/tikz/build.json docs/api/assets/benchmarks/figures/tikz/07-three-tanks.png docs/api/assets/benchmarks/figures/tikz/benchmark-atlas.pdf docs/api/build.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish refined three-tank hydraulic bench and synchronized atlas"
+            git push origin HEAD:main
+          fi
