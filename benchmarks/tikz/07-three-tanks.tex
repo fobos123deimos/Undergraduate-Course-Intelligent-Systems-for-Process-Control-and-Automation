@@ -51,6 +51,17 @@
 \definecolor{labCounterEdge}{HTML}{B6AC96}
 \definecolor{labCabinet}{HTML}{A7BEB1}
 \definecolor{labCabinetShade}{HTML}{788F84}
+% Local page width accommodates pump bays beyond both windows. Other atlas
+% plates retain their shared 26 cm layout; equipment is not rescaled here.
+\renewcommand{\atlasheader}[3]{%
+  \node[anchor=north west,font=\sffamily\bfseries\LARGE] at (0,0) {#1};%
+  \node[anchor=north west,font=\sffamily\small,text=muted] at (0,-.75) {Paper section #2: \textit{#3}};%
+  \draw[ink!25,line width=.7pt] (0,-1.25)--(28.20,-1.25);%
+}
+\renewcommand{\atlasfooter}[1]{%
+  \draw[ink!25,line width=.5pt] (0,-15.8)--(28.20,-15.8);%
+  \node[anchor=north west,annotation,text width=28.0cm] at (0,-16) {#1\\Original explanatory drawing. Source: Kroll \& Schulte (2014), DOI: 10.1016/j.asoc.2014.08.034. Model variants are identified in the accompanying case sheet.};%
+}
 \tikzset{
   every node/.style={font=\sffamily\small,text=ink},
   tag/.style={font=\sffamily\footnotesize,inner sep=0pt,align=center,text=ink},
@@ -146,21 +157,23 @@
 % HYDRAULICS LABORATORY: high daylight glazing, ceramic splashback and
 % a sage-painted wet-bench surround. Scenery is illustrative, not equipment.
 % No extra pipe, sensor, valve, circuit or modeled state is introduced.
-% All foreground geometry, labels and page/background extents stay fixed.
+% A common translation preserves the approved window, tank and bench geometry.
+% Additional wall width houses both pumps entirely beyond the outer frames.
+\begin{scope}[xshift=1.10cm]
 \begin{scope}
- \clip (.14,-2.25) rectangle (18.70,-12.02);
+ \clip (-.96,-2.25) rectangle (19.80,-12.02);
  % Opaque architectural surfaces, without radial glows or soft-focus haze.
  \shade[top color=labIvory,bottom color=labCeramic]
-  (.14,-2.25) rectangle (18.70,-12.02);
+  (-.96,-2.25) rectangle (19.80,-12.02);
  \shade[top color=labSage!38!labIvory,bottom color=labSage!66!labCeramic]
-  (.14,-6.13) rectangle (18.70,-10.16);
+  (-.96,-6.13) rectangle (19.80,-10.16);
  % Ceiling reveal and shallow side returns establish a real room depth.
  \shade[top color=labReveal!64!labIvory,bottom color=labIvory]
-  (.14,-2.25) rectangle (18.70,-2.52);
+  (-.96,-2.25) rectangle (19.80,-2.52);
  \shade[left color=labReveal!28!labIvory,right color=labIvory]
-  (.14,-2.52) rectangle (.44,-10.13);
+  (-.96,-2.52) rectangle (-.66,-10.13);
  \shade[left color=labIvory,right color=labReveal!32!labIvory]
-  (18.35,-2.52) rectangle (18.70,-10.13);
+  (19.45,-2.52) rectangle (19.80,-10.13);
  % Two recessed, lightly frosted windows: blue daylight, neutral aluminum
  % frames and a muted green lower reflection. No false process devices.
  \foreach \xl/\xr/\xm in {.66/7.57/6.86,11.22/18.16/12.18}{
@@ -275,13 +288,14 @@
 \draw[steelEdge!80,line width=.6pt] (9.20,-3.62)--(9.20,-4.82);
 \node[tag,anchor=south] at (9.20,-3.43) {$A_T$};
 % Pump pipes feed outer tanks only; arrowheads stay inside the open mouths.
-% Both pumps move outward by .65 cm; all pipe ends meet the .39 cm housings.
-\waterpipe{(.85,-3.30)--(1.21,-3.30)}
-\waterpipe{(1.99,-3.30)--(4.10,-3.30)--(4.10,-4.11)}
-\waterpipe{(18.0,-3.30)--(17.19,-3.30)}
-\waterpipe{(16.41,-3.30)--(14.30,-3.30)--(14.30,-4.11)}
-\feedpump{1.60}{1}{1}
-\feedpump{16.80}{-1}{2}
+% Pump housings and labels sit wholly outside the window frames at .61/18.21.
+% All pipe ends share the .39 cm housing radius; outer feed stubs are equal.
+\waterpipe{(-.85,-3.30)--(-.49,-3.30)}
+\waterpipe{(.29,-3.30)--(4.10,-3.30)--(4.10,-4.11)}
+\waterpipe{(19.65,-3.30)--(19.29,-3.30)}
+\waterpipe{(18.51,-3.30)--(14.30,-3.30)--(14.30,-4.11)}
+\feedpump{-.10}{1}{1}
+\feedpump{18.90}{-1}{2}
 \draw[liquidarrow] (4.10,-4.11)--(4.10,-4.99);
 \draw[liquidarrow] (14.30,-4.11)--(14.30,-4.99);
 \node[tag,anchor=west,text=waterInk] at (4.46,-3.96) {$q_1$};
@@ -319,12 +333,13 @@
  \node[tag,anchor=west] at (\x+.54,-9.38) {$V_{O\id}$};
  \draw[outletarrow] (\x,-10.03)--(\x,-10.65);
 }
+\end{scope}
 % Technical labels stay outside equipment, without large white masks.
 \node[annotation,anchor=west,font=\sffamily\fontsize{7.5}{9.2}\selectfont]
  at (.30,-12.26) {Illustrative hydraulic bench; not to scale. Outlet arrows show connections, not valve opening.};
 % Two readable side panels separate topology from the nominal model.
 \node[techpanel,fill=panelAqua,anchor=north west,text width=5.95cm,
- minimum height=3.7cm] at (19.35,-2.48)
+ minimum height=3.7cm] at (21.55,-2.48)
  {\textbf{Pump inputs and geometry}\\[6pt]
  Independent inputs $q_1$ and $q_2$:\\[3pt]
  $0\leq q_1,q_2\leq10^{-4}\;\mathrm{m^3\,s^{-1}}$.\\[7pt]
@@ -332,7 +347,7 @@
  Level limit: $h_{\max}=0.62\;\mathrm m$.\\
  State order: $[h_1,h_2,h_3]^{\mathsf T}$.};
 \node[techpanel,fill=panelSand,anchor=north west,text width=5.95cm,
- minimum height=4.6cm] at (19.35,-6.83)
+ minimum height=4.6cm] at (21.55,-6.83)
  {\textbf{Valve network and model scope}\\[6pt]
  $V_{C1}$ couples $T_1$ and $T_3$.\\
  $V_{C2}$ couples $T_3$ and $T_2$.\\[7pt]
@@ -341,25 +356,27 @@
  \textbf{Nominal model: outlets closed.}\\
  All outlet flows are zero. Opening an outlet requires a separately declared discharge extension.};
 % Bottom model cards preserve the existing equations and numerical parameters.
-\node[techpanel,fill=panelAqua,anchor=north west,text width=7.8cm,
+\node[techpanel,fill=panelAqua,anchor=north west,text width=8.55cm,
  minimum height=2.84cm] at (.20,-12.68)
  {\textbf{Signed hydraulic coupling}\\[5pt]
  $q_{ij}=a\mu\,\operatorname{sgn}(h_i-h_j)\sqrt{2g|h_i-h_j|}$.\\[6pt]
  $a=0.5\!\times\!10^{-4}\;\mathrm{m^2}$, $\mu=0.48$.\\
  Positive directions: $1\to3$ and $3\to2$.\\
  Flow reverses when the head difference changes sign.};
-\node[techpanel,fill=panelSage,anchor=north west,text width=7.8cm,
- minimum height=2.84cm] at (9.00,-12.68)
+\node[techpanel,fill=panelSage,anchor=north west,text width=8.55cm,
+ minimum height=2.84cm] at (9.75,-12.68)
  {\textbf{Nominal level balances}\\[5pt]
  $A_T\dot h_1=q_1-q_{13}$\\
  $A_T\dot h_3=q_{13}-q_{32}$\\
  $A_T\dot h_2=q_2+q_{32}$\\[4pt]
  Time in seconds; levels in metres.};
-\node[techpanel,fill=panelSand,anchor=north west,text width=7.55cm,
- minimum height=2.84cm] at (17.80,-12.68)
+\node[techpanel,fill=panelSand,anchor=north west,text width=8.25cm,
+ minimum height=2.84cm] at (19.30,-12.68)
  {\textbf{Conservation and operating limit}\\[5pt]
  $\displaystyle A_T\frac{d}{dt}(h_1+h_2+h_3)=q_1+q_2$.\\[6pt]
- With closed outlets, positive net pumping increases total volume. Steady-flow tracking needs an explicit outlet model.};
+ With closed outlets, positive net pumping\\
+ increases total volume. Steady-flow tracking\\
+ needs an explicit outlet model.};
 \atlasfooter{Scope: three-state nominal model, Eq. (36); complete valve topology follows Fig. 7. The collection basin is not an additional modeled state. Vessel levels, materials and bench details are illustrative; no measured geometry is inferred.}
 \end{tikzpicture}
 \end{document}
