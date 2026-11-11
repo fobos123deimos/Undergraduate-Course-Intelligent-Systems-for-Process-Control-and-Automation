@@ -44,7 +44,7 @@
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \atlasheader{Vertical servo-pneumatic actuator}{3.5}{Servo-pneumatic actuator}
-\node[anchor=west,font=\sffamily\bfseries] at (.2,-1.95)
+\node[anchor=west,font=\sffamily\bfseries] at (.2,-1.84)
  {Double-rod cylinder, time-varying payload and servo-valve mass-flow paths};
 % -- PNEUMATIC SERVICE WORKSHOP -- atmospheric context only.
 % A warm pneumatic-calibration bay rather than the throttle's automotive rig:
@@ -268,15 +268,15 @@
 }
 \foreach \yy in {-6.83,-7.60}{
  \draw[supply,line width=1.14pt,-{Stealth[length=2.05mm,width=1.42mm]}]
- (16.19,\yy)--(15.46,\yy);
+ (16.34,\yy)--(15.61,\yy);
 }
 \node[anchor=west,smalllabel] at (16.24,-5.91) {$\dot m_4$};
-\node[anchor=west,smalllabel] at (16.24,-6.77) {$\dot m_3$};
-\node[anchor=west,smalllabel] at (16.24,-7.55) {$\dot m_2$};
+\node[anchor=west,smalllabel] at (16.65,-6.77) {$\dot m_3$};
+\node[anchor=west,smalllabel] at (16.65,-7.55) {$\dot m_2$};
 \node[anchor=west,smalllabel] at (16.24,-8.32) {$\dot m_1$};
-\node[anchor=west,subtlelabel,text=returnFlow!78!ink] at (17.37,-6.03) {$p_R$};
-\node[anchor=west,subtlelabel,text=supply!82!ink] at (17.37,-7.18) {$p_S$};
-\node[anchor=west,subtlelabel,text=returnFlow!78!ink] at (17.37,-8.34) {$p_R$};
+\node[anchor=west,subtlelabel,text=returnFlow!78!ink] at (17.51,-6.03) {$p_R$};
+\node[anchor=west,subtlelabel,text=supply!82!ink] at (17.51,-7.18) {$p_S$};
+\node[anchor=west,subtlelabel,text=returnFlow!78!ink] at (17.51,-8.34) {$p_R$};
 % Exposed valve drive, shown as a true s/u symbol, with an upward input.
 \shade[draw=metalDark,line width=.85pt,rounded corners=1.1pt,
  top color=metalLight,bottom color=metalMid]
@@ -292,7 +292,7 @@
 \node[anchor=west,subtlelabel,text=copperDeep] at (15.08,-11.24) {$u_v$};
 \end{scope}
 % Color cues identify tubes/chambers only, not gas species or permanent flow direction.
-\node[anchor=west,annotation,text width=18.1cm] at (.42,-12.09)
+\node[anchor=west,annotation,text width=18.1cm] at (.42,-12.21)
  {Cutaway after paper Fig.~4 (not to scale). Azure: chamber II line; sage: chamber I line.\\
  Blue arrows: return; amber arrows: supply. The $\dot m_i$ signs may reverse.};
 % -- DOMAIN PANELS: distinguish the original schematic, surveyed models,
