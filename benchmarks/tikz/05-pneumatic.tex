@@ -284,9 +284,12 @@
 \draw[guide!85,line width=.58pt] (14.18,-10.78)--(15.15,-10.19);
 \node[font=\sffamily\scriptsize] at (14.42,-10.37) {$s$};
 \node[font=\sffamily\scriptsize] at (14.88,-10.64) {$u$};
-\draw[draw=copperDeep,line width=1.10pt,-{Stealth[length=2.55mm,width=1.75mm]}]
- (14.67,-11.32)--(14.67,-10.86);
-\node[anchor=west,subtlelabel,text=copperDeep] at (14.86,-11.20) {$u_v$};
+% Give the upward valve command its own space below the s/u converter:
+% smaller arrowhead, visible gap from the housing and label clear to the right.
+\draw[draw=copperDeep,line width=.96pt,line cap=round,
+ -{Stealth[length=2.05mm,width=1.43mm]}]
+ (14.67,-11.43)--(14.67,-10.99);
+\node[anchor=west,subtlelabel,text=copperDeep] at (15.08,-11.24) {$u_v$};
 \end{scope}
 % Color cues identify tubes/chambers only, not gas species or permanent flow direction.
 \node[anchor=west,annotation,text width=18.1cm] at (.42,-12.09)
