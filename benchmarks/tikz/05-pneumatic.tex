@@ -62,13 +62,24 @@
   (5.15,-3.55) ellipse (5.55cm and 2.25cm);
  \shade[inner color=wallOlive!18!white,outer color=white,opacity=.07]
   (15.65,-7.10) ellipse (3.40cm and 2.65cm);
- % Sandstone-toned acoustic wall slats and a pale electrical conduit strip.
- \foreach \xx in {3.55,6.38,9.22,12.06,14.90,17.74}{
+ % Decorative wall seams have small clearances around the approved labels.
+ % Keep ALL text, physical parts and annotation leaders fixed: only scenery
+ % is interrupted behind vertical load, piston rod, working cylinder and u_v.
+ % The gaps show the original wall shading, without opaque label boxes.
+ \foreach \xx/\topY/\bottomY in {
+  3.55/-2.48/-9.08,3.55/-9.49/-10.96,
+  6.38/-2.48/-10.96,
+  9.22/-2.48/-3.10,9.22/-3.57/-4.04,9.22/-4.51/-10.96,
+  12.06/-2.48/-10.96,
+  14.90/-2.48/-10.54,
+  17.74/-2.48/-10.96}{
   \draw[wallOlive!46!metalDark,line width=.56pt,opacity=.25]
-   (\xx,-2.48)--(\xx,-10.96);
+   (\xx,\topY)--(\xx,\bottomY);
  }
+ % Clear the command arrow and u_v label from the decorative floor seam.
  \draw[metalDark!28,line width=.72pt,opacity=.33]
-  (.23,-10.85)--(18.73,-10.85);
+  (.23,-10.85)--(14.08,-10.85)
+  (15.00,-10.85)--(18.73,-10.85);
  % Pneumatic service rail: deliberately far LEFT of the benchmark cylinder.
  \begin{scope}[opacity=.51]
   \shade[left color=metalDark!60!wallWarm,middle color=metalLight,
