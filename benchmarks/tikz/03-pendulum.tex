@@ -103,12 +103,12 @@
   % not a controller cabinet or an additional measured process element.
   \shade[draw=labFrame!36,line width=.47pt,
     top color=labBenchLight,bottom color=labWallCool!78!white,opacity=.31]
-    (16.26,-3.04) rectangle (17.40,-4.81);
-  \foreach \yy in {-3.39,-3.63,-3.87,-4.11,-4.35,-4.59}{
+    (17.02,-3.60) rectangle (17.98,-5.37);
+  \foreach \yy in {-3.95,-4.19,-4.43,-4.67,-4.91,-5.15}{
     \draw[labFrame!48,line width=.45pt,opacity=.28]
-      (16.43,\yy)--(17.23,\yy);
+      (17.19,\yy)--(17.81,\yy);
     \draw[white,line width=.25pt,opacity=.35]
-      (16.43,\yy+.028)--(17.23,\yy+.028);
+      (17.19,\yy+.028)--(17.81,\yy+.028);
   }
   % Subtle high-bay architectural rails; horizontal contours are behind all
   % equipment and carry no implication of actual carriage travel or signals.
@@ -354,7 +354,7 @@
 % --- Separated electrical angular-measurement signal, no false joining ---
 \node[instrument,fill=alloyHi,draw=signalGold,line width=.9pt] (angle) at (12.38,-6.72) {$\theta$};
 \draw[measured] (8.32,-7.80)--(10.93,-6.72)--(angle.west);
-\draw[measured] (angle.east)--(17.50,-6.72)--(17.50,-3.12)--(19,-3.12);
+\draw[measured] (angle.east)--(16.70,-6.72)--(16.70,-3.12)--(19,-3.12);
 \node[annotation,anchor=west] at (12.95,-7.08)
  {Angular measurement};
 
