@@ -36,6 +36,21 @@
 \definecolor{panelAqua}{HTML}{EAF5F7}
 \definecolor{panelSage}{HTML}{EDF3E8}
 \definecolor{panelSand}{HTML}{F8F2E7}
+% Architectural palette: neutral metals, warm ivory ceramics, blue daylight
+% glazing and sage enamel. Stronger than the old flat wash, below diagram contrast.
+\definecolor{labIvory}{HTML}{F2EDE2}
+\definecolor{labCeramic}{HTML}{F1F3EA}
+\definecolor{labSage}{HTML}{CFDBCE}
+\definecolor{labSky}{HTML}{C2DCE5}
+\definecolor{labGlazingLow}{HTML}{D4E1DA}
+\definecolor{labFrame}{HTML}{8C9D9C}
+\definecolor{labFrameLight}{HTML}{D4DEDA}
+\definecolor{labReveal}{HTML}{9A9E91}
+\definecolor{labGrout}{HTML}{BBCBBE}
+\definecolor{labCounterHi}{HTML}{E2D9C5}
+\definecolor{labCounterEdge}{HTML}{B6AC96}
+\definecolor{labCabinet}{HTML}{A7BEB1}
+\definecolor{labCabinetShade}{HTML}{788F84}
 \tikzset{
   every node/.style={font=\sffamily\small,text=ink},
   tag/.style={font=\sffamily\footnotesize,inner sep=0pt,align=center,text=ink},
@@ -128,19 +143,98 @@
 \atlasheader{Three interconnected tanks}{3.7}{Three-tank-system}
 \node[anchor=west,font=\sffamily\bfseries] at (.20,-1.85)
  {Coupled free-surface tanks, independent pumps and selectable outlets};
-% Hydraulic teaching bench: a crisp glazed splashback and brushed collection
-% tray, not an automotive or pneumatic service scene. No decorative pipework
-% is added, and wall seams are interrupted around labels.
+% HYDRAULICS LABORATORY: high daylight glazing, ceramic splashback and
+% a sage-painted wet-bench surround. Scenery is illustrative, not equipment.
+% No extra pipe, sensor, valve, circuit or modeled state is introduced.
+% All foreground geometry, labels and page/background extents stay fixed.
 \begin{scope}
  \clip (.14,-2.25) rectangle (18.70,-12.02);
- \shade[top color=wallIvory,bottom color=wallSage!54!white]
+ % Opaque architectural surfaces, without radial glows or soft-focus haze.
+ \shade[top color=labIvory,bottom color=labCeramic]
   (.14,-2.25) rectangle (18.70,-12.02);
- \foreach \x in {7.74,12.84}{
-  \draw[tileJoint,line width=.55pt,opacity=.45] (\x,-2.40)--(\x,-6.35) (\x,-8.95)--(\x,-9.92);
-  \draw[white,line width=.40pt,opacity=.65] (\x+.023,-2.40)--(\x+.023,-6.35);
+ \shade[top color=labSage!38!labIvory,bottom color=labSage!66!labCeramic]
+  (.14,-6.13) rectangle (18.70,-10.16);
+ % Ceiling reveal and shallow side returns establish a real room depth.
+ \shade[top color=labReveal!64!labIvory,bottom color=labIvory]
+  (.14,-2.25) rectangle (18.70,-2.52);
+ \shade[left color=labReveal!28!labIvory,right color=labIvory]
+  (.14,-2.52) rectangle (.44,-10.13);
+ \shade[left color=labIvory,right color=labReveal!32!labIvory]
+  (18.35,-2.52) rectangle (18.70,-10.13);
+ % Two recessed, lightly frosted windows: blue daylight, neutral aluminum
+ % frames and a muted green lower reflection. No false process devices.
+ \foreach \xl/\xr/\xm in {.66/7.57/6.86,11.22/18.16/12.18}{
+  \path[fill=labReveal!22!labIvory]
+   (\xl-.10,-2.63) rectangle (\xr+.10,-2.72)
+   (\xl-.10,-2.72) rectangle (\xl,-5.93)
+   (\xr,-2.72) rectangle (\xr+.10,-5.93);
+  \shade[top color=labSky,bottom color=labGlazingLow]
+   (\xl,-2.72) rectangle (\xr,-5.77);
+  \shade[top color=labSky!55!labCeramic,bottom color=labGlazingLow]
+   (\xl+.05,-4.91) rectangle (\xr-.05,-5.77);
+  % Precise bevels and continuous vertical frame sections, not blurry halos.
+  \shade[draw=labFrame,line width=.47pt,top color=steelHi,bottom color=labFrameLight]
+   (\xl-.05,-2.67) rectangle (\xr+.05,-2.79);
+  \shade[draw=labFrame,line width=.47pt,left color=labFrameLight,right color=labFrame]
+   (\xl-.05,-2.79) rectangle (\xl+.07,-5.81);
+  \shade[draw=labFrame,line width=.47pt,left color=steelHi,right color=labFrameLight]
+   (\xr-.07,-2.79) rectangle (\xr+.05,-5.81);
+  \shade[draw=labFrame!75,line width=.40pt,left color=labFrameLight,right color=steelHi]
+   (\xm-.045,-2.79) rectangle (\xm+.045,-5.77);
+  \draw[white,line width=.45pt,opacity=.75]
+   (\xl+.10,-2.82)--(\xl+.10,-5.72);
+  % Flat, low-contrast reflections retain sharp, readable background edges.
+  \path[fill=white,opacity=.18]
+   (\xl+.28,-2.81)--(\xl+.71,-2.81)--(\xl+1.63,-5.72)--(\xl+1.20,-5.72)--cycle;
+  \path[fill=white,opacity=.10]
+   (\xr-1.35,-2.81)--(\xr-1.17,-2.81)--(\xr-.29,-5.72)--(\xr-.47,-5.72)--cycle;
  }
- \draw[tileJoint,line width=.58pt,opacity=.42] (.40,-9.95)--(18.40,-9.95);
- % Drainage-bench base and recessed feet stay behind the functional basin.
+ % Window sills leave clearances around the approved hmax and h1 dimensions.
+ % Removing scenery here exposes the glazing itself: no white label masks.
+ \foreach \xa/\xb in {.61/1.61,2.09/5.33,6.18/7.62,11.17/18.21}{
+  \shade[draw=labFrame!80,line width=.43pt,top color=steelHi,bottom color=labFrameLight]
+   (\xa,-5.77) rectangle (\xb,-5.89);
+  \draw[labReveal!38!labIvory,line width=1.05pt]
+   (\xa,-5.94)--(\xb,-5.94);
+ }
+ % Small architectural latches, without markers or text suggesting sensors.
+ \foreach \x in {.89,17.91}{
+  \shade[draw=labFrame,line width=.40pt,left color=steelHi,right color=labFrameLight]
+   (\x,-4.87) rectangle (\x+.055,-5.17);
+ }
+ % Ceramic splashback joints deliberately avoid every label/dimension lane.
+ \foreach \xa/\xb in {.49/1.62,2.09/2.80,6.20/7.77,11.29/12.98,15.62/18.32}{
+  \draw[labGrout,line width=.47pt,opacity=.65] (\xa,-6.19)--(\xb,-6.19);
+  \draw[white,line width=.35pt,opacity=.65] (\xa,-6.22)--(\xb,-6.22);
+ }
+ \foreach \x in {2.57,7.59,12.69,18.13}{
+  \draw[labGrout,line width=.47pt,opacity=.55]
+   (\x,-6.23)--(\x,-7.88);
+ }
+ \foreach \x in {2.57,7.59,12.69}{
+  \draw[labGrout,line width=.47pt,opacity=.55] (\x,-8.45)--(\x,-9.94);
+ }
+ \foreach \xa/\xb in {.49/3.73,4.49/8.83,9.59/13.93,14.69/18.32}{
+  \draw[labGrout,line width=.47pt,opacity=.55] (\xa,-9.02)--(\xb,-9.02);
+  \draw[white,line width=.35pt,opacity=.65] (\xa,-9.05)--(\xb,-9.05);
+ }
+ % Warm neutral countertop reveal and sage enamel bench fascia. They remain
+ % behind the existing collecting basin and never become hydraulic branches.
+ \shade[top color=labCounterHi,bottom color=labCounterEdge]
+  (.38,-9.97) rectangle (18.46,-10.15);
+ \draw[steelHi,line width=.58pt] (.40,-10.005)--(18.44,-10.005);
+ \shade[top color=labCabinet,bottom color=labCabinetShade]
+  (.58,-10.16) rectangle (18.24,-11.72);
+ \draw[labCabinetShade,line width=.62pt]
+  (.65,-10.23)--(18.17,-10.23);
+ % Fine metallic service-bench uprights stay outside the annotation lanes.
+ \foreach \x in {.40,18.43}{
+  \shade[draw=labFrame!75,line width=.45pt,
+   left color=steelShade!60!steelMid,middle color=steelHi,right color=labFrameLight]
+   (\x,-8.93) rectangle (\x+.13,-11.73);
+  \fill[labFrame] (\x+.065,-9.16) circle (.021);
+ }
+ % Original drainage-bench base and feet retain their exact geometry.
  \foreach \x in {2.25,16.35}{
   \shade[draw=steelEdge!65,line width=.45pt,left color=steelShade,right color=steelMid,middle color=steelHi]
    (\x,-11.25) rectangle (\x+.26,-11.92);
