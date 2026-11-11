@@ -293,13 +293,13 @@
 \end{scope}
 % Color cues identify tubes/chambers only, not gas species or permanent flow direction.
 \node[anchor=west,annotation,text width=18.1cm] at (.25,-12.31)
- {Cutaway after paper Fig.~4 (not to scale). Azure: chamber II line; sage: chamber I line.\\
+ {Illustrative cutaway (not to scale). Azure: chamber II line; sage: chamber I line.\\
  Blue arrows: return; amber arrows: supply. The $\dot m_i$ signs may reverse.};
 % -- DOMAIN PANELS: distinguish the original schematic, surveyed models,
 % and the separate physical teaching variant without inventing calibration.
 \node[labpanel,anchor=north west,text width=5.62cm,align=left]
  at (19.55,-2.56)
- {\textbf{Paper topology and inputs}\\[3pt]
+ {\textbf{Actuator variables and inputs}\\[3pt]
  $m_L(t)$: vertical load mass.\\
  $x_K$: piston displacement.\\
  $x_v$: spool displacement.\\
@@ -308,9 +308,9 @@
 \node[panel,draw=warmBrass!44!metalDark,fill=wallWarm!70!white,
  anchor=north west,text width=5.62cm,align=left]
  at (19.55,-7.14)
- {\textbf{Source and modeling scope}\\[3pt]
- Figure topology: Schulte--Hahn (2004), cited in Kroll--Schulte (2014).\\[5pt]
- Local identified models use operating-point offsets. The SI conservation model is a separately parameterized teaching variant, not a calibrated replica.};
+ {\textbf{Model scope and assumptions}\\[3pt]
+ Double-rod actuator and four-port servovalve, shown schematically.\\[5pt]
+ Identified local models use operating-point offsets. The SI conservation model is a separate teaching variant, not an experimentally calibrated replica.};
 % -- MODELING PANELS: these are supplemental interpretation, not paper Fig. 4.
 \node[panel,draw=hoseLower!40,fill=chamberOne!50!white,
  anchor=north west,text width=7.85cm,minimum height=2.45cm,align=left]
@@ -330,7 +330,7 @@
  anchor=north west,text width=6.75cm,minimum height=2.45cm,align=left]
  at (17.90,-12.76)
  {\textbf{What is and is not identified}\\[3pt]
- Literal survey equations (33)--(34) remain separate from local fitted models and the physical SI variant. Valve and heat-flow parameters require calibration.};
+ Local fitted models and the physical SI variant are distinct. Valve and heat-transfer parameters still require calibration.};
 \atlasfooter{Scientific cutaway based on the cited Fig.~4, not construction-ready CAD. Port arrows represent a sign convention; the published time-varying payload and the repository's constant-payload physical simulations require different assumptions. See PNEUMATIC\_AUDIT.md.}
 \end{tikzpicture}
 \end{document}
