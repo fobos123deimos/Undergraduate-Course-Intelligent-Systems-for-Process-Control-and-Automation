@@ -1,66 +1,270 @@
 \documentclass[tikz,border=6pt]{standalone}
 \input{common.tex}
+\usetikzlibrary{shadings,shadows}
+% Three-tank topology: Kroll & Schulte (2014), Fig. 7 and Sec. 3.7.
+% Physical order is T1--T3--T2; implementation state order remains [h1,h2,h3].
+% The complete outlet network is shown, but the repository's nominal model
+% retains zero outlet flows. No continuously drained equilibrium is implied.
+% Materials, fittings and the hydraulic teaching bench are illustrative.
+% Primary TikZ.net references consulted via indexed source excerpts:
+% https://tikz.net/fluid_dynamics_barometer/ -- free surfaces, ellipses, labels.
+% https://tikz.net/fluid_dynamics_laminar/ -- coherent fluid/pipe drawing styles.
+% Direct page access returned HTTP 403; no downloaded artwork is embedded.
+\definecolor{steelEdge}{HTML}{536269}
+\definecolor{steelShade}{HTML}{89989D}
+\definecolor{steelMid}{HTML}{C7CECE}
+\definecolor{steelHi}{HTML}{F7F7F0}
+\definecolor{steelWarm}{HTML}{C7C1B2}
+\definecolor{glassEdge}{HTML}{69868D}
+\definecolor{glassTint}{HTML}{E2F1EF}
+\definecolor{waterDeep}{HTML}{389FB5}
+\definecolor{waterMid}{HTML}{76CEDB}
+\definecolor{waterLight}{HTML}{C0ECED}
+\definecolor{waterTop}{HTML}{A6E3E9}
+\definecolor{waterInk}{HTML}{16677B}
+\definecolor{pumpDeep}{HTML}{244E61}
+\definecolor{pumpBlue}{HTML}{437D91}
+\definecolor{pumpLight}{HTML}{A6C7CE}
+\definecolor{brassDeep}{HTML}{947146}
+\definecolor{brassMid}{HTML}{C8AB75}
+\definecolor{brassHi}{HTML}{F4E6BE}
+\definecolor{wallIvory}{HTML}{F4F2E9}
+\definecolor{wallSage}{HTML}{E4EBE3}
+\definecolor{tileJoint}{HTML}{CBD5CC}
+\definecolor{trayShadow}{HTML}{7F918D}
+\definecolor{rubber}{HTML}{424E4F}
+\definecolor{panelAqua}{HTML}{EAF5F7}
+\definecolor{panelSage}{HTML}{EDF3E8}
+\definecolor{panelSand}{HTML}{F8F2E7}
+\tikzset{
+  every node/.style={font=\sffamily\small,text=ink},
+  tag/.style={font=\sffamily\footnotesize,inner sep=0pt,align=center,text=ink},
+  smalltag/.style={tag,font=\sffamily\scriptsize},
+  liquidarrow/.style={draw=waterInk,line width=.95pt,line cap=round,-{Stealth[length=2.1mm,width=1.5mm]}},
+  outletarrow/.style={draw=steelEdge,line width=.85pt,line cap=round,-{Stealth[length=2.0mm,width=1.4mm]}},
+  leveldim/.style={draw=waterInk!75!steelEdge,line width=.65pt,{Latex[length=1.45mm]}-{Latex[length=1.45mm]}},
+  techpanel/.style={panel,draw=steelEdge!28,fill=panelAqua,align=left,
+    drop shadow={opacity=.035,shadow xshift=.4pt,shadow yshift=-.6pt}},
+}
+% Continuous small-bore pipe: metal outline, bore and restrained highlight.
+\newcommand{\waterpipe}[1]{%
+  \draw[steelEdge,line width=4.5pt,line join=round,line cap=butt,rounded corners=2pt] #1;
+  \draw[steelMid,line width=3.4pt,line join=round,line cap=butt,rounded corners=2pt] #1;
+  \draw[waterMid!88!waterInk,line width=1.9pt,line join=round,line cap=butt,rounded corners=2pt] #1;
+  \draw[waterLight,line width=.46pt,line join=round,line cap=butt,rounded corners=2pt] #1;
+}
+% Valve bodies share the exact pipe centreline. Rotation makes a drain valve.
+% Bow-tie symbols denote valves, not a claim of their opening fraction.
+\newcommand{\hydvalve}[3]{%
+ \begin{scope}[shift={(#1,#2)},rotate=#3]
+  \foreach \x in {-.40,.30}{
+   \shade[draw=steelEdge,line width=.43pt,top color=steelHi,bottom color=steelShade]
+    (\x,-.19) rectangle (\x+.10,.19);
+  }
+  \shade[draw=brassDeep,line width=.80pt,top color=brassHi,bottom color=brassMid]
+   (-.30,-.21)--(0,0)--(-.30,.21)--cycle;
+  \shade[draw=brassDeep,line width=.80pt,top color=brassHi,bottom color=brassMid]
+   (.30,-.21)--(0,0)--(.30,.21)--cycle;
+  \draw[steelEdge,line width=.55pt] (0,-.06)--(0,.06);
+ \end{scope}%
+}
+% Open cylindrical vessels. Perspective indicates the circular cross section;
+% illustrated heights and metal thicknesses are not measured dimensions.
+\newcommand{\tank}[3]{%
+ \begin{scope}[shift={(#1,0)}]
+  \shade[draw=glassEdge,line width=.75pt,left color=glassTint!75!white,
+   right color=glassTint!86!steelMid,middle color=white]
+   (-1.23,-4.45)--(-1.23,-8.58) arc[start angle=180,end angle=360,x radius=1.23,y radius=.20]
+   --(1.23,-4.45)--cycle;
+  \shade[left color=waterDeep!90!waterMid,right color=waterMid,
+   middle color=waterLight!60!waterMid]
+   (-1.17,#3)--(-1.17,-8.56) arc[start angle=180,end angle=360,x radius=1.17,y radius=.16]
+   --(1.17,#3)--cycle;
+  \shade[draw=waterDeep,line width=.62pt,top color=waterLight,bottom color=waterTop]
+   (0,#3) ellipse (1.17cm and .18cm);
+  \draw[white,line width=.55pt,opacity=.72]
+   (-.95,#3+.035)..controls(-.45,#3+.17)and(.48,#3+.17)..(.98,#3+.025);
+  % Narrow reflections preserve the readability of both the vessel and water.
+  \path[fill=white,opacity=.34]
+   (-1.08,-4.62)--(-.94,-4.60)--(-.94,-8.48)--(-1.08,-8.48)--cycle;
+  \draw[white,line width=.55pt,opacity=.65] (1.06,-4.65)--(1.06,-8.49);
+  \draw[glassEdge,line width=.85pt] (-1.23,-4.45)--(-1.23,-8.58) (1.23,-4.45)--(1.23,-8.58);
+  % Thin steel base and open, annular top rim: no lid or pressure enclosure.
+  \shade[draw=steelEdge,line width=.65pt,left color=steelShade,right color=steelWarm,middle color=steelHi]
+   (-1.27,-8.53)--(-1.27,-8.70) arc[start angle=180,end angle=360,x radius=1.27,y radius=.20]
+   --(1.27,-8.53) arc[start angle=0,end angle=-180,x radius=1.27,y radius=.20]--cycle;
+  \shade[draw=steelEdge,line width=.65pt,top color=steelHi,bottom color=steelMid]
+   (0,-4.45) ellipse (1.27cm and .22cm);
+  \path[draw=glassEdge!65,line width=.42pt,fill=glassTint!35!white]
+   (0,-4.45) ellipse (1.15cm and .14cm);
+  \draw[white,line width=.52pt] (-1.15,-4.47) arc[start angle=180,end angle=360,x radius=1.15,y radius=.14];
+  \node[font=\sffamily\bfseries\large,text=waterInk!65!ink] at (-.25,-7.48) {$T_{#2}$};
+  % Level dimensions use the common outlet elevation, not the vessel bottom.
+  \draw[leveldim] (1.52,-8.10)--(1.52,#3);
+  \draw[waterInk!50,line width=.45pt] (1.28,#3)--(1.65,#3) (1.28,-8.15)--(1.65,-8.15);
+  \node[tag,anchor=west,text=waterInk] at (1.72,{(#3-8.10)/2}) {$h_{#2}$};
+ \end{scope}%
+}
+% Directional pump symbol inside a painted and bolted metal housing.
+\newcommand{\feedpump}[3]{%
+ \begin{scope}[shift={(#1,-3.30)},xscale=#2]
+  \shade[draw=steelEdge,line width=.65pt,left color=steelShade,right color=steelHi]
+   (-.30,-.34) rectangle (.30,-.44);
+  \shade[draw=pumpDeep,line width=.9pt,inner color=pumpLight,outer color=pumpBlue]
+   (0,0) circle (.39);
+  \shade[draw=steelEdge,line width=.55pt,inner color=steelHi,outer color=steelMid]
+   (0,0) circle (.255);
+  \path[draw=pumpDeep,fill=pumpBlue,line width=.65pt]
+   (-.09,-.145)--(.17,0)--(-.09,.145)--cycle;
+  \foreach \a in {45,135,225,315}{
+   \fill[steelHi] (\a:.325) circle (.025);
+   \fill[pumpDeep] (\a:.325) circle (.010);
+  }
+ \end{scope}
+ \node[tag] at (#1,-3.99) {Pump $P_{#3}$};%
+}
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \atlasheader{Three interconnected tanks}{3.7}{Three-tank-system}
-\node[annotation,anchor=west] at (0,-1.8) {Physical arrangement: $T_1$--$T_3$--$T_2$ \quad | \quad State ordering in the implementation: $[h_1,h_2,h_3]^{\mathsf T}$};
-% Free-surface vessels, with the intermediate tank physically in the middle.
-\foreach \xl/\xr/\h/\name/\lev in {2/6/-5.0/1/1,11/15/-6.1/3/3,20/24/-7.1/2/2} {
-  \path[fill=pale] (\xl,-3.9)--(\xl,-9.15) arc[start angle=180,end angle=360,x radius=2,y radius=.35] --(\xr,-3.9)--cycle;
-  \path[fill=flow!18] (\xl,\h)--(\xl,-9.15) arc[start angle=180,end angle=360,x radius=2,y radius=.35] --(\xr,\h)--cycle;
-  \draw[ink,line width=1.1pt] (\xl,-3.9)--(\xl,-9.15) arc[start angle=180,end angle=360,x radius=2,y radius=.35] --(\xr,-3.9);
-  \draw[ink,line width=.8pt] ({(\xl+\xr)/2},-3.9) ellipse[x radius=2,y radius=.3];
-  \draw[flow,line width=.8pt] (\xl,\h) to[out=-8,in=188] (\xr,\h);
-  \draw[ink!20,dashed] (\xl,-4.25)--(\xr,-4.25);
-  \node[font=\sffamily\bfseries\large] at ({(\xl+\xr)/2},-4.55) {$T_{\name}$};
-  \draw[dimension] ({\xl+.4},-9.12)--node[labelbox,right] {$h_{\lev}$} ({\xl+.4},\h);
-  \node[labelbox,anchor=east] at ({(\xl+\xr)/2-.6},-10.5) {$A=0.0154\;\mathrm{m^2}$};
+\node[anchor=west,font=\sffamily\bfseries] at (.20,-1.85)
+ {Coupled free-surface tanks, independent pumps and selectable outlets};
+% Hydraulic teaching bench: a crisp glazed splashback and brushed collection
+% tray, not an automotive or pneumatic service scene. No decorative pipework
+% is added, and wall seams are interrupted around labels.
+\begin{scope}
+ \clip (.14,-2.25) rectangle (18.70,-12.02);
+ \shade[top color=wallIvory,bottom color=wallSage!54!white]
+  (.14,-2.25) rectangle (18.70,-12.02);
+ \foreach \x in {7.74,12.84}{
+  \draw[tileJoint,line width=.55pt,opacity=.45] (\x,-2.40)--(\x,-6.35) (\x,-8.95)--(\x,-9.92);
+  \draw[white,line width=.40pt,opacity=.65] (\x+.023,-2.40)--(\x+.023,-6.35);
+ }
+ \draw[tileJoint,line width=.58pt,opacity=.42] (.40,-9.95)--(18.40,-9.95);
+ % Drainage-bench base and recessed feet stay behind the functional basin.
+ \foreach \x in {2.25,16.35}{
+  \shade[draw=steelEdge!65,line width=.45pt,left color=steelShade,right color=steelMid,middle color=steelHi]
+   (\x,-11.25) rectangle (\x+.26,-11.92);
+  \path[fill=rubber] (\x-.10,-11.92) rectangle (\x+.36,-11.99);
+ }
+ \shade[draw=steelEdge!65,line width=.55pt,top color=steelHi,bottom color=trayShadow]
+  (.72,-11.57)--(18.10,-11.57)--(18.32,-11.78)--(.50,-11.78)--cycle;
+ \draw[white,line width=.75pt] (.79,-11.62)--(18.03,-11.62);
+\end{scope}
+% Common collection basin: the three selectable bottom outlets terminate above
+% it. No unshown return plumbing or recirculation-pump circuit is invented.
+\shade[draw=steelEdge,line width=.72pt,top color=steelMid,bottom color=steelHi]
+ (1.02,-10.24)--(17.78,-10.24)--(18.10,-10.52)--(.70,-10.52)--cycle;
+\path[draw=steelEdge!65,line width=.55pt,fill=glassTint!35!white]
+ (1.03,-10.31)--(17.73,-10.31)--(17.93,-10.52)--(.85,-10.52)--cycle;
+\shade[draw=steelEdge,line width=.75pt,left color=steelShade!45!white,right color=steelWarm,middle color=steelHi]
+ (.70,-10.52)--(.70,-11.53)--(18.10,-11.53)--(18.10,-10.52);
+\shade[left color=waterDeep!73!waterMid,right color=waterMid,middle color=waterLight!65!waterMid]
+ (.87,-10.96) rectangle (17.93,-11.39);
+\path[draw=waterDeep!70,line width=.45pt,fill=waterTop]
+ (.87,-10.96)--(1.12,-10.76)--(17.70,-10.76)--(17.93,-10.96)--cycle;
+\draw[waterLight,line width=.75pt] (1.13,-10.80)--(17.66,-10.80);
+\draw[steelEdge,line width=.78pt] (.70,-10.52)--(.70,-11.53)--(18.10,-11.53)--(18.10,-10.52);
+\draw[steelHi,line width=1.2pt] (.80,-11.46)--(17.99,-11.46);
+\node[tag,text=waterInk!70!ink] at (9.40,-11.17) {Collection reservoir};
+% Physical vessel order follows the reference exactly.
+\tank{4.10}{1}{-5.35}
+\tank{9.20}{3}{-5.95}
+\tank{14.30}{2}{-6.55}
+% Maximum usable head, referenced to the same coupling elevation.
+\draw[steelEdge!70,dash pattern=on 2pt off 2pt,line width=.55pt]
+ (1.85,-4.78)--(2.81,-4.78) (1.85,-8.15)--(2.81,-8.15);
+\draw[dimension,line width=.72pt] (1.85,-8.10)--(1.85,-4.83);
+\node[tag,anchor=east] at (1.57,-6.46) {$h_{\max}$};
+% Cross-sectional area marker in the empty portion of the centre vessel.
+\draw[glassEdge,dash pattern=on 2.4pt off 2pt,line width=.58pt]
+ (9.20,-4.86) ellipse (1.08cm and .16cm);
+\draw[steelEdge!80,line width=.6pt] (9.20,-3.62)--(9.20,-4.82);
+\node[tag,anchor=south] at (9.20,-3.43) {$A_T$};
+% Pump pipes feed outer tanks only; arrowheads stay inside the open mouths.
+\waterpipe{(.85,-3.30)--(1.86,-3.30)}
+\waterpipe{(2.64,-3.30)--(4.10,-3.30)--(4.10,-4.11)}
+\waterpipe{(18.0,-3.30)--(16.54,-3.30)}
+\waterpipe{(15.76,-3.30)--(14.30,-3.30)--(14.30,-4.11)}
+\feedpump{2.25}{1}{1}
+\feedpump{16.15}{-1}{2}
+\draw[liquidarrow] (4.10,-4.11)--(4.10,-4.99);
+\draw[liquidarrow] (14.30,-4.11)--(14.30,-4.99);
+\node[tag,anchor=west,text=waterInk] at (4.46,-3.96) {$q_1$};
+\node[tag,anchor=east,text=waterInk] at (13.94,-3.96) {$q_2$};
+% Each connection enters/exits the shell flush on a shared pipe centreline.
+\waterpipe{(5.33,-8.15)--(7.97,-8.15)}
+\waterpipe{(10.43,-8.15)--(13.07,-8.15)}
+\waterpipe{(15.53,-8.15)--(18.06,-8.15)}
+\foreach \x in {5.33,7.97,10.43,13.07,15.53}{
+ \shade[draw=steelEdge,line width=.43pt,top color=brassHi,bottom color=brassMid]
+  (\x-.055,-8.31) rectangle (\x+.055,-7.99);
 }
-% Two independent pumps feed the outer tanks.
-\draw[process] (0,-2.8)--(1,-2.8);
-\draw[equipment,fill=white] (1.35,-2.8) circle[radius=.35];
-\draw[ink,fill=flow!15] (1.15,-3)--(1.6,-2.8)--(1.15,-2.6)--cycle;
-\draw[process] (1.7,-2.8)--(4,-2.8)--(4,-3.65);
-\node[labelbox] at (4.9,-2.8) {$q_1\geq0$};
-\draw[process] (26,-2.8)--(25,-2.8);
-\draw[equipment,fill=white] (24.65,-2.8) circle[radius=.35];
-\draw[ink,fill=flow!15] (24.85,-3)--(24.4,-2.8)--(24.85,-2.6)--cycle;
-\draw[process] (24.3,-2.8)--(22,-2.8)--(22,-3.65);
-\node[labelbox] at (21,-2.8) {$q_2\geq0$};
-\node[annotation] at (13,-2.7) {Pump limits: $0\leq q_1,q_2\leq10^{-4}\;\mathrm{m^3\,s^{-1}}$\quad\quad $0\leq h_i\leq0.62\;\mathrm m$};
-% Bidirectional coupling: arrows define the positive sign, not a check valve.
-\draw[process] (6,-8.65)--(11,-8.65);
-\draw[ink,fill=white] (8.1,-8.4)--(8.6,-8.9)--(8.6,-8.4)--(8.1,-8.9)--cycle;
-\node[labelbox] at (8.5,-8) {$q_{13}:\ T_1\rightarrow T_3$};
-\node[annotation,align=center] at (8.5,-9.3) {signed coupling\\reverses if $h_1<h_3$};
-\draw[process] (15,-8.65)--(20,-8.65);
-\draw[ink,fill=white] (17.1,-8.4)--(17.6,-8.9)--(17.6,-8.4)--(17.1,-8.9)--cycle;
-\node[labelbox] at (17.5,-8) {$q_{32}:\ T_3\rightarrow T_2$};
-\node[annotation,align=center] at (17.5,-9.3) {signed coupling\\reverses if $h_3<h_2$};
-% Level observations and calibrated vessel markings.
-\foreach \xx/\id in {6/1,15/3,24/2} {
-  \draw[signal] (\xx,-5.7)--({\xx+.6},-5.7);
-  \node[instrument] at ({\xx+.95},-5.7) {LT\\$\id$};
+\hydvalve{6.65}{-8.15}{0}
+\hydvalve{11.75}{-8.15}{0}
+\hydvalve{16.82}{-8.15}{0}
+\node[tag] at (6.65,-7.66) {$V_{C1}$};
+\node[tag] at (11.75,-7.66) {$V_{C2}$};
+\node[tag] at (16.82,-7.66) {$V_{O4}$};
+% Reversible arrows indicate signed hydraulic coupling, NOT check valves.
+\foreach \x/\n in {6.65/13,11.75/32}{
+ \draw[waterInk,line width=.8pt,{Stealth[length=1.65mm,width=1.15mm]}-{Stealth[length=1.65mm,width=1.15mm]}]
+  (\x-.43,-7.20)--(\x+.43,-7.20);
+ \node[tag,text=waterInk] at (\x,-6.83) {$q_{\n}$};
 }
-% Closed drain branches are shown separately from the nominal flow network.
-\foreach \xx/\id in {4/1,13/3,22/2} {
-  \draw[ink!45,line width=.8pt] (\xx,-9.5)--(\xx,-11.45);
-  \draw[ink,fill=white] ({\xx-.22},-10.25)--({\xx+.22},-10.7)--({\xx-.22},-10.7)--({\xx+.22},-10.25)--cycle;
-  \draw[control,line width=1.1pt] ({\xx-.33},-10.8)--({\xx+.33},-10.15);
-  \node[annotation,anchor=west] at ({\xx+.5},-10.5) {drain $\id$ closed};
-  \draw[ink!45] ({\xx-.35},-11.45)--({\xx+.35},-11.45);
+\draw[outletarrow] (17.56,-8.15)--(18.38,-8.15);
+\node[smalltag,anchor=east,text=steelEdge] at (18.36,-8.60) {Lateral outlet};
+% Three independent drain branches, placed in physical order 1, 3, 2.
+% Arrows show possible discharge destinations, not a nominal open-valve state.
+\foreach \x/\id in {4.10/1,9.20/3,14.30/2}{
+ \waterpipe{(\x,-8.72)--(\x,-9.08)}
+ \waterpipe{(\x,-9.68)--(\x,-10.03)}
+ \shade[draw=steelEdge,line width=.5pt,top color=steelHi,bottom color=steelShade]
+  (\x-.16,-8.74) rectangle (\x+.16,-8.91);
+ \hydvalve{\x}{-9.38}{90}
+ \node[tag,anchor=west] at (\x+.54,-9.38) {$V_{O\id}$};
+ \draw[outletarrow] (\x,-10.03)--(\x,-10.65);
 }
-\node[annotation,anchor=west] at (0,-11.9) {Blue: liquid flows. Dashed orange: level observations. Crossed valves: zero nominal discharge; drain/fault experiments are explicit extensions.};
-\node[panel,anchor=north west,text width=7.75cm,minimum height=2.6cm,align=left] at (0,-12.6) {\textbf{Hydraulic coupling}\\[4pt]
- $q_{ij}=a\,\mu\,\operatorname{sgn}(h_i-h_j)$\\$\hphantom{q_{ij}=}\cdot\sqrt{2g|h_i-h_j|}$\\[4pt]
- $a=0.5\!\times\!10^{-4}\;\mathrm{m^2}$, $\mu=0.48$.};
-\node[panel,anchor=north west,text width=7.75cm,minimum height=2.6cm,align=left] at (8.8,-12.6) {\textbf{Nominal level balances}\\[4pt]
- $A\dot h_1=q_1-q_{13}$\\
- $A\dot h_3=q_{13}-q_{32}$\\
- $A\dot h_2=q_2+q_{32}$\\Time in seconds; levels in metres.};
-\node[panel,anchor=north west,text width=7.3cm,minimum height=2.6cm,align=left] at (17.6,-12.6) {\textbf{Conservation and operating limit}\\[4pt]
- $\displaystyle\frac{d}{dt}A(h_1+h_2+h_3)=q_1+q_2$.\\[4pt]
- With closed drains, positive pumping rules out a steady equilibrium. Corrected area unit: $\mathrm{m^2}$.};
-\atlasfooter{Scope: three-state nominal model, Eq. (36). Vessel heights in this drawing are illustrative. A tracking experiment with continuous pumping requires an explicitly declared outlet extension.}
+% Technical labels stay outside equipment, without large white masks.
+\node[annotation,anchor=west,font=\sffamily\fontsize{7.5}{9.2}\selectfont]
+ at (.30,-12.26) {Illustrative hydraulic bench; not to scale. Outlet arrows show connections, not valve opening.};
+% Two readable side panels separate topology from the nominal model.
+\node[techpanel,fill=panelAqua,anchor=north west,text width=5.95cm,
+ minimum height=3.7cm] at (19.35,-2.48)
+ {\textbf{Pump inputs and geometry}\\[6pt]
+ Independent inputs $q_1$ and $q_2$:\\[3pt]
+ $0\leq q_1,q_2\leq10^{-4}\;\mathrm{m^3\,s^{-1}}$.\\[7pt]
+ Equal tank areas:\\$A_T=0.0154\;\mathrm{m^2}$.\\[7pt]
+ Level limit: $h_{\max}=0.62\;\mathrm m$.\\
+ State order: $[h_1,h_2,h_3]^{\mathsf T}$.};
+\node[techpanel,fill=panelSand,anchor=north west,text width=5.95cm,
+ minimum height=4.6cm] at (19.35,-6.83)
+ {\textbf{Valve network and model scope}\\[6pt]
+ $V_{C1}$ couples $T_1$ and $T_3$.\\
+ $V_{C2}$ couples $T_3$ and $T_2$.\\[7pt]
+ $V_{O1}$, $V_{O3}$, $V_{O2}$: bottom drains.\\
+ $V_{O4}$: lateral outlet from $T_2$.\\[7pt]
+ \textbf{Nominal model: outlets closed.}\\
+ All outlet flows are zero. Opening an outlet requires a separately declared discharge extension.};
+% Bottom model cards preserve the existing equations and numerical parameters.
+\node[techpanel,fill=panelAqua,anchor=north west,text width=7.8cm,
+ minimum height=2.84cm] at (.20,-12.68)
+ {\textbf{Signed hydraulic coupling}\\[5pt]
+ $q_{ij}=a\mu\,\operatorname{sgn}(h_i-h_j)\sqrt{2g|h_i-h_j|}$.\\[6pt]
+ $a=0.5\!\times\!10^{-4}\;\mathrm{m^2}$, $\mu=0.48$.\\
+ Positive directions: $1\to3$ and $3\to2$.\\
+ Flow reverses when the head difference changes sign.};
+\node[techpanel,fill=panelSage,anchor=north west,text width=7.8cm,
+ minimum height=2.84cm] at (9.00,-12.68)
+ {\textbf{Nominal level balances}\\[5pt]
+ $A_T\dot h_1=q_1-q_{13}$\\
+ $A_T\dot h_3=q_{13}-q_{32}$\\
+ $A_T\dot h_2=q_2+q_{32}$\\[4pt]
+ Time in seconds; levels in metres.};
+\node[techpanel,fill=panelSand,anchor=north west,text width=7.55cm,
+ minimum height=2.84cm] at (17.80,-12.68)
+ {\textbf{Conservation and operating limit}\\[5pt]
+ $\displaystyle A_T\frac{d}{dt}(h_1+h_2+h_3)=q_1+q_2$.\\[6pt]
+ With closed outlets, positive net pumping increases total volume. Steady-flow tracking needs an explicit outlet model.};
+\atlasfooter{Scope: three-state nominal model, Eq. (36); complete valve topology follows Fig. 7. The collection basin is not an additional modeled state. Vessel levels, materials and bench details are illustrative; no measured geometry is inferred.}
 \end{tikzpicture}
 \end{document}
