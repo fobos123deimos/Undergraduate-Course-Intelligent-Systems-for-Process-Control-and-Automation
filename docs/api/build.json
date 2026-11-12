@@ -36,7 +36,7 @@
     "benchmarks/figures/tikz/04-throttle.png": "66ecca7ebf36e036f20346abaddef332b568f7930b84a7924a4ed0a733f642bd",
     "benchmarks/figures/tikz/05-pneumatic.png": "ed2bb06f751493cf34ca2ffe33db1fe73819542ebace22814cd8e43c976cd0b9",
     "benchmarks/figures/tikz/06-hydrostatic.png": "123383da436cec5f26bd688da7b942bc92c065fd84eedcc2033516990522ab2a",
-    "benchmarks/figures/tikz/07-three-tanks.png": "9129ec45db12f965358020d727a9c98ffc33d69488f3729b01dded4a120387c9",
+    "benchmarks/figures/tikz/07-three-tanks.png": "254635589068c9d2d93805b71acf546236651b00a38fcd2217671078854f91ba",
     "benchmarks/figures/tikz/08-bioreactor.png": "1c05060a05f796ec14f7a4fd6cf6be0d991b870d181534335c59026f845f1223",
     "benchmarks/figures/tikz/09-cstr.png": "05ef2b3e50dc06ebde5022d2ffdc4fe47b157a15eebe1eea8528c297ee671a54",
     "benchmarks/figures/tikz/10-column-a.png": "dd9e49bcb2a11e5d7e31f82aa82f7e6599962e491cf78b176e5e429ef14a3ec2",
@@ -58,7 +58,7 @@
     "benchmarks/results/pneumatic_physical.png": "23efc86ad47b8d7f715aa46212956c3f9da233ad24feed6b9c51c09331ada9ed",
     "benchmarks/results/hydrostatic-si/simulation.png": "7f368b1255635475318bfe34d1dfff7ba013c0067e098227214fa8a58c69da34",
     "benchmarks/results/wind_control.png": "5ebd29a6b5f1d550383ac47093cda06c23622be3e9e7957f446fe833efa1a7c9",
-    "benchmarks/figures/tikz/benchmark-atlas.pdf": "4322845596fad394876a63c9e679fd6bec64f24108d103debc59fc81173c8037"
+    "benchmarks/figures/tikz/benchmark-atlas.pdf": "0049e29b488eb038335b329eabb020090415d06d1a514eb9b9ee85a9faab10ee"
   },
   "artifact_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -68,7 +68,7 @@
     "assets/benchmarks/figures/tikz/04-throttle.png": "66ecca7ebf36e036f20346abaddef332b568f7930b84a7924a4ed0a733f642bd",
     "assets/benchmarks/figures/tikz/05-pneumatic.png": "ed2bb06f751493cf34ca2ffe33db1fe73819542ebace22814cd8e43c976cd0b9",
     "assets/benchmarks/figures/tikz/06-hydrostatic.png": "123383da436cec5f26bd688da7b942bc92c065fd84eedcc2033516990522ab2a",
-    "assets/benchmarks/figures/tikz/07-three-tanks.png": "9129ec45db12f965358020d727a9c98ffc33d69488f3729b01dded4a120387c9",
+    "assets/benchmarks/figures/tikz/07-three-tanks.png": "254635589068c9d2d93805b71acf546236651b00a38fcd2217671078854f91ba",
     "assets/benchmarks/figures/tikz/08-bioreactor.png": "1c05060a05f796ec14f7a4fd6cf6be0d991b870d181534335c59026f845f1223",
     "assets/benchmarks/figures/tikz/09-cstr.png": "05ef2b3e50dc06ebde5022d2ffdc4fe47b157a15eebe1eea8528c297ee671a54",
     "assets/benchmarks/figures/tikz/10-column-a.png": "dd9e49bcb2a11e5d7e31f82aa82f7e6599962e491cf78b176e5e429ef14a3ec2",
@@ -76,7 +76,7 @@
     "assets/benchmarks/figures/tikz/12-wind-turbine.png": "6f4514100fab7e5dc3862cd2b42d12e2657e04be7359482e05cdd2b2276f7fdb",
     "assets/benchmarks/figures/tikz/13-tennessee-eastman.png": "6c4f487c25da0da33c19aa7911f16fb64837e61f87b12677d4cc1a72d6c9a34f",
     "assets/benchmarks/figures/tikz/13b-tennessee-eastman-signals.png": "26318f299f27305016a6122c60e1362008a18231d705db0a31596b9c75c250e0",
-    "assets/benchmarks/figures/tikz/benchmark-atlas.pdf": "4322845596fad394876a63c9e679fd6bec64f24108d103debc59fc81173c8037",
+    "assets/benchmarks/figures/tikz/benchmark-atlas.pdf": "0049e29b488eb038335b329eabb020090415d06d1a514eb9b9ee85a9faab10ee",
     "assets/benchmarks/learning/figures/column_a.png": "da95c05d1703a3f78e148ad72bcbe55d8fbf2f9219d78db64df57b597f3e1b79",
     "assets/benchmarks/learning/figures/gasifier.png": "51cb4e1b0be2ffae6bbd54a096299020c5e28fe33d46e97088fd6dac0561ee3b",
     "assets/benchmarks/learning/figures/unit-09.png": "fcc60b306fd5d954f3d9a85a4094e04b8a65d2662df38788845ee2282f77f118",
