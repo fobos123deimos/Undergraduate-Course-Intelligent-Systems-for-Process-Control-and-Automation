@@ -128,8 +128,12 @@
   % Level dimensions use the common outlet elevation, not the vessel bottom.
   \draw[leveldim] (1.52,-8.10)--(1.52,#3);
   \draw[waterInk!50,line width=.45pt] (1.28,#3)--(1.65,#3) (1.28,-8.15)--(1.65,-8.15);
-  % Align $h_1$, $h_3$ and $h_2$ captions at one readable horizontal level; the level arrows retain their individual elevations.
-  \node[tag,anchor=west,text=waterInk] at (1.72,-6.725) {$h_{#2}$};
+  % Keep h_1 and h_3 aligned; center h_2 vertically on its own level arrow.
+  \ifnum#2=2\relax
+    \node[tag,anchor=west,text=waterInk] at (1.72,{(#3-8.10)/2}) {$h_{#2}$};
+  \else
+    \node[tag,anchor=west,text=waterInk] at (1.72,-6.725) {$h_{#2}$};
+  \fi
  \end{scope}%
 }
 % Directional pump symbol inside a painted and bolted metal housing.
@@ -275,7 +279,7 @@
 \draw[waterLight,line width=.75pt] (1.13,-10.80)--(17.66,-10.80);
 \draw[steelEdge,line width=.78pt] (.70,-10.52)--(.70,-11.53)--(18.10,-11.53)--(18.10,-10.52);
 \draw[steelHi,line width=1.2pt] (.80,-11.46)--(17.99,-11.46);
-\node[tag,text=waterInk!70!ink] at (9.40,-11.24) {Collection reservoir};
+\node[tag,text=waterInk!70!ink] at (9.20,-11.24) {Collection reservoir};
 % Physical vessel order follows the reference exactly.
 \tank{4.10}{1}{-5.35}
 \tank{9.20}{3}{-5.95}
