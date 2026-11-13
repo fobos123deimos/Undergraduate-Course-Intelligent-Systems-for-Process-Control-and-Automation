@@ -128,7 +128,8 @@
   % Level dimensions use the common outlet elevation, not the vessel bottom.
   \draw[leveldim] (1.52,-8.10)--(1.52,#3);
   \draw[waterInk!50,line width=.45pt] (1.28,#3)--(1.65,#3) (1.28,-8.15)--(1.65,-8.15);
-  \node[tag,anchor=west,text=waterInk] at (1.72,{(#3-8.10)/2}) {$h_{#2}$};
+  % Align $h_1$, $h_3$ and $h_2$ captions at one readable horizontal level; the level arrows retain their individual elevations.
+  \node[tag,anchor=west,text=waterInk] at (1.72,-6.725) {$h_{#2}$};
  \end{scope}%
 }
 % Directional pump symbol inside a painted and bolted metal housing.
@@ -274,7 +275,7 @@
 \draw[waterLight,line width=.75pt] (1.13,-10.80)--(17.66,-10.80);
 \draw[steelEdge,line width=.78pt] (.70,-10.52)--(.70,-11.53)--(18.10,-11.53)--(18.10,-10.52);
 \draw[steelHi,line width=1.2pt] (.80,-11.46)--(17.99,-11.46);
-\node[tag,text=waterInk!70!ink] at (9.40,-11.17) {Collection reservoir};
+\node[tag,text=waterInk!70!ink] at (9.40,-11.24) {Collection reservoir};
 % Physical vessel order follows the reference exactly.
 \tank{4.10}{1}{-5.35}
 \tank{9.20}{3}{-5.95}
@@ -283,7 +284,7 @@
 \draw[steelEdge!70,dash pattern=on 2pt off 2pt,line width=.55pt]
  (1.85,-4.78)--(2.81,-4.78) (1.85,-8.15)--(2.81,-8.15);
 \draw[dimension,line width=.72pt] (1.85,-8.10)--(1.85,-4.83);
-\node[tag,anchor=east] at (1.57,-6.46) {$h_{\max}$};
+\node[tag,anchor=east] at (1.57,-6.64) {$h_{\max}$};
 % Cross-sectional area marker in the empty portion of the centre vessel.
 \draw[glassEdge,dash pattern=on 2.4pt off 2pt,line width=.58pt]
  (9.20,-4.86) ellipse (1.08cm and .16cm);
@@ -293,15 +294,15 @@
 % Pump housings and labels sit wholly outside the window frames at .61/18.21.
 % All pipe ends share the .39 cm housing radius; outer feed stubs are equal.
 \waterpipe{(-1.10,-3.30)--(-.74,-3.30)}
-\waterpipe{(.04,-3.30)--(4.10,-3.30)--(4.10,-4.11)}
+\waterpipe{(.04,-3.30)--(4.10,-3.30)--(4.10,-4.19)}
 \waterpipe{(19.90,-3.30)--(19.54,-3.30)}
-\waterpipe{(18.76,-3.30)--(14.30,-3.30)--(14.30,-4.11)}
+\waterpipe{(18.76,-3.30)--(14.30,-3.30)--(14.30,-4.19)}
 \feedpump{-.35}{1}{1}
 \feedpump{19.15}{-1}{2}
-\draw[liquidarrow] (4.10,-4.11)--(4.10,-4.99);
-\draw[liquidarrow] (14.30,-4.11)--(14.30,-4.99);
-\node[tag,anchor=west,text=waterInk] at (4.46,-3.96) {$q_1$};
-\node[tag,anchor=east,text=waterInk] at (13.94,-3.96) {$q_2$};
+\draw[liquidarrow] (4.10,-4.19)--(4.10,-5.07);
+\draw[liquidarrow] (14.30,-4.19)--(14.30,-5.07);
+\node[tag,anchor=west,text=waterInk] at (4.46,-3.78) {$q_1$};
+\node[tag,anchor=east,text=waterInk] at (13.94,-3.78) {$q_2$};
 % Each connection enters/exits the shell flush on a shared pipe centreline.
 \waterpipe{(5.33,-8.15)--(7.97,-8.15)}
 \waterpipe{(10.43,-8.15)--(13.07,-8.15)}
@@ -323,17 +324,17 @@
  \node[tag,text=waterInk] at (\x,-6.83) {$q_{\n}$};
 }
 \draw[outletarrow] (17.56,-8.15)--(18.38,-8.15);
-\node[smalltag,anchor=east,text=steelEdge] at (18.36,-8.60) {Lateral outlet};
+\node[smalltag,anchor=east,text=steelEdge] at (18.36,-8.77) {Lateral outlet};
 % Three independent drain branches, placed in physical order 1, 3, 2.
 % Arrows show possible discharge destinations, not a nominal open-valve state.
 \foreach \x/\id in {4.10/1,9.20/3,14.30/2}{
  \waterpipe{(\x,-8.72)--(\x,-9.08)}
- \waterpipe{(\x,-9.68)--(\x,-10.03)}
+ \waterpipe{(\x,-9.68)--(\x,-10.07)}
  \shade[draw=steelEdge,line width=.5pt,top color=steelHi,bottom color=steelShade]
   (\x-.16,-8.74) rectangle (\x+.16,-8.91);
  \hydvalve{\x}{-9.38}{90}
- \node[tag,anchor=west] at (\x+.54,-9.38) {$V_{O\id}$};
- \draw[outletarrow] (\x,-10.03)--(\x,-10.65);
+ \node[tag,anchor=west] at (\x+.54,-9.50) {$V_{O\id}$};
+ \draw[outletarrow] (\x,-10.07)--(\x,-10.69);
 }
 \end{scope}
 % Technical labels stay outside equipment, without large white masks.
