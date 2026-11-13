@@ -141,7 +141,7 @@
   \shade[draw=steelEdge,line width=.55pt,inner color=steelHi,outer color=steelMid]
    (0,0) circle (.255);
   \path[draw=pumpDeep,fill=pumpBlue,line width=.65pt]
-   (-.19,-.145)--(.07,0)--(-.19,.145)--cycle;
+   (-.09,-.145)--(.17,0)--(-.09,.145)--cycle;
   \foreach \a in {45,135,225,315}{
    \fill[steelHi] (\a:.325) circle (.025);
    \fill[pumpDeep] (\a:.325) circle (.010);
@@ -292,12 +292,12 @@
 % Pump pipes feed outer tanks only; arrowheads stay inside the open mouths.
 % Pump housings and labels sit wholly outside the window frames at .61/18.21.
 % All pipe ends share the .39 cm housing radius; outer feed stubs are equal.
-\waterpipe{(-.85,-3.30)--(-.29,-3.30)}
-\waterpipe{(.49,-3.30)--(4.10,-3.30)--(4.10,-4.11)}
-\waterpipe{(19.65,-3.30)--(19.09,-3.30)}
-\waterpipe{(18.31,-3.30)--(14.30,-3.30)--(14.30,-4.11)}
-\feedpump{.10}{1}{1}
-\feedpump{18.70}{-1}{2}
+\waterpipe{(-.85,-3.30)--(-.44,-3.30)}
+\waterpipe{(.34,-3.30)--(4.10,-3.30)--(4.10,-4.11)}
+\waterpipe{(19.65,-3.30)--(19.24,-3.30)}
+\waterpipe{(18.46,-3.30)--(14.30,-3.30)--(14.30,-4.11)}
+\feedpump{-.05}{1}{1}
+\feedpump{18.85}{-1}{2}
 \draw[liquidarrow] (4.10,-4.11)--(4.10,-4.99);
 \draw[liquidarrow] (14.30,-4.11)--(14.30,-4.99);
 \node[tag,anchor=west,text=waterInk] at (4.46,-3.96) {$q_1$};
