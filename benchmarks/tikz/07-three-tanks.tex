@@ -141,14 +141,14 @@
   \shade[draw=steelEdge,line width=.55pt,inner color=steelHi,outer color=steelMid]
    (0,0) circle (.255);
   \path[draw=pumpDeep,fill=pumpBlue,line width=.65pt]
-   (-.14,-.145)--(.12,0)--(-.14,.145)--cycle;
+   (-.19,-.145)--(.07,0)--(-.19,.145)--cycle;
   \foreach \a in {45,135,225,315}{
    \fill[steelHi] (\a:.325) circle (.025);
    \fill[pumpDeep] (\a:.325) circle (.010);
   }
  \end{scope}
  % Compact centred captions leave room between the pump and window frame.
- \node[tag,anchor=north] at (#1,-3.87) {Pump\\$P_{#3}$};%
+ \node[tag,anchor=north] at (#1,-3.99) {Pump\\$P_{#3}$};%
 }
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
