@@ -1,5 +1,5 @@
 {
-  "generator": "Tectonic/pdfLaTeX (existing plates); pdfLaTeX (three-tank bench); Poppler, PyMuPDF and pypdf",
+  "generator": "Tectonic/pdfLaTeX (existing plates); pdfLaTeX (hydrostatic transmission); Poppler, PyMuPDF and pypdf",
   "paper_sections": 13,
   "plates": 14,
   "png_long_edge": 2600,
@@ -33,8 +33,8 @@
     "04-throttle.png": "66ecca7ebf36e036f20346abaddef332b568f7930b84a7924a4ed0a733f642bd",
     "05-pneumatic.pdf": "5e17dacff8a58a2ef5737cc8f7ba793c74beadd56bf38e7fee7be3c8f4aec056",
     "05-pneumatic.png": "ed2bb06f751493cf34ca2ffe33db1fe73819542ebace22814cd8e43c976cd0b9",
-    "06-hydrostatic.pdf": "eac223d85456ffb1c263ad7f38fc50b9f40ff06abe9cda1b1f1dbb27f41341cc",
-    "06-hydrostatic.png": "123383da436cec5f26bd688da7b942bc92c065fd84eedcc2033516990522ab2a",
+    "06-hydrostatic.pdf": "e34b96db489a6cf49ba412e7a131a0c115d7224015d0b645bf7380b7820a38d6",
+    "06-hydrostatic.png": "c82e3500e61a9148e34086b5b1e4fb8a804edf484bb3ae160de1ca0a4b94cc1f",
     "07-three-tanks.pdf": "a79adc92922ad6e6edfe874451b3dcd43bb9cae2103bd29be9b9b92f68bf2bfb",
     "07-three-tanks.png": "3d1623cb8ada7ac5350c9e9f1ec5c353ae1c05c0394751c179cf6e47300d31de",
     "08-bioreactor.pdf": "e5e0a65813133031ea9561fb054f9b1f7b962897c5a8cc86919723875a68a9f4",
@@ -51,13 +51,13 @@
     "13-tennessee-eastman.png": "6c4f487c25da0da33c19aa7911f16fb64837e61f87b12677d4cc1a72d6c9a34f",
     "13b-tennessee-eastman-signals.pdf": "3b77aae7426eae9167f782160dc7e18e7cbb86c8da0881354669963a2f7912fb",
     "13b-tennessee-eastman-signals.png": "26318f299f27305016a6122c60e1362008a18231d705db0a31596b9c75c250e0",
-    "benchmark-atlas.pdf": "9114652c14e9da070a836c85cbbada068f73e9e59c70f69013043c88013981cd"
+    "benchmark-atlas.pdf": "6f76a588b67abdd21c0fe2a40e9a75341d8e59005433b873d32ec9d1af3f0db4"
   },
   "scope": "Original explanatory diagrams; numerical validation status is unchanged.",
   "incremental_build": {
-    "plate": "07-three-tanks",
+    "plate": "06-hydrostatic",
     "compiler": "pdfLaTeX (GitHub Actions)",
     "reused_plates": 13,
-    "scope": "Hydraulic teaching bench; reference order T1-T3-T2, two pumps, two coupling valves, four selectable outlets and collection basin. Existing closed-outlet nominal balances retained."
+    "scope": "Closed-loop hydraulic drive with pump, motor, two pressure lines, electronic displacement control, mechanical gearbox and wheel load. SI equations and calibration limitations retained."
   }
 }
