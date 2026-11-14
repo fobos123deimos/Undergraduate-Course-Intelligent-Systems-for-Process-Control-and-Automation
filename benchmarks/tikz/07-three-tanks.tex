@@ -364,21 +364,21 @@
  All outlet flows are zero. Opening an outlet requires a separately declared discharge extension.};
 % Bottom model cards preserve the existing equations and numerical parameters.
 \node[techpanel,fill=panelAqua,anchor=north west,text width=9.15cm,
- minimum height=2.84cm] at (.20,-12.68)
+ minimum height=2.84cm] at (.20,-12.80)
  {\textbf{Signed hydraulic coupling}\\[5pt]
  $q_{ij}=a\mu\,\operatorname{sgn}(h_i-h_j)\sqrt{2g|h_i-h_j|}$.\\[6pt]
  $a=0.5\!\times\!10^{-4}\;\mathrm{m^2}$, $\mu=0.48$.\\
  Positive directions: $1\to3$ and $3\to2$.\\
  Flow reverses when the head difference changes sign.};
 \node[techpanel,fill=panelSage,anchor=north west,text width=9.15cm,
- minimum height=2.84cm] at (10.35,-12.68)
+ minimum height=2.84cm] at (10.35,-12.80)
  {\textbf{Nominal level balances}\\[5pt]
  $A_T\dot h_1=q_1-q_{13}$\\
  $A_T\dot h_3=q_{13}-q_{32}$\\
  $A_T\dot h_2=q_2+q_{32}$\\[4pt]
  Time in seconds; levels in metres.};
 \node[techpanel,fill=panelSand,anchor=north west,text width=8.85cm,
- minimum height=2.84cm] at (20.50,-12.68)
+ minimum height=2.84cm] at (20.50,-12.80)
  {\textbf{Conservation and operating limit}\\[5pt]
  $\displaystyle A_T\frac{d}{dt}(h_1+h_2+h_3)=q_1+q_2$.\\[6pt]
  With closed outlets, positive net pumping\\
