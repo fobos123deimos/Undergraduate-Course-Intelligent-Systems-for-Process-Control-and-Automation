@@ -59,8 +59,8 @@
   \draw[ink!25,line width=.7pt] (0,-1.25)--(30.00,-1.25);%
 }
 \renewcommand{\atlasfooter}[1]{%
-  \draw[ink!25,line width=.5pt] (0,-15.8)--(30.00,-15.8);%
-  \node[anchor=north west,annotation,text width=29.8cm] at (0,-16) {#1\\Original explanatory drawing. Source: Kroll \& Schulte (2014), DOI: 10.1016/j.asoc.2014.08.034. Model variants are identified in the accompanying case sheet.};%
+  \draw[ink!25,line width=.5pt] (0,-15.96)--(30.00,-15.96);%
+  \node[anchor=north west,annotation,text width=29.8cm] at (0,-16.16) {#1\\Original explanatory drawing. Source: Kroll \& Schulte (2014), DOI: 10.1016/j.asoc.2014.08.034. Model variants are identified in the accompanying case sheet.};%
 }
 \tikzset{
   every node/.style={font=\sffamily\small,text=ink},
@@ -124,7 +124,8 @@
   \path[draw=glassEdge!65,line width=.42pt,fill=glassTint!35!white]
    (0,-4.45) ellipse (1.15cm and .14cm);
   \draw[white,line width=.52pt] (-1.15,-4.47) arc[start angle=180,end angle=360,x radius=1.15,y radius=.14];
-  \node[font=\sffamily\bfseries\large,text=waterInk!65!ink] at (-.25,-7.48) {$T_{#2}$};
+  % Center each tank identifier in its illustrated water column, not at a common absolute height.
+  \node[font=\sffamily\bfseries\large,text=waterInk!65!ink] at (0,{(#3-8.56)/2}) {$T_{#2}$};
   % Level dimensions use the common outlet elevation, not the vessel bottom.
   \draw[leveldim] (1.52,-8.10)--(1.52,#3);
   \draw[waterInk!50,line width=.45pt] (1.28,#3)--(1.65,#3) (1.28,-8.15)--(1.65,-8.15);
