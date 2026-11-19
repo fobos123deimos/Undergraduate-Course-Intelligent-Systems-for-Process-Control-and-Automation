@@ -35,19 +35,26 @@
   \draw[flow,line width=1.9pt,line join=round,-{Latex[length=2.6mm]}] #1;
 }
 % Physically descriptive but intentionally nonstandard housing illustration.
+% A single radius drives the housings and all their physical connections.
+% Casing details scale together; the displacement arrows keep their own size.
+\newcommand{\hydMachineRadius}{1.10}
+\pgfmathsetmacro{\hydMachineScale}{\hydMachineRadius/1.30}
+\pgfmathsetmacro{\hydCommandRadius}{\hydMachineRadius+.02}
 \newcommand{\hydmachine}[2]{%
+  \begin{scope}[shift={(#1,#2)},scale=\hydMachineScale]
   \shade[draw=hydGraphite,line width=1.1pt,inner color=hydSteelHi,
-    outer color=hydSteelMid] (#1,#2) circle (1.30);
+    outer color=hydSteelMid] (0,0) circle (1.30);
   \shade[draw=hydSteel!85,line width=.55pt,inner color=hydSteelHi,
-    outer color=hydTeal!38!hydSteelMid] (#1,#2) circle (1.14);
-  \draw[hydGraphite!65,line width=.65pt] (#1,#2) circle (1.18);
+    outer color=hydTeal!38!hydSteelMid] (0,0) circle (1.14);
+  \draw[hydGraphite!65,line width=.65pt] (0,0) circle (1.18);
   \foreach \a in {45,135,225,315}{%
     \shade[draw=hydGraphite,line width=.28pt,top color=hydSteelHi,
-      bottom color=hydSteel] ($(#1,#2)+(\a:1.23)$) circle (.075);
-    \fill[hydGraphite] ($(#1,#2)+(\a:1.23)$) circle (.022);
+      bottom color=hydSteel] (\a:1.23) circle (.075);
+    \fill[hydGraphite] (\a:1.23) circle (.022);
   }
   \draw[white,opacity=.74,line width=1.0pt]
-    ($(#1,#2)+(145:1.04)$) arc[start angle=145,end angle=225,radius=1.04];
+    (145:1.04) arc[start angle=145,end angle=225,radius=1.04];
+  \end{scope}
 }
 \tikzset{
   hydPanelA/.style={panel,fill=hydSky!62!white,draw=hydSteel!32},
@@ -104,7 +111,15 @@
 }
 \node[labelbox,anchor=north] at (1.65,-8.35)
   {combustion engine\\prescribed $\omega_P$ [rad/s]};
-\hydshaft{(2.94,-6.95)--(5.20,-6.95)}
+\coordinate (pumpCenter) at (6.5,-6.95);
+\coordinate (motorCenter) at (15.5,-6.95);
+\coordinate (pumpWest) at ($(pumpCenter)+(180:\hydMachineRadius)$);
+\coordinate (pumpNorth) at ($(pumpCenter)+(90:\hydMachineRadius)$);
+\coordinate (pumpSouth) at ($(pumpCenter)+(270:\hydMachineRadius)$);
+\coordinate (motorEast) at ($(motorCenter)+(0:\hydMachineRadius)$);
+\coordinate (motorNorth) at ($(motorCenter)+(90:\hydMachineRadius)$);
+\coordinate (motorSouth) at ($(motorCenter)+(270:\hydMachineRadius)$);
+\hydshaft{(2.94,-6.95)--(pumpWest)}
 % Local shaft coordinates keep the rotation marker centered on the shaft.
 \begin{scope}[shift={(3.65,-6.95)}]
 \draw[ink,line width=.9pt,-{Latex[length=2mm]}] (50:.28 and .55)
@@ -113,30 +128,32 @@
 \node[labelbox,anchor=south] at (3.65,-6.25) {$\omega_P$};
 % Pump and motor: coaxial metal housings; arrows retain the same
 % displacement sign and energy-transfer convention as the approved source.
-\coordinate (pumpCenter) at (6.5,-6.95);
-\coordinate (motorCenter) at (15.5,-6.95);
 % Symmetric upper-rim command targets include the 1.1 pt casing stroke.
 % Their geometry follows the anchored mechanical links in the reference above.
-\coordinate (pumpCommand) at ($(pumpCenter)+(120:1.32)$);
-\coordinate (motorCommand) at ($(motorCenter)+(60:1.32)$);
+\coordinate (pumpCommand) at ($(pumpCenter)+(120:\hydCommandRadius)$);
+\coordinate (motorCommand) at ($(motorCenter)+(60:\hydCommandRadius)$);
 \hydmachine{6.5}{-6.95}
+\begin{scope}[shift={(pumpCenter)},scale=\hydMachineScale]
 \shade[draw=hydGraphite,line width=.8pt,top color=hydTealHi,
-  bottom color=hydTeal] (6.15,-6.10)--(6.85,-6.10)--(6.5,-5.75)--cycle;
-% Centered 3.70 cm arrows remain proportional to the 2.60 cm housings.
+  bottom color=hydTeal] (-.35,.85)--(.35,.85)--(0,1.20)--cycle;
+\end{scope}
+% Centered 3.70 cm arrows have greater prominence on the 2.20 cm housings.
 % The 38-degree inclination clears the casing fasteners at 45/225 degrees,
 % and the enlarged arrowheads sit beyond the outer rim.
 \draw[hydVariation] ($(pumpCenter)+(218:1.85)$)--($(pumpCenter)+(38:1.85)$);
 \hydmachine{15.5}{-6.95}
+\begin{scope}[shift={(motorCenter)},scale=\hydMachineScale]
 \shade[draw=hydGraphite,line width=.8pt,top color=hydTealHi,
-  bottom color=hydTeal] (15.15,-5.95)--(15.85,-5.95)--(15.5,-6.30)--cycle;
+  bottom color=hydTeal] (-.35,1.00)--(.35,1.00)--(0,.65)--cycle;
+\end{scope}
 \draw[hydVariation] ($(motorCenter)+(218:1.85)$)--($(motorCenter)+(38:1.85)$);
 % Closed hydraulic loop and measured line pressures.
-\hydpipe{(6.5,-5.65)--(6.5,-4.62)--(15.5,-4.62)--(15.5,-5.65)}
-\hydpipe{(15.5,-8.25)--(15.5,-10.1)--(6.5,-10.1)--(6.5,-8.25)}
+\hydpipe{(pumpNorth)--(6.5,-4.62)--(15.5,-4.62)--(motorNorth)}
+\hydpipe{(motorSouth)--(15.5,-10.1)--(6.5,-10.1)--(pumpSouth)}
 \node[labelbox,anchor=south] at (11,-4.42) {line A: $p_A$ [Pa], $Q_P=D_Pa_P\omega_P$ [m$^3$/s]};
 \node[labelbox,anchor=north] at (11,-10.3) {line B: $p_B$ [Pa] \quad return path};
-\node[labelbox,anchor=north] at (6.5,-8.55) {variable pump\\$D_P a_P$ [m$^3$/rad]};
-\node[labelbox,anchor=north] at (15.5,-8.55) {variable motor\\$D_M a_M$ [m$^3$/rad]};
+\node[labelbox,anchor=north] at ($(pumpSouth)+(0,-.30)$) {variable pump\\$D_P a_P$ [m$^3$/rad]};
+\node[labelbox,anchor=north] at ($(motorSouth)+(0,-.30)$) {variable motor\\$D_M a_M$ [m$^3$/rad]};
 \node[instrument] (pa) at (10,-5.2) {$p_A$};
 \node[instrument] (pb) at (12,-9) {$p_B$};
 \draw[ink,line width=.7pt] (10,-4.62)--(pa.north) (12,-10.1)--(pb.south);
@@ -150,7 +167,7 @@
 \node[annotation,anchor=east,align=center] at (10.45,-6.85) {loss\\term};
 % Motor shaft, machined gearbox and wheel. Illustrated metal highlights
 % describe surfaces only, without altering the drive reduction or load.
-\hydshaft{(16.8,-6.95)--(18.1,-6.95)}
+\hydshaft{(motorEast)--(18.1,-6.95)}
 \shade[draw=hydGraphite,line width=1.1pt,top color=hydSteelHi,
   bottom color=hydSteelMid] (18.1,-5.95) rectangle (20.3,-7.95);
 \draw[hydSteel,line width=.6pt] (18.22,-6.09) rectangle (20.18,-7.81);
