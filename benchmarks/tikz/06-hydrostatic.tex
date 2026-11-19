@@ -61,7 +61,7 @@
 % surface. These backgrounds are not modeled process equipment.
 \begin{scope}[on background layer]
   \shade[top color=hydWall,bottom color=hydSage!60!white]
-    (.08,-2.35) rectangle (25.80,-12.04);
+    (.08,-2.29) rectangle (25.80,-12.04);
   \shade[top color=hydSage!18!hydWall,bottom color=hydSage]
     (.08,-9.90) rectangle (25.80,-12.04);
   \draw[hydSteel!19,line width=.65pt] (.08,-9.91)--(25.80,-9.91);
@@ -186,25 +186,25 @@
 % reduced SI model contains a measured pedal/switch transfer function.
 % Green paths terminate on the ECU, separately from the orange command bus.
 \draw[utility!75!ink,line width=.75pt,line cap=round]
-  (8.66,-2.76)--(8.66,-2.84)--(5.39,-2.84);
+  (8.66,-2.91)--(8.66,-2.84)--(5.39,-2.84);
 \draw[utility!75!ink,line width=.75pt,line cap=round]
-  (13.28,-2.76)--(13.28,-3.02)--(5.39,-3.02);
+  (13.28,-2.91)--(13.28,-3.02)--(5.39,-3.02);
 % Drive pedal: sloped tread, hinged base and small visible fastener.
 \shade[draw=hydGraphite,line width=.6pt,top color=hydSteelHi,
-  bottom color=hydSteel] (8.37,-2.82) rectangle (8.89,-2.73);
-\draw[hydGraphite,line width=.9pt] (8.54,-2.74)--(8.81,-2.43);
+  bottom color=hydSteel] (8.37,-2.97) rectangle (8.89,-2.88);
+\draw[hydGraphite,line width=.9pt] (8.54,-2.89)--(8.81,-2.58);
 \shade[draw=hydGraphite,line width=.55pt,top color=hydSteelHi,
   bottom color=hydSteelMid]
-  (8.47,-2.42)--(8.99,-2.52)--(8.94,-2.59)--(8.43,-2.49)--cycle;
-\draw[hydGraphite!65,line width=.35pt] (8.53,-2.45)--(8.91,-2.53);
-\node[annotation,anchor=west] at (9.11,-2.60) {drive pedal};
+  (8.47,-2.57)--(8.99,-2.67)--(8.94,-2.74)--(8.43,-2.64)--cycle;
+\draw[hydGraphite!65,line width=.35pt] (8.53,-2.60)--(8.91,-2.68);
+\node[annotation,anchor=west] at (9.11,-2.68) {drive pedal};
 % Driving direction selector: neutral-position lever and socket.
 \shade[draw=hydGraphite,line width=.6pt,top color=hydSteelHi,
-  bottom color=hydSteel] (12.99,-2.82) rectangle (13.58,-2.73);
-\draw[hydGraphite,line width=1pt] (13.29,-2.73)--(13.15,-2.42);
+  bottom color=hydSteel] (12.99,-2.97) rectangle (13.58,-2.88);
+\draw[hydGraphite,line width=1pt] (13.29,-2.88)--(13.15,-2.57);
 \shade[draw=hydGraphite,line width=.55pt,inner color=hydSteelHi,
-  outer color=hydSteelMid] (13.15,-2.37) circle (.095);
-\node[annotation,anchor=west] at (13.79,-2.60) {direction selector};
+  outer color=hydSteelMid] (13.15,-2.52) circle (.095);
+\node[annotation,anchor=west] at (13.79,-2.68) {direction selector};
 % Displacement control and feedback.
 \node[box,draw=hydGraphite,fill=hydGraphite!92,rounded corners=2pt,
   text=white,minimum width=4.6cm,minimum height=1.25cm] (ecu)
