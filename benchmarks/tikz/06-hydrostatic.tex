@@ -263,7 +263,7 @@
 \draw[control,line width=.8pt,dashed] (ecuCommand)--(pumpBranch);
 \draw[signal] (pumpBranch)--(pumpCommand);
 \draw[signal] (pumpBranch)--(motorBranch)--(motorCommand);
-\node[annotation,anchor=west] at (18,-3.1) {first-order angle actuators\\$\dot a_j=(r_j-a_j)/\tau_j$};
+\node[annotation,anchor=south,align=center] at (19.2,-5.50) {first-order angle actuators\\$\dot a_j=(r_j-a_j)/\tau_j$};
 \coordinate (ecuSpeed) at (4.2,0 |- ecu.south);
 \draw[signal] (speed.south)--(17.4,-11.6)--(4.2,-11.6)--(ecuSpeed);
 \draw[signal] (pa.west)-|(7.8,-4.06)--(ecuPressure);

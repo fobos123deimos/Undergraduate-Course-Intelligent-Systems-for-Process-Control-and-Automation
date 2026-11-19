@@ -12,7 +12,7 @@
     "benchmarks/tikz/03-pendulum.tex": "14c7cc71aac61c77e45a69b26ebf1516771759fab1aae027954c32795d5f339c",
     "benchmarks/tikz/04-throttle.tex": "dec49b343e2ca064bec32e05fae6c8fb3e77e5918607d4baf69ed833fdb3ade9",
     "benchmarks/tikz/05-pneumatic.tex": "226fe31c4f3c7a7e703251d498ca3c3e3a7c7f67c62f6f39a74eaab8d9dcd5e8",
-    "benchmarks/tikz/06-hydrostatic.tex": "e5c01b609e8b70faa0673c671659c6db8902050ebdf0815104e11c1ac2adc243",
+    "benchmarks/tikz/06-hydrostatic.tex": "9ce7253f36d8704c3bf049b3747e29e3889e20cf0d67ebafa03580795768939f",
     "benchmarks/tikz/07-three-tanks.tex": "d949f5eda3069ee09e191312bf6c9dd6f59da10b9d6e7708450fe201b57be5d9",
     "benchmarks/tikz/08-bioreactor.tex": "e8914289b3689261be62392fce1ff26c71aae2dfea5be8a2ba88a80893a8108a",
     "benchmarks/tikz/09-cstr.tex": "7579bae48a0d0969061ca547a43eb277b019767c7042b65f56b63ffed3f83bc2",
@@ -33,8 +33,8 @@
     "04-throttle.png": "66ecca7ebf36e036f20346abaddef332b568f7930b84a7924a4ed0a733f642bd",
     "05-pneumatic.pdf": "5e17dacff8a58a2ef5737cc8f7ba793c74beadd56bf38e7fee7be3c8f4aec056",
     "05-pneumatic.png": "ed2bb06f751493cf34ca2ffe33db1fe73819542ebace22814cd8e43c976cd0b9",
-    "06-hydrostatic.pdf": "f8f770ead180c741e88984f06b53e50929ed7725de914d9b2b5a63e6ac911484",
-    "06-hydrostatic.png": "8e260aa9137d4c3fa12251f1a958d6e00954935107eb96a8950adbd188ecae13",
+    "06-hydrostatic.pdf": "45b07e2d2c14320c054b95ccd00dd607a58f607da1cebe15375b6cf5f8e8c21c",
+    "06-hydrostatic.png": "463ae0cb2841b01a71a7b872cc84dc7a7528c68927c2cc8bf29d48ad2b8ff1f5",
     "07-three-tanks.pdf": "a79adc92922ad6e6edfe874451b3dcd43bb9cae2103bd29be9b9b92f68bf2bfb",
     "07-three-tanks.png": "3d1623cb8ada7ac5350c9e9f1ec5c353ae1c05c0394751c179cf6e47300d31de",
     "08-bioreactor.pdf": "e5e0a65813133031ea9561fb054f9b1f7b962897c5a8cc86919723875a68a9f4",
@@ -51,13 +51,13 @@
     "13-tennessee-eastman.png": "6c4f487c25da0da33c19aa7911f16fb64837e61f87b12677d4cc1a72d6c9a34f",
     "13b-tennessee-eastman-signals.pdf": "3b77aae7426eae9167f782160dc7e18e7cbb86c8da0881354669963a2f7912fb",
     "13b-tennessee-eastman-signals.png": "26318f299f27305016a6122c60e1362008a18231d705db0a31596b9c75c250e0",
-    "benchmark-atlas.pdf": "5cb37a532c9a30415029002b8c3c9dfc49d0288271dac3abaeeeeb6af547adb9"
+    "benchmark-atlas.pdf": "5fbcd07b56beeab7ebb378c26580f81f04aae6eee008c018f66ad46f356e6d11"
   },
   "scope": "Original explanatory diagrams; numerical validation status is unchanged.",
   "incremental_build": {
     "plate": "06-hydrostatic",
-    "compiler": "pdfLaTeX (GitHub Actions)",
+    "compiler": "pdfLaTeX (local render, visually reviewed)",
     "reused_plates": 13,
-    "scope": "Closed-loop hydraulic drive with pump, motor, two pressure lines, electronic displacement control, mechanical gearbox and wheel load. SI equations and calibration limitations retained."
+    "scope": "Move the first-order angle actuator annotation slightly left and center its text and equation above the gearbox, with clear spacing from the casing and the motor displacement arrow."
   }
 }
