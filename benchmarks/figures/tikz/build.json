@@ -33,7 +33,7 @@
     "04-throttle.png": "66ecca7ebf36e036f20346abaddef332b568f7930b84a7924a4ed0a733f642bd",
     "05-pneumatic.pdf": "5e17dacff8a58a2ef5737cc8f7ba793c74beadd56bf38e7fee7be3c8f4aec056",
     "05-pneumatic.png": "ed2bb06f751493cf34ca2ffe33db1fe73819542ebace22814cd8e43c976cd0b9",
-    "06-hydrostatic.pdf": "45b07e2d2c14320c054b95ccd00dd607a58f607da1cebe15375b6cf5f8e8c21c",
+    "06-hydrostatic.pdf": "3482157bbce7dcfe5be76dad0b0b6692577ef5a1e280c86b227591fdbc834ea7",
     "06-hydrostatic.png": "463ae0cb2841b01a71a7b872cc84dc7a7528c68927c2cc8bf29d48ad2b8ff1f5",
     "07-three-tanks.pdf": "a79adc92922ad6e6edfe874451b3dcd43bb9cae2103bd29be9b9b92f68bf2bfb",
     "07-three-tanks.png": "3d1623cb8ada7ac5350c9e9f1ec5c353ae1c05c0394751c179cf6e47300d31de",
@@ -56,8 +56,8 @@
   "scope": "Original explanatory diagrams; numerical validation status is unchanged.",
   "incremental_build": {
     "plate": "06-hydrostatic",
-    "compiler": "pdfLaTeX (local render, visually reviewed)",
+    "compiler": "pdfLaTeX (GitHub Actions)",
     "reused_plates": 13,
-    "scope": "Move the first-order angle actuator annotation slightly left and center its text and equation above the gearbox, with clear spacing from the casing and the motor displacement arrow."
+    "scope": "Closed-loop hydraulic drive with pump, motor, two pressure lines, electronic displacement control, mechanical gearbox and wheel load. SI equations and calibration limitations retained."
   }
 }
