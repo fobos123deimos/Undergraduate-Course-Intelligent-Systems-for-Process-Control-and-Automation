@@ -33,7 +33,7 @@
     "04-throttle.png": "66ecca7ebf36e036f20346abaddef332b568f7930b84a7924a4ed0a733f642bd",
     "05-pneumatic.pdf": "5e17dacff8a58a2ef5737cc8f7ba793c74beadd56bf38e7fee7be3c8f4aec056",
     "05-pneumatic.png": "ed2bb06f751493cf34ca2ffe33db1fe73819542ebace22814cd8e43c976cd0b9",
-    "06-hydrostatic.pdf": "d1fd60e9ec8dbc06084513326e92efd1d0f7dadd57abb68b91849f95f38066c1",
+    "06-hydrostatic.pdf": "f8f770ead180c741e88984f06b53e50929ed7725de914d9b2b5a63e6ac911484",
     "06-hydrostatic.png": "8e260aa9137d4c3fa12251f1a958d6e00954935107eb96a8950adbd188ecae13",
     "07-three-tanks.pdf": "a79adc92922ad6e6edfe874451b3dcd43bb9cae2103bd29be9b9b92f68bf2bfb",
     "07-three-tanks.png": "3d1623cb8ada7ac5350c9e9f1ec5c353ae1c05c0394751c179cf6e47300d31de",
@@ -56,8 +56,8 @@
   "scope": "Original explanatory diagrams; numerical validation status is unchanged.",
   "incremental_build": {
     "plate": "06-hydrostatic",
-    "compiler": "pdfLaTeX (local render, visually reviewed)",
+    "compiler": "pdfLaTeX (GitHub Actions)",
     "reused_plates": 13,
-    "scope": "Lengthen the p_A vertical sensing stem by lowering the instrument 2 mm; derive the orange pressure-return elbow from the instrument anchor to retain exact horizontal alignment."
+    "scope": "Closed-loop hydraulic drive with pump, motor, two pressure lines, electronic displacement control, mechanical gearbox and wheel load. SI equations and calibration limitations retained."
   }
 }
