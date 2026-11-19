@@ -33,7 +33,7 @@
     "04-throttle.png": "66ecca7ebf36e036f20346abaddef332b568f7930b84a7924a4ed0a733f642bd",
     "05-pneumatic.pdf": "5e17dacff8a58a2ef5737cc8f7ba793c74beadd56bf38e7fee7be3c8f4aec056",
     "05-pneumatic.png": "ed2bb06f751493cf34ca2ffe33db1fe73819542ebace22814cd8e43c976cd0b9",
-    "06-hydrostatic.pdf": "6d5102a564aa2c0d0d43c95bf9dd4339d699850ba1eee2c9f83981e6b3dafdc0",
+    "06-hydrostatic.pdf": "c5b0def3e801e669d071009d771ad3813078aecc0f0ac1cba0db5ef96bcc9587",
     "06-hydrostatic.png": "e7c200b474ddf14ff58bbce58be3bdeb6f8fd56084630c4ef5b47b49718b4367",
     "07-three-tanks.pdf": "a79adc92922ad6e6edfe874451b3dcd43bb9cae2103bd29be9b9b92f68bf2bfb",
     "07-three-tanks.png": "3d1623cb8ada7ac5350c9e9f1ec5c353ae1c05c0394751c179cf6e47300d31de",
@@ -56,8 +56,8 @@
   "scope": "Original explanatory diagrams; numerical validation status is unchanged.",
   "incremental_build": {
     "plate": "06-hydrostatic",
-    "compiler": "pdfLaTeX (local render, visually reviewed)",
+    "compiler": "pdfLaTeX (GitHub Actions)",
     "reused_plates": 13,
-    "scope": "Operator-control lines separated at 3.2 mm pitch; centered underside connections and smooth elbows; ECU ports, upper hydraulic rail and label spacing synchronized without changing circuit topology."
+    "scope": "Closed-loop hydraulic drive with pump, motor, two pressure lines, electronic displacement control, mechanical gearbox and wheel load. SI equations and calibration limitations retained."
   }
 }
