@@ -154,7 +154,7 @@
 \node[labelbox,anchor=north] at (11,-10.3) {line B: $p_B$ [Pa] \quad return path};
 \node[labelbox,anchor=north] at ($(pumpSouth)+(0,-.30)$) {variable pump\\$D_P a_P$ [m$^3$/rad]};
 \node[labelbox,anchor=north] at ($(motorSouth)+(0,-.30)$) {variable motor\\$D_M a_M$ [m$^3$/rad]};
-\node[instrument] (pa) at (10,-5.2) {$p_A$};
+\node[instrument] (pa) at (10,-5.4) {$p_A$};
 \node[instrument] (pb) at (12,-9) {$p_B$};
 \draw[ink,line width=.7pt] (10,-4.62)--(pa.north) (12,-10.1)--(pb.south);
 % Internal leakage is an explicit reduced loss, not a relief valve.
@@ -266,7 +266,7 @@
 \node[annotation,anchor=west] at (18,-3.1) {first-order angle actuators\\$\dot a_j=(r_j-a_j)/\tau_j$};
 \coordinate (ecuSpeed) at (4.2,0 |- ecu.south);
 \draw[signal] (speed.south)--(17.4,-11.6)--(4.2,-11.6)--(ecuSpeed);
-\draw[signal] (pa.west)--(7.8,-5.2)--(7.8,-4.06)--(ecuPressure);
+\draw[signal] (pa.west)-|(7.8,-4.06)--(ecuPressure);
 \draw[signal] (pb.west)--(8.1,-9)--(8.1,-11.6);
 \node[labelbox] at (9,-11.6) {speed / pressure measurements support control};
 \node[annotation,anchor=west,text width=4.6cm] at (20.8,-10.1) {Dark lines: shafts.\\Dark arcs: shaft / wheel rotation.\\Blue arrows: nominal oil flow.\\Dashed lines: signals.\\Reverse operation reverses flow.};
