@@ -8,7 +8,9 @@
 % TikZ.net drawing references (not copied artwork):
 % https://tikz.net/mechanical-systems/ -- precise mechanical links and nodes.
 % https://tikz.net/fluid_dynamics_pressure/ -- metal/fluid gradations and flow arrows.
-% https://tikz.net/fluid_dynamics_barometer/ -- layered tubular paths.
+% https://tikz.net/fluid_dynamics_barometer/ -- layered tubular paths and smooth elbows.
+% Mechanical node anchors and explicit shared endpoints also guide the
+% operator-control connections below; both references reviewed 2026-11-19.
 \definecolor{hydWall}{HTML}{F3F1E9}
 \definecolor{hydSage}{HTML}{DDE8E0}
 \definecolor{hydSteel}{HTML}{677F86}
@@ -120,17 +122,17 @@
 \draw[control,-{Latex[length=2.2mm]},line width=1.1pt]
   (14.35,-8)--(16.6,-5.85);
 % Closed hydraulic loop and measured line pressures.
-\hydpipe{(6.5,-5.65)--(6.5,-4.1)--(15.5,-4.1)--(15.5,-5.65)}
+\hydpipe{(6.5,-5.65)--(6.5,-4.62)--(15.5,-4.62)--(15.5,-5.65)}
 \hydpipe{(15.5,-8.25)--(15.5,-10.1)--(6.5,-10.1)--(6.5,-8.25)}
-\node[labelbox,anchor=south] at (11,-3.9) {line A: $p_A$ [Pa], $Q_P=D_Pa_P\omega_P$ [m$^3$/s]};
+\node[labelbox,anchor=south] at (11,-4.42) {line A: $p_A$ [Pa], $Q_P=D_Pa_P\omega_P$ [m$^3$/s]};
 \node[labelbox,anchor=north] at (11,-10.3) {line B: $p_B$ [Pa] \quad return path};
 \node[labelbox,anchor=north] at (6.5,-8.55) {variable pump\\$D_P a_P$ [m$^3$/rad]};
 \node[labelbox,anchor=north] at (15.5,-8.55) {variable motor\\$D_M a_M$ [m$^3$/rad]};
 \node[instrument] (pa) at (10,-5.2) {$p_A$};
 \node[instrument] (pb) at (12,-9) {$p_B$};
-\draw[ink,line width=.7pt] (10,-4.1)--(pa.north) (12,-10.1)--(pb.south);
+\draw[ink,line width=.7pt] (10,-4.62)--(pa.north) (12,-10.1)--(pb.south);
 % Internal leakage is an explicit reduced loss, not a relief valve.
-\draw[utility,line width=1.0pt] (11,-4.1)--(11,-6.2);
+\draw[utility,line width=1.0pt] (11,-4.62)--(11,-6.2);
 \shade[draw=utility!85!ink,line width=.7pt,left color=hydSteelMid,
   right color=hydSteelHi,middle color=white] (10.7,-6.2) rectangle (11.3,-7.45);
 \draw[utility!72!ink,line width=.5pt] (10.87,-6.29)--(10.87,-7.32);
@@ -184,14 +186,34 @@
 % Operator controls in the original physical scheme: these are illustrative
 % driver requests, not additional calibrated states or a claim that the
 % reduced SI model contains a measured pedal/switch transfer function.
-% Green paths terminate on the ECU, separately from the orange command bus.
-\draw[utility!75!ink,line width=.75pt,line cap=round]
-  (8.66,-2.91)--(8.66,-2.84)--(5.39,-2.84);
-\draw[utility!75!ink,line width=.75pt,line cap=round]
-  (13.28,-2.91)--(13.28,-3.02)--(5.39,-3.02);
+% Shared base coordinates make both green connections meet the underside,
+% with no tiny hook, line through a housing, or floating endpoint.
+\coordinate (driveBase) at (8.63,-2.97);
+\coordinate (selectorBase) at (13.285,-2.97);
+\coordinate (driveLane) at (0,-3.10);
+\coordinate (selectorLane) at (0,-3.42);
+\coordinate (commandLane) at (0,-3.74);
+\coordinate (pressureLane) at (0,-4.06);
+% Four distinct interface heights leave 3.2 mm between adjacent centerlines.
+% The taller enclosure makes room for these ports without tightening the
+% already approved clearances above the operator controls.
+\node[box,draw=hydGraphite,fill=hydGraphite!92,rounded corners=2pt,
+  text=white,minimum width=4.6cm,minimum height=1.8cm] (ecu)
+  at (3,-3.45) {\textbf{Electronic control unit (ECU)}\\[2pt]
+    \color{white!89}\scriptsize commands $r_P,\ r_M$ [normalized]};
+\coordinate (ecuDrive) at (ecu.east |- driveLane);
+\coordinate (ecuSelector) at (ecu.east |- selectorLane);
+\coordinate (ecuCommand) at (ecu.east |- commandLane);
+\coordinate (ecuPressure) at (ecu.east |- pressureLane);
+% Independent orthogonal leads: the selector's rise is to the right of the
+% complete pedal path, so the two operator-request lines never cross.
+\draw[utility!75!ink,line width=.75pt,line cap=butt,rounded corners=1.7pt]
+  (ecuDrive)--(driveBase |- driveLane)--(driveBase);
+\draw[utility!75!ink,line width=.75pt,line cap=butt,rounded corners=1.7pt]
+  (ecuSelector)--(selectorBase |- selectorLane)--(selectorBase);
 % Drive pedal: sloped tread, hinged base and small visible fastener.
 \shade[draw=hydGraphite,line width=.6pt,top color=hydSteelHi,
-  bottom color=hydSteel] (8.37,-2.97) rectangle (8.89,-2.88);
+  bottom color=hydSteel] ($(driveBase)+(-.26,0)$) rectangle ($(driveBase)+(.26,.09)$);
 \draw[hydGraphite,line width=.9pt] (8.54,-2.89)--(8.81,-2.58);
 \shade[draw=hydGraphite,line width=.55pt,top color=hydSteelHi,
   bottom color=hydSteelMid]
@@ -200,21 +222,20 @@
 \node[annotation,anchor=west] at (9.11,-2.68) {drive pedal};
 % Driving direction selector: neutral-position lever and socket.
 \shade[draw=hydGraphite,line width=.6pt,top color=hydSteelHi,
-  bottom color=hydSteel] (12.99,-2.97) rectangle (13.58,-2.88);
+  bottom color=hydSteel] ($(selectorBase)+(-.295,0)$) rectangle ($(selectorBase)+(.295,.09)$);
 \draw[hydGraphite,line width=1pt] (13.29,-2.88)--(13.15,-2.57);
 \shade[draw=hydGraphite,line width=.55pt,inner color=hydSteelHi,
   outer color=hydSteelMid] (13.15,-2.52) circle (.095);
 \node[annotation,anchor=west] at (13.79,-2.68) {direction selector};
-% Displacement control and feedback.
-\node[box,draw=hydGraphite,fill=hydGraphite!92,rounded corners=2pt,
-  text=white,minimum width=4.6cm,minimum height=1.25cm] (ecu)
-  at (3,-3.2) {\textbf{Electronic control unit (ECU)}\\[2pt]
-    \color{white!89}\scriptsize commands $r_P,\ r_M$ [normalized]};
-\draw[signal] (ecu.east)--(5.9,-3.2)--(5.9,-5.45);
-\draw[signal] (5.3,-3.2)--(17.1,-3.2)--(17.1,-5.75)--(16.5,-5.75);
+% Displacement control and feedback. Both outgoing actuator branches share
+% one ECU command port, and the pressure return has its own lower port.
+\draw[control,line width=.8pt,dashed] (ecuCommand)--(5.9,-3.74);
+\draw[signal] (5.9,-3.74)--(5.9,-5.45);
+\draw[signal] (5.9,-3.74)--(17.1,-3.74)--(17.1,-5.75)--(16.5,-5.75);
 \node[annotation,anchor=west] at (18,-3.1) {first-order angle actuators\\$\dot a_j=(r_j-a_j)/\tau_j$};
-\draw[signal] (speed.south)--(17.4,-11.6)--(4.2,-11.6)--(4.2,-3.9);
-\draw[signal] (pa.west)--(7.8,-5.2)--(7.8,-3.6)--(5.35,-3.6);
+\coordinate (ecuSpeed) at (4.2,0 |- ecu.south);
+\draw[signal] (speed.south)--(17.4,-11.6)--(4.2,-11.6)--(ecuSpeed);
+\draw[signal] (pa.west)--(7.8,-5.2)--(7.8,-4.06)--(ecuPressure);
 \draw[signal] (pb.west)--(8.1,-9)--(8.1,-11.6);
 \node[labelbox] at (9,-11.6) {speed / pressure measurements support control};
 \node[annotation,anchor=west,text width=4.6cm] at (20.8,-10.1) {Dark lines: shafts.\\Dark arcs: shaft / wheel rotation.\\Blue arrows: nominal oil flow.\\Dashed lines: signals.\\Reverse operation reverses flow.};
